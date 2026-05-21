@@ -1,474 +1,396 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="appHtml">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HK LENS | Private Control Center</title>
 
-  <!-- Firebase SDKs v8 - compatible with the existing project -->
+  <title>HK LENS | Private Admin Control</title>
+
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <style>
-    :root{
-      --bg:#07111f;
-      --panel:#0d1b2f;
-      --panel2:#10233d;
-      --card:#ffffff;
-      --text:#edf5ff;
-      --muted:#9fb1c7;
-      --blue:#4f8cff;
-      --cyan:#26d9d0;
-      --green:#27d17f;
-      --orange:#ffb020;
-      --red:#ff5570;
-      --border:rgba(255,255,255,.12);
-      --shadow:0 24px 80px rgba(0,0,0,.35);
-      --radius:24px;
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel2: rgba(255, 255, 255, 0.12);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary2: #2563eb;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --border: rgba(255,255,255,0.14);
+      --white: #ffffff;
+      --shadow: 0 24px 80px rgba(0,0,0,0.35);
     }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      min-height: 100vh;
       background:
-        radial-gradient(circle at top right, rgba(38,217,208,.20), transparent 32%),
-        radial-gradient(circle at bottom left, rgba(79,140,255,.22), transparent 35%),
-        linear-gradient(135deg,#050914,#0a1730 55%,#07111f);
-      color:var(--text);
-      min-height:100vh;
+        radial-gradient(circle at top right, rgba(56,189,248,0.25), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(37,99,235,0.22), transparent 35%),
+        var(--bg);
+      color: var(--text);
     }
 
-    a{color:inherit;text-decoration:none}
-    button,input,textarea,select{font:inherit}
-
-    .page{
-      width:min(1180px, calc(100% - 32px));
-      margin:0 auto;
-      padding:28px 0 46px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:26px;
+    .page {
+      width: min(1180px, 94%);
+      margin: auto;
+      padding: 30px 0 60px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .logo{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,var(--blue),var(--cyan));
-      box-shadow:0 18px 40px rgba(79,140,255,.32);
-      font-weight:900;
-      letter-spacing:.5px;
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .brand h1{
-      margin:0;
-      font-size:1.25rem;
-      letter-spacing:.4px;
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      letter-spacing: -1px;
     }
 
-    .brand p{
-      margin:2px 0 0;
-      color:var(--muted);
-      font-size:.88rem;
+    .brand span {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    .top-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
+    .chip {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(18px);
+      font-size: 0.9rem;
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 13px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.06);
-      border-radius:999px;
-      color:var(--muted);
-      font-size:.9rem;
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
     }
 
-    .btn{
-      border:0;
-      border-radius:14px;
-      padding:12px 16px;
-      cursor:pointer;
-      font-weight:800;
-      color:white;
-      background:linear-gradient(135deg,var(--blue),#7c5cff);
-      transition:.2s ease;
-      box-shadow:0 16px 36px rgba(79,140,255,.24);
+    .login-card {
+      max-width: 460px;
+      margin: 70px auto;
+      padding: 30px;
     }
 
-    .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
-    .btn.secondary{background:rgba(255,255,255,.08);box-shadow:none;border:1px solid var(--border);color:var(--text)}
-    .btn.green{background:linear-gradient(135deg,#1fbf75,var(--green))}
-    .btn.orange{background:linear-gradient(135deg,#ff9e1b,#ffcf48);color:#2a1900}
-    .btn.red{background:linear-gradient(135deg,#ff4b68,#bd1e3a)}
-    .btn.small{padding:9px 11px;border-radius:12px;font-size:.86rem}
-
-    .hero{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:22px;
-      align-items:stretch;
-      margin-bottom:24px;
+    .login-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
     }
 
-    .glass{
-      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.055));
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(16px);
+    .login-card p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    .intro{
-      padding:30px;
-      overflow:hidden;
-      position:relative;
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      color: #dbeafe;
+      font-weight: 700;
+      font-size: 0.95rem;
     }
 
-    .intro:after{
-      content:"";
-      position:absolute;
-      width:190px;height:190px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(38,217,208,.30),transparent 70%);
-      left:-65px;bottom:-65px;
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 16px;
+      padding: 14px 15px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 1rem;
+      transition: 0.25s;
     }
 
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(38,217,208,.13);
-      color:#bffdf9;
-      font-weight:800;
-      margin-bottom:18px;
-      border:1px solid rgba(38,217,208,.22);
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.15);
     }
 
-    .intro h2{
-      margin:0 0 12px;
-      font-size:clamp(2rem,4vw,3.65rem);
-      line-height:1.05;
-      letter-spacing:-1px;
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+      line-height: 1.8;
     }
 
-    .intro p{
-      color:var(--muted);
-      margin:0 0 20px;
-      max-width:680px;
-      font-size:1.02rem;
+    select option {
+      color: #111827;
     }
 
-    .trust-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:22px;
-      position:relative;
-      z-index:1;
+    .btn {
+      border: 0;
+      border-radius: 16px;
+      padding: 13px 18px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    .trust-card{
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.06);
-      border-radius:18px;
-      padding:14px;
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.94;
     }
 
-    .trust-card strong{display:block;font-size:1.15rem}
-    .trust-card span{color:var(--muted);font-size:.82rem}
-
-    .login-card{
-      padding:24px;
+    .btn-primary {
+      width: 100%;
+      margin-top: 22px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary2), var(--primary));
     }
 
-    .panel-title{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
+    .btn-small {
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
     }
 
-    .panel-title h2,.panel-title h3{
-      margin:0;
-      font-size:1.2rem;
+    .btn-edit {
+      background: rgba(56,189,248,0.16);
+      color: #7dd3fc;
+      border: 1px solid rgba(56,189,248,0.35);
     }
 
-    .secure-mark{
-      color:#bffdf9;
-      background:rgba(38,217,208,.10);
-      border:1px solid rgba(38,217,208,.25);
-      padding:7px 10px;
-      border-radius:999px;
-      font-size:.78rem;
-      font-weight:800;
+    .btn-delete {
+      background: rgba(239,68,68,0.16);
+      color: #fca5a5;
+      border: 1px solid rgba(239,68,68,0.35);
     }
 
-    label{
-      display:block;
-      color:#dbe8fa;
-      font-weight:800;
-      margin:14px 0 7px;
-      font-size:.93rem;
+    .btn-logout {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
-    input,textarea,select{
-      width:100%;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.08);
-      color:var(--text);
-      border-radius:16px;
-      padding:13px 14px;
-      outline:none;
-      transition:.2s;
+    .dashboard {
+      display: none;
     }
 
-    input:focus,textarea:focus,select:focus{
-      border-color:rgba(38,217,208,.65);
-      box-shadow:0 0 0 4px rgba(38,217,208,.12);
+    .grid {
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 22px;
+      align-items: start;
     }
 
-    select option{color:#111}
-    textarea{min-height:170px;resize:vertical;line-height:1.7}
-
-    .hint{
-      color:var(--muted);
-      font-size:.85rem;
-      margin-top:10px;
-      line-height:1.7;
+    .section {
+      padding: 24px;
     }
 
-    .status{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:16px;
-      display:none;
-      line-height:1.6;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.06);
-    }
-    .status.ok{display:block;border-color:rgba(39,209,127,.35);background:rgba(39,209,127,.10);color:#d7ffe9}
-    .status.err{display:block;border-color:rgba(255,85,112,.35);background:rgba(255,85,112,.10);color:#ffdce3}
-    .status.warn{display:block;border-color:rgba(255,176,32,.35);background:rgba(255,176,32,.10);color:#fff2d4}
-
-    #dashboard{display:none}
-
-    .dashboard-grid{
-      display:grid;
-      grid-template-columns:.92fr 1.08fr;
-      gap:22px;
-      align-items:start;
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.35rem;
     }
 
-    .box{
-      padding:22px;
+    .status {
+      margin-top: 14px;
+      min-height: 24px;
+      color: var(--muted);
+      font-weight: 700;
     }
 
-    .form-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:16px;
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.88rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
     }
 
-    .form-actions .btn{flex:1;min-width:160px}
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-bottom:14px;
+    .role-admin {
+      color: #fde68a;
+      border-color: rgba(245,158,11,0.45);
+      background: rgba(245,158,11,0.13);
     }
 
-    .stat{
-      padding:15px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.06);
-    }
-    .stat b{display:block;font-size:1.55rem}
-    .stat span{color:var(--muted);font-size:.82rem}
-
-    .tools{
-      display:flex;
-      gap:10px;
-      margin:14px 0;
-      flex-wrap:wrap;
-    }
-    .tools input,.tools select{flex:1;min-width:170px}
-
-    .post-list{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      max-height:720px;
-      overflow:auto;
-      padding-left:6px;
+    .role-employee {
+      color: #bbf7d0;
+      border-color: rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.13);
     }
 
-    .post-row{
-      background:rgba(255,255,255,.07);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:15px;
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .post-row-head{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:flex-start;
+    .search-box {
+      flex: 1;
+      min-width: 200px;
     }
 
-    .post-row h4{
-      margin:0 0 6px;
-      font-size:1rem;
-      line-height:1.45;
+    .posts-list {
+      display: grid;
+      gap: 13px;
+      max-height: 720px;
+      overflow: auto;
+      padding-left: 5px;
     }
 
-    .post-row p{
-      margin:0;
-      color:var(--muted);
-      font-size:.85rem;
+    .post-item {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      transition: 0.25s;
     }
 
-    .row-actions{
-      display:flex;
-      gap:8px;
-      flex-shrink:0;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+    .post-item:hover {
+      background: rgba(255,255,255,0.11);
     }
 
-    .locked{
-      border:1px dashed rgba(255,255,255,.22);
-      border-radius:18px;
-      padding:18px;
-      color:var(--muted);
-      background:rgba(255,255,255,.04);
-      line-height:1.75;
+    .post-title {
+      margin: 0 0 7px;
+      font-size: 1.05rem;
+      color: var(--white);
     }
 
-    .danger-zone{
-      margin-top:16px;
-      border:1px solid rgba(255,85,112,.28);
-      background:rgba(255,85,112,.08);
-      border-radius:18px;
-      padding:14px;
-      color:#ffdce3;
-      line-height:1.7;
-      font-size:.9rem;
+    .post-meta {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 12px;
+      line-height: 1.6;
     }
 
-    .footer-note{
-      color:var(--muted);
-      margin-top:18px;
-      text-align:center;
-      font-size:.84rem;
+    .post-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width:900px){
-      .hero,.dashboard-grid{grid-template-columns:1fr}
-      .trust-grid,.stats{grid-template-columns:1fr}
-      .topbar{align-items:flex-start;flex-direction:column}
-      .post-row-head{flex-direction:column}
-      .row-actions{justify-content:flex-start}
+    .hidden {
+      display: none !important;
+    }
+
+    .notice {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .danger-zone {
+      border-color: rgba(239,68,68,0.35);
+      background: rgba(239,68,68,0.08);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section {
+        padding: 18px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <header class="topbar">
-      <a class="brand" href="index.html" title="Zurück zur Website">
-        <div class="logo">HK</div>
-        <div>
-          <h1>HK LENS</h1>
-          <p>Private Control Center</p>
-        </div>
-      </a>
+  <div class="page">
 
-      <div class="top-actions">
-        <span id="roleBadge" class="chip">🔐 غير مسجل</span>
-        <button class="btn secondary small" onclick="goHome()">الصفحة الرئيسية</button>
-        <button id="logoutBtn" class="btn red small" style="display:none" onclick="logout()">خروج</button>
-      </div>
-    </header>
-
-    <section class="hero" id="loginSection">
-      <div class="intro glass">
-        <div class="kicker">🛡️ دخول خاص للإدارة والموظفين</div>
-        <h2>لوحة تحكم آمنة لإدارة مقالات HK LENS</h2>
-        <p>
-          المدير يملك أعلى الصلاحيات: قراءة المنشورات، تعديلها، حذفها، ونشر مقالات جديدة.
-          الموظف يستطيع نشر مقالات فقط. لا يوجد إنشاء حساب من هذه الصفحة.
-        </p>
-
-        <div class="trust-grid">
-          <div class="trust-card"><strong>Admin</strong><span>نشر + تعديل + حذف + قراءة</span></div>
-          <div class="trust-card"><strong>Employee</strong><span>نشر فقط</span></div>
-          <div class="trust-card"><strong>Rules</strong><span>الحماية من Firebase</span></div>
-        </div>
+    <div class="topbar">
+      <div class="brand">
+        <h1>HK LENS Control</h1>
+        <span>لوحة خاصة للمدير والموظفين</span>
       </div>
 
-      <div class="login-card glass">
-        <div class="panel-title">
-          <h2>تسجيل الدخول الخاص</h2>
-          <span class="secure-mark">PRIVATE ACCESS</span>
-        </div>
+      <a class="chip" href="index.html">← العودة للموقع</a>
+    </div>
 
-        <label for="email">البريد الإلكتروني</label>
-        <input id="email" type="email" autocomplete="username" placeholder="admin@example.com" />
+    <section id="loginView" class="card login-card">
+      <h2>تسجيل دخول خاص</h2>
+      <p>
+        هذه الصفحة مخصصة للمدير والموظفين فقط.
+        المدير يستطيع القراءة والتعديل والحذف والنشر.
+        الموظف يستطيع النشر فقط.
+      </p>
 
-        <label for="password">كلمة المرور</label>
-        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••••" />
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" placeholder="example@email.com" autocomplete="email" />
 
-        <button class="btn" onclick="login()">دخول لوحة التحكم</button>
+      <label for="password">كلمة المرور</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
 
-        <div class="hint">
-          لا تضع رابط هذه الصفحة في القائمة العامة. الأمان الحقيقي يعتمد على Firebase Authentication + Realtime Database Rules.
-        </div>
+      <button class="btn btn-primary" onclick="login()">دخول آمن</button>
 
-        <div id="loginStatus" class="status"></div>
-      </div>
+      <div id="loginStatus" class="status"></div>
     </section>
 
-    <section id="dashboard">
-      <div class="dashboard-grid">
-        <div class="box glass">
-          <div class="panel-title">
-            <h2 id="formTitle">نشر مقال جديد</h2>
-            <span id="modeBadge" class="secure-mark">CREATE MODE</span>
+    <section id="dashboardView" class="dashboard">
+
+      <div class="tools">
+        <div>
+          <span id="roleBadge" class="role-badge">جاري التحقق...</span>
+        </div>
+        <button class="btn btn-logout" onclick="logout()">تسجيل الخروج</button>
+      </div>
+
+      <div class="grid">
+
+        <div class="card section">
+          <h2 id="formTitle">نشر مقال جديد</h2>
+
+          <div id="employeeNotice" class="notice hidden">
+            حسابك موظف: مسموح لك بنشر المقالات فقط، ولا يمكنك تعديل أو حذف المنشورات.
           </div>
 
           <label for="title">عنوان المقال</label>
-          <input id="title" type="text" placeholder="اكتب عنوان المقال..." maxlength="180" />
+          <input type="text" id="title" placeholder="اكتب عنوان المقال..." />
 
-          <label for="lang">لغة المقال</label>
+          <label for="lang">اللغة</label>
           <select id="lang">
             <option value="ar">العربية</option>
             <option value="en">English</option>
@@ -480,371 +402,364 @@
             <option value="Politics">Politics / سياسة</option>
             <option value="Economy">Economy / اقتصاد</option>
             <option value="Marketing">Marketing / تسويق</option>
-            <option value="Family">Family & Lifestyle / عائلة</option>
+            <option value="Family">Family / عائلة</option>
           </select>
 
           <label for="imageUrl">رابط صورة الغلاف</label>
-          <input id="imageUrl" type="url" placeholder="https://example.com/image.jpg" />
+          <input type="url" id="imageUrl" placeholder="https://..." />
 
           <label for="content">محتوى المقال</label>
           <textarea id="content" placeholder="اكتب المقال هنا..."></textarea>
 
-          <div class="form-actions">
-            <button class="btn green" onclick="savePost()">حفظ / نشر</button>
-            <button class="btn secondary" onclick="resetForm()">تفريغ النموذج</button>
-          </div>
+          <button id="saveBtn" class="btn btn-primary" onclick="savePost()">نشر المقال</button>
+          <button id="cancelEditBtn" class="btn btn-logout hidden" onclick="cancelEdit()">إلغاء التعديل</button>
 
-          <div id="saveStatus" class="status"></div>
-
-          <div id="employeeNotice" class="danger-zone" style="display:none">
-            حساب الموظف يستطيع نشر مقال جديد فقط. التعديل والحذف مخصصان للمدير.
-          </div>
+          <div id="formStatus" class="status"></div>
         </div>
 
-        <div class="box glass" id="adminPanel">
-          <div class="panel-title">
-            <h3>إدارة المنشورات</h3>
-            <span class="secure-mark">ADMIN ONLY</span>
+        <div id="adminPostsPanel" class="card section hidden">
+          <h2>إدارة المنشورات</h2>
+
+          <div class="notice danger-zone">
+            هذه المنطقة للمدير فقط: قراءة، تعديل، حذف.
           </div>
 
-          <div class="stats">
-            <div class="stat"><b id="totalPosts">0</b><span>كل المنشورات</span></div>
-            <div class="stat"><b id="arabicPosts">0</b><span>عربي</span></div>
-            <div class="stat"><b id="draftMode">✓</b><span>نشط</span></div>
-          </div>
+          <input class="search-box" type="text" id="searchInput" placeholder="بحث في المنشورات..." oninput="renderPosts()" />
 
-          <div class="tools">
-            <input id="searchInput" type="search" placeholder="بحث عن مقال..." oninput="renderPostList()" />
-            <select id="filterLang" onchange="renderPostList()">
-              <option value="All">كل اللغات</option>
-              <option value="ar">العربية</option>
-              <option value="en">English</option>
-              <option value="sv">Svenska</option>
-            </select>
-          </div>
-
-          <div id="postList" class="post-list"></div>
+          <div id="postsList" class="posts-list"></div>
         </div>
 
-        <div class="box glass" id="employeePanel" style="display:none">
-          <div class="panel-title">
-            <h3>صلاحية الموظف</h3>
-            <span class="secure-mark">PUBLISH ONLY</span>
-          </div>
-          <div class="locked">
-            هذا الحساب ليس حساب مدير. يمكنك نشر مقالات جديدة فقط.
-            لا تظهر هنا قائمة المنشورات، ولا يوجد تعديل أو حذف.
-          </div>
-        </div>
       </div>
     </section>
+  </div>
 
-    <p class="footer-note">
-      HK LENS Private Center © 2026 — Admin permissions are enforced by Firebase Realtime Database Rules.
-    </p>
-  </main>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
-    authDomain: "hk-blog-3ed96.firebaseapp.com",
-    projectId: "hk-blog-3ed96",
-    storageBucket: "hk-blog-3ed96.firebasestorage.app",
-    messagingSenderId: "339658398793",
-    appId: "1:339658398793:web:e38a09f83fd01c2e773398",
-    databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app/"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const database = firebase.database();
-
-  let currentUser = null;
-  let currentRole = null;
-  let editingPostKey = null;
-  let allPosts = [];
-
-  function showStatus(id, message, type){
-    const el = document.getElementById(id);
-    el.className = "status " + type;
-    el.textContent = message;
-  }
-
-  function clearStatus(id){
-    const el = document.getElementById(id);
-    el.className = "status";
-    el.textContent = "";
-  }
-
-  function goHome(){
-    window.location.href = "index.html";
-  }
-
-  function setRoleBadge(text){
-    document.getElementById("roleBadge").textContent = text;
-  }
-
-  async function login(){
-    clearStatus("loginStatus");
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    if(!email || !password){
-      showStatus("loginStatus", "اكتب البريد وكلمة المرور.", "warn");
-      return;
-    }
-
-    try{
-      showStatus("loginStatus", "جاري التحقق من الحساب...", "warn");
-      const credential = await auth.signInWithEmailAndPassword(email, password);
-      await checkRoleAndOpen(credential.user);
-    }catch(error){
-      showStatus("loginStatus", "فشل تسجيل الدخول: " + error.message, "err");
-    }
-  }
-
-  async function checkRoleAndOpen(user){
-    currentUser = user;
-
-    const adminSnap = await database.ref("admins/" + user.uid).once("value");
-    const employeeSnap = await database.ref("employees/" + user.uid).once("value");
-
-    if(adminSnap.val() === true){
-      currentRole = "admin";
-      openDashboard("admin");
-      return;
-    }
-
-    if(employeeSnap.val() === true){
-      currentRole = "employee";
-      openDashboard("employee");
-      return;
-    }
-
-    await auth.signOut();
-    currentUser = null;
-    currentRole = null;
-    showStatus("loginStatus", "تم تسجيل الدخول، لكن هذا الحساب غير مسموح له بالدخول. أضف UID داخل admins أو employees في Firebase.", "err");
-  }
-
-  function openDashboard(role){
-    document.getElementById("loginSection").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("logoutBtn").style.display = "inline-flex";
-
-    if(role === "admin"){
-      setRoleBadge("👑 مدير: كل الصلاحيات");
-      document.getElementById("adminPanel").style.display = "block";
-      document.getElementById("employeePanel").style.display = "none";
-      document.getElementById("employeeNotice").style.display = "none";
-      loadPostsForAdmin();
-    }else{
-      setRoleBadge("✍️ موظف: نشر فقط");
-      document.getElementById("adminPanel").style.display = "none";
-      document.getElementById("employeePanel").style.display = "block";
-      document.getElementById("employeeNotice").style.display = "block";
-    }
-
-    showStatus("saveStatus", "تم فتح لوحة التحكم بنجاح.", "ok");
-  }
-
-  async function logout(){
-    await auth.signOut();
-    currentUser = null;
-    currentRole = null;
-    editingPostKey = null;
-    allPosts = [];
-    document.getElementById("loginSection").style.display = "grid";
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "none";
-    setRoleBadge("🔐 غير مسجل");
-    resetForm();
-  }
-
-  function resetForm(){
-    editingPostKey = null;
-    document.getElementById("formTitle").textContent = "نشر مقال جديد";
-    document.getElementById("modeBadge").textContent = "CREATE MODE";
-    document.getElementById("title").value = "";
-    document.getElementById("lang").value = "ar";
-    document.getElementById("category").value = "Politics";
-    document.getElementById("imageUrl").value = "";
-    document.getElementById("content").value = "";
-    clearStatus("saveStatus");
-  }
-
-  function getPostPayload(){
-    return {
-      title: document.getElementById("title").value.trim(),
-      lang: document.getElementById("lang").value,
-      category: document.getElementById("category").value,
-      imageUrl: document.getElementById("imageUrl").value.trim(),
-      content: document.getElementById("content").value.trim(),
-      date: new Date().toLocaleDateString("en-GB"),
-      updatedAt: Date.now(),
-      updatedBy: currentUser ? currentUser.uid : ""
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+      authDomain: "hk-blog-3ed96.firebaseapp.com",
+      projectId: "hk-blog-3ed96",
+      storageBucket: "hk-blog-3ed96.firebasestorage.app",
+      messagingSenderId: "339658398793",
+      appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+      databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app/"
     };
-  }
 
-  async function savePost(){
-    if(!currentUser || !currentRole){
-      showStatus("saveStatus", "يجب تسجيل الدخول أولاً.", "err");
-      return;
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    let currentUser = null;
+    let currentRole = null;
+    let editingPostId = null;
+    let allPosts = [];
+
+    const ADMIN_UID = "zr6jgBPvjtPwIueeECH8LuwzlC62";
+
+    function el(id) {
+      return document.getElementById(id);
     }
 
-    const payload = getPostPayload();
-
-    if(!payload.title || !payload.content){
-      showStatus("saveStatus", "العنوان والمحتوى مطلوبان.", "warn");
-      return;
+    function setStatus(id, message, color) {
+      el(id).innerText = message || "";
+      el(id).style.color = color || "#94a3b8";
     }
 
-    try{
-      showStatus("saveStatus", "جاري الحفظ...", "warn");
+    function escapeHTML(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
 
-      if(editingPostKey){
-        if(currentRole !== "admin"){
-          showStatus("saveStatus", "التعديل مسموح للمدير فقط.", "err");
-          return;
-        }
-        await database.ref("posts/" + editingPostKey).update(payload);
-        showStatus("saveStatus", "تم تعديل المقال بنجاح.", "ok");
-      }else{
-        payload.createdAt = Date.now();
-        payload.createdBy = currentUser.uid;
-        await database.ref("posts").push(payload);
-        showStatus("saveStatus", "تم نشر المقال بنجاح.", "ok");
+    function login() {
+      const email = el("email").value.trim();
+      const password = el("password").value;
+
+      if (!email || !password) {
+        setStatus("loginStatus", "اكتب البريد وكلمة المرور.", "#f59e0b");
+        return;
       }
 
-      resetForm();
-      if(currentRole === "admin") loadPostsForAdmin();
-    }catch(error){
-      showStatus("saveStatus", "خطأ أثناء الحفظ: " + error.message, "err");
-    }
-  }
+      setStatus("loginStatus", "جاري تسجيل الدخول...", "#38bdf8");
 
-  function loadPostsForAdmin(){
-    database.ref("posts").orderByChild("updatedAt").on("value", (snapshot) => {
-      allPosts = [];
-      snapshot.forEach((child) => {
-        const post = child.val() || {};
-        post.key = child.key;
-        allPosts.unshift(post);
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          setStatus("loginStatus", "تم تسجيل الدخول.", "#22c55e");
+        })
+        .catch((error) => {
+          setStatus("loginStatus", "فشل الدخول: " + error.message, "#ef4444");
+        });
+    }
+
+    function logout() {
+      auth.signOut();
+    }
+
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        currentUser = null;
+        currentRole = null;
+        editingPostId = null;
+
+        el("loginView").style.display = "block";
+        el("dashboardView").style.display = "none";
+        setStatus("loginStatus", "", "#94a3b8");
+        return;
+      }
+
+      currentUser = user;
+      await checkRole(user.uid);
+    });
+
+    async function checkRole(uid) {
+      try {
+        const adminSnap = await database.ref("admins/" + uid).once("value");
+        const employeeSnap = await database.ref("employees/" + uid).once("value");
+
+        if (adminSnap.val() === true || uid === ADMIN_UID) {
+          currentRole = "admin";
+          showDashboardAsAdmin();
+          return;
+        }
+
+        if (employeeSnap.val() === true) {
+          currentRole = "employee";
+          showDashboardAsEmployee();
+          return;
+        }
+
+        await auth.signOut();
+        alert("هذا الحساب غير مصرح له بالدخول. يجب إضافته كمدير أو موظف.");
+      } catch (error) {
+        await auth.signOut();
+        alert("تعذر التحقق من الصلاحيات: " + error.message);
+      }
+    }
+
+    function showDashboardAsAdmin() {
+      el("loginView").style.display = "none";
+      el("dashboardView").style.display = "block";
+
+      el("roleBadge").innerText = "مدير النظام";
+      el("roleBadge").className = "role-badge role-admin";
+
+      el("adminPostsPanel").classList.remove("hidden");
+      el("employeeNotice").classList.add("hidden");
+
+      loadPostsForAdmin();
+    }
+
+    function showDashboardAsEmployee() {
+      el("loginView").style.display = "none";
+      el("dashboardView").style.display = "block";
+
+      el("roleBadge").innerText = "موظف نشر";
+      el("roleBadge").className = "role-badge role-employee";
+
+      el("adminPostsPanel").classList.add("hidden");
+      el("employeeNotice").classList.remove("hidden");
+    }
+
+    function collectPostData() {
+      return {
+        title: el("title").value.trim(),
+        lang: el("lang").value,
+        category: el("category").value,
+        imageUrl: el("imageUrl").value.trim(),
+        content: el("content").value.trim()
+      };
+    }
+
+    function validatePost(post) {
+      if (!post.title || !post.content) {
+        setStatus("formStatus", "العنوان والمحتوى مطلوبان.", "#f59e0b");
+        return false;
+      }
+
+      if (!["ar", "en", "sv"].includes(post.lang)) {
+        setStatus("formStatus", "لغة غير صحيحة.", "#ef4444");
+        return false;
+      }
+
+      if (!["Politics", "Economy", "Marketing", "Family"].includes(post.category)) {
+        setStatus("formStatus", "تصنيف غير صحيح.", "#ef4444");
+        return false;
+      }
+
+      return true;
+    }
+
+    function savePost() {
+      const post = collectPostData();
+
+      if (!validatePost(post)) return;
+
+      const now = new Date();
+
+      setStatus("formStatus", "جاري الحفظ...", "#38bdf8");
+
+      if (editingPostId) {
+        if (currentRole !== "admin") {
+          setStatus("formStatus", "التعديل للمدير فقط.", "#ef4444");
+          return;
+        }
+
+        database.ref("posts/" + editingPostId).update({
+          title: post.title,
+          lang: post.lang,
+          category: post.category,
+          imageUrl: post.imageUrl,
+          content: post.content,
+          updatedAt: now.toISOString(),
+          updatedBy: currentUser.uid
+        }).then(() => {
+          setStatus("formStatus", "تم تعديل المقال بنجاح.", "#22c55e");
+          clearForm();
+          cancelEdit();
+        }).catch((error) => {
+          setStatus("formStatus", "خطأ في التعديل: " + error.message, "#ef4444");
+        });
+
+        return;
+      }
+
+      database.ref("posts").push({
+        title: post.title,
+        lang: post.lang,
+        category: post.category,
+        imageUrl: post.imageUrl,
+        content: post.content,
+        date: now.toLocaleDateString("en-GB"),
+        createdAt: now.toISOString(),
+        createdBy: currentUser.uid,
+        authorEmail: currentUser.email || ""
+      }).then(() => {
+        setStatus("formStatus", "تم نشر المقال بنجاح.", "#22c55e");
+        clearForm();
+      }).catch((error) => {
+        setStatus("formStatus", "خطأ في النشر: " + error.message, "#ef4444");
       });
-      renderPostList();
-    });
-  }
-
-  function renderPostList(){
-    const list = document.getElementById("postList");
-    const search = document.getElementById("searchInput").value.trim().toLowerCase();
-    const lang = document.getElementById("filterLang").value;
-
-    const filtered = allPosts.filter(post => {
-      const text = ((post.title || "") + " " + (post.content || "") + " " + (post.category || "")).toLowerCase();
-      const matchSearch = !search || text.includes(search);
-      const matchLang = lang === "All" || post.lang === lang;
-      return matchSearch && matchLang;
-    });
-
-    document.getElementById("totalPosts").textContent = allPosts.length;
-    document.getElementById("arabicPosts").textContent = allPosts.filter(p => p.lang === "ar").length;
-
-    if(filtered.length === 0){
-      list.innerHTML = '<div class="locked">لا توجد منشورات مطابقة.</div>';
-      return;
     }
 
-    list.innerHTML = filtered.map(post => `
-      <article class="post-row">
-        <div class="post-row-head">
-          <div>
-            <h4>${escapeHtml(post.title || "بدون عنوان")}</h4>
-            <p>📂 ${escapeHtml(post.category || "-")} | 🌐 ${escapeHtml(post.lang || "-")} | 📅 ${escapeHtml(post.date || "-")}</p>
+    function clearForm() {
+      el("title").value = "";
+      el("imageUrl").value = "";
+      el("content").value = "";
+      el("lang").value = "ar";
+      el("category").value = "Politics";
+    }
+
+    function cancelEdit() {
+      editingPostId = null;
+      el("formTitle").innerText = "نشر مقال جديد";
+      el("saveBtn").innerText = "نشر المقال";
+      el("cancelEditBtn").classList.add("hidden");
+      clearForm();
+    }
+
+    function loadPostsForAdmin() {
+      database.ref("posts").on("value", (snapshot) => {
+        allPosts = [];
+
+        snapshot.forEach((child) => {
+          const post = child.val() || {};
+          post.key = child.key;
+          allPosts.unshift(post);
+        });
+
+        renderPosts();
+      });
+    }
+
+    function renderPosts() {
+      const list = el("postsList");
+      const search = el("searchInput").value.trim().toLowerCase();
+
+      let filtered = allPosts;
+
+      if (search) {
+        filtered = allPosts.filter((post) => {
+          return (
+            String(post.title || "").toLowerCase().includes(search) ||
+            String(post.content || "").toLowerCase().includes(search) ||
+            String(post.category || "").toLowerCase().includes(search) ||
+            String(post.lang || "").toLowerCase().includes(search)
+          );
+        });
+      }
+
+      if (!filtered.length) {
+        list.innerHTML = '<div class="notice">لا توجد منشورات.</div>';
+        return;
+      }
+
+      list.innerHTML = filtered.map((post) => {
+        return `
+          <div class="post-item">
+            <h3 class="post-title">${escapeHTML(post.title)}</h3>
+            <div class="post-meta">
+              اللغة: ${escapeHTML(post.lang)}
+              |
+              التصنيف: ${escapeHTML(post.category)}
+              |
+              التاريخ: ${escapeHTML(post.date || "")}
+              <br>
+              الكاتب: ${escapeHTML(post.authorEmail || post.createdBy || "غير معروف")}
+            </div>
+
+            <div class="post-actions">
+              <button class="btn btn-small btn-edit" onclick="startEdit('${post.key}')">تعديل</button>
+              <button class="btn btn-small btn-delete" onclick="deletePost('${post.key}')">حذف</button>
+            </div>
           </div>
-          <div class="row-actions">
-            <button class="btn secondary small" onclick="previewPost('${post.key}')">قراءة</button>
-            <button class="btn orange small" onclick="editPost('${post.key}')">تعديل</button>
-            <button class="btn red small" onclick="deletePost('${post.key}')">حذف</button>
-          </div>
-        </div>
-      </article>
-    `).join("");
-  }
-
-  function findPost(key){
-    return allPosts.find(p => p.key === key);
-  }
-
-  function previewPost(key){
-    const post = findPost(key);
-    if(!post) return;
-    const preview = [
-      post.title || "",
-      "",
-      "التصنيف: " + (post.category || "-"),
-      "اللغة: " + (post.lang || "-"),
-      "التاريخ: " + (post.date || "-"),
-      "",
-      post.content || ""
-    ].join("\n");
-    alert(preview);
-  }
-
-  function editPost(key){
-    if(currentRole !== "admin"){
-      showStatus("saveStatus", "التعديل مسموح للمدير فقط.", "err");
-      return;
-    }
-    const post = findPost(key);
-    if(!post) return;
-
-    editingPostKey = key;
-    document.getElementById("formTitle").textContent = "تعديل مقال";
-    document.getElementById("modeBadge").textContent = "EDIT MODE";
-    document.getElementById("title").value = post.title || "";
-    document.getElementById("lang").value = post.lang || "ar";
-    document.getElementById("category").value = post.category || "Politics";
-    document.getElementById("imageUrl").value = post.imageUrl || "";
-    document.getElementById("content").value = post.content || "";
-    window.scrollTo({top:0, behavior:"smooth"});
-    showStatus("saveStatus", "تم تحميل المقال للتعديل.", "warn");
-  }
-
-  async function deletePost(key){
-    if(currentRole !== "admin"){
-      showStatus("saveStatus", "الحذف مسموح للمدير فقط.", "err");
-      return;
+        `;
+      }).join("");
     }
 
-    const post = findPost(key);
-    const title = post && post.title ? post.title : "هذا المقال";
-    const confirmed = confirm("هل أنت متأكد من حذف: " + title + " ؟ لا يمكن التراجع.");
-    if(!confirmed) return;
+    function startEdit(postId) {
+      if (currentRole !== "admin") {
+        alert("التعديل للمدير فقط.");
+        return;
+      }
 
-    try{
-      await database.ref("posts/" + key).remove();
-      showStatus("saveStatus", "تم حذف المقال.", "ok");
-      if(editingPostKey === key) resetForm();
-    }catch(error){
-      showStatus("saveStatus", "فشل الحذف: " + error.message, "err");
+      const post = allPosts.find((p) => p.key === postId);
+      if (!post) return;
+
+      editingPostId = postId;
+
+      el("formTitle").innerText = "تعديل المقال";
+      el("saveBtn").innerText = "حفظ التعديل";
+      el("cancelEditBtn").classList.remove("hidden");
+
+      el("title").value = post.title || "";
+      el("lang").value = post.lang || "ar";
+      el("category").value = post.category || "Politics";
+      el("imageUrl").value = post.imageUrl || "";
+      el("content").value = post.content || "";
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }
 
-  function escapeHtml(value){
-    return String(value)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
+    function deletePost(postId) {
+      if (currentRole !== "admin") {
+        alert("الحذف للمدير فقط.");
+        return;
+      }
 
-  auth.onAuthStateChanged((user) => {
-    if(user && !currentUser){
-      checkRoleAndOpen(user).catch(() => auth.signOut());
+      const ok = confirm("هل أنت متأكد من حذف هذا المنشور؟ لا يمكن التراجع.");
+      if (!ok) return;
+
+      database.ref("posts/" + postId).remove()
+        .then(() => {
+          alert("تم حذف المنشور.");
+        })
+        .catch((error) => {
+          alert("فشل الحذف: " + error.message);
+        });
     }
-  });
-</script>
+  </script>
 </body>
 </html>
