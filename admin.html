@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>HK LENS | Private Admin Control</title>
 
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -12,19 +11,24 @@
 
   <style>
     :root {
-      --bg: #0b1020;
-      --panel: rgba(255, 255, 255, 0.08);
-      --panel2: rgba(255, 255, 255, 0.12);
+      --bg: #07111f;
+      --bg2: #0f172a;
+      --card: rgba(255, 255, 255, 0.09);
+      --card2: rgba(255, 255, 255, 0.13);
       --text: #f8fafc;
       --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.16);
       --primary: #38bdf8;
       --primary2: #2563eb;
-      --danger: #ef4444;
       --success: #22c55e;
       --warning: #f59e0b;
-      --border: rgba(255,255,255,0.14);
+      --danger: #ef4444;
+      --danger2: #b91c1c;
+      --gold: #fbbf24;
+      --green: #86efac;
       --white: #ffffff;
-      --shadow: 0 24px 80px rgba(0,0,0,0.35);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.36);
+      --radius: 28px;
     }
 
     * {
@@ -33,12 +37,12 @@
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
       min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(56,189,248,0.25), transparent 35%),
-        radial-gradient(circle at bottom left, rgba(37,99,235,0.22), transparent 35%),
-        var(--bg);
+        radial-gradient(circle at 85% 5%, rgba(56, 189, 248, 0.28), transparent 34%),
+        radial-gradient(circle at 10% 90%, rgba(37, 99, 235, 0.25), transparent 35%),
+        linear-gradient(145deg, var(--bg), var(--bg2));
       color: var(--text);
     }
 
@@ -47,29 +51,37 @@
       text-decoration: none;
     }
 
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
     .page {
       width: min(1180px, 94%);
       margin: auto;
-      padding: 30px 0 60px;
+      padding: 28px 0 70px;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       margin-bottom: 24px;
     }
 
     .brand {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 7px;
     }
 
     .brand h1 {
       margin: 0;
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-size: clamp(1.8rem, 4vw, 3.25rem);
+      line-height: 1;
       letter-spacing: -1px;
     }
 
@@ -78,93 +90,124 @@
       font-size: 0.95rem;
     }
 
+    .top-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .chip {
-      border: 1px solid var(--border);
-      background: var(--panel);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text);
       padding: 10px 14px;
       border-radius: 999px;
       backdrop-filter: blur(18px);
       font-size: 0.9rem;
+      transition: 0.25s;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.45);
     }
 
     .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(22px);
     }
 
     .login-card {
-      max-width: 460px;
-      margin: 70px auto;
+      max-width: 500px;
+      margin: 66px auto;
       padding: 30px;
     }
 
     .login-card h2 {
       margin: 0 0 10px;
-      font-size: 1.8rem;
+      font-size: 1.85rem;
     }
 
     .login-card p {
       margin: 0 0 24px;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
     label {
       display: block;
       margin: 16px 0 7px;
       color: #dbeafe;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 0.94rem;
     }
 
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       width: 100%;
-      border: 1px solid var(--border);
+      border: 1px solid var(--line);
       outline: none;
       border-radius: 16px;
       padding: 14px 15px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text);
       font-size: 1rem;
       transition: 0.25s;
     }
 
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(56,189,248,0.15);
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(226, 232, 240, 0.55);
     }
 
-    textarea {
-      min-height: 180px;
-      resize: vertical;
-      line-height: 1.8;
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+      background: rgba(255, 255, 255, 0.11);
     }
 
     select option {
       color: #111827;
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 190px;
+      resize: vertical;
+      line-height: 1.85;
     }
 
     .btn {
       border: 0;
       border-radius: 16px;
       padding: 13px 18px;
-      font-size: 0.98rem;
-      font-weight: 800;
+      font-size: 0.97rem;
+      font-weight: 900;
       cursor: pointer;
       transition: 0.25s;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      user-select: none;
     }
 
     .btn:hover {
       transform: translateY(-2px);
       opacity: 0.94;
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .btn-primary {
@@ -174,32 +217,71 @@
       background: linear-gradient(135deg, var(--primary2), var(--primary));
     }
 
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+    }
+
     .btn-small {
       padding: 9px 12px;
       border-radius: 12px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
     }
 
     .btn-edit {
-      background: rgba(56,189,248,0.16);
       color: #7dd3fc;
-      border: 1px solid rgba(56,189,248,0.35);
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.35);
     }
 
     .btn-delete {
-      background: rgba(239,68,68,0.16);
       color: #fca5a5;
-      border: 1px solid rgba(239,68,68,0.35);
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.35);
     }
 
-    .btn-logout {
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      border: 1px solid var(--border);
+    .btn-view {
+      color: #d8b4fe;
+      background: rgba(168, 85, 247, 0.14);
+      border: 1px solid rgba(168, 85, 247, 0.32);
     }
 
     .dashboard {
       display: none;
+    }
+
+    .dashboard-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 950;
+      font-size: 0.88rem;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .role-admin {
+      color: #fde68a;
+      border-color: rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.13);
+    }
+
+    .role-employee {
+      color: #bbf7d0;
+      border-color: rgba(34, 197, 94, 0.45);
+      background: rgba(34, 197, 94, 0.13);
     }
 
     .grid {
@@ -222,78 +304,88 @@
       margin-top: 14px;
       min-height: 24px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
+      line-height: 1.6;
     }
 
-    .role-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 0.88rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.08);
+    .notice {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
     }
 
-    .role-admin {
-      color: #fde68a;
-      border-color: rgba(245,158,11,0.45);
-      background: rgba(245,158,11,0.13);
+    .danger-zone {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.08);
     }
 
-    .role-employee {
-      color: #bbf7d0;
-      border-color: rgba(34,197,94,0.45);
-      background: rgba(34,197,94,0.13);
+    .success-zone {
+      border-color: rgba(34, 197, 94, 0.35);
+      background: rgba(34, 197, 94, 0.08);
     }
 
-    .tools {
+    .hidden {
+      display: none !important;
+    }
+
+    .toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 18px;
-      align-items: center;
-      justify-content: space-between;
+      margin-bottom: 16px;
     }
 
-    .search-box {
+    .toolbar input,
+    .toolbar select {
       flex: 1;
-      min-width: 200px;
+      min-width: 170px;
     }
 
     .posts-list {
       display: grid;
       gap: 13px;
-      max-height: 720px;
+      max-height: 760px;
       overflow: auto;
       padding-left: 5px;
     }
 
     .post-item {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--line);
       border-radius: 20px;
       padding: 16px;
       transition: 0.25s;
     }
 
     .post-item:hover {
-      background: rgba(255,255,255,0.11);
+      background: rgba(255, 255, 255, 0.11);
     }
 
     .post-title {
       margin: 0 0 7px;
       font-size: 1.05rem;
       color: var(--white);
+      line-height: 1.5;
     }
 
     .post-meta {
       color: var(--muted);
       font-size: 0.84rem;
       margin-bottom: 12px;
-      line-height: 1.6;
+      line-height: 1.75;
+    }
+
+    .post-excerpt {
+      color: #dbeafe;
+      opacity: 0.88;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 13px;
+      white-space: pre-wrap;
     }
 
     .post-actions {
@@ -302,37 +394,85 @@
       flex-wrap: wrap;
     }
 
-    .hidden {
-      display: none !important;
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.72);
+      padding: 20px;
+      overflow: auto;
     }
 
-    .notice {
-      padding: 14px 16px;
+    .modal {
+      width: min(820px, 96%);
+      margin: 40px auto;
+      background: #0f172a;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .modal-body {
+      padding: 20px;
+      line-height: 1.85;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+    }
+
+    .modal-body img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
       border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.07);
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
     }
 
-    .danger-zone {
-      border-color: rgba(239,68,68,0.35);
-      background: rgba(239,68,68,0.08);
+    .close-x {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
     }
 
     @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .grid {
         grid-template-columns: 1fr;
       }
 
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
       .section {
         padding: 18px;
+      }
+
+      .login-card {
+        margin: 30px auto;
+        padding: 22px;
       }
     }
   </style>
@@ -340,22 +480,23 @@
 
 <body>
   <div class="page">
-
     <div class="topbar">
       <div class="brand">
         <h1>HK LENS Control</h1>
-        <span>لوحة خاصة للمدير والموظفين</span>
+        <span>لوحة خاصة وآمنة للمدير والموظفين</span>
       </div>
 
-      <a class="chip" href="index.html">← العودة للموقع</a>
+      <div class="top-actions">
+        <a class="chip" href="index.html">← العودة للموقع</a>
+      </div>
     </div>
 
     <section id="loginView" class="card login-card">
-      <h2>تسجيل دخول خاص</h2>
+      <h2>تسجيل دخول خاص جدًا</h2>
       <p>
         هذه الصفحة مخصصة للمدير والموظفين فقط.
-        المدير يستطيع القراءة والتعديل والحذف والنشر.
-        الموظف يستطيع النشر فقط.
+        المدير يستطيع قراءة المنشورات وتعديلها وحذفها ونشر مقالات جديدة.
+        الموظف يستطيع نشر المقالات فقط.
       </p>
 
       <label for="email">البريد الإلكتروني</label>
@@ -364,31 +505,33 @@
       <label for="password">كلمة المرور</label>
       <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
 
-      <button class="btn btn-primary" onclick="login()">دخول آمن</button>
-
+      <button id="loginBtn" class="btn btn-primary" onclick="login()">دخول آمن</button>
       <div id="loginStatus" class="status"></div>
     </section>
 
     <section id="dashboardView" class="dashboard">
-
-      <div class="tools">
+      <div class="dashboard-head">
         <div>
           <span id="roleBadge" class="role-badge">جاري التحقق...</span>
+          <span id="userEmail" class="chip"></span>
         </div>
-        <button class="btn btn-logout" onclick="logout()">تسجيل الخروج</button>
+        <button class="btn btn-secondary" onclick="logout()">تسجيل الخروج</button>
       </div>
 
       <div class="grid">
-
         <div class="card section">
           <h2 id="formTitle">نشر مقال جديد</h2>
 
+          <div id="adminNotice" class="notice success-zone hidden">
+            أنت مدير: يمكنك النشر، قراءة المنشورات، تعديلها، وحذفها.
+          </div>
+
           <div id="employeeNotice" class="notice hidden">
-            حسابك موظف: مسموح لك بنشر المقالات فقط، ولا يمكنك تعديل أو حذف المنشورات.
+            أنت موظف: مسموح لك بنشر المقالات فقط. التعديل والحذف للمدير فقط.
           </div>
 
           <label for="title">عنوان المقال</label>
-          <input type="text" id="title" placeholder="اكتب عنوان المقال..." />
+          <input type="text" id="title" placeholder="اكتب عنوان المقال..." maxlength="200" />
 
           <label for="lang">اللغة</label>
           <select id="lang">
@@ -412,7 +555,7 @@
           <textarea id="content" placeholder="اكتب المقال هنا..."></textarea>
 
           <button id="saveBtn" class="btn btn-primary" onclick="savePost()">نشر المقال</button>
-          <button id="cancelEditBtn" class="btn btn-logout hidden" onclick="cancelEdit()">إلغاء التعديل</button>
+          <button id="cancelEditBtn" class="btn btn-secondary hidden" onclick="cancelEdit()" style="width: 100%; margin-top: 10px;">إلغاء التعديل</button>
 
           <div id="formStatus" class="status"></div>
         </div>
@@ -424,13 +567,37 @@
             هذه المنطقة للمدير فقط: قراءة، تعديل، حذف.
           </div>
 
-          <input class="search-box" type="text" id="searchInput" placeholder="بحث في المنشورات..." oninput="renderPosts()" />
+          <div class="toolbar">
+            <input type="text" id="searchInput" placeholder="بحث في العنوان أو المحتوى..." oninput="renderPosts()" />
+            <select id="filterLang" onchange="renderPosts()">
+              <option value="All">كل اللغات</option>
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+              <option value="sv">Svenska</option>
+            </select>
+            <select id="filterCategory" onchange="renderPosts()">
+              <option value="All">كل التصنيفات</option>
+              <option value="Politics">Politics</option>
+              <option value="Economy">Economy</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Family">Family</option>
+            </select>
+          </div>
 
           <div id="postsList" class="posts-list"></div>
         </div>
-
       </div>
     </section>
+  </div>
+
+  <div id="postModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle"></h3>
+        <button class="close-x" onclick="closeModal()">×</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
   </div>
 
   <script>
@@ -449,12 +616,12 @@
     const auth = firebase.auth();
     const database = firebase.database();
 
+    const MAIN_ADMIN_UID = "zr6jgBPvjtPwIueeECH8LuwzlC62";
+
     let currentUser = null;
     let currentRole = null;
     let editingPostId = null;
     let allPosts = [];
-
-    const ADMIN_UID = "zr6jgBPvjtPwIueeECH8LuwzlC62";
 
     function el(id) {
       return document.getElementById(id);
@@ -474,23 +641,37 @@
         .replaceAll("'", "&#039;");
     }
 
+    function makeExcerpt(text, maxLength) {
+      const clean = String(text || "").trim();
+      if (clean.length <= maxLength) return clean;
+      return clean.slice(0, maxLength) + "...";
+    }
+
+    function getDateString() {
+      return new Date().toLocaleDateString("en-GB");
+    }
+
     function login() {
       const email = el("email").value.trim();
       const password = el("password").value;
 
       if (!email || !password) {
-        setStatus("loginStatus", "اكتب البريد وكلمة المرور.", "#f59e0b");
+        setStatus("loginStatus", "اكتب البريد الإلكتروني وكلمة المرور.", "#f59e0b");
         return;
       }
 
+      el("loginBtn").disabled = true;
       setStatus("loginStatus", "جاري تسجيل الدخول...", "#38bdf8");
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          setStatus("loginStatus", "تم تسجيل الدخول.", "#22c55e");
+          setStatus("loginStatus", "تم تسجيل الدخول. جاري التحقق من الصلاحية...", "#22c55e");
         })
         .catch((error) => {
           setStatus("loginStatus", "فشل الدخول: " + error.message, "#ef4444");
+        })
+        .finally(() => {
+          el("loginBtn").disabled = false;
         });
     }
 
@@ -503,64 +684,70 @@
         currentUser = null;
         currentRole = null;
         editingPostId = null;
+        allPosts = [];
 
         el("loginView").style.display = "block";
         el("dashboardView").style.display = "none";
         setStatus("loginStatus", "", "#94a3b8");
+        clearForm();
         return;
       }
 
       currentUser = user;
-      await checkRole(user.uid);
+      await checkUserRole(user.uid);
     });
 
-    async function checkRole(uid) {
+    async function checkUserRole(uid) {
       try {
-        const adminSnap = await database.ref("admins/" + uid).once("value");
-        const employeeSnap = await database.ref("employees/" + uid).once("value");
+        const adminSnapshot = await database.ref("admins/" + uid).once("value");
+        const employeeSnapshot = await database.ref("employees/" + uid).once("value");
 
-        if (adminSnap.val() === true || uid === ADMIN_UID) {
+        if (uid === MAIN_ADMIN_UID || adminSnapshot.val() === true) {
           currentRole = "admin";
-          showDashboardAsAdmin();
+          showAdminDashboard();
           return;
         }
 
-        if (employeeSnap.val() === true) {
+        if (employeeSnapshot.val() === true) {
           currentRole = "employee";
-          showDashboardAsEmployee();
+          showEmployeeDashboard();
           return;
         }
 
         await auth.signOut();
-        alert("هذا الحساب غير مصرح له بالدخول. يجب إضافته كمدير أو موظف.");
+        alert("هذا الحساب غير مصرح له بالدخول. أضف UID داخل admins أو employees.");
       } catch (error) {
         await auth.signOut();
-        alert("تعذر التحقق من الصلاحيات: " + error.message);
+        alert("تعذر التحقق من الصلاحيات. تأكد من Firebase Rules. الرسالة: " + error.message);
       }
     }
 
-    function showDashboardAsAdmin() {
+    function showAdminDashboard() {
       el("loginView").style.display = "none";
       el("dashboardView").style.display = "block";
 
       el("roleBadge").innerText = "مدير النظام";
       el("roleBadge").className = "role-badge role-admin";
+      el("userEmail").innerText = currentUser.email || "Admin";
 
-      el("adminPostsPanel").classList.remove("hidden");
+      el("adminNotice").classList.remove("hidden");
       el("employeeNotice").classList.add("hidden");
+      el("adminPostsPanel").classList.remove("hidden");
 
       loadPostsForAdmin();
     }
 
-    function showDashboardAsEmployee() {
+    function showEmployeeDashboard() {
       el("loginView").style.display = "none";
       el("dashboardView").style.display = "block";
 
       el("roleBadge").innerText = "موظف نشر";
       el("roleBadge").className = "role-badge role-employee";
+      el("userEmail").innerText = currentUser.email || "Employee";
 
-      el("adminPostsPanel").classList.add("hidden");
+      el("adminNotice").classList.add("hidden");
       el("employeeNotice").classList.remove("hidden");
+      el("adminPostsPanel").classList.add("hidden");
     }
 
     function collectPostData() {
@@ -574,8 +761,18 @@
     }
 
     function validatePost(post) {
-      if (!post.title || !post.content) {
-        setStatus("formStatus", "العنوان والمحتوى مطلوبان.", "#f59e0b");
+      if (!post.title) {
+        setStatus("formStatus", "العنوان مطلوب.", "#f59e0b");
+        return false;
+      }
+
+      if (post.title.length > 200) {
+        setStatus("formStatus", "العنوان طويل جدًا.", "#f59e0b");
+        return false;
+      }
+
+      if (!post.content) {
+        setStatus("formStatus", "محتوى المقال مطلوب.", "#f59e0b");
         return false;
       }
 
@@ -593,17 +790,22 @@
     }
 
     function savePost() {
-      const post = collectPostData();
+      if (!currentUser || !currentRole) {
+        setStatus("formStatus", "يجب تسجيل الدخول أولًا.", "#ef4444");
+        return;
+      }
 
+      const post = collectPostData();
       if (!validatePost(post)) return;
 
       const now = new Date();
-
       setStatus("formStatus", "جاري الحفظ...", "#38bdf8");
+      el("saveBtn").disabled = true;
 
       if (editingPostId) {
         if (currentRole !== "admin") {
           setStatus("formStatus", "التعديل للمدير فقط.", "#ef4444");
+          el("saveBtn").disabled = false;
           return;
         }
 
@@ -614,42 +816,55 @@
           imageUrl: post.imageUrl,
           content: post.content,
           updatedAt: now.toISOString(),
-          updatedBy: currentUser.uid
-        }).then(() => {
+          updatedBy: currentUser.uid,
+          updatedByEmail: currentUser.email || ""
+        })
+        .then(() => {
           setStatus("formStatus", "تم تعديل المقال بنجاح.", "#22c55e");
-          clearForm();
           cancelEdit();
-        }).catch((error) => {
-          setStatus("formStatus", "خطأ في التعديل: " + error.message, "#ef4444");
+        })
+        .catch((error) => {
+          setStatus("formStatus", "فشل التعديل: " + error.message, "#ef4444");
+        })
+        .finally(() => {
+          el("saveBtn").disabled = false;
         });
 
         return;
       }
 
-      database.ref("posts").push({
+      const newPostRef = database.ref("posts").push();
+
+      newPostRef.set({
         title: post.title,
         lang: post.lang,
         category: post.category,
         imageUrl: post.imageUrl,
         content: post.content,
-        date: now.toLocaleDateString("en-GB"),
+        date: getDateString(),
         createdAt: now.toISOString(),
         createdBy: currentUser.uid,
         authorEmail: currentUser.email || ""
-      }).then(() => {
+      })
+      .then(() => {
         setStatus("formStatus", "تم نشر المقال بنجاح.", "#22c55e");
         clearForm();
-      }).catch((error) => {
-        setStatus("formStatus", "خطأ في النشر: " + error.message, "#ef4444");
+      })
+      .catch((error) => {
+        setStatus("formStatus", "فشل النشر: " + error.message, "#ef4444");
+      })
+      .finally(() => {
+        el("saveBtn").disabled = false;
       });
     }
 
     function clearForm() {
       el("title").value = "";
-      el("imageUrl").value = "";
-      el("content").value = "";
       el("lang").value = "ar";
       el("category").value = "Politics";
+      el("imageUrl").value = "";
+      el("content").value = "";
+      setStatus("formStatus", "", "#94a3b8");
     }
 
     function cancelEdit() {
@@ -671,28 +886,41 @@
         });
 
         renderPosts();
+      }, (error) => {
+        el("postsList").innerHTML = '<div class="notice danger-zone">فشل تحميل المنشورات: ' + escapeHTML(error.message) + '</div>';
       });
     }
 
     function renderPosts() {
       const list = el("postsList");
       const search = el("searchInput").value.trim().toLowerCase();
+      const lang = el("filterLang").value;
+      const category = el("filterCategory").value;
 
-      let filtered = allPosts;
+      let filtered = allPosts.slice();
+
+      if (lang !== "All") {
+        filtered = filtered.filter((post) => post.lang === lang);
+      }
+
+      if (category !== "All") {
+        filtered = filtered.filter((post) => post.category === category);
+      }
 
       if (search) {
-        filtered = allPosts.filter((post) => {
+        filtered = filtered.filter((post) => {
           return (
             String(post.title || "").toLowerCase().includes(search) ||
             String(post.content || "").toLowerCase().includes(search) ||
             String(post.category || "").toLowerCase().includes(search) ||
-            String(post.lang || "").toLowerCase().includes(search)
+            String(post.lang || "").toLowerCase().includes(search) ||
+            String(post.authorEmail || "").toLowerCase().includes(search)
           );
         });
       }
 
       if (!filtered.length) {
-        list.innerHTML = '<div class="notice">لا توجد منشورات.</div>';
+        list.innerHTML = '<div class="notice">لا توجد منشورات مطابقة.</div>';
         return;
       }
 
@@ -709,8 +937,9 @@
               <br>
               الكاتب: ${escapeHTML(post.authorEmail || post.createdBy || "غير معروف")}
             </div>
-
+            <div class="post-excerpt">${escapeHTML(makeExcerpt(post.content, 180))}</div>
             <div class="post-actions">
+              <button class="btn btn-small btn-view" onclick="viewPost('${post.key}')">قراءة</button>
               <button class="btn btn-small btn-edit" onclick="startEdit('${post.key}')">تعديل</button>
               <button class="btn btn-small btn-delete" onclick="deletePost('${post.key}')">حذف</button>
             </div>
@@ -719,17 +948,35 @@
       }).join("");
     }
 
+    function findPost(postId) {
+      return allPosts.find((post) => post.key === postId);
+    }
+
+    function viewPost(postId) {
+      const post = findPost(postId);
+      if (!post) return;
+
+      el("modalTitle").innerText = post.title || "بدون عنوان";
+
+      const imageHTML = post.imageUrl ? `<img src="${escapeHTML(post.imageUrl)}" alt="${escapeHTML(post.title)}">` : "";
+      el("modalBody").innerHTML = imageHTML + escapeHTML(post.content || "");
+      el("postModal").style.display = "block";
+    }
+
+    function closeModal() {
+      el("postModal").style.display = "none";
+    }
+
     function startEdit(postId) {
       if (currentRole !== "admin") {
         alert("التعديل للمدير فقط.");
         return;
       }
 
-      const post = allPosts.find((p) => p.key === postId);
+      const post = findPost(postId);
       if (!post) return;
 
       editingPostId = postId;
-
       el("formTitle").innerText = "تعديل المقال";
       el("saveBtn").innerText = "حفظ التعديل";
       el("cancelEditBtn").classList.remove("hidden");
@@ -740,6 +987,7 @@
       el("imageUrl").value = post.imageUrl || "";
       el("content").value = post.content || "";
 
+      setStatus("formStatus", "أنت الآن تعدل منشورًا موجودًا.", "#fbbf24");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -749,17 +997,32 @@
         return;
       }
 
-      const ok = confirm("هل أنت متأكد من حذف هذا المنشور؟ لا يمكن التراجع.");
+      const post = findPost(postId);
+      const title = post ? post.title : "هذا المنشور";
+      const ok = confirm("هل أنت متأكد من حذف المنشور؟\n\n" + title + "\n\nلا يمكن التراجع بعد الحذف.");
+
       if (!ok) return;
 
       database.ref("posts/" + postId).remove()
         .then(() => {
-          alert("تم حذف المنشور.");
+          alert("تم حذف المنشور بنجاح.");
         })
         .catch((error) => {
           alert("فشل الحذف: " + error.message);
         });
     }
+
+    window.addEventListener("click", (event) => {
+      if (event.target === el("postModal")) {
+        closeModal();
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
   </script>
 </body>
 </html>
