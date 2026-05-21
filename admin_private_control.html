@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="appHtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HK LENS | Private Control Center</title>
+
+  <!-- Firebase SDKs v8 - compatible with the existing project -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <style>
+    :root{
+      --bg:#07111f;
+      --panel:#0d1b2f;
+      --panel2:#10233d;
+      --card:#ffffff;
+      --text:#edf5ff;
+      --muted:#9fb1c7;
+      --blue:#4f8cff;
+      --cyan:#26d9d0;
+      --green:#27d17f;
+      --orange:#ffb020;
+      --red:#ff5570;
+      --border:rgba(255,255,255,.12);
+      --shadow:0 24px 80px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(38,217,208,.20), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(79,140,255,.22), transparent 35%),
+        linear-gradient(135deg,#050914,#0a1730 55%,#07111f);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,input,textarea,select{font:inherit}
+
+    .page{
+      width:min(1180px, calc(100% - 32px));
+      margin:0 auto;
+      padding:28px 0 46px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:26px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--blue),var(--cyan));
+      box-shadow:0 18px 40px rgba(79,140,255,.32);
+      font-weight:900;
+      letter-spacing:.5px;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size:1.25rem;
+      letter-spacing:.4px;
+    }
+
+    .brand p{
+      margin:2px 0 0;
+      color:var(--muted);
+      font-size:.88rem;
+    }
+
+    .top-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 13px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .btn{
+      border:0;
+      border-radius:14px;
+      padding:12px 16px;
+      cursor:pointer;
+      font-weight:800;
+      color:white;
+      background:linear-gradient(135deg,var(--blue),#7c5cff);
+      transition:.2s ease;
+      box-shadow:0 16px 36px rgba(79,140,255,.24);
+    }
+
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+    .btn.secondary{background:rgba(255,255,255,.08);box-shadow:none;border:1px solid var(--border);color:var(--text)}
+    .btn.green{background:linear-gradient(135deg,#1fbf75,var(--green))}
+    .btn.orange{background:linear-gradient(135deg,#ff9e1b,#ffcf48);color:#2a1900}
+    .btn.red{background:linear-gradient(135deg,#ff4b68,#bd1e3a)}
+    .btn.small{padding:9px 11px;border-radius:12px;font-size:.86rem}
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:22px;
+      align-items:stretch;
+      margin-bottom:24px;
+    }
+
+    .glass{
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.055));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .intro{
+      padding:30px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .intro:after{
+      content:"";
+      position:absolute;
+      width:190px;height:190px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(38,217,208,.30),transparent 70%);
+      left:-65px;bottom:-65px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(38,217,208,.13);
+      color:#bffdf9;
+      font-weight:800;
+      margin-bottom:18px;
+      border:1px solid rgba(38,217,208,.22);
+    }
+
+    .intro h2{
+      margin:0 0 12px;
+      font-size:clamp(2rem,4vw,3.65rem);
+      line-height:1.05;
+      letter-spacing:-1px;
+    }
+
+    .intro p{
+      color:var(--muted);
+      margin:0 0 20px;
+      max-width:680px;
+      font-size:1.02rem;
+    }
+
+    .trust-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:22px;
+      position:relative;
+      z-index:1;
+    }
+
+    .trust-card{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .trust-card strong{display:block;font-size:1.15rem}
+    .trust-card span{color:var(--muted);font-size:.82rem}
+
+    .login-card{
+      padding:24px;
+    }
+
+    .panel-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .panel-title h2,.panel-title h3{
+      margin:0;
+      font-size:1.2rem;
+    }
+
+    .secure-mark{
+      color:#bffdf9;
+      background:rgba(38,217,208,.10);
+      border:1px solid rgba(38,217,208,.25);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:800;
+    }
+
+    label{
+      display:block;
+      color:#dbe8fa;
+      font-weight:800;
+      margin:14px 0 7px;
+      font-size:.93rem;
+    }
+
+    input,textarea,select{
+      width:100%;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      border-radius:16px;
+      padding:13px 14px;
+      outline:none;
+      transition:.2s;
+    }
+
+    input:focus,textarea:focus,select:focus{
+      border-color:rgba(38,217,208,.65);
+      box-shadow:0 0 0 4px rgba(38,217,208,.12);
+    }
+
+    select option{color:#111}
+    textarea{min-height:170px;resize:vertical;line-height:1.7}
+
+    .hint{
+      color:var(--muted);
+      font-size:.85rem;
+      margin-top:10px;
+      line-height:1.7;
+    }
+
+    .status{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:16px;
+      display:none;
+      line-height:1.6;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+    }
+    .status.ok{display:block;border-color:rgba(39,209,127,.35);background:rgba(39,209,127,.10);color:#d7ffe9}
+    .status.err{display:block;border-color:rgba(255,85,112,.35);background:rgba(255,85,112,.10);color:#ffdce3}
+    .status.warn{display:block;border-color:rgba(255,176,32,.35);background:rgba(255,176,32,.10);color:#fff2d4}
+
+    #dashboard{display:none}
+
+    .dashboard-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .box{
+      padding:22px;
+    }
+
+    .form-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .form-actions .btn{flex:1;min-width:160px}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .stat{
+      padding:15px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+    }
+    .stat b{display:block;font-size:1.55rem}
+    .stat span{color:var(--muted);font-size:.82rem}
+
+    .tools{
+      display:flex;
+      gap:10px;
+      margin:14px 0;
+      flex-wrap:wrap;
+    }
+    .tools input,.tools select{flex:1;min-width:170px}
+
+    .post-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      max-height:720px;
+      overflow:auto;
+      padding-left:6px;
+    }
+
+    .post-row{
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:15px;
+    }
+
+    .post-row-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .post-row h4{
+      margin:0 0 6px;
+      font-size:1rem;
+      line-height:1.45;
+    }
+
+    .post-row p{
+      margin:0;
+      color:var(--muted);
+      font-size:.85rem;
+    }
+
+    .row-actions{
+      display:flex;
+      gap:8px;
+      flex-shrink:0;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .locked{
+      border:1px dashed rgba(255,255,255,.22);
+      border-radius:18px;
+      padding:18px;
+      color:var(--muted);
+      background:rgba(255,255,255,.04);
+      line-height:1.75;
+    }
+
+    .danger-zone{
+      margin-top:16px;
+      border:1px solid rgba(255,85,112,.28);
+      background:rgba(255,85,112,.08);
+      border-radius:18px;
+      padding:14px;
+      color:#ffdce3;
+      line-height:1.7;
+      font-size:.9rem;
+    }
+
+    .footer-note{
+      color:var(--muted);
+      margin-top:18px;
+      text-align:center;
+      font-size:.84rem;
+    }
+
+    @media (max-width:900px){
+      .hero,.dashboard-grid{grid-template-columns:1fr}
+      .trust-grid,.stats{grid-template-columns:1fr}
+      .topbar{align-items:flex-start;flex-direction:column}
+      .post-row-head{flex-direction:column}
+      .row-actions{justify-content:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="index.html" title="Zurück zur Website">
+        <div class="logo">HK</div>
+        <div>
+          <h1>HK LENS</h1>
+          <p>Private Control Center</p>
+        </div>
+      </a>
+
+      <div class="top-actions">
+        <span id="roleBadge" class="chip">🔐 غير مسجل</span>
+        <button class="btn secondary small" onclick="goHome()">الصفحة الرئيسية</button>
+        <button id="logoutBtn" class="btn red small" style="display:none" onclick="logout()">خروج</button>
+      </div>
+    </header>
+
+    <section class="hero" id="loginSection">
+      <div class="intro glass">
+        <div class="kicker">🛡️ دخول خاص للإدارة والموظفين</div>
+        <h2>لوحة تحكم آمنة لإدارة مقالات HK LENS</h2>
+        <p>
+          المدير يملك أعلى الصلاحيات: قراءة المنشورات، تعديلها، حذفها، ونشر مقالات جديدة.
+          الموظف يستطيع نشر مقالات فقط. لا يوجد إنشاء حساب من هذه الصفحة.
+        </p>
+
+        <div class="trust-grid">
+          <div class="trust-card"><strong>Admin</strong><span>نشر + تعديل + حذف + قراءة</span></div>
+          <div class="trust-card"><strong>Employee</strong><span>نشر فقط</span></div>
+          <div class="trust-card"><strong>Rules</strong><span>الحماية من Firebase</span></div>
+        </div>
+      </div>
+
+      <div class="login-card glass">
+        <div class="panel-title">
+          <h2>تسجيل الدخول الخاص</h2>
+          <span class="secure-mark">PRIVATE ACCESS</span>
+        </div>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input id="email" type="email" autocomplete="username" placeholder="admin@example.com" />
+
+        <label for="password">كلمة المرور</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••••" />
+
+        <button class="btn" onclick="login()">دخول لوحة التحكم</button>
+
+        <div class="hint">
+          لا تضع رابط هذه الصفحة في القائمة العامة. الأمان الحقيقي يعتمد على Firebase Authentication + Realtime Database Rules.
+        </div>
+
+        <div id="loginStatus" class="status"></div>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <div class="dashboard-grid">
+        <div class="box glass">
+          <div class="panel-title">
+            <h2 id="formTitle">نشر مقال جديد</h2>
+            <span id="modeBadge" class="secure-mark">CREATE MODE</span>
+          </div>
+
+          <label for="title">عنوان المقال</label>
+          <input id="title" type="text" placeholder="اكتب عنوان المقال..." maxlength="180" />
+
+          <label for="lang">لغة المقال</label>
+          <select id="lang">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="sv">Svenska</option>
+          </select>
+
+          <label for="category">التصنيف</label>
+          <select id="category">
+            <option value="Politics">Politics / سياسة</option>
+            <option value="Economy">Economy / اقتصاد</option>
+            <option value="Marketing">Marketing / تسويق</option>
+            <option value="Family">Family & Lifestyle / عائلة</option>
+          </select>
+
+          <label for="imageUrl">رابط صورة الغلاف</label>
+          <input id="imageUrl" type="url" placeholder="https://example.com/image.jpg" />
+
+          <label for="content">محتوى المقال</label>
+          <textarea id="content" placeholder="اكتب المقال هنا..."></textarea>
+
+          <div class="form-actions">
+            <button class="btn green" onclick="savePost()">حفظ / نشر</button>
+            <button class="btn secondary" onclick="resetForm()">تفريغ النموذج</button>
+          </div>
+
+          <div id="saveStatus" class="status"></div>
+
+          <div id="employeeNotice" class="danger-zone" style="display:none">
+            حساب الموظف يستطيع نشر مقال جديد فقط. التعديل والحذف مخصصان للمدير.
+          </div>
+        </div>
+
+        <div class="box glass" id="adminPanel">
+          <div class="panel-title">
+            <h3>إدارة المنشورات</h3>
+            <span class="secure-mark">ADMIN ONLY</span>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><b id="totalPosts">0</b><span>كل المنشورات</span></div>
+            <div class="stat"><b id="arabicPosts">0</b><span>عربي</span></div>
+            <div class="stat"><b id="draftMode">✓</b><span>نشط</span></div>
+          </div>
+
+          <div class="tools">
+            <input id="searchInput" type="search" placeholder="بحث عن مقال..." oninput="renderPostList()" />
+            <select id="filterLang" onchange="renderPostList()">
+              <option value="All">كل اللغات</option>
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+              <option value="sv">Svenska</option>
+            </select>
+          </div>
+
+          <div id="postList" class="post-list"></div>
+        </div>
+
+        <div class="box glass" id="employeePanel" style="display:none">
+          <div class="panel-title">
+            <h3>صلاحية الموظف</h3>
+            <span class="secure-mark">PUBLISH ONLY</span>
+          </div>
+          <div class="locked">
+            هذا الحساب ليس حساب مدير. يمكنك نشر مقالات جديدة فقط.
+            لا تظهر هنا قائمة المنشورات، ولا يوجد تعديل أو حذف.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      HK LENS Private Center © 2026 — Admin permissions are enforced by Firebase Realtime Database Rules.
+    </p>
+  </main>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+    authDomain: "hk-blog-3ed96.firebaseapp.com",
+    projectId: "hk-blog-3ed96",
+    storageBucket: "hk-blog-3ed96.firebasestorage.app",
+    messagingSenderId: "339658398793",
+    appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+    databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app/"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const database = firebase.database();
+
+  let currentUser = null;
+  let currentRole = null;
+  let editingPostKey = null;
+  let allPosts = [];
+
+  function showStatus(id, message, type){
+    const el = document.getElementById(id);
+    el.className = "status " + type;
+    el.textContent = message;
+  }
+
+  function clearStatus(id){
+    const el = document.getElementById(id);
+    el.className = "status";
+    el.textContent = "";
+  }
+
+  function goHome(){
+    window.location.href = "index.html";
+  }
+
+  function setRoleBadge(text){
+    document.getElementById("roleBadge").textContent = text;
+  }
+
+  async function login(){
+    clearStatus("loginStatus");
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if(!email || !password){
+      showStatus("loginStatus", "اكتب البريد وكلمة المرور.", "warn");
+      return;
+    }
+
+    try{
+      showStatus("loginStatus", "جاري التحقق من الحساب...", "warn");
+      const credential = await auth.signInWithEmailAndPassword(email, password);
+      await checkRoleAndOpen(credential.user);
+    }catch(error){
+      showStatus("loginStatus", "فشل تسجيل الدخول: " + error.message, "err");
+    }
+  }
+
+  async function checkRoleAndOpen(user){
+    currentUser = user;
+
+    const adminSnap = await database.ref("admins/" + user.uid).once("value");
+    const employeeSnap = await database.ref("employees/" + user.uid).once("value");
+
+    if(adminSnap.val() === true){
+      currentRole = "admin";
+      openDashboard("admin");
+      return;
+    }
+
+    if(employeeSnap.val() === true){
+      currentRole = "employee";
+      openDashboard("employee");
+      return;
+    }
+
+    await auth.signOut();
+    currentUser = null;
+    currentRole = null;
+    showStatus("loginStatus", "تم تسجيل الدخول، لكن هذا الحساب غير مسموح له بالدخول. أضف UID داخل admins أو employees في Firebase.", "err");
+  }
+
+  function openDashboard(role){
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("logoutBtn").style.display = "inline-flex";
+
+    if(role === "admin"){
+      setRoleBadge("👑 مدير: كل الصلاحيات");
+      document.getElementById("adminPanel").style.display = "block";
+      document.getElementById("employeePanel").style.display = "none";
+      document.getElementById("employeeNotice").style.display = "none";
+      loadPostsForAdmin();
+    }else{
+      setRoleBadge("✍️ موظف: نشر فقط");
+      document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("employeePanel").style.display = "block";
+      document.getElementById("employeeNotice").style.display = "block";
+    }
+
+    showStatus("saveStatus", "تم فتح لوحة التحكم بنجاح.", "ok");
+  }
+
+  async function logout(){
+    await auth.signOut();
+    currentUser = null;
+    currentRole = null;
+    editingPostKey = null;
+    allPosts = [];
+    document.getElementById("loginSection").style.display = "grid";
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("logoutBtn").style.display = "none";
+    setRoleBadge("🔐 غير مسجل");
+    resetForm();
+  }
+
+  function resetForm(){
+    editingPostKey = null;
+    document.getElementById("formTitle").textContent = "نشر مقال جديد";
+    document.getElementById("modeBadge").textContent = "CREATE MODE";
+    document.getElementById("title").value = "";
+    document.getElementById("lang").value = "ar";
+    document.getElementById("category").value = "Politics";
+    document.getElementById("imageUrl").value = "";
+    document.getElementById("content").value = "";
+    clearStatus("saveStatus");
+  }
+
+  function getPostPayload(){
+    return {
+      title: document.getElementById("title").value.trim(),
+      lang: document.getElementById("lang").value,
+      category: document.getElementById("category").value,
+      imageUrl: document.getElementById("imageUrl").value.trim(),
+      content: document.getElementById("content").value.trim(),
+      date: new Date().toLocaleDateString("en-GB"),
+      updatedAt: Date.now(),
+      updatedBy: currentUser ? currentUser.uid : ""
+    };
+  }
+
+  async function savePost(){
+    if(!currentUser || !currentRole){
+      showStatus("saveStatus", "يجب تسجيل الدخول أولاً.", "err");
+      return;
+    }
+
+    const payload = getPostPayload();
+
+    if(!payload.title || !payload.content){
+      showStatus("saveStatus", "العنوان والمحتوى مطلوبان.", "warn");
+      return;
+    }
+
+    try{
+      showStatus("saveStatus", "جاري الحفظ...", "warn");
+
+      if(editingPostKey){
+        if(currentRole !== "admin"){
+          showStatus("saveStatus", "التعديل مسموح للمدير فقط.", "err");
+          return;
+        }
+        await database.ref("posts/" + editingPostKey).update(payload);
+        showStatus("saveStatus", "تم تعديل المقال بنجاح.", "ok");
+      }else{
+        payload.createdAt = Date.now();
+        payload.createdBy = currentUser.uid;
+        await database.ref("posts").push(payload);
+        showStatus("saveStatus", "تم نشر المقال بنجاح.", "ok");
+      }
+
+      resetForm();
+      if(currentRole === "admin") loadPostsForAdmin();
+    }catch(error){
+      showStatus("saveStatus", "خطأ أثناء الحفظ: " + error.message, "err");
+    }
+  }
+
+  function loadPostsForAdmin(){
+    database.ref("posts").orderByChild("updatedAt").on("value", (snapshot) => {
+      allPosts = [];
+      snapshot.forEach((child) => {
+        const post = child.val() || {};
+        post.key = child.key;
+        allPosts.unshift(post);
+      });
+      renderPostList();
+    });
+  }
+
+  function renderPostList(){
+    const list = document.getElementById("postList");
+    const search = document.getElementById("searchInput").value.trim().toLowerCase();
+    const lang = document.getElementById("filterLang").value;
+
+    const filtered = allPosts.filter(post => {
+      const text = ((post.title || "") + " " + (post.content || "") + " " + (post.category || "")).toLowerCase();
+      const matchSearch = !search || text.includes(search);
+      const matchLang = lang === "All" || post.lang === lang;
+      return matchSearch && matchLang;
+    });
+
+    document.getElementById("totalPosts").textContent = allPosts.length;
+    document.getElementById("arabicPosts").textContent = allPosts.filter(p => p.lang === "ar").length;
+
+    if(filtered.length === 0){
+      list.innerHTML = '<div class="locked">لا توجد منشورات مطابقة.</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(post => `
+      <article class="post-row">
+        <div class="post-row-head">
+          <div>
+            <h4>${escapeHtml(post.title || "بدون عنوان")}</h4>
+            <p>📂 ${escapeHtml(post.category || "-")} | 🌐 ${escapeHtml(post.lang || "-")} | 📅 ${escapeHtml(post.date || "-")}</p>
+          </div>
+          <div class="row-actions">
+            <button class="btn secondary small" onclick="previewPost('${post.key}')">قراءة</button>
+            <button class="btn orange small" onclick="editPost('${post.key}')">تعديل</button>
+            <button class="btn red small" onclick="deletePost('${post.key}')">حذف</button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  function findPost(key){
+    return allPosts.find(p => p.key === key);
+  }
+
+  function previewPost(key){
+    const post = findPost(key);
+    if(!post) return;
+    const preview = [
+      post.title || "",
+      "",
+      "التصنيف: " + (post.category || "-"),
+      "اللغة: " + (post.lang || "-"),
+      "التاريخ: " + (post.date || "-"),
+      "",
+      post.content || ""
+    ].join("\n");
+    alert(preview);
+  }
+
+  function editPost(key){
+    if(currentRole !== "admin"){
+      showStatus("saveStatus", "التعديل مسموح للمدير فقط.", "err");
+      return;
+    }
+    const post = findPost(key);
+    if(!post) return;
+
+    editingPostKey = key;
+    document.getElementById("formTitle").textContent = "تعديل مقال";
+    document.getElementById("modeBadge").textContent = "EDIT MODE";
+    document.getElementById("title").value = post.title || "";
+    document.getElementById("lang").value = post.lang || "ar";
+    document.getElementById("category").value = post.category || "Politics";
+    document.getElementById("imageUrl").value = post.imageUrl || "";
+    document.getElementById("content").value = post.content || "";
+    window.scrollTo({top:0, behavior:"smooth"});
+    showStatus("saveStatus", "تم تحميل المقال للتعديل.", "warn");
+  }
+
+  async function deletePost(key){
+    if(currentRole !== "admin"){
+      showStatus("saveStatus", "الحذف مسموح للمدير فقط.", "err");
+      return;
+    }
+
+    const post = findPost(key);
+    const title = post && post.title ? post.title : "هذا المقال";
+    const confirmed = confirm("هل أنت متأكد من حذف: " + title + " ؟ لا يمكن التراجع.");
+    if(!confirmed) return;
+
+    try{
+      await database.ref("posts/" + key).remove();
+      showStatus("saveStatus", "تم حذف المقال.", "ok");
+      if(editingPostKey === key) resetForm();
+    }catch(error){
+      showStatus("saveStatus", "فشل الحذف: " + error.message, "err");
+    }
+  }
+
+  function escapeHtml(value){
+    return String(value)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  auth.onAuthStateChanged((user) => {
+    if(user && !currentUser){
+      checkRoleAndOpen(user).catch(() => auth.signOut());
+    }
+  });
+</script>
+</body>
+</html>
