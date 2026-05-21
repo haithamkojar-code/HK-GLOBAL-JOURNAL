@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>HK LENS | Deep Analysis</title>
-    
-    <meta property="og:title" content="HK LENS - Global Blog">
-    <meta property="og:description" content="Political and economic analysis with an independent vision.">
+    <meta name="description" content="HK LENS is a modern multilingual blog for political, economic, marketing, and family analysis.">
+    <meta name="theme-color" content="#0f172a">
+
+    <title>HK LENS | Global Intelligence Blog</title>
+
+    <meta property="og:title" content="HK LENS - Global Intelligence Blog">
+    <meta property="og:description" content="Political, economic, marketing, and family analysis with a modern independent vision.">
     <meta property="og:url" content="https://hk-lens.github.io/HK-GLOBAL-BLOG/">
     <meta property="og:site_name" content="HK LENS">
     <meta property="og:type" content="website">
@@ -16,207 +18,1021 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <style>
-        :root { --primary: #1a73e8; --bg: #f8f9fa; --text: #333; --white: #ffffff; --fb: #1877f2; --wa: #25d366; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
-        
-        header { background: var(--white); padding: 20px; border-bottom: 3px solid var(--primary); text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        
-        /* تصميم شعار HK LENS بشكل بارز */
-        .site-title { font-size: 2em; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: 1px; display: block; margin-bottom: 5px; }
-        .site-subtitle { font-size: 0.85em; color: #666; margin-bottom: 15px; font-weight: normal; }
-        
-        .nav-container { max-width: 800px; margin: auto; padding: 10px; }
-        .lang-switch, .category-switch { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
-        
-        button { border: 1px solid var(--primary); background: var(--white); color: var(--primary); padding: 8px 15px; cursor: pointer; border-radius: 20px; font-weight: bold; transition: 0.3s; font-size: 0.9em; }
-        button.active { background: var(--primary); color: var(--white); }
-        
-        #postsContainer { max-width: 800px; margin: 20px auto; padding: 0 15px; min-height: 300px; }
-        
-        .post-card { background: var(--white); margin-bottom: 12px; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.3s; border-right: 5px solid var(--primary); }
-        .post-card:hover { background: #f0f7ff; }
-        [dir="ltr"] .post-card { border-right: none; border-left: 5px solid var(--primary); }
+        :root {
+            --bg: #07111f;
+            --bg-soft: #0f172a;
+            --card: rgba(255,255,255,0.92);
+            --card-dark: rgba(15, 23, 42, 0.78);
+            --text: #0f172a;
+            --muted: #64748b;
+            --white: #ffffff;
+            --primary: #38bdf8;
+            --primary-2: #6366f1;
+            --accent: #f59e0b;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --border: rgba(148, 163, 184, 0.24);
+            --shadow: 0 24px 80px rgba(2, 6, 23, 0.22);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+        }
 
-        .post-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .post-title { font-size: 1.15em; margin: 0; color: #222; flex-grow: 1; text-align: right; }
-        [dir="ltr"] .post-title { text-align: left; }
-        .post-meta { font-size: 0.8em; color: #777; margin-top: 4px; }
-        
-        .post-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; animation: fadeIn 0.4s ease; }
-        .post-content img { max-width: 100%; border-radius: 8px; margin-bottom: 15px; display: block; }
-        
-        .share-buttons { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ddd; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-        .share-btn { padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em; font-weight: bold; color: white; transition: 0.3s; }
-        .fb-btn { background: var(--fb); }
-        .wa-btn { background: var(--wa); }
-        .share-btn:hover { opacity: 0.8; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+            color: var(--white);
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.24), transparent 34%),
+                radial-gradient(circle at 78% 18%, rgba(99, 102, 241, 0.24), transparent 32%),
+                linear-gradient(135deg, #020617 0%, #07111f 45%, #111827 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        footer { text-align: center; padding: 40px 20px; background: var(--white); border-top: 1px solid #eee; margin-top: 50px; }
-        .ai-disclaimer { font-size: 0.85em; color: #666; font-style: italic; margin-bottom: 15px; }
-        .footer-links a { color: var(--primary); text-decoration: none; margin: 0 10px; font-weight: bold; }
+        a { color: inherit; text-decoration: none; }
+        button, input { font: inherit; }
+        button { border: 0; cursor: pointer; }
+
+        .page-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(22px);
+            background: rgba(2, 6, 23, 0.70);
+            border-bottom: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .topbar-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 180px;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 15px;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            box-shadow: 0 12px 36px rgba(56, 189, 248, 0.34);
+        }
+
+        .brand-title { display: grid; line-height: 1.1; }
+        .brand-title strong { font-size: 1.15rem; letter-spacing: 0.05em; }
+        .brand-title span { color: #cbd5e1; font-size: 0.78rem; }
+
+        .nav-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+        .nav-link {
+            color: #dbeafe;
+            font-size: 0.9rem;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.2s ease;
+        }
+        .nav-link:hover { transform: translateY(-1px); border-color: rgba(56,189,248,0.45); background: rgba(56,189,248,0.10); }
+        .employee-link { background: linear-gradient(135deg, rgba(56,189,248,0.20), rgba(99,102,241,0.20)); border-color: rgba(56,189,248,0.38); }
+
+        .hero {
+            padding: 72px 0 34px;
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            color: #bae6fd;
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+        .pulse {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--success);
+            box-shadow: 0 0 0 7px rgba(34,197,94,0.14);
+        }
+
+        .hero h1 {
+            margin: 18px 0 16px;
+            font-size: clamp(2.5rem, 7vw, 5.6rem);
+            line-height: 0.95;
+            letter-spacing: -0.075em;
+        }
+
+        .gradient-word {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffffff, #7dd3fc 40%, #c4b5fd 85%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            color: #cbd5e1;
+            font-size: clamp(1rem, 2.4vw, 1.25rem);
+            max-width: 720px;
+            margin: 0 0 24px;
+            line-height: 1.75;
+        }
+
+        .hero-tools {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            max-width: 760px;
+            margin-top: 24px;
+        }
+
+        .search-box {
+            position: relative;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 16px 48px 16px 18px;
+            color: var(--white);
+            background: transparent;
+            border: 0;
+            outline: 0;
+        }
+        [dir="ltr"] .search-box input { padding: 16px 18px 16px 48px; }
+        .search-box input::placeholder { color: #94a3b8; }
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transform: translateY(-50%);
+            color: #bae6fd;
+        }
+        [dir="ltr"] .search-icon { right: auto; left: 18px; }
+
+        .clear-btn {
+            min-width: 118px;
+            padding: 0 18px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 14px 35px rgba(56,189,248,0.22);
+        }
+
+        .hero-panel {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .hero-panel::before {
+            content: "";
+            position: absolute;
+            inset: -40% -20% auto auto;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(56,189,248,0.40), transparent 68%);
+        }
+        .signal-card {
+            position: relative;
+            padding: 20px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .signal-card h2 { margin: 0 0 12px; font-size: 1.15rem; }
+        .signal-grid { display: grid; gap: 12px; margin-top: 18px; }
+        .signal-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            align-items: center;
+            padding: 14px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .signal-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(99,102,241,0.25));
+        }
+        .signal-item strong { display: block; color: #fff; }
+        .signal-item span { color: #cbd5e1; font-size: 0.9rem; }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .stat {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+        }
+        .stat strong { display: block; font-size: 1.35rem; }
+        .stat span { color: #cbd5e1; font-size: 0.8rem; }
+
+        .control-zone {
+            margin: 24px 0 30px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius-xl);
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(18px);
+        }
+        .control-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .pill-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .pill {
+            color: #dbeafe;
+            padding: 10px 15px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.10);
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+        .pill:hover, .pill.active { color: #020617; background: #e0f2fe; border-color: #7dd3fc; transform: translateY(-1px); }
+        .section-title { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 14px 0 18px; }
+        .section-title h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.04em; }
+        .section-title p { margin: 0; color: #cbd5e1; }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            padding-bottom: 48px;
+        }
+
+        .post-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 360px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: var(--card);
+            color: var(--text);
+            box-shadow: 0 18px 60px rgba(2,6,23,0.20);
+            border: 1px solid rgba(255,255,255,0.52);
+            transform: translateY(0);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .post-card:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(2,6,23,0.28); }
+        .post-card.featured { grid-column: span 2; }
+
+        .post-cover {
+            height: 178px;
+            background:
+                linear-gradient(135deg, rgba(56,189,248,0.92), rgba(99,102,241,0.86)),
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45), transparent 35%);
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .post-card.featured .post-cover { height: 220px; }
+        .post-cover img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .post-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 28%, rgba(2,6,23,0.72));
+        }
+        .post-badge {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.16);
+            backdrop-filter: blur(12px);
+            font-size: 0.82rem;
+            font-weight: 800;
+            border: 1px solid rgba(255,255,255,0.22);
+        }
+
+        .post-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+        .post-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            margin-bottom: 10px;
+        }
+        .post-title { margin: 0 0 10px; font-size: 1.22rem; line-height: 1.35; letter-spacing: -0.02em; }
+        .post-card.featured .post-title { font-size: 1.55rem; }
+        .post-preview { margin: 0 0 18px; color: #475569; line-height: 1.7; flex: 1; }
+        .post-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; }
+        .read-btn {
+            padding: 11px 14px;
+            border-radius: 14px;
+            color: white;
+            font-weight: 900;
+            background: linear-gradient(135deg, #0f172a, #334155);
+        }
+        .share-mini { color: #0f172a; background: #e2e8f0; border-radius: 14px; padding: 11px 13px; font-weight: 800; }
+
+        .loading, .empty-state {
+            grid-column: 1 / -1;
+            padding: 38px 24px;
+            text-align: center;
+            border-radius: var(--radius-xl);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #e2e8f0;
+        }
+        .skeleton-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .skeleton {
+            height: 360px;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+            background-size: 260% 100%;
+            animation: shimmer 1.3s infinite;
+            border: 1px solid rgba(255,255,255,0.10);
+        }
+        @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(2, 6, 23, 0.72);
+            backdrop-filter: blur(14px);
+        }
+        .modal.open { display: flex; }
+        .article-panel {
+            width: min(920px, 100%);
+            max-height: min(88vh, 860px);
+            overflow: auto;
+            background: #ffffff;
+            color: #111827;
+            border-radius: 30px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.42);
+            border: 1px solid rgba(255,255,255,0.45);
+        }
+        .article-hero {
+            min-height: 260px;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            position: relative;
+            color: white;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8 55%, #4f46e5);
+            overflow: hidden;
+        }
+        .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .article-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,6,23,0.10), rgba(2,6,23,0.84)); }
+        .article-hero-content { position: relative; z-index: 2; }
+        .article-hero h2 { margin: 12px 0 0; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -0.05em; }
+        .article-content { padding: 26px; }
+        .article-text { white-space: pre-wrap; line-height: 1.95; color: #263244; font-size: 1.05rem; }
+        .modal-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .close-btn, .article-action {
+            padding: 10px 13px;
+            border-radius: 13px;
+            font-weight: 900;
+            background: #eef2ff;
+            color: #1e1b4b;
+        }
+        .close-btn { background: #fee2e2; color: #7f1d1d; }
+        .article-share { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #e2e8f0; }
+        .article-action.facebook { background: #dbeafe; color: #1d4ed8; }
+        .article-action.whatsapp { background: #dcfce7; color: #166534; }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 120;
+            padding: 12px 16px;
+            border-radius: 999px;
+            color: white;
+            background: rgba(15,23,42,0.92);
+            border: 1px solid rgba(255,255,255,0.12);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.22s ease;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        footer {
+            margin-top: 12px;
+            padding: 34px 0 42px;
+            border-top: 1px solid rgba(255,255,255,0.10);
+            color: #cbd5e1;
+        }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+        .footer-links { display: flex; gap: 12px; flex-wrap: wrap; }
+        .footer-links a { color: #bae6fd; font-weight: 800; }
+        .ai-note { max-width: 680px; color: #94a3b8; font-size: 0.92rem; line-height: 1.7; }
+
+        @media (max-width: 940px) {
+            .hero { grid-template-columns: 1fr; padding-top: 44px; }
+            .posts-grid { grid-template-columns: repeat(2, 1fr); }
+            .post-card.featured { grid-column: span 2; }
+            .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell { width: min(100% - 22px, 1180px); }
+            .topbar-inner { align-items: flex-start; padding: 12px 0; flex-direction: column; }
+            .nav-actions { width: 100%; justify-content: space-between; }
+            .nav-link { flex: 1; text-align: center; padding: 10px 9px; }
+            .hero { padding-top: 30px; }
+            .hero-tools { grid-template-columns: 1fr; }
+            .hero-panel { padding: 16px; }
+            .stats-row { grid-template-columns: 1fr; }
+            .control-row { align-items: flex-start; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .post-card.featured { grid-column: auto; }
+            .skeleton-grid { grid-template-columns: 1fr; }
+            .article-panel { border-radius: 22px; }
+            .article-content { padding: 20px; }
+            .article-hero { min-height: 230px; }
+        }
     </style>
 </head>
 <body>
-
-<header>
-    <a href="index.html" class="site-title">HK LENS</a>
-    <div class="site-subtitle">GLOBAL ANALYSIS | تحليل عالمي | GLOBAL ANALYS</div>
-    <div class="nav-container">
-        <div class="lang-switch" id="langSwitch">
-            <button onclick="changeLang('ar')" id="btn-ar" class="active">العربية</button>
-            <button onclick="changeLang('en')" id="btn-en">English</button>
-            <button onclick="changeLang('sv')" id="btn-sv">Svenska</button>
+    <header class="topbar">
+        <div class="page-shell topbar-inner">
+            <a class="brand" href="index.html" aria-label="HK LENS Home">
+                <div class="brand-mark">HK</div>
+                <div class="brand-title">
+                    <strong>HK LENS</strong>
+                    <span id="brandSubtitle">Global Intelligence Blog</span>
+                </div>
+            </a>
+            <nav class="nav-actions" aria-label="Main navigation">
+                <a class="nav-link" href="#articles" id="navArticles">المقالات</a>
+                <a class="nav-link" href="legal.html" id="navLegal">قانوني</a>
+                <a class="nav-link" href="privacy.html" id="navPrivacy">الخصوصية</a>
+                <a class="nav-link employee-link" href="admin.html" id="navEmployee">دخول الموظفين</a>
+            </nav>
         </div>
-        <div class="category-switch" id="catSwitch">
-            <button onclick="filterCategory('All')" id="btn-all" class="active cat-btn">الكل / All</button>
-            <button onclick="filterCategory('Politics')" class="cat-btn">سياسة</button>
-            <button onclick="filterCategory('Economy')" class="cat-btn">اقتصاد</button>
-            <button onclick="filterCategory('Marketing')" class="cat-btn">تسويق</button>
-            <button onclick="filterCategory('Family')" class="cat-btn">عائلة / رياضة</button>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero">
+            <div>
+                <div class="eyebrow"><span class="pulse"></span><span id="eyebrowText">تحليل عالمي ذكي ومحدّث</span></div>
+                <h1><span class="gradient-word">HK LENS</span><br><span id="heroTitleLine">رؤية أعمق للعالم</span></h1>
+                <p class="hero-subtitle" id="heroSubtitle">
+                    منصة حديثة لقراءة تحليلات السياسة والاقتصاد والتسويق والعائلة، مع تجربة سهلة وسريعة على الهاتف والكمبيوتر.
+                </p>
+                <div class="hero-tools">
+                    <label class="search-box" for="searchInput">
+                        <span class="search-icon">⌕</span>
+                        <input id="searchInput" type="search" placeholder="ابحث داخل المقالات..." autocomplete="off">
+                    </label>
+                    <button class="clear-btn" id="clearSearchBtn" type="button">مسح البحث</button>
+                </div>
+            </div>
+
+            <aside class="hero-panel" aria-label="Site features">
+                <div class="signal-card">
+                    <h2 id="panelTitle">مركز قراءة ذكي</h2>
+                    <div class="signal-grid">
+                        <div class="signal-item">
+                            <div class="signal-icon">🌐</div>
+                            <div><strong id="signalLangTitle">متعدد اللغات</strong><span id="signalLangText">عربي، إنجليزي، وسويدي.</span></div>
+                        </div>
+                        <div class="signal-item">
+                            <div class="signal-icon">🔎</div>
+                            <div><strong id="signalSearchTitle">بحث سريع</strong><span id="signalSearchText">اعثر على المقال المناسب خلال ثوانٍ.</span></div>
+                        </div>
+                        <div class="signal-item">
+                            <div class="signal-icon">🔐</div>
+                            <div><strong id="signalEmployeeTitle">نشر للموظفين فقط</strong><span id="signalEmployeeText">الدخول والنشر عبر لوحة آمنة منفصلة.</span></div>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat"><strong id="totalPostsStat">0</strong><span id="statPostsLabel">مقال</span></div>
+                        <div class="stat"><strong>3</strong><span id="statLangLabel">لغات</span></div>
+                        <div class="stat"><strong>4</strong><span id="statTopicsLabel">مجالات</span></div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="control-zone" aria-label="Filters">
+            <div class="control-row">
+                <div class="pill-group" id="langSwitch">
+                    <button type="button" class="pill active" data-lang="ar">العربية</button>
+                    <button type="button" class="pill" data-lang="en">English</button>
+                    <button type="button" class="pill" data-lang="sv">Svenska</button>
+                </div>
+                <div class="pill-group" id="categorySwitch"></div>
+            </div>
+        </section>
+
+        <section id="articles" aria-label="Articles section">
+            <div class="section-title">
+                <div>
+                    <h2 id="articlesTitle">آخر المقالات</h2>
+                    <p id="articlesSubtitle">اختر اللغة والتصنيف أو استخدم البحث.</p>
+                </div>
+                <p id="resultCount">0 نتيجة</p>
+            </div>
+            <div class="posts-grid" id="postsContainer">
+                <div class="skeleton-grid">
+                    <div class="skeleton"></div>
+                    <div class="skeleton"></div>
+                    <div class="skeleton"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="articleModal" aria-hidden="true" role="dialog" aria-label="Article viewer">
+        <article class="article-panel">
+            <div class="article-hero" id="modalHero">
+                <div class="article-hero-content">
+                    <span class="post-badge" id="modalBadge">HK LENS</span>
+                    <h2 id="modalTitle"></h2>
+                </div>
+            </div>
+            <div class="article-content">
+                <div class="modal-top">
+                    <div id="modalMeta" style="color:#64748b;font-weight:800;"></div>
+                    <button class="close-btn" id="closeModalBtn" type="button">إغلاق</button>
+                </div>
+                <div class="article-text" id="modalContent"></div>
+                <div class="article-share">
+                    <button class="article-action" id="copyLinkBtn" type="button">نسخ الرابط</button>
+                    <a class="article-action facebook" id="facebookShare" href="#" target="_blank" rel="noopener">Facebook</a>
+                    <a class="article-action whatsapp" id="whatsappShare" href="#" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <footer>
+        <div class="page-shell footer-inner">
+            <div>
+                <strong>© 2026 HK LENS</strong>
+                <div class="ai-note" id="aiDisclaimer">يتم إنتاج وتدقيق المحتوى بالاستعانة بتقنيات الذكاء الاصطناعي لضمان الجودة والتحليل العميق.</div>
+            </div>
+            <div class="footer-links">
+                <a href="legal.html" id="footerLegal">Legal Notice</a>
+                <a href="privacy.html" id="footerPrivacy">Privacy Policy</a>
+                <a href="admin.html" id="footerEmployee">Employee Login</a>
+            </div>
         </div>
-    </div>
-</header>
+    </footer>
 
-<main id="postsContainer"></main>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+            authDomain: "hk-blog-3ed96.firebaseapp.com",
+            projectId: "hk-blog-3ed96",
+            storageBucket: "hk-blog-3ed96.firebasestorage.app",
+            messagingSenderId: "339658398793",
+            appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+            databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app/"
+        };
 
-<footer>
-    <div id="aiDisclaimer" class="ai-disclaimer">يتم إنتاج وتدقيق المحتوى بالاستعانة بتقنيات الذكاء الاصطناعي لضمان الجودة والتحليل العميق.</div>
-    <p>© 2026 HK LENS | Global Analysis</p>
-    <div class="footer-links">
-        <a href="legal.html">Legal Notice</a> | <a href="privacy.html">Privacy Policy</a>
-    </div>
-</footer>
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
-        authDomain: "hk-blog-3ed96.firebaseapp.com",
-        projectId: "hk-blog-3ed96",
-        storageBucket: "hk-blog-3ed96.firebasestorage.app",
-        messagingSenderId: "339658398793",
-        appId: "1:339658398793:web:e38a09f83fd01c2e773398",
-        databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app/"
-    };
+        const categories = ["All", "Politics", "Economy", "Marketing", "Family"];
+        const copy = {
+            ar: {
+                dir: "rtl",
+                brandSubtitle: "مدونة تحليل عالمي",
+                navArticles: "المقالات",
+                navLegal: "قانوني",
+                navPrivacy: "الخصوصية",
+                navEmployee: "دخول الموظفين",
+                eyebrowText: "تحليل عالمي ذكي ومحدّث",
+                heroTitleLine: "رؤية أعمق للعالم",
+                heroSubtitle: "منصة حديثة لقراءة تحليلات السياسة والاقتصاد والتسويق والعائلة، مع تجربة سهلة وسريعة على الهاتف والكمبيوتر.",
+                searchPlaceholder: "ابحث داخل المقالات...",
+                clearSearch: "مسح البحث",
+                panelTitle: "مركز قراءة ذكي",
+                signalLangTitle: "متعدد اللغات",
+                signalLangText: "عربي، إنجليزي، وسويدي.",
+                signalSearchTitle: "بحث سريع",
+                signalSearchText: "اعثر على المقال المناسب خلال ثوانٍ.",
+                signalEmployeeTitle: "نشر للموظفين فقط",
+                signalEmployeeText: "الدخول والنشر عبر لوحة آمنة منفصلة.",
+                statPostsLabel: "مقال",
+                statLangLabel: "لغات",
+                statTopicsLabel: "مجالات",
+                articlesTitle: "آخر المقالات",
+                articlesSubtitle: "اختر اللغة والتصنيف أو استخدم البحث.",
+                result: "نتيجة",
+                read: "اقرأ التحليل",
+                share: "مشاركة",
+                noPosts: "لا يوجد مقالات حاليًا في هذا الاختيار.",
+                loading: "جاري تحميل المقالات...",
+                close: "إغلاق",
+                copyLink: "نسخ الرابط",
+                copied: "تم نسخ رابط المقال",
+                aiDisclaimer: "يتم إنتاج وتدقيق المحتوى بالاستعانة بتقنيات الذكاء الاصطناعي لضمان الجودة والتحليل العميق.",
+                categories: { All: "الكل", Politics: "سياسة", Economy: "اقتصاد", Marketing: "تسويق", Family: "عائلة" }
+            },
+            en: {
+                dir: "ltr",
+                brandSubtitle: "Global Intelligence Blog",
+                navArticles: "Articles",
+                navLegal: "Legal",
+                navPrivacy: "Privacy",
+                navEmployee: "Employee Login",
+                eyebrowText: "Smart, current global analysis",
+                heroTitleLine: "A sharper view of the world",
+                heroSubtitle: "A modern space for political, economic, marketing, and family analysis with a fast reading experience on mobile and desktop.",
+                searchPlaceholder: "Search articles...",
+                clearSearch: "Clear",
+                panelTitle: "Smart Reading Hub",
+                signalLangTitle: "Multilingual",
+                signalLangText: "Arabic, English, and Swedish.",
+                signalSearchTitle: "Fast search",
+                signalSearchText: "Find the right article in seconds.",
+                signalEmployeeTitle: "Employee publishing only",
+                signalEmployeeText: "Login and publishing through a separate secure panel.",
+                statPostsLabel: "Posts",
+                statLangLabel: "Languages",
+                statTopicsLabel: "Topics",
+                articlesTitle: "Latest Articles",
+                articlesSubtitle: "Choose language and category, or use search.",
+                result: "result",
+                read: "Read analysis",
+                share: "Share",
+                noPosts: "No articles are available for this selection yet.",
+                loading: "Loading articles...",
+                close: "Close",
+                copyLink: "Copy link",
+                copied: "Article link copied",
+                aiDisclaimer: "Content is produced and refined with the assistance of AI technologies to ensure quality and deep analysis.",
+                categories: { All: "All", Politics: "Politics", Economy: "Economy", Marketing: "Marketing", Family: "Family" }
+            },
+            sv: {
+                dir: "ltr",
+                brandSubtitle: "Global analysblogg",
+                navArticles: "Artiklar",
+                navLegal: "Juridiskt",
+                navPrivacy: "Integritet",
+                navEmployee: "Medarbetarinloggning",
+                eyebrowText: "Smart och aktuell global analys",
+                heroTitleLine: "En skarpare bild av världen",
+                heroSubtitle: "En modern plats för politisk, ekonomisk, marknadsförings- och familjeanalys med snabb läsning på mobil och dator.",
+                searchPlaceholder: "Sök i artiklar...",
+                clearSearch: "Rensa",
+                panelTitle: "Smart läscentrum",
+                signalLangTitle: "Flerspråkigt",
+                signalLangText: "Arabiska, engelska och svenska.",
+                signalSearchTitle: "Snabb sökning",
+                signalSearchText: "Hitta rätt artikel på några sekunder.",
+                signalEmployeeTitle: "Endast medarbetare kan publicera",
+                signalEmployeeText: "Inloggning och publicering via en separat säker panel.",
+                statPostsLabel: "Artiklar",
+                statLangLabel: "Språk",
+                statTopicsLabel: "Områden",
+                articlesTitle: "Senaste artiklarna",
+                articlesSubtitle: "Välj språk och kategori eller använd sökningen.",
+                result: "resultat",
+                read: "Läs analys",
+                share: "Dela",
+                noPosts: "Det finns inga artiklar för detta val ännu.",
+                loading: "Laddar artiklar...",
+                close: "Stäng",
+                copyLink: "Kopiera länk",
+                copied: "Artikellänken har kopierats",
+                aiDisclaimer: "Innehållet produceras och förfinas med hjälp av AI-teknik för att säkerställa kvalitet och djupanalys.",
+                categories: { All: "Alla", Politics: "Politik", Economy: "Ekonomi", Marketing: "Marknadsföring", Family: "Familj" }
+            }
+        };
 
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
+        let currentLang = localStorage.getItem("hk_lang") || "ar";
+        let currentCategory = "All";
+        let allPosts = [];
+        let currentModalPost = null;
+        let postsRef = null;
 
-    let currentLang = 'ar';
-    let currentCategory = 'All';
+        const html = document.getElementById("mainHtml");
+        const postsContainer = document.getElementById("postsContainer");
+        const categorySwitch = document.getElementById("categorySwitch");
+        const searchInput = document.getElementById("searchInput");
+        const resultCount = document.getElementById("resultCount");
+        const totalPostsStat = document.getElementById("totalPostsStat");
+        const modal = document.getElementById("articleModal");
+        const toast = document.getElementById("toast");
 
-    const disclaimers = {
-        ar: "يتم إنتاج وتدقيق المحتوى بالاستعانة بتقنيات الذكاء الاصطناعي لضمان الجودة والتحليل العميق.",
-        en: "Content is produced and refined with the assistance of AI technologies to ensure quality and deep analysis.",
-        sv: "Innehållet produceras och förfinas med hjälp av AI-teknik för att säkerställa kvalitet och djupanalys."
-    };
-
-    function getPostIdFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('id');
-    }
-
-    function changeLang(lang) {
-        currentLang = lang;
-        document.getElementById('mainHtml').dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        document.getElementById('mainHtml').lang = lang;
-        document.getElementById('aiDisclaimer').innerText = disclaimers[lang];
-        document.querySelectorAll('#langSwitch button').forEach(b => b.classList.remove('active'));
-        document.getElementById('btn-' + lang).classList.add('active');
-        loadPosts();
-    }
-
-    function filterCategory(cat) {
-        currentCategory = cat;
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
-        loadPosts();
-    }
-
-    function togglePost(id) {
-        const content = document.getElementById('content-' + id);
-        const arrow = document.getElementById('arrow-' + id);
-        const isOpen = content.style.display === 'block';
-
-        document.querySelectorAll('.post-content').forEach(c => c.style.display = 'none');
-        document.querySelectorAll('.arrow').forEach(a => a.innerText = '▼');
-
-        if (!isOpen) {
-            content.style.display = 'block';
-            arrow.innerText = '▲';
-            window.history.pushState({}, '', '?id=' + id);
-        } else {
-            window.history.pushState({}, '', window.location.pathname);
+        function text(key) { return copy[currentLang][key]; }
+        function categoryLabel(category) { return copy[currentLang].categories[category] || category; }
+        function safeText(value) { return String(value || "").replace(/\s+/g, " ").trim(); }
+        function shortText(value, max = 170) {
+            const text = safeText(value);
+            return text.length > max ? text.slice(0, max).trim() + "..." : text;
         }
-    }
-
-    function loadPosts() {
-        const container = document.getElementById('postsContainer');
-        const targetId = getPostIdFromUrl();
-        container.innerHTML = '<p style="text-align:center;">جاري التحميل...</p>';
-        
-        database.ref('posts').orderByChild('lang').equalTo(currentLang).on('value', (snapshot) => {
-            container.innerHTML = '';
-            if (!snapshot.exists()) {
-                container.innerHTML = '<p style="text-align:center;">لا يوجد مقالات حالياً.</p>';
+        function isValidImageUrl(url) {
+            if (!url) return false;
+            try {
+                const parsed = new URL(url);
+                return ["http:", "https:"].includes(parsed.protocol);
+            } catch (e) { return false; }
+        }
+        function getPostIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("id");
+        }
+        function postUrl(id) {
+            return window.location.origin + window.location.pathname + "?id=" + encodeURIComponent(id);
+        }
+        function updateStaticText() {
+            const c = copy[currentLang];
+            html.lang = currentLang;
+            html.dir = c.dir;
+            document.getElementById("brandSubtitle").textContent = c.brandSubtitle;
+            document.getElementById("navArticles").textContent = c.navArticles;
+            document.getElementById("navLegal").textContent = c.navLegal;
+            document.getElementById("navPrivacy").textContent = c.navPrivacy;
+            document.getElementById("navEmployee").textContent = c.navEmployee;
+            document.getElementById("eyebrowText").textContent = c.eyebrowText;
+            document.getElementById("heroTitleLine").textContent = c.heroTitleLine;
+            document.getElementById("heroSubtitle").textContent = c.heroSubtitle;
+            searchInput.placeholder = c.searchPlaceholder;
+            document.getElementById("clearSearchBtn").textContent = c.clearSearch;
+            document.getElementById("panelTitle").textContent = c.panelTitle;
+            document.getElementById("signalLangTitle").textContent = c.signalLangTitle;
+            document.getElementById("signalLangText").textContent = c.signalLangText;
+            document.getElementById("signalSearchTitle").textContent = c.signalSearchTitle;
+            document.getElementById("signalSearchText").textContent = c.signalSearchText;
+            document.getElementById("signalEmployeeTitle").textContent = c.signalEmployeeTitle;
+            document.getElementById("signalEmployeeText").textContent = c.signalEmployeeText;
+            document.getElementById("statPostsLabel").textContent = c.statPostsLabel;
+            document.getElementById("statLangLabel").textContent = c.statLangLabel;
+            document.getElementById("statTopicsLabel").textContent = c.statTopicsLabel;
+            document.getElementById("articlesTitle").textContent = c.articlesTitle;
+            document.getElementById("articlesSubtitle").textContent = c.articlesSubtitle;
+            document.getElementById("aiDisclaimer").textContent = c.aiDisclaimer;
+            document.getElementById("closeModalBtn").textContent = c.close;
+            document.getElementById("copyLinkBtn").textContent = c.copyLink;
+            document.getElementById("footerEmployee").textContent = c.navEmployee;
+            renderCategories();
+            updateLangButtons();
+        }
+        function updateLangButtons() {
+            document.querySelectorAll("#langSwitch .pill").forEach(btn => {
+                btn.classList.toggle("active", btn.dataset.lang === currentLang);
+            });
+        }
+        function renderCategories() {
+            categorySwitch.innerHTML = "";
+            categories.forEach(cat => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "pill" + (cat === currentCategory ? " active" : "");
+                btn.textContent = categoryLabel(cat);
+                btn.addEventListener("click", () => {
+                    currentCategory = cat;
+                    renderCategories();
+                    renderPosts();
+                });
+                categorySwitch.appendChild(btn);
+            });
+        }
+        function setLoading() {
+            postsContainer.innerHTML = `
+                <div class="skeleton-grid">
+                    <div class="skeleton"></div>
+                    <div class="skeleton"></div>
+                    <div class="skeleton"></div>
+                </div>
+            `;
+        }
+        function loadPosts() {
+            setLoading();
+            if (postsRef) postsRef.off();
+            postsRef = database.ref("posts").orderByChild("lang").equalTo(currentLang);
+            postsRef.on("value", (snapshot) => {
+                allPosts = [];
+                snapshot.forEach(child => {
+                    const post = child.val() || {};
+                    post.key = child.key;
+                    allPosts.unshift(post);
+                });
+                totalPostsStat.textContent = allPosts.length;
+                renderPosts();
+                const targetId = getPostIdFromUrl();
+                if (targetId) {
+                    const target = allPosts.find(p => p.key === targetId);
+                    if (target) setTimeout(() => openArticle(target), 120);
+                }
+            }, (error) => {
+                postsContainer.innerHTML = `<div class="empty-state">${error.message}</div>`;
+            });
+        }
+        function getFilteredPosts() {
+            const term = safeText(searchInput.value).toLowerCase();
+            return allPosts.filter(post => {
+                const inCategory = currentCategory === "All" || post.category === currentCategory;
+                const haystack = `${post.title || ""} ${post.content || ""} ${post.category || ""}`.toLowerCase();
+                const inSearch = !term || haystack.includes(term);
+                return inCategory && inSearch;
+            });
+        }
+        function renderPosts() {
+            const filtered = getFilteredPosts();
+            resultCount.textContent = `${filtered.length} ${text("result")}`;
+            postsContainer.innerHTML = "";
+            if (!filtered.length) {
+                const empty = document.createElement("div");
+                empty.className = "empty-state";
+                empty.textContent = text("noPosts");
+                postsContainer.appendChild(empty);
                 return;
             }
+            filtered.forEach((post, index) => postsContainer.appendChild(createPostCard(post, index)));
+        }
+        function createPostCard(post, index) {
+            const card = document.createElement("article");
+            card.className = "post-card" + (index === 0 ? " featured" : "");
+            card.id = "post-" + post.key;
 
-            let postsArray = [];
-            snapshot.forEach((child) => {
-                const post = child.val();
-                post.key = child.key;
-                if (currentCategory === 'All' || post.category === currentCategory) {
-                    postsArray.unshift(post);
-                }
-            });
-
-            postsArray.forEach((post) => {
-                const baseUrl = window.location.origin + window.location.pathname;
-                const uniqueUrl = baseUrl + "?id=" + post.key;
-                const encodedUrl = encodeURIComponent(uniqueUrl);
-                const encodedTitle = encodeURIComponent(post.title);
-                
-                const isOpened = (targetId === post.key) ? 'style="display:block;"' : 'style="display:none;"';
-                const arrowIcon = (targetId === post.key) ? '▲' : '▼';
-
-                const postHTML = `
-                    <article class="post-card" id="post-${post.key}">
-                        <div class="post-header" onclick="togglePost('${post.key}')">
-                            <div>
-                                <h2 class="post-title">${post.title}</h2>
-                                <div class="post-meta">📂 ${post.category} | 📅 ${post.date}</div>
-                            </div>
-                            <span class="arrow" id="arrow-${post.key}">${arrowIcon}</span>
-                        </div>
-                        <div class="post-content" id="content-${post.key}" ${isOpened}>
-                            ${post.imageUrl ? `<img src="${post.imageUrl}" alt="${post.title}">` : ''}
-                            <p style="white-space: pre-wrap; text-align: justify;">${post.content}</p>
-                            
-                            <div class="share-buttons">
-                                <span style="font-size: 0.85em; color: #666;">مشاركة التحليل:</span>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedTitle}" 
-                                   target="_blank" class="share-btn fb-btn">Facebook</a>
-                                <a href="https://api.whatsapp.com/send?text=*${encodedTitle}*%0A${encodedUrl}" 
-                                   target="_blank" class="share-btn wa-btn">WhatsApp</a>
-                            </div>
-                        </div>
-                    </article>
-                `;
-                container.innerHTML += postHTML;
-            });
-
-            if (targetId) {
-                setTimeout(() => {
-                    const el = document.getElementById('post-' + targetId);
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }, 500);
+            const cover = document.createElement("div");
+            cover.className = "post-cover";
+            if (isValidImageUrl(post.imageUrl)) {
+                const img = document.createElement("img");
+                img.src = post.imageUrl;
+                img.alt = safeText(post.title) || "HK LENS article image";
+                img.loading = "lazy";
+                img.onerror = () => img.remove();
+                cover.appendChild(img);
             }
-        });
-    }
+            const badge = document.createElement("span");
+            badge.className = "post-badge";
+            badge.textContent = "✦ " + categoryLabel(post.category || "All");
+            cover.appendChild(badge);
 
-    window.onload = loadPosts;
-</script>
+            const body = document.createElement("div");
+            body.className = "post-body";
+
+            const meta = document.createElement("div");
+            meta.className = "post-meta";
+            const date = document.createElement("span");
+            date.textContent = "📅 " + (post.date || "2026");
+            const lang = document.createElement("span");
+            lang.textContent = "🌐 " + currentLang.toUpperCase();
+            meta.append(date, lang);
+
+            const title = document.createElement("h3");
+            title.className = "post-title";
+            title.textContent = safeText(post.title) || "Untitled article";
+
+            const preview = document.createElement("p");
+            preview.className = "post-preview";
+            preview.textContent = shortText(post.content, index === 0 ? 230 : 150);
+
+            const actions = document.createElement("div");
+            actions.className = "post-actions";
+            const readBtn = document.createElement("button");
+            readBtn.type = "button";
+            readBtn.className = "read-btn";
+            readBtn.textContent = text("read");
+            readBtn.addEventListener("click", () => openArticle(post));
+            const shareBtn = document.createElement("button");
+            shareBtn.type = "button";
+            shareBtn.className = "share-mini";
+            shareBtn.textContent = text("share");
+            shareBtn.addEventListener("click", () => copyPostLink(post.key));
+            actions.append(readBtn, shareBtn);
+
+            body.append(meta, title, preview, actions);
+            card.append(cover, body);
+            return card;
+        }
+        function openArticle(post) {
+            currentModalPost = post;
+            const url = postUrl(post.key);
+            window.history.pushState({}, "", "?id=" + encodeURIComponent(post.key));
+            const modalHero = document.getElementById("modalHero");
+            modalHero.querySelectorAll("img").forEach(img => img.remove());
+            if (isValidImageUrl(post.imageUrl)) {
+                const img = document.createElement("img");
+                img.src = post.imageUrl;
+                img.alt = safeText(post.title) || "Article image";
+                img.onerror = () => img.remove();
+                modalHero.prepend(img);
+            }
+            document.getElementById("modalBadge").textContent = categoryLabel(post.category || "All");
+            document.getElementById("modalTitle").textContent = safeText(post.title) || "Untitled article";
+            document.getElementById("modalMeta").textContent = `${post.date || "2026"} • ${currentLang.toUpperCase()}`;
+            document.getElementById("modalContent").textContent = post.content || "";
+            document.getElementById("facebookShare").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(post.title || "HK LENS")}`;
+            document.getElementById("whatsappShare").href = `https://api.whatsapp.com/send?text=${encodeURIComponent((post.title || "HK LENS") + "\n" + url)}`;
+            modal.classList.add("open");
+            modal.setAttribute("aria-hidden", "false");
+        }
+        function closeArticle() {
+            modal.classList.remove("open");
+            modal.setAttribute("aria-hidden", "true");
+            currentModalPost = null;
+            window.history.pushState({}, "", window.location.pathname);
+        }
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2200);
+        }
+        async function copyPostLink(id) {
+            const url = postUrl(id);
+            try {
+                await navigator.clipboard.writeText(url);
+                showToast(text("copied"));
+            } catch (e) {
+                window.prompt(text("copyLink"), url);
+            }
+        }
+
+        document.querySelectorAll("#langSwitch .pill").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentLang = btn.dataset.lang;
+                localStorage.setItem("hk_lang", currentLang);
+                currentCategory = "All";
+                searchInput.value = "";
+                updateStaticText();
+                loadPosts();
+            });
+        });
+        searchInput.addEventListener("input", renderPosts);
+        document.getElementById("clearSearchBtn").addEventListener("click", () => { searchInput.value = ""; renderPosts(); });
+        document.getElementById("closeModalBtn").addEventListener("click", closeArticle);
+        document.getElementById("copyLinkBtn").addEventListener("click", () => currentModalPost && copyPostLink(currentModalPost.key));
+        modal.addEventListener("click", (event) => { if (event.target === modal) closeArticle(); });
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal.classList.contains("open")) closeArticle(); });
+
+        updateStaticText();
+        loadPosts();
+    </script>
 </body>
 </html>
