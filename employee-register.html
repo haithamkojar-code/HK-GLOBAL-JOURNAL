@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>تسجيل موظف | HK Global Blog</title>
+  <title>تسجيل كاتب | HK Global Blog</title>
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
 
@@ -308,7 +308,7 @@
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Employee Register</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل الكتّاب</small>
         </div>
       </div>
 
@@ -318,7 +318,7 @@
 
   <main class="container">
     <section class="card">
-      <h1>تسجيل حساب موظف</h1>
+      <h1>تسجيل حساب كاتب</h1>
       <p class="muted">
         هذه الصفحة تعمل فقط من رابط دعوة أرسله المدير. يجب استخدام نفس البريد الموجود في الدعوة.
       </p>
@@ -326,18 +326,18 @@
     </section>
 
     <section class="card" id="registerCard">
-      <h2>بيانات الموظف</h2>
+      <h2>بيانات الكاتب</h2>
 
       <form id="registerForm">
         <div class="grid">
           <div>
-            <label for="nameInput">الاسم الكامل</label>
+            <label for="nameInput">اسم الكاتب الكامل</label>
             <input id="nameInput" type="text" placeholder="اكتب الاسم الكامل" maxlength="80" required />
           </div>
 
           <div>
             <label for="emailInput">البريد الإلكتروني</label>
-            <input id="emailInput" type="email" placeholder="employee@example.com" maxlength="120" required />
+            <input id="emailInput" type="email" placeholder="writer@example.com" maxlength="120" required />
           </div>
         </div>
 
@@ -359,7 +359,7 @@
           <label class="check-row">
             <input id="contractCheck" type="checkbox" required />
             <span>
-              أوافق على عقد مسؤولية الموظف، وأقرّ أن كل محتوى أنشره من حسابي يكون تحت مسؤوليتي.
+              أوافق على عقد مسؤولية الكاتب، وأقرّ أن كل محتوى أنشره من حسابي يكون تحت مسؤوليتي.
             </span>
           </label>
 
@@ -385,7 +385,7 @@
           </label>
 
           <div class="legal-links">
-            <a href="employee-contract.html" target="_blank">عقد الموظف</a>
+            <a href="employee-contract.html" target="_blank">عقد مسؤولية الكاتب</a>
             <a href="terms.html" target="_blank">شروط الاستخدام</a>
             <a href="privacy.html" target="_blank">سياسة الخصوصية</a>
             <a href="disclaimer.html" target="_blank">إخلاء المسؤولية</a>
@@ -393,14 +393,14 @@
         </div>
 
         <button class="btn btn-primary" id="submitBtn" type="submit">
-          إنشاء الحساب وتفعيل الموظف
+          إنشاء الحساب وتفعيل الكاتب
         </button>
       </form>
     </section>
   </main>
 
   <footer>
-    HK Global Blog © Employee Area
+    HK Global Blog © Writer Area
   </footer>
 
   <script type="module">
@@ -471,8 +471,7 @@
       setStatus("error", "رابط الدعوة غير صحيح أو ناقص. اطلب من المدير إنشاء رابط جديد.");
       registerCard.classList.add("hidden");
     } else {
-      setStatus("success", "تم قراءة رابط الدعوة. أكمل البيانات ثم وافق على الشروط.");
-      nameInput.focus();
+      loadInviteInfo(inviteKeyFromUrl, emailFromUrl);
     }
 
     registerForm.addEventListener("submit", async (event) => {
@@ -490,7 +489,7 @@
       }
 
       if (!name || !isValidEmail(email)) {
-        setStatus("error", "اكتب الاسم والبريد الإلكتروني بشكل صحيح.");
+        setStatus("error", "اكتب اسم الكاتب والبريد الإلكتروني بشكل صحيح.");
         return;
       }
 
@@ -537,11 +536,11 @@
 
             setStatus(
               "warning",
-              "تم إنشاء الحساب. أرسلنا رابط تحقق إلى بريدك. افتح البريد واضغط رابط التحقق، ثم ارجع إلى نفس رابط الدعوة واكتب نفس كلمة المرور لتفعيل الموظف."
+              "تم إنشاء الحساب. أرسلنا رابط تحقق إلى بريدك. افتح البريد واضغط رابط التحقق، ثم ارجع إلى نفس رابط الدعوة واكتب نفس كلمة المرور لتفعيل حساب الكاتب."
             );
 
             submitBtn.disabled = false;
-            submitBtn.textContent = "إنشاء الحساب وتفعيل الموظف";
+            submitBtn.textContent = "إنشاء الحساب وتفعيل الكاتب";
             return;
           } catch (error) {
             if (error.code === "auth/email-already-in-use") {
@@ -553,17 +552,54 @@
           }
         }
 
-        await finalizeEmployeeAccount(user, name, email, inviteKey);
+        await finalizeWriterAccount(user, name, email, inviteKey);
 
       } catch (error) {
         console.error(error);
         setStatus("error", getFriendlyError(error));
         submitBtn.disabled = false;
-        submitBtn.textContent = "إنشاء الحساب وتفعيل الموظف";
+        submitBtn.textContent = "إنشاء الحساب وتفعيل الكاتب";
       }
     });
 
-    async function finalizeEmployeeAccount(user, name, email, inviteKey) {
+    async function loadInviteInfo(inviteKey, email) {
+      try {
+        const inviteSnap = await get(ref(db, "employeeInvites/" + inviteKey));
+
+        if (!inviteSnap.exists()) {
+          setStatus("error", "هذه الدعوة غير موجودة أو تم حذفها. اطلب من المدير إنشاء دعوة جديدة.");
+          registerCard.classList.add("hidden");
+          return;
+        }
+
+        const invite = inviteSnap.val();
+
+        if (!invite.active) {
+          setStatus("error", "هذه الدعوة معطلة. تواصل مع المدير.");
+          registerCard.classList.add("hidden");
+          return;
+        }
+
+        if (normalizeEmail(invite.email) !== email) {
+          setStatus("error", "بريد الدعوة لا يطابق البريد الموجود في الرابط.");
+          registerCard.classList.add("hidden");
+          return;
+        }
+
+        if (invite.name) {
+          nameInput.value = invite.name;
+        }
+
+        setStatus("success", "تم التحقق من رابط الدعوة. أكمل البيانات ثم وافق على الشروط.");
+        nameInput.focus();
+      } catch (error) {
+        console.error(error);
+        setStatus("error", "فشل قراءة الدعوة: " + getFriendlyError(error));
+        registerCard.classList.add("hidden");
+      }
+    }
+
+    async function finalizeWriterAccount(user, name, email, inviteKey) {
       await reload(user);
       await getIdToken(user, true);
 
@@ -580,7 +616,7 @@
         );
 
         submitBtn.disabled = false;
-        submitBtn.textContent = "إنشاء الحساب وتفعيل الموظف";
+        submitBtn.textContent = "إنشاء الحساب وتفعيل الكاتب";
         return;
       }
 
@@ -604,11 +640,12 @@
         throw new Error("حساب Firebase لا يطابق بريد الدعوة.");
       }
 
-      const employeeData = {
+      const writerData = {
         uid: user.uid,
         name: name,
         email: email,
         role: "employee",
+        displayRole: "writer",
         active: true,
         inviteKey: inviteKey,
         invitedBy: invite.createdBy || "",
@@ -618,19 +655,19 @@
         acceptedAt: serverTimestamp()
       };
 
-      await set(ref(db, "users/" + user.uid), employeeData);
-      await set(ref(db, "employees/" + user.uid), employeeData);
+      await set(ref(db, "users/" + user.uid), writerData);
+      await set(ref(db, "employees/" + user.uid), writerData);
 
       setStatus(
         "success",
-        "تم تفعيل حساب الموظف بنجاح. يمكنك الآن تسجيل الدخول كموظف."
+        "تم تفعيل حساب الكاتب بنجاح. يمكنه الآن الدخول إلى صفحة نشر المقالات."
       );
 
       submitBtn.disabled = true;
-      submitBtn.textContent = "تم التفعيل";
+      submitBtn.textContent = "تم تفعيل الكاتب";
 
       setTimeout(() => {
-        window.location.href = "admin.html";
+        window.location.href = "create-post.html";
       }, 2500);
     }
 
@@ -663,7 +700,7 @@
       const messages = {
         "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
         "auth/weak-password": "كلمة المرور ضعيفة. استخدم 8 أحرف على الأقل.",
-        "auth/email-already-in-use": "هذا البريد لديه حساب سابق. اكتب نفس كلمة المرور التي أنشأت بها الحساب لتفعيل الموظف.",
+        "auth/email-already-in-use": "هذا البريد لديه حساب سابق. اكتب نفس كلمة المرور التي أنشأت بها الحساب لتفعيل الكاتب.",
         "auth/wrong-password": "كلمة المرور غير صحيحة.",
         "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
         "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
