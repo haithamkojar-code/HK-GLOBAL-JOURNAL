@@ -6,26 +6,24 @@
 
   <title>لوحة المدير | HK Global Blog</title>
   <meta name="robots" content="noindex, nofollow" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0f172a" />
 
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #0f172a;
+      --bg2: #111827;
       --card: #ffffff;
-      --text: #111827;
-      --muted: #6b7280;
+      --text: #0f172a;
+      --muted: #64748b;
       --border: #e5e7eb;
       --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --danger: #dc2626;
+      --primary2: #1d4ed8;
       --success: #16a34a;
+      --danger: #dc2626;
       --warning: #f59e0b;
-      --dark: #0f172a;
-      --radius: 18px;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
 
     * {
@@ -34,28 +32,23 @@
 
     body {
       margin: 0;
-      font-family: "Tajawal", Arial, sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 35%),
-        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 35%),
-        var(--bg);
-      color: var(--text);
       min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.42), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.22), transparent 32%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
     }
 
     header {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      padding: 18px;
+      color: #fff;
     }
 
     .header-inner {
-      max-width: 1150px;
+      max-width: 1100px;
       margin: auto;
-      padding: 18px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -68,41 +61,146 @@
       align-items: center;
       gap: 12px;
       font-weight: 900;
-      font-size: 1.35rem;
+      font-size: 22px;
     }
 
     .logo {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--primary), #60a5fa);
-      color: white;
+      color: #fff;
       font-weight: 900;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
     }
 
-    .top-actions {
+    .top-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 46px);
+    }
+
+    h2 {
+      font-size: 23px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .status.success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .status.warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 7px;
+      color: #111827;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 15px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
+    }
+
     .btn {
       border: 0;
       border-radius: 999px;
-      padding: 12px 18px;
-      font-family: inherit;
-      font-weight: 800;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
       cursor: pointer;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
       text-decoration: none;
-      font-size: 14px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
     }
 
     .btn:hover {
@@ -111,197 +209,77 @@
 
     .btn-primary {
       background: var(--primary);
-      color: white;
+      color: #fff;
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
+      background: var(--primary2);
     }
 
     .btn-dark {
-      background: var(--dark);
-      color: white;
+      background: #020617;
+      color: #fff;
     }
 
     .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-soft {
       background: #eef2ff;
       color: #1e40af;
     }
 
-    .btn-danger {
-      background: #fee2e2;
-      color: var(--danger);
-    }
-
     .btn-success {
       background: #dcfce7;
-      color: var(--success);
-    }
-
-    .container {
-      max-width: 1150px;
-      margin: auto;
-      padding: 32px 20px 70px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-      margin-bottom: 24px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-    }
-
-    .card h1,
-    .card h2 {
-      margin: 0 0 12px;
-      line-height: 1.25;
-    }
-
-    .card h1 {
-      font-size: clamp(1.8rem, 3vw, 3rem);
-    }
-
-    .card h2 {
-      font-size: 1.35rem;
-    }
-
-    .muted {
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .status {
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      font-weight: 800;
-      color: var(--muted);
-      word-break: break-word;
-    }
-
-    .status.success {
-      background: #dcfce7;
       color: #166534;
-      border-color: #bbf7d0;
     }
 
-    .status.error {
+    .btn-danger {
       background: #fee2e2;
       color: #991b1b;
-      border-color: #fecaca;
     }
 
-    .status.warning {
-      background: #fef3c7;
-      color: #92400e;
-      border-color: #fde68a;
+    .btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    label {
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    input {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 15px;
-      font-family: inherit;
-      font-size: 16px;
-      outline: none;
-      background: white;
-    }
-
-    input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .invite-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .invite-item {
-      border: 1px solid var(--border);
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .invite-head {
+    .actions {
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .invite-title {
-      font-weight: 900;
-      font-size: 1.05rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .badge.active {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .badge.disabled {
-      background: #fee2e2;
-      color: #991b1b;
+      margin-top: 14px;
     }
 
     .link-box {
       direction: ltr;
       text-align: left;
-      padding: 12px;
       background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      border-radius: 12px;
+      border: 1px dashed #94a3b8;
       color: #334155;
+      padding: 14px;
+      border-radius: 14px;
       word-break: break-all;
-      font-size: 13px;
+      line-height: 1.7;
+      font-size: 14px;
     }
 
-    .item-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .info-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .info-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      line-height: 1.7;
     }
 
     .hidden {
@@ -309,28 +287,29 @@
     }
 
     footer {
+      color: rgba(255,255,255,0.72);
       text-align: center;
-      color: var(--muted);
       padding: 20px;
       font-size: 14px;
     }
 
-    @media (max-width: 800px) {
-      .hero,
+    @media (max-width: 850px) {
       .grid {
         grid-template-columns: 1fr;
       }
 
-      .header-inner {
-        align-items: flex-start;
-      }
-
-      .top-actions {
+      .actions,
+      .top-links {
+        flex-direction: column;
         width: 100%;
       }
 
       .btn {
         width: 100%;
+      }
+
+      .card {
+        padding: 20px;
       }
     }
   </style>
@@ -343,77 +322,118 @@
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
-          <small style="color:#6b7280;font-weight:700;">لوحة المدير</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Admin Panel</small>
         </div>
       </div>
 
-      <div class="top-actions">
+      <div class="top-links">
         <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
-        <button class="btn btn-dark" id="logoutBtn">تسجيل الخروج</button>
+        <button class="btn btn-light hidden" id="logoutBtn" type="button">تسجيل الخروج</button>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero">
+    <section class="grid">
       <div class="card">
-        <h1>إدارة الموظفين والدعوات</h1>
+        <h1>لوحة المدير</h1>
         <p class="muted">
-          من هنا يمكنك إنشاء دعوة موظف، ثم إرسال الرابط له بالبريد. الموظف لا يستطيع النشر إلا بعد إنشاء الحساب والموافقة على عقد المسؤولية والشروط.
+          من هنا يمكن للمدير إنشاء دعوة موظف. الموظف سيستلم رابطًا خاصًا للتسجيل، وبعدها نربطه بعقد المسؤولية وشروط الاستخدام.
         </p>
-        <div id="adminStatus" class="status">جاري التحقق من صلاحية المدير...</div>
+        <div id="mainStatus" class="status">يرجى تسجيل الدخول بحساب المدير.</div>
       </div>
 
       <div class="card">
-        <h2>حساب المدير</h2>
-        <p class="muted">المستخدم الحالي:</p>
-        <div id="adminEmail" class="status">...</div>
+        <h2>حالة الحساب</h2>
+        <div class="info-list">
+          <div class="info-item">
+            <strong>البريد الحالي:</strong>
+            <div id="currentEmail" class="muted">غير مسجل</div>
+          </div>
+          <div class="info-item">
+            <strong>الصلاحية:</strong>
+            <div id="currentRole" class="muted">غير معروف</div>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <section id="adminPanel" class="card hidden">
-      <h2>إنشاء دعوة موظف</h2>
-      <p class="muted">
-        اكتب اسم الموظف وبريده. سيتم إنشاء رابط تسجيل خاص، وبعدها يمكنك نسخه أو فتح رسالة بريد جاهزة.
-      </p>
+      <div class="card" id="loginCard">
+        <h2>تسجيل دخول المدير</h2>
+        <p class="muted">
+          أدخل بريد وكلمة مرور حساب المدير الموجود في Firebase Authentication.
+        </p>
 
-      <form id="inviteForm">
-        <div class="grid">
+        <form id="loginForm">
+          <div>
+            <label for="loginEmail">البريد الإلكتروني</label>
+            <input id="loginEmail" type="email" placeholder="admin@example.com" autocomplete="email" required />
+          </div>
+
+          <div>
+            <label for="loginPassword">كلمة المرور</label>
+            <input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password" required />
+          </div>
+
+          <button class="btn btn-primary" id="loginBtn" type="submit">دخول المدير</button>
+        </form>
+      </div>
+
+      <div class="card hidden" id="inviteCard">
+        <h2>إنشاء دعوة موظف</h2>
+        <p class="muted">
+          اكتب اسم الموظف وبريده. سيتم إنشاء رابط تسجيل خاص ترسله له بالبريد.
+        </p>
+
+        <form id="inviteForm">
           <div>
             <label for="employeeName">اسم الموظف</label>
-            <input id="employeeName" type="text" placeholder="مثال: Ahmad Ali" required maxlength="80" />
+            <input id="employeeName" type="text" placeholder="مثال: Ahmad Ali" maxlength="80" required />
           </div>
 
           <div>
             <label for="employeeEmail">بريد الموظف</label>
-            <input id="employeeEmail" type="email" placeholder="employee@example.com" required maxlength="120" />
+            <input id="employeeEmail" type="email" placeholder="employee@example.com" maxlength="120" required />
           </div>
-        </div>
 
-        <button class="btn btn-primary" type="submit" id="createInviteBtn">
-          إنشاء رابط الدعوة
-        </button>
-      </form>
+          <button class="btn btn-primary" id="createInviteBtn" type="submit">إنشاء رابط الدعوة</button>
+        </form>
+      </div>
 
-      <div id="resultBox" class="hidden" style="margin-top:18px;">
-        <h2>رابط الدعوة</h2>
-        <div id="inviteLinkBox" class="link-box"></div>
-        <div class="item-actions" style="margin-top:12px;">
-          <button class="btn btn-success" id="copyLastLinkBtn">نسخ الرابط</button>
-          <a class="btn btn-primary" id="emailLastLinkBtn" href="#">إرسال بالبريد</a>
+      <div class="card wide hidden" id="resultCard">
+        <h2>رابط الدعوة جاهز</h2>
+        <p class="muted">
+          انسخي الرابط وأرسليه للموظف. في الخطوة القادمة سننشئ صفحة تسجيل الموظف التي تفتح من هذا الرابط.
+        </p>
+
+        <div class="link-box" id="inviteLinkBox"></div>
+
+        <div class="actions">
+          <button class="btn btn-success" id="copyLinkBtn" type="button">نسخ الرابط</button>
+          <a class="btn btn-primary" id="emailLinkBtn" href="#">إرسال بالبريد</a>
         </div>
       </div>
-    </section>
 
-    <section id="invitesSection" class="card hidden" style="margin-top:22px;">
-      <h2>الدعوات الحالية</h2>
-      <p class="muted">يمكنك نسخ الرابط أو تعطيل دعوة موظف.</p>
-      <div id="inviteList" class="invite-list"></div>
+      <div class="card wide hidden" id="guideCard">
+        <h2>ما الذي تم حفظه؟</h2>
+        <div class="info-list">
+          <div class="info-item">
+            تم إنشاء دعوة داخل:
+            <strong>employeeInvites</strong>
+          </div>
+          <div class="info-item">
+            الدعوة مرتبطة ببريد الموظف، ولا يجب أن يسجل الموظف ببريد مختلف.
+          </div>
+          <div class="info-item">
+            الخطوة التالية ستكون إنشاء ملف:
+            <strong>employee-register.html</strong>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    HK Global Blog © جميع الحقوق محفوظة
+    HK Global Blog © Admin Area
   </footer>
 
   <script type="module">
@@ -422,6 +442,7 @@
     import {
       getAuth,
       onAuthStateChanged,
+      signInWithEmailAndPassword,
       signOut
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
@@ -430,19 +451,18 @@
       ref,
       get,
       set,
-      update,
-      onValue,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
     const firebaseConfig = {
-      apiKey: "PUT_YOUR_API_KEY_HERE",
-      authDomain: "PUT_YOUR_AUTH_DOMAIN_HERE",
-      databaseURL: "PUT_YOUR_DATABASE_URL_HERE",
-      projectId: "PUT_YOUR_PROJECT_ID_HERE",
-      storageBucket: "PUT_YOUR_STORAGE_BUCKET_HERE",
-      messagingSenderId: "PUT_YOUR_MESSAGING_SENDER_ID_HERE",
-      appId: "PUT_YOUR_APP_ID_HERE"
+      apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+      authDomain: "hk-blog-3ed96.firebaseapp.com",
+      databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "hk-blog-3ed96",
+      storageBucket: "hk-blog-3ed96.firebasestorage.app",
+      messagingSenderId: "339658398793",
+      appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+      measurementId: "G-FSB1QBLZM7"
     };
 
     const TERMS_VERSION = "2026-05-23";
@@ -451,58 +471,110 @@
     const auth = getAuth(app);
     const db = getDatabase(app);
 
-    const adminStatus = document.getElementById("adminStatus");
-    const adminEmail = document.getElementById("adminEmail");
-    const adminPanel = document.getElementById("adminPanel");
-    const invitesSection = document.getElementById("invitesSection");
+    const mainStatus = document.getElementById("mainStatus");
+    const currentEmail = document.getElementById("currentEmail");
+    const currentRole = document.getElementById("currentRole");
+
+    const loginCard = document.getElementById("loginCard");
+    const inviteCard = document.getElementById("inviteCard");
+    const resultCard = document.getElementById("resultCard");
+    const guideCard = document.getElementById("guideCard");
+
+    const loginForm = document.getElementById("loginForm");
+    const loginEmail = document.getElementById("loginEmail");
+    const loginPassword = document.getElementById("loginPassword");
+    const loginBtn = document.getElementById("loginBtn");
+
     const inviteForm = document.getElementById("inviteForm");
     const employeeName = document.getElementById("employeeName");
     const employeeEmail = document.getElementById("employeeEmail");
     const createInviteBtn = document.getElementById("createInviteBtn");
-    const resultBox = document.getElementById("resultBox");
+
     const inviteLinkBox = document.getElementById("inviteLinkBox");
-    const copyLastLinkBtn = document.getElementById("copyLastLinkBtn");
-    const emailLastLinkBtn = document.getElementById("emailLastLinkBtn");
-    const inviteList = document.getElementById("inviteList");
+    const copyLinkBtn = document.getElementById("copyLinkBtn");
+    const emailLinkBtn = document.getElementById("emailLinkBtn");
     const logoutBtn = document.getElementById("logoutBtn");
 
-    let currentAdmin = null;
+    let currentAdminUser = null;
     let lastInviteLink = "";
 
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        window.location.href = "login.html?redirect=admin.html";
+        currentAdminUser = null;
+        currentEmail.textContent = "غير مسجل";
+        currentRole.textContent = "غير معروف";
+        showLoggedOut();
+        setStatus("warning", "يرجى تسجيل الدخول بحساب المدير.");
         return;
       }
 
-      currentAdmin = user;
-      adminEmail.textContent = user.email || user.uid;
+      currentAdminUser = user;
+      currentEmail.textContent = user.email || user.uid;
 
-      const adminOk = await checkAdmin(user.uid);
+      try {
+        const isAdmin = await checkAdmin(user.uid);
 
-      if (!adminOk) {
-        setStatus("error", "هذا الحساب ليس مديرًا. لا تملك صلاحية دخول هذه الصفحة.");
-        adminPanel.classList.add("hidden");
-        invitesSection.classList.add("hidden");
+        if (!isAdmin) {
+          currentRole.textContent = "ليس مديرًا";
+          showLoggedOut();
+          setStatus("error", "هذا الحساب سجل الدخول بنجاح، لكنه غير موجود داخل admins. لا يمكن فتح لوحة المدير.");
+          return;
+        }
+
+        currentRole.textContent = "مدير";
+        showAdminPanel();
+        setStatus("success", "تم تسجيل الدخول كمدير بنجاح.");
+      } catch (error) {
+        console.error(error);
+        currentRole.textContent = "خطأ في التحقق";
+        showLoggedOut();
+        setStatus("error", "فشل التحقق من صلاحية المدير: " + getFriendlyError(error));
+      }
+    });
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const email = normalizeEmail(loginEmail.value);
+      const password = loginPassword.value;
+
+      if (!isValidEmail(email) || !password) {
+        setStatus("error", "اكتب البريد وكلمة المرور بشكل صحيح.");
         return;
       }
 
-      setStatus("success", "تم التحقق بنجاح. أنت داخل حساب المدير.");
-      adminPanel.classList.remove("hidden");
-      invitesSection.classList.remove("hidden");
-      listenToInvites();
+      loginBtn.disabled = true;
+      loginBtn.textContent = "جاري تسجيل الدخول...";
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        loginPassword.value = "";
+      } catch (error) {
+        console.error(error);
+        setStatus("error", getFriendlyError(error));
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = "دخول المدير";
+      }
     });
 
     logoutBtn.addEventListener("click", async () => {
       await signOut(auth);
-      window.location.href = "login.html";
+      setStatus("warning", "تم تسجيل الخروج.");
     });
 
     inviteForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!currentAdmin) {
-        alert("يجب تسجيل الدخول كمدير أولًا.");
+      if (!currentAdminUser) {
+        setStatus("error", "يجب تسجيل الدخول كمدير أولًا.");
+        return;
+      }
+
+      const adminOk = await checkAdmin(currentAdminUser.uid);
+
+      if (!adminOk) {
+        setStatus("error", "حسابك ليس مديرًا داخل admins.");
         return;
       }
 
@@ -510,7 +582,7 @@
       const email = normalizeEmail(employeeEmail.value);
 
       if (!name || !isValidEmail(email)) {
-        alert("اكتب اسم الموظف وبريدًا صحيحًا.");
+        setStatus("error", "اكتب اسم الموظف وبريدًا صحيحًا.");
         return;
       }
 
@@ -527,32 +599,45 @@
           email: email,
           active: true,
           createdAt: serverTimestamp(),
-          createdBy: currentAdmin.uid,
+          createdBy: currentAdminUser.uid,
+          createdByEmail: currentAdminUser.email || "",
           termsVersion: TERMS_VERSION
         });
 
         lastInviteLink = inviteLink;
         inviteLinkBox.textContent = inviteLink;
-        copyLastLinkBtn.onclick = () => copyText(inviteLink);
-        emailLastLinkBtn.href = buildMailTo(email, name, inviteLink);
-        resultBox.classList.remove("hidden");
+        emailLinkBtn.href = buildMailTo(email, name, inviteLink);
+
+        resultCard.classList.remove("hidden");
+        guideCard.classList.remove("hidden");
 
         employeeName.value = "";
         employeeEmail.value = "";
 
-        alert("تم إنشاء رابط الدعوة بنجاح.");
+        setStatus("success", "تم إنشاء دعوة الموظف بنجاح.");
       } catch (error) {
         console.error(error);
-        alert("حدث خطأ أثناء إنشاء الدعوة: " + getErrorMessage(error));
+        setStatus("error", "فشل إنشاء الدعوة: " + getFriendlyError(error));
       } finally {
         createInviteBtn.disabled = false;
         createInviteBtn.textContent = "إنشاء رابط الدعوة";
       }
     });
 
+    copyLinkBtn.addEventListener("click", async () => {
+      if (!lastInviteLink) {
+        setStatus("error", "لا يوجد رابط لنسخه بعد.");
+        return;
+      }
+
+      await copyText(lastInviteLink);
+      setStatus("success", "تم نسخ رابط الدعوة.");
+    });
+
     async function checkAdmin(uid) {
-      const snap = await get(ref(db, "admins/" + uid));
-      const value = snap.val();
+      const adminRef = ref(db, "admins/" + uid);
+      const snapshot = await get(adminRef);
+      const value = snapshot.val();
 
       if (value === true) return true;
       if (value && value.active === true) return true;
@@ -560,72 +645,18 @@
       return false;
     }
 
-    function listenToInvites() {
-      onValue(ref(db, "employeeInvites"), (snapshot) => {
-        const data = snapshot.val() || {};
-        const invites = Object.values(data).sort((a, b) => {
-          const av = Number(a.createdAt || 0);
-          const bv = Number(b.createdAt || 0);
-          return bv - av;
-        });
-
-        renderInvites(invites);
-      });
+    function showLoggedOut() {
+      loginCard.classList.remove("hidden");
+      inviteCard.classList.add("hidden");
+      resultCard.classList.add("hidden");
+      guideCard.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
     }
 
-    function renderInvites(invites) {
-      inviteList.innerHTML = "";
-
-      if (!invites.length) {
-        inviteList.innerHTML = `<div class="status warning">لا توجد دعوات موظفين حتى الآن.</div>`;
-        return;
-      }
-
-      invites.forEach((invite) => {
-        const link = buildInviteLink(invite.inviteKey, invite.email);
-        const item = document.createElement("div");
-        item.className = "invite-item";
-
-        const activeClass = invite.active ? "active" : "disabled";
-        const activeText = invite.active ? "فعالة" : "معطلة";
-
-        item.innerHTML = `
-          <div class="invite-head">
-            <div>
-              <div class="invite-title">${escapeHtml(invite.name || "موظف")}</div>
-              <div class="muted">${escapeHtml(invite.email || "")}</div>
-            </div>
-            <span class="badge ${activeClass}">${activeText}</span>
-          </div>
-
-          <div class="link-box">${escapeHtml(link)}</div>
-
-          <div class="item-actions">
-            <button class="btn btn-success" data-action="copy">نسخ الرابط</button>
-            <a class="btn btn-primary" data-action="email" href="${buildMailTo(invite.email, invite.name, link)}">إرسال بالبريد</a>
-            <button class="btn btn-danger" data-action="disable">تعطيل الدعوة</button>
-          </div>
-        `;
-
-        item.querySelector('[data-action="copy"]').addEventListener("click", () => copyText(link));
-
-        item.querySelector('[data-action="disable"]').addEventListener("click", async () => {
-          const confirmDisable = confirm("هل تريد تعطيل هذه الدعوة؟");
-          if (!confirmDisable) return;
-
-          try {
-            await update(ref(db, "employeeInvites/" + invite.inviteKey), {
-              active: false
-            });
-            alert("تم تعطيل الدعوة.");
-          } catch (error) {
-            console.error(error);
-            alert("لم يتم تعطيل الدعوة: " + getErrorMessage(error));
-          }
-        });
-
-        inviteList.appendChild(item);
-      });
+    function showAdminPanel() {
+      loginCard.classList.add("hidden");
+      inviteCard.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
     }
 
     function buildInviteLink(inviteKey, email) {
@@ -637,12 +668,13 @@
 
     function buildMailTo(email, name, link) {
       const subject = "دعوة لإنشاء حساب موظف في HK Global Blog";
+
       const body =
-`مرحبًا ${name || ""},
+`مرحبًا ${name},
 
 تمت دعوتك لإنشاء حساب موظف في HK Global Blog.
 
-يرجى فتح الرابط التالي وإنشاء الحساب باستخدام نفس البريد الإلكتروني:
+يرجى فتح رابط الدعوة التالي وإنشاء حسابك باستخدام نفس البريد الإلكتروني:
 
 ${link}
 
@@ -657,29 +689,30 @@ ${link}
 مع التحية،
 إدارة HK Global Blog`;
 
-      return "mailto:" + encodeURIComponent(email) +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
+      return "mailto:" + encodeURIComponent(email)
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
     }
 
     async function copyText(text) {
       try {
         await navigator.clipboard.writeText(text);
-        alert("تم نسخ الرابط.");
       } catch (error) {
         const textarea = document.createElement("textarea");
         textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
         document.body.appendChild(textarea);
+        textarea.focus();
         textarea.select();
         document.execCommand("copy");
-        textarea.remove();
-        alert("تم نسخ الرابط.");
+        document.body.removeChild(textarea);
       }
     }
 
     function setStatus(type, message) {
-      adminStatus.className = "status " + type;
-      adminStatus.textContent = message;
+      mainStatus.className = "status " + type;
+      mainStatus.textContent = message;
     }
 
     function normalizeEmail(value) {
@@ -704,21 +737,23 @@ ${link}
         .replace(/[#$\[\]\/]/g, "-");
     }
 
-    function escapeHtml(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+    function getFriendlyError(error) {
+      if (!error) return "حدث خطأ غير معروف.";
 
-    function getErrorMessage(error) {
-      if (!error) return "خطأ غير معروف";
-      if (error.code === "PERMISSION_DENIED" || error.code === "permission-denied") {
-        return "لا توجد صلاحية. تأكد من قواعد Realtime Database ومن أن حسابك داخل admins.";
-      }
-      return error.message || String(error);
+      const code = error.code || "";
+
+      const messages = {
+        "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
+        "auth/user-not-found": "لا يوجد حساب بهذا البريد.",
+        "auth/wrong-password": "كلمة المرور غير صحيحة.",
+        "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
+        "auth/too-many-requests": "تمت محاولات كثيرة. انتظر قليلًا ثم جرب مرة أخرى.",
+        "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
+        "PERMISSION_DENIED": "لا توجد صلاحية في Realtime Database Rules. تأكد أن قواعد قاعدة البيانات تسمح للمدير بكتابة employeeInvites.",
+        "permission-denied": "لا توجد صلاحية في Realtime Database Rules."
+      };
+
+      return messages[code] || error.message || String(error);
     }
   </script>
 </body>
