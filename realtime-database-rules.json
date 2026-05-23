@@ -1,0 +1,100 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "admins": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true)",
+        ".write": false
+      }
+    },
+    "employeeInvites": {
+      ".read": true,
+      ".indexOn": [
+        "email",
+        "active",
+        "createdAt"
+      ],
+      "$inviteKey": {
+        ".write": "auth != null && ((root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true) || (data.exists() && data.child('active').val() === true && data.child('email').val() === auth.token.email && newData.exists() && newData.child('inviteKey').val() === $inviteKey && newData.child('email').val() === data.child('email').val() && newData.child('name').val() === data.child('name').val() && newData.child('createdBy').val() === data.child('createdBy').val() && newData.child('createdByEmail').val() === data.child('createdByEmail').val() && newData.child('createdAt').val() === data.child('createdAt').val() && newData.child('termsVersion').val() === data.child('termsVersion').val() && newData.child('accepted').val() === true && newData.child('acceptedByUid').val() === auth.uid && newData.child('acceptedByEmail').val() === auth.token.email))",
+        ".validate": "!newData.exists() || (newData.hasChildren(['inviteKey', 'name', 'email', 'active', 'createdAt', 'createdBy', 'createdByEmail', 'termsVersion']) && newData.child('inviteKey').isString() && newData.child('inviteKey').val() === $inviteKey && newData.child('name').isString() && newData.child('name').val().length > 1 && newData.child('name').val().length <= 80 && newData.child('email').isString() && newData.child('email').val().length >= 5 && newData.child('email').val().length <= 120 && newData.child('active').isBoolean() && newData.child('createdBy').isString() && newData.child('createdBy').val().length > 0 && newData.child('createdByEmail').isString() && newData.child('createdByEmail').val().length <= 120 && newData.child('termsVersion').isString() && newData.child('termsVersion').val().length <= 30)",
+        "accepted": {
+          ".validate": "newData.isBoolean()"
+        },
+        "acceptedAt": {
+          ".validate": "newData.isNumber()"
+        },
+        "acceptedByUid": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "acceptedByEmail": {
+          ".validate": "newData.isString() && newData.val().length <= 120"
+        }
+      }
+    },
+    "employees": {
+      ".indexOn": [
+        "email",
+        "active",
+        "acceptedAt"
+      ],
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true)",
+        ".write": "auth != null && (root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true || (auth.uid === $uid && auth.token.email_verified === true && newData.exists() && newData.child('uid').val() === auth.uid && newData.child('email').val() === auth.token.email && root.child('employeeInvites').child(newData.child('inviteKey').val()).child('active').val() === true && root.child('employeeInvites').child(newData.child('inviteKey').val()).child('email').val() === auth.token.email))",
+        ".validate": "!newData.exists() || (newData.hasChildren(['uid', 'name', 'email', 'role', 'displayRole', 'active', 'inviteKey', 'acceptedTerms', 'termsVersion', 'acceptedAt']) && newData.child('uid').isString() && newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('name').val().length > 1 && newData.child('name').val().length <= 80 && newData.child('email').isString() && newData.child('email').val().length >= 5 && newData.child('email').val().length <= 120 && newData.child('role').isString() && newData.child('role').val() === 'employee' && newData.child('displayRole').isString() && newData.child('displayRole').val() === 'writer' && newData.child('active').isBoolean() && newData.child('inviteKey').isString() && newData.child('inviteKey').val().length > 0 && newData.child('acceptedTerms').isBoolean() && newData.child('acceptedTerms').val() === true && newData.child('termsVersion').isString() && newData.child('termsVersion').val().length <= 30)"
+      }
+    },
+    "users": {
+      ".indexOn": [
+        "email",
+        "role",
+        "active"
+      ],
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true)",
+        ".write": "auth != null && (root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true || (auth.uid === $uid && auth.token.email_verified === true && newData.exists() && newData.child('uid').val() === auth.uid && newData.child('email').val() === auth.token.email && root.child('employeeInvites').child(newData.child('inviteKey').val()).child('active').val() === true && root.child('employeeInvites').child(newData.child('inviteKey').val()).child('email').val() === auth.token.email))",
+        ".validate": "!newData.exists() || (newData.hasChildren(['uid', 'name', 'email', 'role', 'displayRole', 'active', 'inviteKey', 'acceptedTerms', 'termsVersion', 'acceptedAt']) && newData.child('uid').isString() && newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('name').val().length > 1 && newData.child('name').val().length <= 80 && newData.child('email').isString() && newData.child('email').val().length >= 5 && newData.child('email').val().length <= 120 && newData.child('role').isString() && newData.child('role').val() === 'employee' && newData.child('displayRole').isString() && newData.child('displayRole').val() === 'writer' && newData.child('active').isBoolean() && newData.child('inviteKey').isString() && newData.child('inviteKey').val().length > 0 && newData.child('acceptedTerms').isBoolean() && newData.child('acceptedTerms').val() === true && newData.child('termsVersion').isString() && newData.child('termsVersion').val().length <= 30)"
+      }
+    },
+    "posts": {
+      ".read": true,
+      ".indexOn": [
+        "lang",
+        "category",
+        "status",
+        "authorUid",
+        "createdAt",
+        "updatedAt",
+        "date"
+      ],
+      "$postId": {
+        ".write": "auth != null && (root.child('admins').child(auth.uid).val() === true || root.child('admins').child(auth.uid).child('active').val() === true || (root.child('employees').child(auth.uid).child('active').val() === true && root.child('employees').child(auth.uid).child('acceptedTerms').val() === true && ((!data.exists() && newData.exists() && newData.child('authorUid').val() === auth.uid) || (data.exists() && newData.exists() && data.child('authorUid').val() === auth.uid && newData.child('authorUid').val() === auth.uid) || (data.exists() && !newData.exists() && data.child('authorUid').val() === auth.uid))))",
+        ".validate": "!newData.exists() || (newData.hasChildren(['id', 'title', 'lang', 'category', 'content', 'date', 'status', 'authorUid', 'authorName', 'authorEmail', 'authorRole', 'createdAt', 'updatedAt']) && newData.child('id').isString() && newData.child('id').val() === $postId && newData.child('title').isString() && newData.child('title').val().length > 1 && newData.child('title').val().length <= 160 && newData.child('lang').isString() && (newData.child('lang').val() === 'ar' || newData.child('lang').val() === 'sv' || newData.child('lang').val() === 'en' || newData.child('lang').val() === 'tr' || newData.child('lang').val() === 'de') && newData.child('category').isString() && (newData.child('category').val() === 'politics' || newData.child('category').val() === 'economy' || newData.child('category').val() === 'society' || newData.child('category').val() === 'family' || newData.child('category').val() === 'culture' || newData.child('category').val() === 'technology' || newData.child('category').val() === 'news' || newData.child('category').val() === 'opinion' || newData.child('category').val() === 'other') && newData.child('content').isString() && newData.child('content').val().length > 1 && newData.child('content').val().length <= 20000 && newData.child('date').isString() && newData.child('date').val().length <= 20 && newData.child('status').isString() && (newData.child('status').val() === 'published' || newData.child('status').val() === 'draft') && newData.child('authorUid').isString() && newData.child('authorUid').val().length > 0 && newData.child('authorName').isString() && newData.child('authorName').val().length <= 100 && newData.child('authorEmail').isString() && newData.child('authorEmail').val().length <= 120 && newData.child('authorRole').isString() && (newData.child('authorRole').val() === 'admin' || newData.child('authorRole').val() === 'employee'))",
+        "summary": {
+          ".validate": "newData.isString() && newData.val().length <= 260"
+        },
+        "imageUrl": {
+          ".validate": "newData.isString() && newData.val().length <= 500"
+        },
+        "source": {
+          ".validate": "newData.isString() && newData.val().length <= 300"
+        },
+        "authorDisplayRole": {
+          ".validate": "newData.isString() && newData.val().length <= 30"
+        },
+        "termsVersion": {
+          ".validate": "newData.isString() && newData.val().length <= 30"
+        },
+        "acceptedTerms": {
+          ".validate": "newData.isBoolean()"
+        },
+        "updatedByUid": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "updatedByEmail": {
+          ".validate": "newData.isString() && newData.val().length <= 120"
+        }
+      }
+    }
+  }
+}
