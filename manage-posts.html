@@ -229,11 +229,6 @@
       background: var(--primary2);
     }
 
-    .btn-dark {
-      background: #020617;
-      color: #fff;
-    }
-
     .btn-light {
       background: rgba(255, 255, 255, 0.12);
       color: #fff;
@@ -243,11 +238,6 @@
     .btn-soft {
       background: #eef2ff;
       color: #1e40af;
-    }
-
-    .btn-success {
-      background: #dcfce7;
-      color: #166534;
     }
 
     .btn-danger {
@@ -395,7 +385,7 @@
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Manage Posts</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">منصة الكتّاب</small>
         </div>
       </div>
 
@@ -412,7 +402,7 @@
     <section class="card">
       <h1>إدارة المقالات</h1>
       <p class="muted">
-        من هنا يمكنك عرض المقالات، تعديلها أو حذفها. المدير يرى كل المقالات، والموظف يرى مقالاته فقط.
+        من هنا يمكنك عرض المقالات، تعديلها أو حذفها. المدير يرى كل المقالات، والكاتب يرى مقالاته فقط.
       </p>
 
       <div id="mainStatus" class="status">يرجى تسجيل الدخول.</div>
@@ -436,7 +426,10 @@
     </section>
 
     <section class="card" id="loginCard">
-      <h2>تسجيل الدخول</h2>
+      <h2>دخول الكتّاب</h2>
+      <p class="muted">
+        أدخل بريد وكلمة مرور حساب المدير أو الكاتب.
+      </p>
 
       <form id="loginForm">
         <div class="grid">
@@ -571,7 +564,7 @@
   </main>
 
   <footer>
-    HK Global Blog © Manage Posts
+    HK Global Blog © Writers Area
   </footer>
 
   <script type="module">
@@ -674,7 +667,7 @@
 
         currentUserRole = access.role;
         currentProfile = access.profile;
-        currentRole.textContent = access.role === "admin" ? "مدير" : "موظف";
+        currentRole.textContent = access.role === "admin" ? "مدير" : "كاتب";
 
         showManagePanel();
         setStatus("success", "تم تسجيل الدخول. يمكنك إدارة المقالات.");
@@ -822,14 +815,14 @@
         };
       }
 
-      const employeeSnap = await get(ref(db, "employees/" + user.uid));
-      const employeeValue = employeeSnap.val();
+      const writerSnap = await get(ref(db, "employees/" + user.uid));
+      const writerValue = writerSnap.val();
 
-      if (employeeValue && employeeValue.active === true) {
+      if (writerValue && writerValue.active === true) {
         return {
           allowed: true,
           role: "employee",
-          profile: employeeValue
+          profile: writerValue
         };
       }
 
@@ -917,6 +910,7 @@
         const categoryLabel = getCategoryLabel(post.category);
         const langLabel = getLangLabel(post.lang);
         const summary = post.summary || shortText(post.content || "", 180);
+        const writerType = post.authorRole === "admin" ? "مدير" : "كاتب";
 
         item.innerHTML = `
           <div class="post-head">
@@ -924,6 +918,7 @@
               <div class="post-title">${escapeHtml(post.title || "بدون عنوان")}</div>
               <div class="post-meta">
                 الكاتب: ${escapeHtml(authorName)} |
+                النوع: ${escapeHtml(writerType)} |
                 البريد: ${escapeHtml(authorEmail)} |
                 التاريخ: ${escapeHtml(date)}
                 <br />
