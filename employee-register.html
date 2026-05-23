@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>تسجيل موظف | HK Global Blog</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #f59e0b;
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.42), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.22), transparent 32%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      padding: 18px;
+      color: #fff;
+    }
+
+    .header-inner {
+      max-width: 980px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h2 {
+      font-size: 23px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .status.success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .status.warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 7px;
+      color: #111827;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 15px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
+    }
+
+    input[readonly] {
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    .legal-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: start;
+      line-height: 1.75;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .check-row input {
+      width: 18px;
+      height: 18px;
+      margin-top: 5px;
+      box-shadow: none;
+    }
+
+    .legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .legal-links a {
+      text-decoration: none;
+      color: #1d4ed8;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .legal-links {
+        flex-direction: column;
+      }
+
+      .legal-links a {
+        text-align: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Employee Register</small>
+        </div>
+      </div>
+
+      <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>تسجيل حساب موظف</h1>
+      <p class="muted">
+        هذه الصفحة تعمل فقط من رابط دعوة أرسله المدير. يجب استخدام نفس البريد الموجود في الدعوة.
+      </p>
+      <div id="pageStatus" class="status">جاري قراءة رابط الدعوة...</div>
+    </section>
+
+    <section class="card" id="registerCard">
+      <h2>بيانات الموظف</h2>
+
+      <form id="registerForm">
+        <div class="grid">
+          <div>
+            <label for="nameInput">الاسم الكامل</label>
+            <input id="nameInput" type="text" placeholder="اكتب الاسم الكامل" maxlength="80" required />
+          </div>
+
+          <div>
+            <label for="emailInput">البريد الإلكتروني</label>
+            <input id="emailInput" type="email" placeholder="employee@example.com" maxlength="120" required />
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="passwordInput">كلمة المرور</label>
+            <input id="passwordInput" type="password" placeholder="8 أحرف على الأقل" minlength="8" maxlength="80" required />
+          </div>
+
+          <div>
+            <label for="passwordConfirmInput">تأكيد كلمة المرور</label>
+            <input id="passwordConfirmInput" type="password" placeholder="أعد كتابة كلمة المرور" minlength="8" maxlength="80" required />
+          </div>
+        </div>
+
+        <div class="legal-box">
+          <h2>الموافقة القانونية</h2>
+
+          <label class="check-row">
+            <input id="contractCheck" type="checkbox" required />
+            <span>
+              أوافق على عقد مسؤولية الموظف، وأقرّ أن كل محتوى أنشره من حسابي يكون تحت مسؤوليتي.
+            </span>
+          </label>
+
+          <label class="check-row">
+            <input id="termsCheck" type="checkbox" required />
+            <span>
+              أوافق على شروط الاستخدام، وأتعهد بعدم نشر محتوى غير قانوني أو مضلل أو مخالف لحقوق الآخرين.
+            </span>
+          </label>
+
+          <label class="check-row">
+            <input id="privacyCheck" type="checkbox" required />
+            <span>
+              أوافق على سياسة الخصوصية، وأفهم أنه سيتم حفظ اسمي وبريدي وUID وتاريخ الموافقة لأغراض إدارة الحساب والمسؤولية التحريرية.
+            </span>
+          </label>
+
+          <label class="check-row">
+            <input id="disclaimerCheck" type="checkbox" required />
+            <span>
+              أوافق على إخلاء المسؤولية، وأفهم أن إدارة الموقع تستطيع مراجعة أو تعديل أو حذف المحتوى المخالف.
+            </span>
+          </label>
+
+          <div class="legal-links">
+            <a href="employee-contract.html" target="_blank">عقد الموظف</a>
+            <a href="terms.html" target="_blank">شروط الاستخدام</a>
+            <a href="privacy.html" target="_blank">سياسة الخصوصية</a>
+            <a href="disclaimer.html" target="_blank">إخلاء المسؤولية</a>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="submitBtn" type="submit">
+          إنشاء الحساب وتفعيل الموظف
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    HK Global Blog © Employee Area
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      sendEmailVerification,
+      updateProfile,
+      signOut,
+      reload,
+      getIdToken
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+    import {
+      getDatabase,
+      ref,
+      get,
+      set,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+      authDomain: "hk-blog-3ed96.firebaseapp.com",
+      databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "hk-blog-3ed96",
+      storageBucket: "hk-blog-3ed96.firebasestorage.app",
+      messagingSenderId: "339658398793",
+      appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+      measurementId: "G-FSB1QBLZM7"
+    };
+
+    const TERMS_VERSION = "2026-05-23";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const pageStatus = document.getElementById("pageStatus");
+    const registerCard = document.getElementById("registerCard");
+    const registerForm = document.getElementById("registerForm");
+
+    const nameInput = document.getElementById("nameInput");
+    const emailInput = document.getElementById("emailInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordConfirmInput = document.getElementById("passwordConfirmInput");
+
+    const contractCheck = document.getElementById("contractCheck");
+    const termsCheck = document.getElementById("termsCheck");
+    const privacyCheck = document.getElementById("privacyCheck");
+    const disclaimerCheck = document.getElementById("disclaimerCheck");
+
+    const submitBtn = document.getElementById("submitBtn");
+
+    const params = new URLSearchParams(window.location.search);
+    const inviteKeyFromUrl = cleanText(params.get("invite") || "", 180);
+    const emailFromUrl = normalizeEmail(params.get("email") || "");
+
+    if (emailFromUrl) {
+      emailInput.value = emailFromUrl;
+      emailInput.readOnly = true;
+    }
+
+    if (!inviteKeyFromUrl || !emailFromUrl) {
+      setStatus("error", "رابط الدعوة غير صحيح أو ناقص. اطلب من المدير إنشاء رابط جديد.");
+      registerCard.classList.add("hidden");
+    } else {
+      setStatus("success", "تم قراءة رابط الدعوة. أكمل البيانات ثم وافق على الشروط.");
+      nameInput.focus();
+    }
+
+    registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const name = cleanText(nameInput.value, 80);
+      const email = normalizeEmail(emailInput.value);
+      const password = String(passwordInput.value || "");
+      const passwordConfirm = String(passwordConfirmInput.value || "");
+      const inviteKey = inviteKeyFromUrl;
+
+      if (!inviteKey) {
+        setStatus("error", "رابط الدعوة غير صحيح.");
+        return;
+      }
+
+      if (!name || !isValidEmail(email)) {
+        setStatus("error", "اكتب الاسم والبريد الإلكتروني بشكل صحيح.");
+        return;
+      }
+
+      if (email !== emailFromUrl) {
+        setStatus("error", "يجب استخدام نفس البريد الموجود في رابط الدعوة.");
+        return;
+      }
+
+      if (password.length < 8) {
+        setStatus("error", "كلمة المرور يجب أن تكون 8 أحرف على الأقل.");
+        return;
+      }
+
+      if (password !== passwordConfirm) {
+        setStatus("error", "كلمة المرور وتأكيد كلمة المرور غير متطابقين.");
+        return;
+      }
+
+      if (!contractCheck.checked || !termsCheck.checked || !privacyCheck.checked || !disclaimerCheck.checked) {
+        setStatus("error", "يجب الموافقة على العقد والشروط وسياسة الخصوصية وإخلاء المسؤولية.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "جاري المعالجة...";
+
+      try {
+        let user = auth.currentUser;
+
+        if (!user) {
+          try {
+            const cred = await createUserWithEmailAndPassword(auth, email, password);
+            user = cred.user;
+
+            await updateProfile(user, {
+              displayName: name
+            });
+
+            await sendEmailVerification(user, {
+              url: window.location.href
+            });
+
+            await signOut(auth);
+
+            setStatus(
+              "warning",
+              "تم إنشاء الحساب. أرسلنا رابط تحقق إلى بريدك. افتح البريد واضغط رابط التحقق، ثم ارجع إلى نفس رابط الدعوة واكتب نفس كلمة المرور لتفعيل الموظف."
+            );
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "إنشاء الحساب وتفعيل الموظف";
+            return;
+          } catch (error) {
+            if (error.code === "auth/email-already-in-use") {
+              const cred = await signInWithEmailAndPassword(auth, email, password);
+              user = cred.user;
+            } else {
+              throw error;
+            }
+          }
+        }
+
+        await finalizeEmployeeAccount(user, name, email, inviteKey);
+
+      } catch (error) {
+        console.error(error);
+        setStatus("error", getFriendlyError(error));
+        submitBtn.disabled = false;
+        submitBtn.textContent = "إنشاء الحساب وتفعيل الموظف";
+      }
+    });
+
+    async function finalizeEmployeeAccount(user, name, email, inviteKey) {
+      await reload(user);
+      await getIdToken(user, true);
+
+      if (!user.emailVerified) {
+        await sendEmailVerification(user, {
+          url: window.location.href
+        });
+
+        await signOut(auth);
+
+        setStatus(
+          "warning",
+          "يجب تأكيد البريد أولًا. أرسلنا رابط تحقق جديد إلى بريدك. بعد الضغط على رابط التحقق، ارجع إلى نفس رابط الدعوة واكتب نفس كلمة المرور."
+        );
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = "إنشاء الحساب وتفعيل الموظف";
+        return;
+      }
+
+      const inviteSnap = await get(ref(db, "employeeInvites/" + inviteKey));
+
+      if (!inviteSnap.exists()) {
+        throw new Error("الدعوة غير موجودة أو تم حذفها.");
+      }
+
+      const invite = inviteSnap.val();
+
+      if (!invite.active) {
+        throw new Error("هذه الدعوة معطلة. تواصل مع المدير.");
+      }
+
+      if (normalizeEmail(invite.email) !== email) {
+        throw new Error("البريد الإلكتروني لا يطابق بريد الدعوة.");
+      }
+
+      if (normalizeEmail(user.email) !== email) {
+        throw new Error("حساب Firebase لا يطابق بريد الدعوة.");
+      }
+
+      const employeeData = {
+        uid: user.uid,
+        name: name,
+        email: email,
+        role: "employee",
+        active: true,
+        inviteKey: inviteKey,
+        invitedBy: invite.createdBy || "",
+        invitedByEmail: invite.createdByEmail || "",
+        acceptedTerms: true,
+        termsVersion: TERMS_VERSION,
+        acceptedAt: serverTimestamp()
+      };
+
+      await set(ref(db, "users/" + user.uid), employeeData);
+      await set(ref(db, "employees/" + user.uid), employeeData);
+
+      setStatus(
+        "success",
+        "تم تفعيل حساب الموظف بنجاح. يمكنك الآن تسجيل الدخول كموظف."
+      );
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "تم التفعيل";
+
+      setTimeout(() => {
+        window.location.href = "admin.html";
+      }, 2500);
+    }
+
+    function setStatus(type, message) {
+      pageStatus.className = "status " + type;
+      pageStatus.textContent = message;
+    }
+
+    function normalizeEmail(value) {
+      return String(value || "").trim().toLowerCase();
+    }
+
+    function cleanText(value, maxLength) {
+      return String(value || "")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, maxLength);
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    }
+
+    function getFriendlyError(error) {
+      if (!error) return "حدث خطأ غير معروف.";
+
+      const code = error.code || "";
+
+      const messages = {
+        "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
+        "auth/weak-password": "كلمة المرور ضعيفة. استخدم 8 أحرف على الأقل.",
+        "auth/email-already-in-use": "هذا البريد لديه حساب سابق. اكتب نفس كلمة المرور التي أنشأت بها الحساب لتفعيل الموظف.",
+        "auth/wrong-password": "كلمة المرور غير صحيحة.",
+        "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
+        "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
+        "PERMISSION_DENIED": "لا توجد صلاحية. تأكد من Realtime Database Rules وأن البريد تم تأكيده.",
+        "permission-denied": "لا توجد صلاحية. تأكد من Realtime Database Rules وأن البريد تم تأكيده."
+      };
+
+      return messages[code] || error.message || String(error);
+    }
+  </script>
+</body>
+</html>
