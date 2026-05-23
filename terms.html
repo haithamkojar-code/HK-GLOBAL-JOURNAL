@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>شروط الاستخدام | HK Global Blog</title>
+  <meta name="description" content="شروط استخدام منصة HK Global Blog للمستخدمين والموظفين والكتّاب." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      color: #fff;
+      padding: 18px;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h2 {
+      font-size: 23px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    p, li {
+      line-height: 1.9;
+      color: #334155;
+      font-size: 16px;
+    }
+
+    ul {
+      padding-right: 22px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .notice {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      line-height: 1.8;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .danger {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    .success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .meta div {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 10px 13px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header,
+      .btn-row,
+      footer {
+        display: none;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links a,
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Terms of Use</small>
+        </div>
+      </div>
+
+      <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>شروط الاستخدام</h1>
+
+      <p class="muted">
+        تحدد هذه الشروط القواعد التي تنظّم استخدام منصة HK Global Blog، بما في ذلك قراءة المحتوى، إنشاء حسابات الموظفين، نشر المقالات، وإدارة المحتوى.
+      </p>
+
+      <div class="meta">
+        <div>
+          <strong>اسم المنصة:</strong>
+          <br />
+          HK Global Blog
+        </div>
+
+        <div>
+          <strong>نسخة الشروط:</strong>
+          <br />
+          2026-05-23
+        </div>
+
+        <div>
+          <strong>نطاق التطبيق:</strong>
+          <br />
+          المستخدمون، الموظفون، الكتّاب، والمدير
+        </div>
+
+        <div>
+          <strong>طريقة القبول:</strong>
+          <br />
+          استخدام الموقع أو قبول إلكتروني عند إنشاء حساب الموظف
+        </div>
+      </div>
+
+      <div class="notice danger" style="margin-top:18px;">
+        ملاحظة مهمة: هذه الصفحة قالب تنظيمي عام وليست استشارة قانونية نهائية. إذا كان الموقع سيعمل بشكل تجاري أو رسمي داخل الاتحاد الأوروبي أو ألمانيا، يجب مراجعة محامٍ أو مستشار قانوني مختص.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1. قبول الشروط</h2>
+      <p>
+        باستخدامك لمنصة HK Global Blog أو بإنشاء حساب موظف أو بنشر محتوى داخل الموقع، فإنك توافق على الالتزام بهذه الشروط وبأي سياسات مرتبطة بها، مثل سياسة الخصوصية وإخلاء المسؤولية وعقد مسؤولية الموظف.
+      </p>
+
+      <p>
+        إذا كنت لا توافق على هذه الشروط، يجب عليك عدم استخدام الموقع أو عدم إنشاء حساب موظف أو عدم نشر أي محتوى من خلال المنصة.
+      </p>
+
+      <h2>2. تعريفات</h2>
+      <ul>
+        <li><strong>المنصة:</strong> موقع HK Global Blog وصفحاته وخدماته المرتبطة.</li>
+        <li><strong>الإدارة:</strong> الشخص أو الفريق المسؤول عن تشغيل الموقع وإدارة الصلاحيات والمحتوى.</li>
+        <li><strong>المستخدم:</strong> أي شخص يزور الموقع أو يقرأ المحتوى المنشور.</li>
+        <li><strong>الموظف أو الكاتب:</strong> الشخص الذي يحصل على دعوة رسمية لإنشاء حساب يسمح له بنشر أو تعديل المحتوى.</li>
+        <li><strong>المحتوى:</strong> النصوص، الصور، العناوين، الروابط، التصنيفات، أو أي مواد منشورة داخل المنصة.</li>
+      </ul>
+
+      <h2>3. استخدام الموقع</h2>
+      <p>
+        يسمح باستخدام الموقع لأغراض القراءة، الاطلاع، النشر الداخلي المصرح به، وإدارة المحتوى حسب الصلاحيات الممنوحة.
+      </p>
+
+      <p>يمنع استخدام الموقع لأي غرض غير قانوني أو ضار، ويمنع محاولة تعطيل الخدمة أو اختراقها أو الوصول إلى بيانات أو حسابات غير مصرح بها.</p>
+
+      <h2>4. حسابات الموظفين</h2>
+      <p>
+        لا يمكن إنشاء حساب موظف إلا من خلال رابط دعوة صادر من المدير. يجب على الموظف استخدام البريد الإلكتروني نفسه الموجود في الدعوة.
+      </p>
+
+      <p>
+        يلتزم الموظف بتقديم معلومات صحيحة عند التسجيل، وبالحفاظ على سرية كلمة المرور، وعدم مشاركة الحساب مع أي شخص آخر.
+      </p>
+
+      <p>
+        تحتفظ الإدارة بحق تعطيل حساب الموظف مؤقتًا أو دائمًا إذا انتهت الصلاحية، أو وُجدت مخالفة، أو كان ذلك ضروريًا لحماية الموقع أو المستخدمين أو المحتوى.
+      </p>
+
+      <h2>5. مسؤولية المحتوى المنشور</h2>
+      <p>
+        يتحمل الموظف أو الكاتب المسؤولية عن المحتوى الذي ينشره أو يعدله أو يرسله من خلال حسابه.
+      </p>
+
+      <p>يجب أن يكون المحتوى دقيقًا قدر الإمكان، واضح المصدر عند الحاجة، وغير مخالف للقوانين أو حقوق الآخرين.</p>
+
+      <p>
+        عند نشر مقال تحليلي أو رأي شخصي، يجب عدم تقديمه على أنه خبر مؤكد إذا لم يكن كذلك.
+      </p>
+
+      <h2>6. المحتوى الممنوع</h2>
+      <p>يمنع نشر أو إرسال أو تخزين أي محتوى يتضمن:</p>
+      <ul>
+        <li>محتوى غير قانوني أو مخالف للقوانين المعمول بها.</li>
+        <li>تحريضًا على العنف أو الكراهية أو التمييز.</li>
+        <li>تهديدًا أو تشهيرًا أو إساءة مباشرة للأشخاص أو الجهات.</li>
+        <li>معلومات كاذبة أو مضللة أو منسوبة زورًا.</li>
+        <li>محتوى ينتهك حقوق النشر أو العلامات التجارية أو الملكية الفكرية.</li>
+        <li>بيانات شخصية لأشخاص آخرين دون إذن أو أساس قانوني واضح.</li>
+        <li>صورًا أو ملفات لا يملك الناشر حق استخدامها.</li>
+        <li>روابط احتيالية أو ضارة أو برمجيات خبيثة.</li>
+        <li>محتوى إباحي أو استغلالي أو مسيء للأطفال أو الفئات الضعيفة.</li>
+        <li>أي محتوى قد يسبب ضررًا قانونيًا أو أمنيًا أو أخلاقيًا للمنصة أو مستخدميها.</li>
+      </ul>
+
+      <h2>7. حقوق الملكية الفكرية</h2>
+      <p>
+        يجب على كل موظف أو كاتب التأكد من أنه يملك الحق في استخدام النصوص والصور والمواد التي ينشرها، أو أن لديه ترخيصًا أو إذنًا واضحًا يسمح له بالنشر.
+      </p>
+
+      <p>
+        لا تتحمل الإدارة مسؤولية استخدام الموظف لمواد محمية بحقوق النشر دون إذن. يحق للإدارة حذف أي محتوى يشتبه بأنه يخالف حقوق الملكية الفكرية.
+      </p>
+
+      <h2>8. صلاحيات الإدارة في المراجعة والحذف</h2>
+      <p>
+        يحق للإدارة مراجعة المحتوى المنشور أو تعديله أو إخفاؤه أو حذفه إذا كان مخالفًا لهذه الشروط أو للقانون أو لسياسة النشر أو لعقد مسؤولية الموظف.
+      </p>
+
+      <p>
+        كما يحق للإدارة تقييد أو تعليق أو حذف حساب موظف عند وجود مخالفة خطيرة أو متكررة أو عند الاشتباه بإساءة الاستخدام.
+      </p>
+
+      <h2>9. البلاغات والمحتوى المخالف</h2>
+      <p>
+        يمكن لأي مستخدم أو جهة متضررة التواصل مع إدارة الموقع لطلب مراجعة محتوى يعتقد أنه غير قانوني أو مخالف أو ينتهك حقوقه.
+      </p>
+
+      <p>
+        عند استلام بلاغ واضح، يمكن للإدارة مراجعة المحتوى واتخاذ الإجراء المناسب، مثل التصحيح أو الإخفاء أو الحذف أو التواصل مع صاحب الحساب.
+      </p>
+
+      <h2>10. الخصوصية والبيانات</h2>
+      <p>
+        قد تعالج المنصة بعض البيانات الضرورية لإدارة الحسابات والصلاحيات، مثل اسم الموظف، البريد الإلكتروني، معرّف المستخدم UID، تاريخ إنشاء الحساب، وتاريخ قبول الشروط.
+      </p>
+
+      <p>
+        يتم توضيح تفاصيل البيانات والغرض من معالجتها وحقوق المستخدمين في صفحة سياسة الخصوصية.
+      </p>
+
+      <h2>11. الأمان</h2>
+      <p>
+        تستخدم المنصة أنظمة تسجيل دخول وصلاحيات لتقليل الوصول غير المصرح به، لكن لا يمكن ضمان أن أي خدمة إلكترونية ستكون آمنة بشكل مطلق.
+      </p>
+
+      <p>
+        يجب على المستخدمين والموظفين استخدام كلمات مرور قوية، وعدم مشاركة بيانات الدخول، وإبلاغ الإدارة عند الاشتباه بأي استخدام غير مصرح به.
+      </p>
+
+      <h2>12. روابط ومواقع خارجية</h2>
+      <p>
+        قد يحتوي الموقع على روابط خارجية أو مصادر أو صور أو خدمات من أطراف ثالثة. لا تتحكم HK Global Blog في محتوى هذه المواقع الخارجية ولا تتحمل مسؤولية سياساتها أو دقتها أو أمانها.
+      </p>
+
+      <h2>13. عدم ضمان دقة المحتوى</h2>
+      <p>
+        تسعى الإدارة إلى تقديم محتوى واضح ومفيد، لكن لا تضمن أن جميع المعلومات المنشورة ستكون كاملة أو دقيقة أو محدثة دائمًا.
+      </p>
+
+      <p>
+        يجب على المستخدم التحقق من المعلومات المهمة من مصادر رسمية أو مختصة، وخاصة في الموضوعات القانونية أو الطبية أو المالية أو السياسية الحساسة.
+      </p>
+
+      <h2>14. حدود المسؤولية</h2>
+      <p>
+        لا تتحمل HK Global Blog مسؤولية أي ضرر مباشر أو غير مباشر ناتج عن استخدام الموقع أو الاعتماد على المحتوى المنشور، ضمن الحدود التي يسمح بها القانون.
+      </p>
+
+      <p>
+        يتحمل الموظف أو الكاتب مسؤوليته عن المحتوى الذي ينشره، كما هو موضح في عقد مسؤولية الموظف.
+      </p>
+
+      <h2>15. التعديلات على الشروط</h2>
+      <p>
+        قد يتم تحديث هذه الشروط من وقت لآخر لتحسين وضوحها أو لتتناسب مع تغييرات الموقع أو القوانين أو طريقة العمل.
+      </p>
+
+      <p>
+        عند تحديث الشروط، يمكن تغيير تاريخ النسخة في أعلى الصفحة. استمرار استخدام الموقع بعد التحديث يعني قبول النسخة الجديدة.
+      </p>
+
+      <h2>16. إنهاء الاستخدام</h2>
+      <p>
+        يحق للإدارة إيقاف أو تقييد الوصول إلى بعض الخدمات أو الحسابات عند وجود سبب مشروع، مثل مخالفة الشروط أو حماية الموقع أو منع إساءة الاستخدام.
+      </p>
+
+      <h2>17. اللغة والتفسير</h2>
+      <p>
+        هذه النسخة مكتوبة باللغة العربية لتوضيح القواعد للمستخدمين والموظفين. إذا تمت إضافة نسخ بلغات أخرى لاحقًا، يجب توضيح النسخة المعتمدة عند التعارض.
+      </p>
+
+      <h2>18. التواصل</h2>
+      <p>
+        للاستفسارات أو البلاغات المتعلقة بالمحتوى أو الحسابات أو الحقوق، يمكن التواصل مع إدارة HK Global Blog من خلال وسيلة التواصل الرسمية التي تحددها الإدارة في الموقع.
+      </p>
+
+      <h2>19. الإقرار النهائي</h2>
+      <div class="notice success">
+        باستخدام الموقع أو إنشاء حساب موظف أو نشر محتوى داخل HK Global Blog، يقر المستخدم أو الموظف بأنه قرأ هذه الشروط وفهمها ووافق عليها.
+      </div>
+
+      <div class="footer-links">
+        <a href="employee-contract.html">عقد مسؤولية الموظف</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+        <a href="employee-register.html">تسجيل الموظف</a>
+        <a href="admin.html">لوحة المدير</a>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="window.print()">طباعة / حفظ PDF</button>
+        <a class="btn btn-soft" href="index.html">العودة للرئيسية</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    HK Global Blog © Terms of Use
+  </footer>
+</body>
+</html>
