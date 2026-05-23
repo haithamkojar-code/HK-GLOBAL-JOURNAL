@@ -1,0 +1,63 @@
+HK Global Blog - قائمة الرفع والاختبار
+
+ارفعي هذه الملفات فقط إلى GitHub Pages، في نفس مكان index.html:
+
+1. index.html
+2. hk-writers-access.html
+3. admin.html
+4. create-post.html
+5. manage-posts.html
+6. employee-register.html
+7. employee-contract.html
+8. terms.html
+9. privacy.html
+10. disclaimer.html
+11. private-guard.js
+12. robots.txt
+13. sitemap.xml
+14. 404.html
+
+لا ترفعي هذا الملف إلى GitHub:
+- realtime-database-rules.json
+
+مكان وضعه:
+Firebase Console
+→ Realtime Database
+→ Rules
+→ انسخي محتوى الملف
+→ Publish
+
+روابط الاختبار على GitHub Pages:
+
+صفحة الزوار:
+https://hk-lens.github.io/HK-GLOBAL-BLOG/index.html
+
+بوابة الكتّاب والمدير:
+https://hk-lens.github.io/HK-GLOBAL-BLOG/hk-writers-access.html
+
+لوحة المدير:
+https://hk-lens.github.io/HK-GLOBAL-BLOG/admin.html
+
+نشر مقال:
+https://hk-lens.github.io/HK-GLOBAL-BLOG/create-post.html
+
+إدارة المقالات:
+https://hk-lens.github.io/HK-GLOBAL-BLOG/manage-posts.html
+
+تسجيل كاتب عبر دعوة:
+https://hk-lens.github.io/HK-GLOBAL-BLOG/employee-register.html?invite=PUT_INVITE_KEY_HERE
+
+اختبار مهم:
+1. افتحي صفحة الزوار وتأكدي أنه لا يوجد زر للمدير أو الكتّاب.
+2. افتحي hk-writers-access.html وسجلي دخول المدير.
+3. من لوحة المدير أنشئي دعوة كاتب.
+4. افتحي رابط الدعوة في متصفح آخر أو وضع خفي.
+5. سجلي حساب كاتب جديد.
+6. ادخلي بحساب الكاتب من بوابة الكتّاب.
+7. جربي نشر مقال.
+8. تأكدي أن المقال يظهر في index.html فقط إذا كان status = published.
+
+ملاحظات:
+- صفحات المدير والكتّاب مخفية عن الصفحة الرئيسية، لكن الحماية الحقيقية من Firebase Authentication وRealtime Database Rules.
+- لا تستخدمي firebase.json الآن لأن العمل الحالي على GitHub Pages للتجريب.
+- لاحقًا عند الانتقال إلى Firebase Hosting يمكن إضافة firebase.json.
