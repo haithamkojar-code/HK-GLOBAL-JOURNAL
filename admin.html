@@ -322,12 +322,14 @@
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Admin Panel</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">لوحة المدير</small>
         </div>
       </div>
 
       <div class="top-links">
         <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+        <a class="btn btn-light" href="create-post.html">نشر مقال</a>
+        <a class="btn btn-light" href="manage-posts.html">إدارة المقالات</a>
         <button class="btn btn-light hidden" id="logoutBtn" type="button">تسجيل الخروج</button>
       </div>
     </div>
@@ -338,7 +340,7 @@
       <div class="card">
         <h1>لوحة المدير</h1>
         <p class="muted">
-          من هنا يمكن للمدير إنشاء دعوة موظف. الموظف سيستلم رابطًا خاصًا للتسجيل، وبعدها نربطه بعقد المسؤولية وشروط الاستخدام.
+          من هنا يمكن للمدير إنشاء دعوة كاتب. الكاتب سيستلم رابطًا خاصًا للتسجيل، وبعدها تتم الموافقة على عقد المسؤولية وشروط الاستخدام.
         </p>
         <div id="mainStatus" class="status">يرجى تسجيل الدخول بحساب المدير.</div>
       </div>
@@ -358,7 +360,7 @@
       </div>
 
       <div class="card" id="loginCard">
-        <h2>تسجيل دخول المدير</h2>
+        <h2>دخول المدير</h2>
         <p class="muted">
           أدخل بريد وكلمة مرور حساب المدير الموجود في Firebase Authentication.
         </p>
@@ -379,37 +381,37 @@
       </div>
 
       <div class="card hidden" id="inviteCard">
-        <h2>إنشاء دعوة موظف</h2>
+        <h2>إنشاء دعوة كاتب</h2>
         <p class="muted">
-          اكتب اسم الموظف وبريده. سيتم إنشاء رابط تسجيل خاص ترسله له بالبريد.
+          اكتب اسم الكاتب وبريده. سيتم إنشاء رابط تسجيل خاص ترسله له بالبريد.
         </p>
 
         <form id="inviteForm">
           <div>
-            <label for="employeeName">اسم الموظف</label>
+            <label for="employeeName">اسم الكاتب</label>
             <input id="employeeName" type="text" placeholder="مثال: Ahmad Ali" maxlength="80" required />
           </div>
 
           <div>
-            <label for="employeeEmail">بريد الموظف</label>
-            <input id="employeeEmail" type="email" placeholder="employee@example.com" maxlength="120" required />
+            <label for="employeeEmail">بريد الكاتب</label>
+            <input id="employeeEmail" type="email" placeholder="writer@example.com" maxlength="120" required />
           </div>
 
-          <button class="btn btn-primary" id="createInviteBtn" type="submit">إنشاء رابط الدعوة</button>
+          <button class="btn btn-primary" id="createInviteBtn" type="submit">إنشاء رابط دعوة الكاتب</button>
         </form>
       </div>
 
       <div class="card wide hidden" id="resultCard">
-        <h2>رابط الدعوة جاهز</h2>
+        <h2>رابط دعوة الكاتب جاهز</h2>
         <p class="muted">
-          انسخي الرابط وأرسليه للموظف. في الخطوة القادمة سننشئ صفحة تسجيل الموظف التي تفتح من هذا الرابط.
+          انسخي الرابط وأرسليه للكاتب. يجب أن يستخدم الكاتب نفس البريد الموجود في الدعوة.
         </p>
 
         <div class="link-box" id="inviteLinkBox"></div>
 
         <div class="actions">
           <button class="btn btn-success" id="copyLinkBtn" type="button">نسخ الرابط</button>
-          <a class="btn btn-primary" id="emailLinkBtn" href="#">إرسال بالبريد</a>
+          <a class="btn btn-primary" id="emailLinkBtn" href="#">إرسال الدعوة بالبريد</a>
         </div>
       </div>
 
@@ -421,11 +423,11 @@
             <strong>employeeInvites</strong>
           </div>
           <div class="info-item">
-            الدعوة مرتبطة ببريد الموظف، ولا يجب أن يسجل الموظف ببريد مختلف.
+            الدعوة مرتبطة ببريد الكاتب، ولا يجب أن يسجل الكاتب ببريد مختلف.
           </div>
           <div class="info-item">
-            الخطوة التالية ستكون إنشاء ملف:
-            <strong>employee-register.html</strong>
+            بعد التسجيل، سيستطيع الكاتب نشر المقالات من صفحة:
+            <strong>create-post.html</strong>
           </div>
         </div>
       </div>
@@ -582,7 +584,7 @@
       const email = normalizeEmail(employeeEmail.value);
 
       if (!name || !isValidEmail(email)) {
-        setStatus("error", "اكتب اسم الموظف وبريدًا صحيحًا.");
+        setStatus("error", "اكتب اسم الكاتب وبريدًا صحيحًا.");
         return;
       }
 
@@ -614,13 +616,13 @@
         employeeName.value = "";
         employeeEmail.value = "";
 
-        setStatus("success", "تم إنشاء دعوة الموظف بنجاح.");
+        setStatus("success", "تم إنشاء دعوة الكاتب بنجاح.");
       } catch (error) {
         console.error(error);
         setStatus("error", "فشل إنشاء الدعوة: " + getFriendlyError(error));
       } finally {
         createInviteBtn.disabled = false;
-        createInviteBtn.textContent = "إنشاء رابط الدعوة";
+        createInviteBtn.textContent = "إنشاء رابط دعوة الكاتب";
       }
     });
 
@@ -667,19 +669,19 @@
     }
 
     function buildMailTo(email, name, link) {
-      const subject = "دعوة لإنشاء حساب موظف في HK Global Blog";
+      const subject = "دعوة لإنشاء حساب كاتب في HK Global Blog";
 
       const body =
 `مرحبًا ${name},
 
-تمت دعوتك لإنشاء حساب موظف في HK Global Blog.
+تمت دعوتك لإنشاء حساب كاتب في HK Global Blog.
 
 يرجى فتح رابط الدعوة التالي وإنشاء حسابك باستخدام نفس البريد الإلكتروني:
 
 ${link}
 
 قبل تفعيل الحساب، يجب قراءة والموافقة على:
-- عقد مسؤولية الموظف
+- عقد مسؤولية الكاتب
 - شروط الاستخدام
 - سياسة الخصوصية
 - إخلاء المسؤولية
