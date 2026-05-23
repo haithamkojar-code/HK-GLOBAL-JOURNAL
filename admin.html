@@ -6,6 +6,7 @@
 
   <title>لوحة المدير | HK Global Blog</title>
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
 
   <style>
@@ -18,40 +19,46 @@
       --border: #e5e7eb;
       --primary: #2563eb;
       --primary2: #1d4ed8;
-      --success: #16a34a;
       --danger: #dc2626;
+      --success: #16a34a;
       --warning: #f59e0b;
       --soft: #f8fafc;
-      --radius: 20px;
-      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+      --radius: 22px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.24);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Tahoma, sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.42), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.36), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
     }
 
     header {
-      padding: 18px;
       color: #fff;
+      padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .header-inner {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 14px;
       flex-wrap: wrap;
     }
@@ -60,8 +67,10 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 900;
       font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      text-decoration: none;
     }
 
     .logo {
@@ -76,113 +85,65 @@
       box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
     }
 
-    .top-links {
+    .top-links,
+    .actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: auto;
-      padding: 20px 18px 70px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: start;
+      padding: 26px 18px 70px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 24px;
-      backdrop-filter: blur(12px);
+      margin-bottom: 20px;
     }
 
-    .wide {
-      grid-column: 1 / -1;
-    }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.35; }
+    h1 { font-size: clamp(30px, 4vw, 46px); }
+    h2 { font-size: 24px; }
+    h3 { font-size: 19px; }
 
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      line-height: 1.25;
-    }
+    p { color: #334155; line-height: 1.85; }
+    .muted { color: var(--muted); }
 
-    h1 {
-      font-size: clamp(28px, 4vw, 46px);
-    }
-
-    h2 {
-      font-size: 23px;
-    }
-
-    p {
-      line-height: 1.8;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .status {
-      margin-top: 14px;
-      padding: 13px 15px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: var(--soft);
-      color: var(--muted);
-      font-weight: 700;
-      line-height: 1.7;
-      word-break: break-word;
-    }
-
-    .status.success {
-      background: #dcfce7;
-      border-color: #bbf7d0;
-      color: #166534;
-    }
-
-    .status.error {
-      background: #fee2e2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    .status.warning {
-      background: #fef3c7;
-      border-color: #fde68a;
-      color: #92400e;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 
     label {
       display: block;
-      font-weight: 800;
+      font-weight: 900;
       margin-bottom: 7px;
       color: #111827;
     }
 
-    input {
+    input,
+    select,
+    textarea {
       width: 100%;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
       padding: 14px 15px;
       font-size: 16px;
       outline: none;
+      font-family: inherit;
       background: #fff;
     }
 
-    input:focus {
+    textarea { min-height: 120px; resize: vertical; line-height: 1.7; }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
     }
@@ -201,90 +162,128 @@
       gap: 8px;
       transition: 0.18s;
       font-family: inherit;
+      white-space: nowrap;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary2); }
+    .btn-dark { background: #020617; color: #fff; }
+    .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
+    .btn-success { background: #dcfce7; color: #166534; }
+    .btn-warning { background: #fef3c7; color: #92400e; }
+    .btn-danger { background: #fee2e2; color: #991b1b; }
+    .btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
-
-    .btn-dark {
-      background: #020617;
-      color: #fff;
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .btn-soft {
-      background: #eef2ff;
-      color: #1e40af;
-    }
-
-    .btn-success {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .btn-danger {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .status {
       margin-top: 14px;
-    }
-
-    .link-box {
-      direction: ltr;
-      text-align: left;
-      background: #f8fafc;
-      border: 1px dashed #94a3b8;
-      color: #334155;
-      padding: 14px;
+      padding: 13px 15px;
       border-radius: 14px;
-      word-break: break-all;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 700;
       line-height: 1.7;
-      font-size: 14px;
+      word-break: break-word;
     }
 
-    .info-list {
+    .status.success { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+    .status.error { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
+    .status.warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
+
+    .info-grid {
       display: grid;
-      gap: 10px;
-      margin-top: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .info-item {
       background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
+      border-radius: 16px;
+      padding: 14px;
       line-height: 1.7;
+      word-break: break-word;
     }
 
-    .hidden {
-      display: none !important;
+    .info-item strong {
+      display: block;
+      color: #0f172a;
+      margin-bottom: 5px;
     }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tab-btn {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    .tab-btn.active {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .item {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .item-title { font-size: 19px; font-weight: 900; color: #0f172a; }
+    .item-meta { color: var(--muted); font-size: 14px; line-height: 1.7; word-break: break-word; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .badge.active { background: #dcfce7; color: #166534; }
+    .badge.inactive { background: #fee2e2; color: #991b1b; }
+    .badge.admin { background: #e0e7ff; color: #3730a3; }
+
+    .copy-box {
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      border-radius: 14px;
+      padding: 12px;
+      direction: ltr;
+      text-align: left;
+      color: #334155;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .hidden { display: none !important; }
 
     footer {
       color: rgba(255,255,255,0.72);
@@ -293,24 +292,14 @@
       font-size: 14px;
     }
 
-    @media (max-width: 850px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .actions,
-      .top-links {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .card {
-        padding: 20px;
-      }
+    @media (max-width: 900px) {
+      .grid,
+      .grid-3,
+      .info-grid { grid-template-columns: 1fr; }
+      .top-links,
+      .actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .card { padding: 20px; }
     }
   </style>
 </head>
@@ -318,124 +307,124 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">
+      <a class="brand" href="hk-writers-access.html">
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
           <small style="color:rgba(255,255,255,0.72);font-weight:700;">لوحة المدير</small>
         </div>
-      </div>
+      </a>
 
-      <div class="top-links">
-        <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+      <nav class="top-links" aria-label="روابط المدير">
+        <a class="btn btn-light" href="hk-writers-access.html">بوابة الكتّاب</a>
         <a class="btn btn-light" href="create-post.html">نشر مقال</a>
         <a class="btn btn-light" href="manage-posts.html">إدارة المقالات</a>
         <button class="btn btn-light hidden" id="logoutBtn" type="button">تسجيل الخروج</button>
-      </div>
+      </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="grid">
-      <div class="card">
-        <h1>لوحة المدير</h1>
-        <p class="muted">
-          من هنا يمكن للمدير إنشاء دعوة كاتب. الكاتب سيستلم رابطًا خاصًا للتسجيل، وبعدها تتم الموافقة على عقد المسؤولية وشروط الاستخدام.
-        </p>
-        <div id="mainStatus" class="status">يرجى تسجيل الدخول بحساب المدير.</div>
-      </div>
+    <section class="card">
+      <h1>لوحة المدير</h1>
+      <p class="muted">
+        هذه الصفحة خاصة بالمدير فقط. من هنا يمكنك إنشاء روابط دعوة للكتّاب، متابعة الدعوات، ومراجعة حسابات الكتّاب.
+      </p>
 
-      <div class="card">
-        <h2>حالة الحساب</h2>
-        <div class="info-list">
-          <div class="info-item">
-            <strong>البريد الحالي:</strong>
-            <div id="currentEmail" class="muted">غير مسجل</div>
-          </div>
-          <div class="info-item">
-            <strong>الصلاحية:</strong>
-            <div id="currentRole" class="muted">غير معروف</div>
-          </div>
+      <div id="mainStatus" class="status warning">جاري التحقق من الصلاحية...</div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>الحساب الحالي</strong>
+          <span id="currentEmail">غير مسجل</span>
+        </div>
+        <div class="info-item">
+          <strong>الصلاحية</strong>
+          <span id="currentRole">غير معروف</span>
+        </div>
+        <div class="info-item">
+          <strong>عدد الدعوات</strong>
+          <span id="inviteCount">0</span>
+        </div>
+        <div class="info-item">
+          <strong>عدد الكتّاب</strong>
+          <span id="writerCount">0</span>
         </div>
       </div>
+    </section>
 
-      <div class="card" id="loginCard">
-        <h2>دخول المدير</h2>
-        <p class="muted">
-          أدخل بريد وكلمة مرور حساب المدير الموجود في Firebase Authentication.
-        </p>
+    <section class="card" id="loginCard">
+      <h2>تسجيل دخول المدير</h2>
+      <p class="muted">ادخل بحساب المدير الموجود في Firebase Authentication والمضاف في مسار admins داخل Realtime Database.</p>
 
-        <form id="loginForm">
+      <form id="loginForm">
+        <div class="grid">
           <div>
             <label for="loginEmail">البريد الإلكتروني</label>
             <input id="loginEmail" type="email" placeholder="admin@example.com" autocomplete="email" required />
           </div>
-
           <div>
             <label for="loginPassword">كلمة المرور</label>
             <input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password" required />
           </div>
-
-          <button class="btn btn-primary" id="loginBtn" type="submit">دخول المدير</button>
-        </form>
-      </div>
-
-      <div class="card hidden" id="inviteCard">
-        <h2>إنشاء دعوة كاتب</h2>
-        <p class="muted">
-          اكتب اسم الكاتب وبريده. سيتم إنشاء رابط تسجيل خاص ترسله له بالبريد.
-        </p>
-
-        <form id="inviteForm">
-          <div>
-            <label for="employeeName">اسم الكاتب</label>
-            <input id="employeeName" type="text" placeholder="مثال: Ahmad Ali" maxlength="80" required />
-          </div>
-
-          <div>
-            <label for="employeeEmail">بريد الكاتب</label>
-            <input id="employeeEmail" type="email" placeholder="writer@example.com" maxlength="120" required />
-          </div>
-
-          <button class="btn btn-primary" id="createInviteBtn" type="submit">إنشاء رابط دعوة الكاتب</button>
-        </form>
-      </div>
-
-      <div class="card wide hidden" id="resultCard">
-        <h2>رابط دعوة الكاتب جاهز</h2>
-        <p class="muted">
-          انسخي الرابط وأرسليه للكاتب. يجب أن يستخدم الكاتب نفس البريد الموجود في الدعوة.
-        </p>
-
-        <div class="link-box" id="inviteLinkBox"></div>
-
-        <div class="actions">
-          <button class="btn btn-success" id="copyLinkBtn" type="button">نسخ الرابط</button>
-          <a class="btn btn-primary" id="emailLinkBtn" href="#">إرسال الدعوة بالبريد</a>
         </div>
-      </div>
+        <button class="btn btn-primary" id="loginBtn" type="submit">دخول المدير</button>
+      </form>
+    </section>
 
-      <div class="card wide hidden" id="guideCard">
-        <h2>ما الذي تم حفظه؟</h2>
-        <div class="info-list">
-          <div class="info-item">
-            تم إنشاء دعوة داخل:
-            <strong>employeeInvites</strong>
+    <section class="card hidden" id="adminPanel">
+      <h2>إنشاء دعوة كاتب</h2>
+      <p class="muted">
+        أنشئي دعوة باسم الكاتب وبريده. بعد إنشاء الدعوة انسخي الرابط وأرسليه للكاتب فقط.
+      </p>
+
+      <form id="inviteForm">
+        <div class="grid">
+          <div>
+            <label for="writerName">اسم الكاتب</label>
+            <input id="writerName" type="text" maxlength="80" placeholder="مثال: Ahmad Writer" required />
           </div>
-          <div class="info-item">
-            الدعوة مرتبطة ببريد الكاتب، ولا يجب أن يسجل الكاتب ببريد مختلف.
-          </div>
-          <div class="info-item">
-            بعد التسجيل، سيستطيع الكاتب نشر المقالات من صفحة:
-            <strong>create-post.html</strong>
+          <div>
+            <label for="writerEmail">بريد الكاتب</label>
+            <input id="writerEmail" type="email" maxlength="120" placeholder="writer@example.com" required />
           </div>
         </div>
+
+        <div class="grid">
+          <div>
+            <label for="termsVersion">نسخة الشروط</label>
+            <input id="termsVersion" type="text" maxlength="30" value="2026-05-23" required />
+          </div>
+          <div>
+            <label for="inviteStatus">حالة الدعوة</label>
+            <select id="inviteStatus">
+              <option value="true">فعالة</option>
+              <option value="false">غير فعالة</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="createInviteBtn" type="submit">إنشاء رابط دعوة</button>
+      </form>
+
+      <div id="newInviteBox" class="status success hidden"></div>
+    </section>
+
+    <section class="card hidden" id="managementPanel">
+      <h2>الإدارة والمتابعة</h2>
+
+      <div class="tabs">
+        <button class="btn tab-btn active" type="button" data-tab="invites">دعوات الكتّاب</button>
+        <button class="btn tab-btn" type="button" data-tab="writers">الكتّاب المسجلون</button>
       </div>
+
+      <div id="invitesTab" class="list"></div>
+      <div id="writersTab" class="list hidden"></div>
     </section>
   </main>
 
   <footer>
-    HK Global Blog © Admin Area
+    HK Global Blog © Admin Panel
   </footer>
 
   <script type="module">
@@ -453,7 +442,8 @@
       ref,
       get,
       set,
-      serverTimestamp
+      update,
+      onValue
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
     const firebaseConfig = {
@@ -467,8 +457,6 @@
       measurementId: "G-FSB1QBLZM7"
     };
 
-    const TERMS_VERSION = "2026-05-23";
-
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
@@ -476,60 +464,69 @@
     const mainStatus = document.getElementById("mainStatus");
     const currentEmail = document.getElementById("currentEmail");
     const currentRole = document.getElementById("currentRole");
+    const inviteCount = document.getElementById("inviteCount");
+    const writerCount = document.getElementById("writerCount");
 
     const loginCard = document.getElementById("loginCard");
-    const inviteCard = document.getElementById("inviteCard");
-    const resultCard = document.getElementById("resultCard");
-    const guideCard = document.getElementById("guideCard");
-
+    const adminPanel = document.getElementById("adminPanel");
+    const managementPanel = document.getElementById("managementPanel");
     const loginForm = document.getElementById("loginForm");
     const loginEmail = document.getElementById("loginEmail");
     const loginPassword = document.getElementById("loginPassword");
     const loginBtn = document.getElementById("loginBtn");
-
-    const inviteForm = document.getElementById("inviteForm");
-    const employeeName = document.getElementById("employeeName");
-    const employeeEmail = document.getElementById("employeeEmail");
-    const createInviteBtn = document.getElementById("createInviteBtn");
-
-    const inviteLinkBox = document.getElementById("inviteLinkBox");
-    const copyLinkBtn = document.getElementById("copyLinkBtn");
-    const emailLinkBtn = document.getElementById("emailLinkBtn");
     const logoutBtn = document.getElementById("logoutBtn");
 
-    let currentAdminUser = null;
-    let lastInviteLink = "";
+    const inviteForm = document.getElementById("inviteForm");
+    const writerName = document.getElementById("writerName");
+    const writerEmail = document.getElementById("writerEmail");
+    const termsVersion = document.getElementById("termsVersion");
+    const inviteStatus = document.getElementById("inviteStatus");
+    const createInviteBtn = document.getElementById("createInviteBtn");
+    const newInviteBox = document.getElementById("newInviteBox");
+
+    const invitesTab = document.getElementById("invitesTab");
+    const writersTab = document.getElementById("writersTab");
+    const tabButtons = document.querySelectorAll(".tab-btn");
+
+    let currentUser = null;
+    let invitesStarted = false;
+    let writersStarted = false;
 
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        currentAdminUser = null;
-        currentEmail.textContent = "غير مسجل";
-        currentRole.textContent = "غير معروف";
+        currentUser = null;
         showLoggedOut();
-        setStatus("warning", "يرجى تسجيل الدخول بحساب المدير.");
+        setStatus("warning", "يرجى تسجيل دخول المدير.");
         return;
       }
 
-      currentAdminUser = user;
+      currentUser = user;
       currentEmail.textContent = user.email || user.uid;
 
       try {
         const isAdmin = await checkAdmin(user.uid);
 
         if (!isAdmin) {
-          currentRole.textContent = "ليس مديرًا";
+          await signOut(auth);
           showLoggedOut();
-          setStatus("error", "هذا الحساب سجل الدخول بنجاح، لكنه غير موجود داخل admins. لا يمكن فتح لوحة المدير.");
+          setStatus("error", "هذا الحساب ليس مديرًا ولا يملك صلاحية دخول هذه الصفحة.");
           return;
         }
 
-        currentRole.textContent = "مدير";
         showAdminPanel();
-        setStatus("success", "تم تسجيل الدخول كمدير بنجاح.");
+        setStatus("success", "تم تسجيل دخول المدير بنجاح.");
+
+        if (!invitesStarted) {
+          listenToInvites();
+          invitesStarted = true;
+        }
+
+        if (!writersStarted) {
+          listenToWriters();
+          writersStarted = true;
+        }
       } catch (error) {
         console.error(error);
-        currentRole.textContent = "خطأ في التحقق";
-        showLoggedOut();
         setStatus("error", "فشل التحقق من صلاحية المدير: " + getFriendlyError(error));
       }
     });
@@ -538,15 +535,15 @@
       event.preventDefault();
 
       const email = normalizeEmail(loginEmail.value);
-      const password = loginPassword.value;
+      const password = String(loginPassword.value || "");
 
       if (!isValidEmail(email) || !password) {
-        setStatus("error", "اكتب البريد وكلمة المرور بشكل صحيح.");
+        setStatus("error", "اكتبي البريد وكلمة المرور بشكل صحيح.");
         return;
       }
 
       loginBtn.disabled = true;
-      loginBtn.textContent = "جاري تسجيل الدخول...";
+      loginBtn.textContent = "جاري الدخول...";
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -568,147 +565,281 @@
     inviteForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!currentAdminUser) {
+      if (!currentUser) {
         setStatus("error", "يجب تسجيل الدخول كمدير أولًا.");
         return;
       }
 
-      const adminOk = await checkAdmin(currentAdminUser.uid);
+      const name = cleanText(writerName.value, 80);
+      const email = normalizeEmail(writerEmail.value);
+      const version = cleanText(termsVersion.value, 30) || "2026-05-23";
+      const active = inviteStatus.value === "true";
 
-      if (!adminOk) {
-        setStatus("error", "حسابك ليس مديرًا داخل admins.");
+      if (!name || name.length < 2) {
+        setStatus("error", "اسم الكاتب قصير جدًا.");
         return;
       }
 
-      const name = cleanText(employeeName.value, 80);
-      const email = normalizeEmail(employeeEmail.value);
-
-      if (!name || !isValidEmail(email)) {
-        setStatus("error", "اكتب اسم الكاتب وبريدًا صحيحًا.");
+      if (!isValidEmail(email)) {
+        setStatus("error", "بريد الكاتب غير صحيح.");
         return;
       }
 
-      const inviteKey = emailToInviteKey(email);
-      const inviteLink = buildInviteLink(inviteKey, email);
+      const inviteKey = createInviteKey();
+      const inviteLink = createInviteLink(inviteKey);
+
+      const inviteData = {
+        inviteKey: inviteKey,
+        name: name,
+        email: email,
+        active: active,
+        createdAt: Date.now(),
+        createdBy: currentUser.uid,
+        createdByEmail: currentUser.email || "",
+        termsVersion: version
+      };
 
       createInviteBtn.disabled = true;
       createInviteBtn.textContent = "جاري إنشاء الدعوة...";
 
       try {
-        await set(ref(db, "employeeInvites/" + inviteKey), {
-          inviteKey: inviteKey,
-          name: name,
-          email: email,
-          active: true,
-          createdAt: serverTimestamp(),
-          createdBy: currentAdminUser.uid,
-          createdByEmail: currentAdminUser.email || "",
-          termsVersion: TERMS_VERSION
+        await set(ref(db, "employeeInvites/" + inviteKey), inviteData);
+
+        writerName.value = "";
+        writerEmail.value = "";
+        inviteStatus.value = "true";
+
+        newInviteBox.classList.remove("hidden");
+        newInviteBox.innerHTML = `
+          <strong>تم إنشاء رابط الدعوة بنجاح.</strong>
+          <div class="copy-box" id="createdInviteLink">${escapeHtml(inviteLink)}</div>
+          <div class="actions">
+            <button class="btn btn-success" type="button" id="copyNewInviteBtn">نسخ الرابط</button>
+          </div>
+        `;
+
+        document.getElementById("copyNewInviteBtn").addEventListener("click", () => {
+          copyText(inviteLink);
         });
 
-        lastInviteLink = inviteLink;
-        inviteLinkBox.textContent = inviteLink;
-        emailLinkBtn.href = buildMailTo(email, name, inviteLink);
-
-        resultCard.classList.remove("hidden");
-        guideCard.classList.remove("hidden");
-
-        employeeName.value = "";
-        employeeEmail.value = "";
-
-        setStatus("success", "تم إنشاء دعوة الكاتب بنجاح.");
+        setStatus("success", "تم إنشاء دعوة الكاتب. انسخي الرابط وأرسليه له فقط.");
       } catch (error) {
         console.error(error);
         setStatus("error", "فشل إنشاء الدعوة: " + getFriendlyError(error));
       } finally {
         createInviteBtn.disabled = false;
-        createInviteBtn.textContent = "إنشاء رابط دعوة الكاتب";
+        createInviteBtn.textContent = "إنشاء رابط دعوة";
       }
     });
 
-    copyLinkBtn.addEventListener("click", async () => {
-      if (!lastInviteLink) {
-        setStatus("error", "لا يوجد رابط لنسخه بعد.");
-        return;
-      }
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
 
-      await copyText(lastInviteLink);
-      setStatus("success", "تم نسخ رابط الدعوة.");
+        const tab = button.dataset.tab;
+
+        if (tab === "invites") {
+          invitesTab.classList.remove("hidden");
+          writersTab.classList.add("hidden");
+        } else {
+          writersTab.classList.remove("hidden");
+          invitesTab.classList.add("hidden");
+        }
+      });
     });
 
     async function checkAdmin(uid) {
-      const adminRef = ref(db, "admins/" + uid);
-      const snapshot = await get(adminRef);
-      const value = snapshot.val();
-
-      if (value === true) return true;
-      if (value && value.active === true) return true;
-
-      return false;
+      const snap = await get(ref(db, "admins/" + uid));
+      const value = snap.val();
+      return value === true || (value && value.active === true);
     }
 
-    function showLoggedOut() {
-      loginCard.classList.remove("hidden");
-      inviteCard.classList.add("hidden");
-      resultCard.classList.add("hidden");
-      guideCard.classList.add("hidden");
-      logoutBtn.classList.add("hidden");
+    function listenToInvites() {
+      onValue(ref(db, "employeeInvites"), (snapshot) => {
+        const data = snapshot.val() || {};
+        const invites = Object.values(data).sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0));
+
+        inviteCount.textContent = String(invites.length);
+        renderInvites(invites);
+      }, (error) => {
+        console.error(error);
+        invitesTab.innerHTML = `<div class="status error">فشل تحميل الدعوات: ${escapeHtml(getFriendlyError(error))}</div>`;
+      });
+    }
+
+    function listenToWriters() {
+      onValue(ref(db, "employees"), (snapshot) => {
+        const data = snapshot.val() || {};
+        const writers = Object.values(data).sort((a, b) => Number(b.acceptedAt || 0) - Number(a.acceptedAt || 0));
+
+        writerCount.textContent = String(writers.length);
+        renderWriters(writers);
+      }, (error) => {
+        console.error(error);
+        writersTab.innerHTML = `<div class="status error">فشل تحميل الكتّاب: ${escapeHtml(getFriendlyError(error))}</div>`;
+      });
+    }
+
+    function renderInvites(invites) {
+      invitesTab.innerHTML = "";
+
+      if (!invites.length) {
+        invitesTab.innerHTML = `<div class="status warning">لا توجد دعوات بعد.</div>`;
+        return;
+      }
+
+      invites.forEach((invite) => {
+        const item = document.createElement("div");
+        item.className = "item";
+
+        const inviteLink = createInviteLink(invite.inviteKey || "");
+        const active = invite.active === true;
+        const date = formatDate(invite.createdAt);
+
+        item.innerHTML = `
+          <div class="item-head">
+            <div>
+              <div class="item-title">${escapeHtml(invite.name || "كاتب بدون اسم")}</div>
+              <div class="item-meta">
+                البريد: ${escapeHtml(invite.email || "")}
+                <br />
+                التاريخ: ${escapeHtml(date)} | نسخة الشروط: ${escapeHtml(invite.termsVersion || "")}
+                <br />
+                المفتاح: ${escapeHtml(invite.inviteKey || "")}
+              </div>
+            </div>
+            <span class="badge ${active ? "active" : "inactive"}">${active ? "فعالة" : "غير فعالة"}</span>
+          </div>
+
+          <div class="copy-box">${escapeHtml(inviteLink)}</div>
+
+          <div class="actions">
+            <button class="btn btn-success" type="button" data-action="copy">نسخ الرابط</button>
+            <button class="btn ${active ? "btn-warning" : "btn-success"}" type="button" data-action="toggle">
+              ${active ? "تعطيل الدعوة" : "تفعيل الدعوة"}
+            </button>
+          </div>
+        `;
+
+        item.querySelector('[data-action="copy"]').addEventListener("click", () => copyText(inviteLink));
+        item.querySelector('[data-action="toggle"]').addEventListener("click", () => toggleInvite(invite));
+
+        invitesTab.appendChild(item);
+      });
+    }
+
+    function renderWriters(writers) {
+      writersTab.innerHTML = "";
+
+      if (!writers.length) {
+        writersTab.innerHTML = `<div class="status warning">لا يوجد كتّاب مسجلون بعد.</div>`;
+        return;
+      }
+
+      writers.forEach((writer) => {
+        const item = document.createElement("div");
+        item.className = "item";
+
+        const active = writer.active === true;
+        const date = formatDate(writer.acceptedAt);
+
+        item.innerHTML = `
+          <div class="item-head">
+            <div>
+              <div class="item-title">${escapeHtml(writer.name || "كاتب بدون اسم")}</div>
+              <div class="item-meta">
+                البريد: ${escapeHtml(writer.email || "")}
+                <br />
+                UID: ${escapeHtml(writer.uid || "")}
+                <br />
+                تاريخ قبول الشروط: ${escapeHtml(date)} | نسخة الشروط: ${escapeHtml(writer.termsVersion || "")}
+              </div>
+            </div>
+            <span class="badge ${active ? "active" : "inactive"}">${active ? "فعال" : "معطل"}</span>
+          </div>
+
+          <div class="actions">
+            <button class="btn ${active ? "btn-warning" : "btn-success"}" type="button" data-action="toggle">
+              ${active ? "تعطيل الكاتب" : "تفعيل الكاتب"}
+            </button>
+          </div>
+        `;
+
+        item.querySelector('[data-action="toggle"]').addEventListener("click", () => toggleWriter(writer));
+        writersTab.appendChild(item);
+      });
+    }
+
+    async function toggleInvite(invite) {
+      if (!invite.inviteKey) return;
+
+      try {
+        await update(ref(db, "employeeInvites/" + invite.inviteKey), {
+          active: invite.active !== true
+        });
+
+        setStatus("success", "تم تحديث حالة الدعوة.");
+      } catch (error) {
+        console.error(error);
+        setStatus("error", "فشل تحديث الدعوة: " + getFriendlyError(error));
+      }
+    }
+
+    async function toggleWriter(writer) {
+      if (!writer.uid) return;
+
+      try {
+        await update(ref(db, "employees/" + writer.uid), {
+          active: writer.active !== true
+        });
+
+        await update(ref(db, "users/" + writer.uid), {
+          active: writer.active !== true
+        });
+
+        setStatus("success", "تم تحديث حالة الكاتب.");
+      } catch (error) {
+        console.error(error);
+        setStatus("error", "فشل تحديث حالة الكاتب: " + getFriendlyError(error));
+      }
     }
 
     function showAdminPanel() {
       loginCard.classList.add("hidden");
-      inviteCard.classList.remove("hidden");
+      adminPanel.classList.remove("hidden");
+      managementPanel.classList.remove("hidden");
       logoutBtn.classList.remove("hidden");
+      currentRole.textContent = "مدير";
     }
 
-    function buildInviteLink(inviteKey, email) {
-      const url = new URL("employee-register.html", window.location.href);
-      url.searchParams.set("invite", inviteKey);
-      url.searchParams.set("email", email);
-      return url.href;
+    function showLoggedOut() {
+      loginCard.classList.remove("hidden");
+      adminPanel.classList.add("hidden");
+      managementPanel.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+      currentEmail.textContent = "غير مسجل";
+      currentRole.textContent = "غير معروف";
+      inviteCount.textContent = "0";
+      writerCount.textContent = "0";
     }
 
-    function buildMailTo(email, name, link) {
-      const subject = "دعوة لإنشاء حساب كاتب في HK Global Blog";
+    function createInviteKey() {
+      const randomPart = crypto.getRandomValues(new Uint32Array(4));
+      return Array.from(randomPart).map((num) => num.toString(36)).join("").slice(0, 24);
+    }
 
-      const body =
-`مرحبًا ${name},
-
-تمت دعوتك لإنشاء حساب كاتب في HK Global Blog.
-
-يرجى فتح رابط الدعوة التالي وإنشاء حسابك باستخدام نفس البريد الإلكتروني:
-
-${link}
-
-قبل تفعيل الحساب، يجب قراءة والموافقة على:
-- عقد مسؤولية الكاتب
-- شروط الاستخدام
-- سياسة الخصوصية
-- إخلاء المسؤولية
-
-بعد الموافقة، سيتم حفظ اسمك وبريدك وتاريخ قبولك للشروط، وسيظهر اسمك ككاتب للمقالات التي تنشرها داخل المنصة.
-
-مع التحية،
-إدارة HK Global Blog`;
-
-      return "mailto:" + encodeURIComponent(email)
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(body);
+    function createInviteLink(inviteKey) {
+      const baseUrl = window.location.origin + window.location.pathname.replace(/admin\.html$/i, "").replace(/\/$/, "");
+      return baseUrl + "/employee-register.html?invite=" + encodeURIComponent(inviteKey);
     }
 
     async function copyText(text) {
       try {
         await navigator.clipboard.writeText(text);
-      } catch (error) {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        textarea.style.position = "fixed";
-        textarea.style.opacity = "0";
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
+        setStatus("success", "تم نسخ الرابط.");
+      } catch {
+        setStatus("warning", "لم يتم النسخ تلقائيًا. انسخي الرابط يدويًا من الصندوق.");
       }
     }
 
@@ -733,25 +864,34 @@ ${link}
       return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
     }
 
-    function emailToInviteKey(email) {
-      return normalizeEmail(email)
-        .replace(/\./g, ",")
-        .replace(/[#$\[\]\/]/g, "-");
+    function formatDate(value) {
+      if (!value) return "غير محدد";
+      const date = new Date(Number(value));
+      if (isNaN(date.getTime())) return "غير محدد";
+      return date.toLocaleString("ar", { dateStyle: "medium", timeStyle: "short" });
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
     function getFriendlyError(error) {
       if (!error) return "حدث خطأ غير معروف.";
 
       const code = error.code || "";
-
       const messages = {
         "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
         "auth/user-not-found": "لا يوجد حساب بهذا البريد.",
         "auth/wrong-password": "كلمة المرور غير صحيحة.",
         "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
-        "auth/too-many-requests": "تمت محاولات كثيرة. انتظر قليلًا ثم جرب مرة أخرى.",
+        "auth/too-many-requests": "تمت محاولات كثيرة. انتظري قليلًا ثم جربي مرة أخرى.",
         "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
-        "PERMISSION_DENIED": "لا توجد صلاحية في Realtime Database Rules. تأكد أن قواعد قاعدة البيانات تسمح للمدير بكتابة employeeInvites.",
+        "PERMISSION_DENIED": "لا توجد صلاحية في Realtime Database Rules.",
         "permission-denied": "لا توجد صلاحية في Realtime Database Rules."
       };
 
