@@ -1,1038 +1,1132 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="mainHtml">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HK LENS is a modern multilingual blog for political, economic, marketing, and family analysis.">
-    <meta name="theme-color" content="#0f172a">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>HK LENS | Global Intelligence Blog</title>
+  <title>HK Global Blog | مدونة عالمية للفكر والمجتمع والاقتصاد</title>
+  <meta name="description" content="HK Global Blog مدونة عالمية للمقالات السياسية والاقتصادية والاجتماعية والأسرية والثقافية بلغات متعددة." />
+  <meta name="keywords" content="HK Global Blog, مدونة, مقالات, سياسة, اقتصاد, مجتمع, أسرة, ثقافة, كتاب, آراء, تحليل" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f172a" />
 
-    <meta property="og:title" content="HK LENS - Global Intelligence Blog">
-    <meta property="og:description" content="Political, economic, marketing, and family analysis with a modern independent vision.">
-    <meta property="og:url" content="https://hk-lens.github.io/HK-GLOBAL-BLOG/">
-    <meta property="og:site_name" content="HK LENS">
-    <meta property="og:type" content="website">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HK Global Blog | مدونة عالمية" />
+  <meta property="og:description" content="منصة مقالات عالمية للفكر والمجتمع والاقتصاد والثقافة." />
+  <meta property="og:site_name" content="HK Global Blog" />
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #f59e0b;
+      --soft: #f8fafc;
+      --soft2: #eef2ff;
+      --radius: 22px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.18);
+    }
 
-    <style>
-        :root {
-            --bg: #07111f;
-            --bg-soft: #0f172a;
-            --card: rgba(255,255,255,0.92);
-            --card-dark: rgba(15, 23, 42, 0.78);
-            --text: #0f172a;
-            --muted: #64748b;
-            --white: #ffffff;
-            --primary: #38bdf8;
-            --primary-2: #6366f1;
-            --accent: #f59e0b;
-            --success: #22c55e;
-            --danger: #ef4444;
-            --border: rgba(148, 163, 184, 0.24);
-            --shadow: 0 24px 80px rgba(2, 6, 23, 0.22);
-            --radius-xl: 28px;
-            --radius-lg: 20px;
-            --radius-md: 14px;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
-            color: var(--white);
-            background:
-                radial-gradient(circle at top left, rgba(56, 189, 248, 0.24), transparent 34%),
-                radial-gradient(circle at 78% 18%, rgba(99, 102, 241, 0.24), transparent 32%),
-                linear-gradient(135deg, #020617 0%, #07111f 45%, #111827 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        a { color: inherit; text-decoration: none; }
-        button, input { font: inherit; }
-        button { border: 0; cursor: pointer; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.32), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
 
-        .page-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    a {
+      color: inherit;
+    }
 
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            backdrop-filter: blur(22px);
-            background: rgba(2, 6, 23, 0.70);
-            border-bottom: 1px solid rgba(255,255,255,0.10);
-        }
+    header {
+      color: #fff;
+      padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.84);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-        .topbar-inner {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-        }
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 180px;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+      text-decoration: none;
+    }
 
-        .brand-mark {
-            width: 44px;
-            height: 44px;
-            border-radius: 15px;
-            display: grid;
-            place-items: center;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: white;
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
-            box-shadow: 0 12px 36px rgba(56, 189, 248, 0.34);
-        }
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
 
-        .brand-title { display: grid; line-height: 1.1; }
-        .brand-title strong { font-size: 1.15rem; letter-spacing: 0.05em; }
-        .brand-title span { color: #cbd5e1; font-size: 0.78rem; }
+    .top-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-        .nav-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
-        .nav-link {
-            color: #dbeafe;
-            font-size: 0.9rem;
-            padding: 10px 14px;
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 999px;
-            background: rgba(255,255,255,0.05);
-            transition: 0.2s ease;
-        }
-        .nav-link:hover { transform: translateY(-1px); border-color: rgba(56,189,248,0.45); background: rgba(56,189,248,0.10); }
-        .employee-link { background: linear-gradient(135deg, rgba(56,189,248,0.20), rgba(99,102,241,0.20)); border-color: rgba(56,189,248,0.38); }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 18px 70px;
+    }
 
-        .hero {
-            padding: 72px 0 34px;
-            display: grid;
-            grid-template-columns: 1.12fr 0.88fr;
-            align-items: center;
-            gap: 34px;
-        }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 14px;
+      margin-bottom: 22px;
+    }
 
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 9px 14px;
-            border-radius: 999px;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            color: #bae6fd;
-            font-weight: 700;
-            font-size: 0.88rem;
-        }
-        .pulse {
-            width: 9px;
-            height: 9px;
-            border-radius: 999px;
-            background: var(--success);
-            box-shadow: 0 0 0 7px rgba(34,197,94,0.14);
-        }
+    .hero-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 42px);
+      overflow: hidden;
+      position: relative;
+    }
 
-        .hero h1 {
-            margin: 18px 0 16px;
-            font-size: clamp(2.5rem, 7vw, 5.6rem);
-            line-height: 0.95;
-            letter-spacing: -0.075em;
-        }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      left: -70px;
+      bottom: -70px;
+    }
 
-        .gradient-word {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffffff, #7dd3fc 40%, #c4b5fd 85%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+    .hero-side {
+      display: grid;
+      gap: 18px;
+    }
 
-        .hero-subtitle {
-            color: #cbd5e1;
-            font-size: clamp(1rem, 2.4vw, 1.25rem);
-            max-width: 720px;
-            margin: 0 0 24px;
-            line-height: 1.75;
-        }
+    .mini-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
 
-        .hero-tools {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 12px;
-            max-width: 760px;
-            margin-top: 24px;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eef2ff;
+      color: #1e40af;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
 
-        .search-box {
-            position: relative;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.13);
-            border-radius: 18px;
-            overflow: hidden;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 16px 48px 16px 18px;
-            color: var(--white);
-            background: transparent;
-            border: 0;
-            outline: 0;
-        }
-        [dir="ltr"] .search-box input { padding: 16px 18px 16px 48px; }
-        .search-box input::placeholder { color: #94a3b8; }
-        .search-icon {
-            position: absolute;
-            top: 50%;
-            right: 18px;
-            transform: translateY(-50%);
-            color: #bae6fd;
-        }
-        [dir="ltr"] .search-icon { right: auto; left: 18px; }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.3;
+    }
 
-        .clear-btn {
-            min-width: 118px;
-            padding: 0 18px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
-            color: white;
-            font-weight: 800;
-            box-shadow: 0 14px 35px rgba(56,189,248,0.22);
-        }
+    h1 {
+      font-size: clamp(32px, 5vw, 58px);
+      letter-spacing: -0.8px;
+    }
 
-        .hero-panel {
-            position: relative;
-            background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: var(--radius-xl);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        .hero-panel::before {
-            content: "";
-            position: absolute;
-            inset: -40% -20% auto auto;
-            width: 220px;
-            height: 220px;
-            background: radial-gradient(circle, rgba(56,189,248,0.40), transparent 68%);
-        }
-        .signal-card {
-            position: relative;
-            padding: 20px;
-            border-radius: 24px;
-            background: rgba(15, 23, 42, 0.72);
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-        .signal-card h2 { margin: 0 0 12px; font-size: 1.15rem; }
-        .signal-grid { display: grid; gap: 12px; margin-top: 18px; }
-        .signal-item {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 12px;
-            align-items: center;
-            padding: 14px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .signal-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(99,102,241,0.25));
-        }
-        .signal-item strong { display: block; color: #fff; }
-        .signal-item span { color: #cbd5e1; font-size: 0.9rem; }
+    h2 {
+      font-size: clamp(24px, 3vw, 34px);
+    }
 
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 18px;
-        }
-        .stat {
-            padding: 16px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.08);
-            text-align: center;
-        }
-        .stat strong { display: block; font-size: 1.35rem; }
-        .stat span { color: #cbd5e1; font-size: 0.8rem; }
+    h3 {
+      font-size: 21px;
+    }
 
-        .control-zone {
-            margin: 24px 0 30px;
-            padding: 18px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: var(--radius-xl);
-            background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(18px);
-        }
-        .control-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .pill-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill {
-            color: #dbeafe;
-            padding: 10px 15px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.10);
-            font-weight: 700;
-            transition: 0.2s ease;
-        }
-        .pill:hover, .pill.active { color: #020617; background: #e0f2fe; border-color: #7dd3fc; transform: translateY(-1px); }
-        .section-title { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 14px 0 18px; }
-        .section-title h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.04em; }
-        .section-title p { margin: 0; color: #cbd5e1; }
+    p {
+      line-height: 1.85;
+      color: #334155;
+    }
 
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            padding-bottom: 48px;
-        }
+    .muted {
+      color: var(--muted);
+    }
 
-        .post-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-height: 360px;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            background: var(--card);
-            color: var(--text);
-            box-shadow: 0 18px 60px rgba(2,6,23,0.20);
-            border: 1px solid rgba(255,255,255,0.52);
-            transform: translateY(0);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .post-card:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(2,6,23,0.28); }
-        .post-card.featured { grid-column: span 2; }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 17px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
 
-        .post-cover {
-            height: 178px;
-            background:
-                linear-gradient(135deg, rgba(56,189,248,0.92), rgba(99,102,241,0.86)),
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45), transparent 35%);
-            display: flex;
-            align-items: flex-end;
-            padding: 16px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        .post-card.featured .post-cover { height: 220px; }
-        .post-cover img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .post-cover::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 28%, rgba(2,6,23,0.72));
-        }
-        .post-badge {
-            position: relative;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.16);
-            backdrop-filter: blur(12px);
-            font-size: 0.82rem;
-            font-weight: 800;
-            border: 1px solid rgba(255,255,255,0.22);
-        }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
 
-        .post-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
-        .post-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            color: var(--muted);
-            font-size: 0.82rem;
-            margin-bottom: 10px;
-        }
-        .post-title { margin: 0 0 10px; font-size: 1.22rem; line-height: 1.35; letter-spacing: -0.02em; }
-        .post-card.featured .post-title { font-size: 1.55rem; }
-        .post-preview { margin: 0 0 18px; color: #475569; line-height: 1.7; flex: 1; }
-        .post-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; }
-        .read-btn {
-            padding: 11px 14px;
-            border-radius: 14px;
-            color: white;
-            font-weight: 900;
-            background: linear-gradient(135deg, #0f172a, #334155);
-        }
-        .share-mini { color: #0f172a; background: #e2e8f0; border-radius: 14px; padding: 11px 13px; font-weight: 800; }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
 
-        .loading, .empty-state {
-            grid-column: 1 / -1;
-            padding: 38px 24px;
-            text-align: center;
-            border-radius: var(--radius-xl);
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: #e2e8f0;
-        }
-        .skeleton-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-        .skeleton {
-            height: 360px;
-            border-radius: var(--radius-xl);
-            background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.16), rgba(255,255,255,0.06));
-            background-size: 260% 100%;
-            animation: shimmer 1.3s infinite;
-            border: 1px solid rgba(255,255,255,0.10);
-        }
-        @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
 
-        .modal {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(2, 6, 23, 0.72);
-            backdrop-filter: blur(14px);
-        }
-        .modal.open { display: flex; }
-        .article-panel {
-            width: min(920px, 100%);
-            max-height: min(88vh, 860px);
-            overflow: auto;
-            background: #ffffff;
-            color: #111827;
-            border-radius: 30px;
-            box-shadow: 0 30px 100px rgba(0,0,0,0.42);
-            border: 1px solid rgba(255,255,255,0.45);
-        }
-        .article-hero {
-            min-height: 260px;
-            display: flex;
-            align-items: flex-end;
-            padding: 24px;
-            position: relative;
-            color: white;
-            background: linear-gradient(135deg, #0f172a, #1d4ed8 55%, #4f46e5);
-            overflow: hidden;
-        }
-        .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .article-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,6,23,0.10), rgba(2,6,23,0.84)); }
-        .article-hero-content { position: relative; z-index: 2; }
-        .article-hero h2 { margin: 12px 0 0; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -0.05em; }
-        .article-content { padding: 26px; }
-        .article-text { white-space: pre-wrap; line-height: 1.95; color: #263244; font-size: 1.05rem; }
-        .modal-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            margin-bottom: 16px;
-        }
-        .close-btn, .article-action {
-            padding: 10px 13px;
-            border-radius: 13px;
-            font-weight: 900;
-            background: #eef2ff;
-            color: #1e1b4b;
-        }
-        .close-btn { background: #fee2e2; color: #7f1d1d; }
-        .article-share { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #e2e8f0; }
-        .article-action.facebook { background: #dbeafe; color: #1d4ed8; }
-        .article-action.whatsapp { background: #dcfce7; color: #166534; }
+    .btn-dark {
+      background: #020617;
+      color: #fff;
+    }
 
-        .toast {
-            position: fixed;
-            left: 50%;
-            bottom: 24px;
-            transform: translateX(-50%) translateY(20px);
-            z-index: 120;
-            padding: 12px 16px;
-            border-radius: 999px;
-            color: white;
-            background: rgba(15,23,42,0.92);
-            border: 1px solid rgba(255,255,255,0.12);
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.22s ease;
-        }
-        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
 
-        footer {
-            margin-top: 12px;
-            padding: 34px 0 42px;
-            border-top: 1px solid rgba(255,255,255,0.10);
-            color: #cbd5e1;
-        }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
-        .footer-links { display: flex; gap: 12px; flex-wrap: wrap; }
-        .footer-links a { color: #bae6fd; font-weight: 800; }
-        .ai-note { max-width: 680px; color: #94a3b8; font-size: 0.92rem; line-height: 1.7; }
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
 
-        @media (max-width: 940px) {
-            .hero { grid-template-columns: 1fr; padding-top: 44px; }
-            .posts-grid { grid-template-columns: repeat(2, 1fr); }
-            .post-card.featured { grid-column: span 2; }
-            .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+    .btn-white {
+      background: #fff;
+      color: #0f172a;
+    }
 
-        @media (max-width: 640px) {
-            .page-shell { width: min(100% - 22px, 1180px); }
-            .topbar-inner { align-items: flex-start; padding: 12px 0; flex-direction: column; }
-            .nav-actions { width: 100%; justify-content: space-between; }
-            .nav-link { flex: 1; text-align: center; padding: 10px 9px; }
-            .hero { padding-top: 30px; }
-            .hero-tools { grid-template-columns: 1fr; }
-            .hero-panel { padding: 16px; }
-            .stats-row { grid-template-columns: 1fr; }
-            .control-row { align-items: flex-start; }
-            .posts-grid { grid-template-columns: 1fr; }
-            .post-card.featured { grid-column: auto; }
-            .skeleton-grid { grid-template-columns: 1fr; }
-            .article-panel { border-radius: 22px; }
-            .article-content { padding: 20px; }
-            .article-hero { min-height: 230px; }
-        }
-    </style>
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 15px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .status.success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .status.warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .post-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      transition: 0.2s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+    }
+
+    .post-image {
+      height: 170px;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.88), rgba(96, 165, 250, 0.82)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 30%);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 38px;
+      font-weight: 900;
+      overflow: hidden;
+    }
+
+    .post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .post-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .post-title {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.45;
+      color: #0f172a;
+    }
+
+    .post-summary {
+      color: #475569;
+      line-height: 1.8;
+      font-size: 15px;
+      flex: 1;
+    }
+
+    .post-meta {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    .badge.green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge.gold {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .read-btn {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .legal-link {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      text-decoration: none;
+      display: block;
+      transition: 0.18s;
+    }
+
+    .legal-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.10);
+    }
+
+    .legal-link strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #0f172a;
+    }
+
+    .legal-link span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    dialog {
+      width: min(900px, calc(100% - 26px));
+      border: 0;
+      border-radius: 26px;
+      padding: 0;
+      box-shadow: 0 30px 90px rgba(2, 6, 23, 0.45);
+      overflow: hidden;
+    }
+
+    dialog::backdrop {
+      background: rgba(2, 6, 23, 0.68);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-head {
+      padding: 20px;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 24px;
+      max-height: 75vh;
+      overflow: auto;
+      background: #fff;
+    }
+
+    .modal-title {
+      font-size: clamp(25px, 4vw, 40px);
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .modal-meta {
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .modal-content {
+      color: #334155;
+      line-height: 2;
+      font-size: 17px;
+      white-space: pre-wrap;
+    }
+
+    .modal-image {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 0 0 18px;
+      border: 1px solid var(--border);
+      display: none;
+    }
+
+    .close-btn {
+      border: 0;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 900;
+      font-family: inherit;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.76);
+      text-align: center;
+      padding: 26px 18px 36px;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .legal-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+
+      .top-links,
+      .actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .filters,
+      .posts-grid,
+      .legal-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .mini-card,
+      .card {
+        padding: 20px;
+      }
+
+      .post-image {
+        height: 150px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header class="topbar">
-        <div class="page-shell topbar-inner">
-            <a class="brand" href="index.html" aria-label="HK LENS Home">
-                <div class="brand-mark">HK</div>
-                <div class="brand-title">
-                    <strong>HK LENS</strong>
-                    <span id="brandSubtitle">Global Intelligence Blog</span>
-                </div>
-            </a>
-            <nav class="nav-actions" aria-label="Main navigation">
-                <a class="nav-link" href="#articles" id="navArticles">المقالات</a>
-                <a class="nav-link" href="legal.html" id="navLegal">قانوني</a>
-                <a class="nav-link" href="privacy.html" id="navPrivacy">الخصوصية</a>
-                <a class="nav-link employee-link" href="admin.html" id="navEmployee">دخول الموظفين</a>
-            </nav>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="HK Global Blog">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">مدونة عالمية</small>
         </div>
-    </header>
+      </a>
 
-    <main class="page-shell">
-        <section class="hero">
-            <div>
-                <div class="eyebrow"><span class="pulse"></span><span id="eyebrowText">تحليل عالمي ذكي ومحدّث</span></div>
-                <h1><span class="gradient-word">HK LENS</span><br><span id="heroTitleLine">رؤية أعمق للعالم</span></h1>
-                <p class="hero-subtitle" id="heroSubtitle">
-                    منصة حديثة لقراءة تحليلات السياسة والاقتصاد والتسويق والعائلة، مع تجربة سهلة وسريعة على الهاتف والكمبيوتر.
-                </p>
-                <div class="hero-tools">
-                    <label class="search-box" for="searchInput">
-                        <span class="search-icon">⌕</span>
-                        <input id="searchInput" type="search" placeholder="ابحث داخل المقالات..." autocomplete="off">
-                    </label>
-                    <button class="clear-btn" id="clearSearchBtn" type="button">مسح البحث</button>
-                </div>
-            </div>
+      <nav class="top-links" aria-label="روابط الموقع">
+        <a class="btn btn-light" href="#posts">المقالات</a>
+        <a class="btn btn-light" href="create-post.html">دخول الكتّاب</a>
+        <a class="btn btn-light" href="manage-posts.html">إدارة المقالات</a>
+        <a class="btn btn-light" href="admin.html">لوحة المدير</a>
+      </nav>
+    </div>
+  </header>
 
-            <aside class="hero-panel" aria-label="Site features">
-                <div class="signal-card">
-                    <h2 id="panelTitle">مركز قراءة ذكي</h2>
-                    <div class="signal-grid">
-                        <div class="signal-item">
-                            <div class="signal-icon">🌐</div>
-                            <div><strong id="signalLangTitle">متعدد اللغات</strong><span id="signalLangText">عربي، إنجليزي، وسويدي.</span></div>
-                        </div>
-                        <div class="signal-item">
-                            <div class="signal-icon">🔎</div>
-                            <div><strong id="signalSearchTitle">بحث سريع</strong><span id="signalSearchText">اعثر على المقال المناسب خلال ثوانٍ.</span></div>
-                        </div>
-                        <div class="signal-item">
-                            <div class="signal-icon">🔐</div>
-                            <div><strong id="signalEmployeeTitle">نشر للموظفين فقط</strong><span id="signalEmployeeText">الدخول والنشر عبر لوحة آمنة منفصلة.</span></div>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat"><strong id="totalPostsStat">0</strong><span id="statPostsLabel">مقال</span></div>
-                        <div class="stat"><strong>3</strong><span id="statLangLabel">لغات</span></div>
-                        <div class="stat"><strong>4</strong><span id="statTopicsLabel">مجالات</span></div>
-                    </div>
-                </div>
-            </aside>
-        </section>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">HK Global Blog</div>
+        <h1>منصة للكتّاب والمقالات والأفكار العالمية</h1>
+        <p>
+          مدونة متعددة اللغات لعرض مقالات في السياسة والاقتصاد والمجتمع والأسرة والثقافة والتكنولوجيا، مع نظام آمن لدخول الكتّاب ونشر المقالات تحت اسم الكاتب المسؤول.
+        </p>
 
-        <section class="control-zone" aria-label="Filters">
-            <div class="control-row">
-                <div class="pill-group" id="langSwitch">
-                    <button type="button" class="pill active" data-lang="ar">العربية</button>
-                    <button type="button" class="pill" data-lang="en">English</button>
-                    <button type="button" class="pill" data-lang="sv">Svenska</button>
-                </div>
-                <div class="pill-group" id="categorySwitch"></div>
-            </div>
-        </section>
+        <div class="actions">
+          <a class="btn btn-primary" href="#posts">قراءة المقالات</a>
+          <a class="btn btn-dark" href="create-post.html">نشر مقال</a>
+          <a class="btn btn-soft" href="#legal">الشروط والسياسات</a>
+        </div>
 
-        <section id="articles" aria-label="Articles section">
-            <div class="section-title">
-                <div>
-                    <h2 id="articlesTitle">آخر المقالات</h2>
-                    <p id="articlesSubtitle">اختر اللغة والتصنيف أو استخدم البحث.</p>
-                </div>
-                <p id="resultCount">0 نتيجة</p>
-            </div>
-            <div class="posts-grid" id="postsContainer">
-                <div class="skeleton-grid">
-                    <div class="skeleton"></div>
-                    <div class="skeleton"></div>
-                    <div class="skeleton"></div>
-                </div>
-            </div>
-        </section>
-    </main>
+        <div class="stat-grid">
+          <div class="stat">
+            <strong id="totalPostsStat">0</strong>
+            <span>مقال منشور</span>
+          </div>
 
-    <div class="modal" id="articleModal" aria-hidden="true" role="dialog" aria-label="Article viewer">
-        <article class="article-panel">
-            <div class="article-hero" id="modalHero">
-                <div class="article-hero-content">
-                    <span class="post-badge" id="modalBadge">HK LENS</span>
-                    <h2 id="modalTitle"></h2>
-                </div>
-            </div>
-            <div class="article-content">
-                <div class="modal-top">
-                    <div id="modalMeta" style="color:#64748b;font-weight:800;"></div>
-                    <button class="close-btn" id="closeModalBtn" type="button">إغلاق</button>
-                </div>
-                <div class="article-text" id="modalContent"></div>
-                <div class="article-share">
-                    <button class="article-action" id="copyLinkBtn" type="button">نسخ الرابط</button>
-                    <a class="article-action facebook" id="facebookShare" href="#" target="_blank" rel="noopener">Facebook</a>
-                    <a class="article-action whatsapp" id="whatsappShare" href="#" target="_blank" rel="noopener">WhatsApp</a>
-                </div>
-            </div>
-        </article>
+          <div class="stat">
+            <strong id="totalWritersStat">0</strong>
+            <span>كاتب ظاهر</span>
+          </div>
+
+          <div class="stat">
+            <strong id="totalLangsStat">0</strong>
+            <span>لغة مستخدمة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="mini-card">
+          <h2>منصة الكتّاب</h2>
+          <p class="muted">
+            للكتّاب والمدير: الدخول، نشر المقالات، متابعة المقالات المنشورة، وتعديل المحتوى حسب الصلاحية.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="create-post.html">دخول الكتّاب</a>
+            <a class="btn btn-soft" href="manage-posts.html">إدارة المقالات</a>
+          </div>
+        </div>
+
+        <div class="mini-card">
+          <h2>إدارة الموقع</h2>
+          <p class="muted">
+            للمدير فقط: إنشاء دعوات للكتّاب والتحكم في نشر وإدارة المقالات.
+          </p>
+          <div class="actions">
+            <a class="btn btn-dark" href="admin.html">لوحة المدير</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="posts">
+      <div class="section-head">
+        <div>
+          <h2>أحدث المقالات</h2>
+          <p class="muted">
+            هنا تظهر المقالات المنشورة فقط. المسودات تبقى مخفية عن الزوار.
+          </p>
+        </div>
+
+        <a class="btn btn-primary" href="create-post.html">نشر مقال جديد</a>
+      </div>
+
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="ابحث في العنوان أو الكاتب أو المحتوى..." />
+
+        <select id="categoryFilter" aria-label="فلتر التصنيف">
+          <option value="">كل التصنيفات</option>
+          <option value="politics">سياسة</option>
+          <option value="economy">اقتصاد</option>
+          <option value="society">مجتمع</option>
+          <option value="family">أسرة</option>
+          <option value="culture">ثقافة</option>
+          <option value="technology">تكنولوجيا</option>
+          <option value="news">أخبار</option>
+          <option value="opinion">رأي وتحليل</option>
+          <option value="other">أخرى</option>
+        </select>
+
+        <select id="langFilter" aria-label="فلتر اللغة">
+          <option value="">كل اللغات</option>
+          <option value="ar">العربية</option>
+          <option value="sv">Svenska</option>
+          <option value="en">English</option>
+          <option value="tr">Türkçe</option>
+          <option value="de">Deutsch</option>
+        </select>
+      </div>
+
+      <div id="postsStatus" class="status">جاري تحميل المقالات...</div>
+      <div id="postsGrid" class="posts-grid"></div>
+    </section>
+
+    <section class="card" id="legal">
+      <div class="section-head">
+        <div>
+          <h2>الشروط والسياسات</h2>
+          <p class="muted">
+            صفحات مهمة لحماية الموقع، توضيح مسؤولية الكتّاب، وسياسة التعامل مع البيانات والمحتوى.
+          </p>
+        </div>
+      </div>
+
+      <div class="legal-grid">
+        <a class="legal-link" href="employee-contract.html">
+          <strong>عقد مسؤولية الكاتب</strong>
+          <span>يوضح مسؤولية الكاتب عن كل محتوى ينشره تحت اسمه.</span>
+        </a>
+
+        <a class="legal-link" href="terms.html">
+          <strong>شروط الاستخدام</strong>
+          <span>قواعد استخدام الموقع وحسابات الكتّاب وإدارة المحتوى.</span>
+        </a>
+
+        <a class="legal-link" href="privacy.html">
+          <strong>سياسة الخصوصية</strong>
+          <span>شرح البيانات التي يتم حفظها وطريقة استخدامها.</span>
+        </a>
+
+        <a class="legal-link" href="disclaimer.html">
+          <strong>إخلاء المسؤولية</strong>
+          <span>توضيح حدود مسؤولية الموقع والمحتوى والروابط الخارجية.</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="postDialog">
+    <div class="modal-head">
+      <strong>HK Global Blog</strong>
+      <button class="close-btn" id="closeDialogBtn" type="button">إغلاق</button>
     </div>
 
-    <div class="toast" id="toast"></div>
+    <div class="modal-body">
+      <img class="modal-image" id="modalImage" alt="صورة المقال" />
+      <div class="modal-title" id="modalTitle">عنوان المقال</div>
+      <div class="modal-meta" id="modalMeta">بيانات المقال</div>
+      <div class="modal-content" id="modalContent">محتوى المقال</div>
+    </div>
+  </dialog>
 
-    <footer>
-        <div class="page-shell footer-inner">
-            <div>
-                <strong>© 2026 HK LENS</strong>
-                <div class="ai-note" id="aiDisclaimer">يتم إنتاج وتدقيق المحتوى بالاستعانة بتقنيات الذكاء الاصطناعي لضمان الجودة والتحليل العميق.</div>
-            </div>
-            <div class="footer-links">
-                <a href="legal.html" id="footerLegal">Legal Notice</a>
-                <a href="privacy.html" id="footerPrivacy">Privacy Policy</a>
-                <a href="admin.html" id="footerEmployee">Employee Login</a>
-            </div>
-        </div>
-    </footer>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="create-post.html">دخول الكتّاب</a>
+        <a href="manage-posts.html">إدارة المقالات</a>
+        <a href="admin.html">لوحة المدير</a>
+        <a href="terms.html">الشروط</a>
+        <a href="privacy.html">الخصوصية</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+      </div>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
-            authDomain: "hk-blog-3ed96.firebaseapp.com",
-            projectId: "hk-blog-3ed96",
-            storageBucket: "hk-blog-3ed96.firebasestorage.app",
-            messagingSenderId: "339658398793",
-            appId: "1:339658398793:web:e38a09f83fd01c2e773398",
-            databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
+      <div>
+        HK Global Blog © منصة مقالات وكتّاب
+      </div>
+    </div>
+  </footer>
 
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
-        const categories = ["All", "Politics", "Economy", "Marketing", "Family"];
-        const copy = {
-            ar: {
-                dir: "rtl",
-                brandSubtitle: "مدونة تحليل عالمي",
-                navArticles: "المقالات",
-                navLegal: "قانوني",
-                navPrivacy: "الخصوصية",
-                navEmployee: "دخول الموظفين",
-                eyebrowText: "تحليل عالمي ذكي ومحدّث",
-                heroTitleLine: "رؤية أعمق للعالم",
-                heroSubtitle: "منصة حديثة لقراءة تحليلات السياسة والاقتصاد والتسويق والعائلة، مع تجربة سهلة وسريعة على الهاتف والكمبيوتر.",
-                searchPlaceholder: "ابحث داخل المقالات...",
-                clearSearch: "مسح البحث",
-                panelTitle: "مركز قراءة ذكي",
-                signalLangTitle: "متعدد اللغات",
-                signalLangText: "عربي، إنجليزي، وسويدي.",
-                signalSearchTitle: "بحث سريع",
-                signalSearchText: "اعثر على المقال المناسب خلال ثوانٍ.",
-                signalEmployeeTitle: "نشر للموظفين فقط",
-                signalEmployeeText: "الدخول والنشر عبر لوحة آمنة منفصلة.",
-                statPostsLabel: "مقال",
-                statLangLabel: "لغات",
-                statTopicsLabel: "مجالات",
-                articlesTitle: "آخر المقالات",
-                articlesSubtitle: "اختر اللغة والتصنيف أو استخدم البحث.",
-                result: "نتيجة",
-                read: "اقرأ التحليل",
-                share: "مشاركة",
-                noPosts: "لا يوجد مقالات حاليًا في هذا الاختيار.",
-                loading: "جاري تحميل المقالات...",
-                close: "إغلاق",
-                copyLink: "نسخ الرابط",
-                copied: "تم نسخ رابط المقال",
-                aiDisclaimer: "يتم إنتاج وتدقيق المحتوى بالاستعانة بتقنيات الذكاء الاصطناعي لضمان الجودة والتحليل العميق.",
-                categories: { All: "الكل", Politics: "سياسة", Economy: "اقتصاد", Marketing: "تسويق", Family: "عائلة" }
-            },
-            en: {
-                dir: "ltr",
-                brandSubtitle: "Global Intelligence Blog",
-                navArticles: "Articles",
-                navLegal: "Legal",
-                navPrivacy: "Privacy",
-                navEmployee: "Employee Login",
-                eyebrowText: "Smart, current global analysis",
-                heroTitleLine: "A sharper view of the world",
-                heroSubtitle: "A modern space for political, economic, marketing, and family analysis with a fast reading experience on mobile and desktop.",
-                searchPlaceholder: "Search articles...",
-                clearSearch: "Clear",
-                panelTitle: "Smart Reading Hub",
-                signalLangTitle: "Multilingual",
-                signalLangText: "Arabic, English, and Swedish.",
-                signalSearchTitle: "Fast search",
-                signalSearchText: "Find the right article in seconds.",
-                signalEmployeeTitle: "Employee publishing only",
-                signalEmployeeText: "Login and publishing through a separate secure panel.",
-                statPostsLabel: "Posts",
-                statLangLabel: "Languages",
-                statTopicsLabel: "Topics",
-                articlesTitle: "Latest Articles",
-                articlesSubtitle: "Choose language and category, or use search.",
-                result: "result",
-                read: "Read analysis",
-                share: "Share",
-                noPosts: "No articles are available for this selection yet.",
-                loading: "Loading articles...",
-                close: "Close",
-                copyLink: "Copy link",
-                copied: "Article link copied",
-                aiDisclaimer: "Content is produced and refined with the assistance of AI technologies to ensure quality and deep analysis.",
-                categories: { All: "All", Politics: "Politics", Economy: "Economy", Marketing: "Marketing", Family: "Family" }
-            },
-            sv: {
-                dir: "ltr",
-                brandSubtitle: "Global analysblogg",
-                navArticles: "Artiklar",
-                navLegal: "Juridiskt",
-                navPrivacy: "Integritet",
-                navEmployee: "Medarbetarinloggning",
-                eyebrowText: "Smart och aktuell global analys",
-                heroTitleLine: "En skarpare bild av världen",
-                heroSubtitle: "En modern plats för politisk, ekonomisk, marknadsförings- och familjeanalys med snabb läsning på mobil och dator.",
-                searchPlaceholder: "Sök i artiklar...",
-                clearSearch: "Rensa",
-                panelTitle: "Smart läscentrum",
-                signalLangTitle: "Flerspråkigt",
-                signalLangText: "Arabiska, engelska och svenska.",
-                signalSearchTitle: "Snabb sökning",
-                signalSearchText: "Hitta rätt artikel på några sekunder.",
-                signalEmployeeTitle: "Endast medarbetare kan publicera",
-                signalEmployeeText: "Inloggning och publicering via en separat säker panel.",
-                statPostsLabel: "Artiklar",
-                statLangLabel: "Språk",
-                statTopicsLabel: "Områden",
-                articlesTitle: "Senaste artiklarna",
-                articlesSubtitle: "Välj språk och kategori eller använd sökningen.",
-                result: "resultat",
-                read: "Läs analys",
-                share: "Dela",
-                noPosts: "Det finns inga artiklar för detta val ännu.",
-                loading: "Laddar artiklar...",
-                close: "Stäng",
-                copyLink: "Kopiera länk",
-                copied: "Artikellänken har kopierats",
-                aiDisclaimer: "Innehållet produceras och förfinas med hjälp av AI-teknik för att säkerställa kvalitet och djupanalys.",
-                categories: { All: "Alla", Politics: "Politik", Economy: "Ekonomi", Marketing: "Marknadsföring", Family: "Familj" }
-            }
-        };
+    import {
+      getDatabase,
+      ref,
+      onValue
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-        let currentLang = localStorage.getItem("hk_lang") || "ar";
-        let currentCategory = "All";
-        let allPosts = [];
-        let currentModalPost = null;
-        let postsRef = null;
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+      authDomain: "hk-blog-3ed96.firebaseapp.com",
+      databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "hk-blog-3ed96",
+      storageBucket: "hk-blog-3ed96.firebasestorage.app",
+      messagingSenderId: "339658398793",
+      appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+      measurementId: "G-FSB1QBLZM7"
+    };
 
-        const html = document.getElementById("mainHtml");
-        const postsContainer = document.getElementById("postsContainer");
-        const categorySwitch = document.getElementById("categorySwitch");
-        const searchInput = document.getElementById("searchInput");
-        const resultCount = document.getElementById("resultCount");
-        const totalPostsStat = document.getElementById("totalPostsStat");
-        const modal = document.getElementById("articleModal");
-        const toast = document.getElementById("toast");
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-        function text(key) { return copy[currentLang][key]; }
-        function categoryLabel(category) { return copy[currentLang].categories[category] || category; }
-        function safeText(value) { return String(value || "").replace(/\s+/g, " ").trim(); }
-        function shortText(value, max = 170) {
-            const text = safeText(value);
-            return text.length > max ? text.slice(0, max).trim() + "..." : text;
-        }
-        function isValidImageUrl(url) {
-            if (!url) return false;
-            try {
-                const parsed = new URL(url);
-                return ["http:", "https:"].includes(parsed.protocol);
-            } catch (e) { return false; }
-        }
-        function getPostIdFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get("id");
-        }
-        function postUrl(id) {
-            return window.location.origin + window.location.pathname + "?id=" + encodeURIComponent(id);
-        }
-        function updateStaticText() {
-            const c = copy[currentLang];
-            html.lang = currentLang;
-            html.dir = c.dir;
-            document.getElementById("brandSubtitle").textContent = c.brandSubtitle;
-            document.getElementById("navArticles").textContent = c.navArticles;
-            document.getElementById("navLegal").textContent = c.navLegal;
-            document.getElementById("navPrivacy").textContent = c.navPrivacy;
-            document.getElementById("navEmployee").textContent = c.navEmployee;
-            document.getElementById("eyebrowText").textContent = c.eyebrowText;
-            document.getElementById("heroTitleLine").textContent = c.heroTitleLine;
-            document.getElementById("heroSubtitle").textContent = c.heroSubtitle;
-            searchInput.placeholder = c.searchPlaceholder;
-            document.getElementById("clearSearchBtn").textContent = c.clearSearch;
-            document.getElementById("panelTitle").textContent = c.panelTitle;
-            document.getElementById("signalLangTitle").textContent = c.signalLangTitle;
-            document.getElementById("signalLangText").textContent = c.signalLangText;
-            document.getElementById("signalSearchTitle").textContent = c.signalSearchTitle;
-            document.getElementById("signalSearchText").textContent = c.signalSearchText;
-            document.getElementById("signalEmployeeTitle").textContent = c.signalEmployeeTitle;
-            document.getElementById("signalEmployeeText").textContent = c.signalEmployeeText;
-            document.getElementById("statPostsLabel").textContent = c.statPostsLabel;
-            document.getElementById("statLangLabel").textContent = c.statLangLabel;
-            document.getElementById("statTopicsLabel").textContent = c.statTopicsLabel;
-            document.getElementById("articlesTitle").textContent = c.articlesTitle;
-            document.getElementById("articlesSubtitle").textContent = c.articlesSubtitle;
-            document.getElementById("aiDisclaimer").textContent = c.aiDisclaimer;
-            document.getElementById("closeModalBtn").textContent = c.close;
-            document.getElementById("copyLinkBtn").textContent = c.copyLink;
-            document.getElementById("footerEmployee").textContent = c.navEmployee;
-            renderCategories();
-            updateLangButtons();
-        }
-        function updateLangButtons() {
-            document.querySelectorAll("#langSwitch .pill").forEach(btn => {
-                btn.classList.toggle("active", btn.dataset.lang === currentLang);
-            });
-        }
-        function renderCategories() {
-            categorySwitch.innerHTML = "";
-            categories.forEach(cat => {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "pill" + (cat === currentCategory ? " active" : "");
-                btn.textContent = categoryLabel(cat);
-                btn.addEventListener("click", () => {
-                    currentCategory = cat;
-                    renderCategories();
-                    renderPosts();
-                });
-                categorySwitch.appendChild(btn);
-            });
-        }
-        function setLoading() {
-            postsContainer.innerHTML = `
-                <div class="skeleton-grid">
-                    <div class="skeleton"></div>
-                    <div class="skeleton"></div>
-                    <div class="skeleton"></div>
-                </div>
-            `;
-        }
-        function loadPosts() {
-            setLoading();
-            if (postsRef) postsRef.off();
-            postsRef = database.ref("posts").orderByChild("lang").equalTo(currentLang);
-            postsRef.on("value", (snapshot) => {
-                allPosts = [];
-                snapshot.forEach(child => {
-                    const post = child.val() || {};
-                    post.key = child.key;
-                    allPosts.unshift(post);
-                });
-                totalPostsStat.textContent = allPosts.length;
-                renderPosts();
-                const targetId = getPostIdFromUrl();
-                if (targetId) {
-                    const target = allPosts.find(p => p.key === targetId);
-                    if (target) setTimeout(() => openArticle(target), 120);
-                }
-            }, (error) => {
-                postsContainer.innerHTML = `<div class="empty-state">${error.message}</div>`;
-            });
-        }
-        function getFilteredPosts() {
-            const term = safeText(searchInput.value).toLowerCase();
-            return allPosts.filter(post => {
-                const inCategory = currentCategory === "All" || post.category === currentCategory;
-                const haystack = `${post.title || ""} ${post.content || ""} ${post.category || ""}`.toLowerCase();
-                const inSearch = !term || haystack.includes(term);
-                return inCategory && inSearch;
-            });
-        }
-        function renderPosts() {
-            const filtered = getFilteredPosts();
-            resultCount.textContent = `${filtered.length} ${text("result")}`;
-            postsContainer.innerHTML = "";
-            if (!filtered.length) {
-                const empty = document.createElement("div");
-                empty.className = "empty-state";
-                empty.textContent = text("noPosts");
-                postsContainer.appendChild(empty);
-                return;
-            }
-            filtered.forEach((post, index) => postsContainer.appendChild(createPostCard(post, index)));
-        }
-        function createPostCard(post, index) {
-            const card = document.createElement("article");
-            card.className = "post-card" + (index === 0 ? " featured" : "");
-            card.id = "post-" + post.key;
+    const postsGrid = document.getElementById("postsGrid");
+    const postsStatus = document.getElementById("postsStatus");
 
-            const cover = document.createElement("div");
-            cover.className = "post-cover";
-            if (isValidImageUrl(post.imageUrl)) {
-                const img = document.createElement("img");
-                img.src = post.imageUrl;
-                img.alt = safeText(post.title) || "HK LENS article image";
-                img.loading = "lazy";
-                img.onerror = () => img.remove();
-                cover.appendChild(img);
-            }
-            const badge = document.createElement("span");
-            badge.className = "post-badge";
-            badge.textContent = "✦ " + categoryLabel(post.category || "All");
-            cover.appendChild(badge);
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const langFilter = document.getElementById("langFilter");
 
-            const body = document.createElement("div");
-            body.className = "post-body";
+    const totalPostsStat = document.getElementById("totalPostsStat");
+    const totalWritersStat = document.getElementById("totalWritersStat");
+    const totalLangsStat = document.getElementById("totalLangsStat");
 
-            const meta = document.createElement("div");
-            meta.className = "post-meta";
-            const date = document.createElement("span");
-            date.textContent = "📅 " + (post.date || "2026");
-            const lang = document.createElement("span");
-            lang.textContent = "🌐 " + currentLang.toUpperCase();
-            meta.append(date, lang);
+    const postDialog = document.getElementById("postDialog");
+    const closeDialogBtn = document.getElementById("closeDialogBtn");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMeta = document.getElementById("modalMeta");
+    const modalContent = document.getElementById("modalContent");
 
-            const title = document.createElement("h3");
-            title.className = "post-title";
-            title.textContent = safeText(post.title) || "Untitled article";
+    let allPosts = [];
 
-            const preview = document.createElement("p");
-            preview.className = "post-preview";
-            preview.textContent = shortText(post.content, index === 0 ? 230 : 150);
+    listenToPosts();
 
-            const actions = document.createElement("div");
-            actions.className = "post-actions";
-            const readBtn = document.createElement("button");
-            readBtn.type = "button";
-            readBtn.className = "read-btn";
-            readBtn.textContent = text("read");
-            readBtn.addEventListener("click", () => openArticle(post));
-            const shareBtn = document.createElement("button");
-            shareBtn.type = "button";
-            shareBtn.className = "share-mini";
-            shareBtn.textContent = text("share");
-            shareBtn.addEventListener("click", () => copyPostLink(post.key));
-            actions.append(readBtn, shareBtn);
+    searchInput.addEventListener("input", renderPosts);
+    categoryFilter.addEventListener("change", renderPosts);
+    langFilter.addEventListener("change", renderPosts);
 
-            body.append(meta, title, preview, actions);
-            card.append(cover, body);
-            return card;
-        }
-        function openArticle(post) {
-            currentModalPost = post;
-            const url = postUrl(post.key);
-            window.history.pushState({}, "", "?id=" + encodeURIComponent(post.key));
-            const modalHero = document.getElementById("modalHero");
-            modalHero.querySelectorAll("img").forEach(img => img.remove());
-            if (isValidImageUrl(post.imageUrl)) {
-                const img = document.createElement("img");
-                img.src = post.imageUrl;
-                img.alt = safeText(post.title) || "Article image";
-                img.onerror = () => img.remove();
-                modalHero.prepend(img);
-            }
-            document.getElementById("modalBadge").textContent = categoryLabel(post.category || "All");
-            document.getElementById("modalTitle").textContent = safeText(post.title) || "Untitled article";
-            document.getElementById("modalMeta").textContent = `${post.date || "2026"} • ${currentLang.toUpperCase()}`;
-            document.getElementById("modalContent").textContent = post.content || "";
-            document.getElementById("facebookShare").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(post.title || "HK LENS")}`;
-            document.getElementById("whatsappShare").href = `https://api.whatsapp.com/send?text=${encodeURIComponent((post.title || "HK LENS") + "\n" + url)}`;
-            modal.classList.add("open");
-            modal.setAttribute("aria-hidden", "false");
-        }
-        function closeArticle() {
-            modal.classList.remove("open");
-            modal.setAttribute("aria-hidden", "true");
-            currentModalPost = null;
-            window.history.pushState({}, "", window.location.pathname);
-        }
-        function showToast(message) {
-            toast.textContent = message;
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2200);
-        }
-        async function copyPostLink(id) {
-            const url = postUrl(id);
-            try {
-                await navigator.clipboard.writeText(url);
-                showToast(text("copied"));
-            } catch (e) {
-                window.prompt(text("copyLink"), url);
-            }
-        }
+    closeDialogBtn.addEventListener("click", () => {
+      postDialog.close();
+    });
 
-        document.querySelectorAll("#langSwitch .pill").forEach(btn => {
-            btn.addEventListener("click", () => {
-                currentLang = btn.dataset.lang;
-                localStorage.setItem("hk_lang", currentLang);
-                currentCategory = "All";
-                searchInput.value = "";
-                updateStaticText();
-                loadPosts();
-            });
+    postDialog.addEventListener("click", (event) => {
+      const rect = postDialog.getBoundingClientRect();
+      const clickedOutside =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
+
+      if (clickedOutside) {
+        postDialog.close();
+      }
+    });
+
+    function listenToPosts() {
+      onValue(ref(db, "posts"), (snapshot) => {
+        const data = snapshot.val() || {};
+
+        allPosts = Object.entries(data).map(([id, value]) => {
+          return {
+            id: value.id || id,
+            ...value
+          };
+        }).filter((post) => {
+          return !post.status || post.status === "published";
+        }).sort((a, b) => {
+          const av = Number(a.updatedAt || a.createdAt || 0);
+          const bv = Number(b.updatedAt || b.createdAt || 0);
+          return bv - av;
         });
-        searchInput.addEventListener("input", renderPosts);
-        document.getElementById("clearSearchBtn").addEventListener("click", () => { searchInput.value = ""; renderPosts(); });
-        document.getElementById("closeModalBtn").addEventListener("click", closeArticle);
-        document.getElementById("copyLinkBtn").addEventListener("click", () => currentModalPost && copyPostLink(currentModalPost.key));
-        modal.addEventListener("click", (event) => { if (event.target === modal) closeArticle(); });
-        document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal.classList.contains("open")) closeArticle(); });
 
-        updateStaticText();
-        loadPosts();
-    </script>
+        updateStats(allPosts);
+        renderPosts();
+
+      }, (error) => {
+        console.error(error);
+        postsGrid.innerHTML = "";
+        setPostsStatus("error", "فشل تحميل المقالات. تأكد من قواعد القراءة في Firebase Realtime Database.");
+      });
+    }
+
+    function renderPosts() {
+      postsGrid.innerHTML = "";
+
+      const search = normalizeText(searchInput.value);
+      const category = categoryFilter.value;
+      const lang = langFilter.value;
+
+      const visiblePosts = allPosts.filter((post) => {
+        if (category && post.category !== category) return false;
+        if (lang && post.lang !== lang) return false;
+
+        if (search) {
+          const haystack = normalizeText([
+            post.title,
+            post.summary,
+            post.content,
+            post.authorName,
+            post.authorEmail,
+            post.category,
+            post.lang,
+            post.source
+          ].join(" "));
+
+          if (!haystack.includes(search)) return false;
+        }
+
+        return true;
+      });
+
+      if (!visiblePosts.length) {
+        setPostsStatus("warning", "لا توجد مقالات منشورة مطابقة حاليًا.");
+        return;
+      }
+
+      postsStatus.classList.add("hidden");
+
+      visiblePosts.forEach((post) => {
+        const card = document.createElement("article");
+        card.className = "post-card";
+
+        const title = post.title || "بدون عنوان";
+        const summary = post.summary || shortText(post.content || "", 170);
+        const authorName = post.authorName || "كاتب غير محدد";
+        const date = post.date || formatDateFromTimestamp(post.createdAt) || "بدون تاريخ";
+        const categoryLabel = getCategoryLabel(post.category);
+        const langLabel = getLangLabel(post.lang);
+
+        const imageHtml = post.imageUrl && isValidUrl(post.imageUrl)
+          ? `<img src="${escapeHtml(post.imageUrl)}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.remove();" />`
+          : `<span>HK</span>`;
+
+        card.innerHTML = `
+          <div class="post-image">${imageHtml}</div>
+
+          <div class="post-body">
+            <div class="badge-row">
+              <span class="badge">${escapeHtml(categoryLabel)}</span>
+              <span class="badge green">${escapeHtml(langLabel)}</span>
+            </div>
+
+            <div class="post-title">${escapeHtml(title)}</div>
+
+            <div class="post-meta">
+              الكاتب: ${escapeHtml(authorName)}
+              <br />
+              التاريخ: ${escapeHtml(date)}
+            </div>
+
+            <div class="post-summary">${escapeHtml(summary)}</div>
+
+            <button class="btn btn-primary read-btn" type="button">قراءة المقال</button>
+          </div>
+        `;
+
+        card.querySelector(".read-btn").addEventListener("click", () => {
+          openPost(post);
+        });
+
+        postsGrid.appendChild(card);
+      });
+    }
+
+    function openPost(post) {
+      const title = post.title || "بدون عنوان";
+      const authorName = post.authorName || "كاتب غير محدد";
+      const date = post.date || formatDateFromTimestamp(post.createdAt) || "بدون تاريخ";
+      const categoryLabel = getCategoryLabel(post.category);
+      const langLabel = getLangLabel(post.lang);
+      const source = post.source ? " | المصدر: " + post.source : "";
+
+      modalTitle.textContent = title;
+
+      modalMeta.textContent =
+        "الكاتب: " + authorName +
+        " | التاريخ: " + date +
+        " | التصنيف: " + categoryLabel +
+        " | اللغة: " + langLabel +
+        source;
+
+      modalContent.textContent = post.content || "لا يوجد محتوى.";
+
+      if (post.imageUrl && isValidUrl(post.imageUrl)) {
+        modalImage.src = post.imageUrl;
+        modalImage.style.display = "block";
+      } else {
+        modalImage.removeAttribute("src");
+        modalImage.style.display = "none";
+      }
+
+      postDialog.showModal();
+    }
+
+    function updateStats(posts) {
+      const writers = new Set();
+      const langs = new Set();
+
+      posts.forEach((post) => {
+        if (post.authorName) writers.add(post.authorName);
+        if (post.lang) langs.add(post.lang);
+      });
+
+      totalPostsStat.textContent = String(posts.length);
+      totalWritersStat.textContent = String(writers.size);
+      totalLangsStat.textContent = String(langs.size);
+    }
+
+    function setPostsStatus(type, message) {
+      postsStatus.className = "status " + type;
+      postsStatus.textContent = message;
+    }
+
+    function normalizeText(value) {
+      return String(value || "").trim().toLowerCase();
+    }
+
+    function shortText(value, maxLength) {
+      const text = String(value || "").replace(/\s+/g, " ").trim();
+
+      if (text.length <= maxLength) {
+        return text;
+      }
+
+      return text.slice(0, maxLength) + "...";
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function isValidUrl(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    }
+
+    function formatDateFromTimestamp(value) {
+      if (!value || isNaN(Number(value))) return "";
+
+      try {
+        const date = new Date(Number(value));
+        return date.toISOString().slice(0, 10);
+      } catch {
+        return "";
+      }
+    }
+
+    function getCategoryLabel(value) {
+      const map = {
+        politics: "سياسة",
+        economy: "اقتصاد",
+        society: "مجتمع",
+        family: "أسرة",
+        culture: "ثقافة",
+        technology: "تكنولوجيا",
+        news: "أخبار",
+        opinion: "رأي وتحليل",
+        other: "أخرى"
+      };
+
+      return map[value] || value || "غير محدد";
+    }
+
+    function getLangLabel(value) {
+      const map = {
+        ar: "العربية",
+        sv: "Svenska",
+        en: "English",
+        tr: "Türkçe",
+        de: "Deutsch"
+      };
+
+      return map[value] || value || "غير محدد";
+    }
+  </script>
 </body>
 </html>
