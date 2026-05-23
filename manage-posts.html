@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>إدارة المقالات | HK Global Blog</title>
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
 
   <style>
@@ -22,20 +22,20 @@
       --success: #16a34a;
       --warning: #f59e0b;
       --soft: #f8fafc;
-      --radius: 20px;
+      --radius: 22px;
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Tahoma, sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.38), transparent 34%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.36), transparent 34%),
         radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.16), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
@@ -44,10 +44,16 @@
     header {
       color: #fff;
       padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .header-inner {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -62,6 +68,8 @@
       gap: 12px;
       font-size: 22px;
       font-weight: 900;
+      text-decoration: none;
+      color: #fff;
     }
 
     .logo {
@@ -80,17 +88,18 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .container {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: auto;
-      padding: 20px 18px 70px;
+      padding: 26px 18px 70px;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.97);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 24px;
@@ -102,71 +111,65 @@
       line-height: 1.35;
     }
 
-    h1 {
-      font-size: clamp(28px, 4vw, 44px);
+    h1 { font-size: clamp(30px, 4vw, 46px); }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+
+    p { color: #334155; line-height: 1.85; }
+    .muted { color: var(--muted); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 16px;
+      align-items: stretch;
     }
 
-    h2 {
-      font-size: 23px;
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
     }
 
-    p {
-      line-height: 1.8;
-    }
-
-    .muted {
-      color: var(--muted);
+    .info-item {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px 14px;
+      line-height: 1.7;
+      word-break: break-word;
     }
 
     .status {
       margin-top: 14px;
       padding: 13px 15px;
-      border-radius: 14px;
+      border-radius: 15px;
       border: 1px solid var(--border);
       background: var(--soft);
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.7;
       word-break: break-word;
     }
 
-    .status.success {
-      background: #dcfce7;
-      border-color: #bbf7d0;
-      color: #166534;
-    }
+    .status.success { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+    .status.error { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
+    .status.warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
 
-    .status.error {
-      background: #fee2e2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    .status.warning {
-      background: #fef3c7;
-      border-color: #fde68a;
-      color: #92400e;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
+    form { display: grid; gap: 14px; margin-top: 16px; }
 
     label {
       display: block;
-      font-weight: 800;
+      font-weight: 900;
       margin-bottom: 7px;
       color: #111827;
     }
 
-    input,
-    select,
-    textarea {
+    input, select, textarea {
       width: 100%;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
       padding: 14px 15px;
       font-size: 16px;
       outline: none;
@@ -175,23 +178,17 @@
     }
 
     textarea {
-      min-height: 220px;
+      min-height: 230px;
       resize: vertical;
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
+    input:focus, select:focus, textarea:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
     .filters {
       display: grid;
@@ -214,85 +211,34 @@
       gap: 8px;
       transition: 0.18s;
       font-family: inherit;
+      white-space: nowrap;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary2); }
+    .btn-dark { background: #020617; color: #fff; }
+    .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
+    .btn-danger { background: #fee2e2; color: #991b1b; }
+    .btn-warning { background: #fef3c7; color: #92400e; }
+    .btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .btn-soft {
-      background: #eef2ff;
-      color: #1e40af;
-    }
-
-    .btn-danger {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .btn-warning {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .info-item {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      line-height: 1.7;
-      word-break: break-word;
-    }
-
-    .posts-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
+    .posts-list { display: grid; gap: 14px; margin-top: 18px; }
 
     .post-item {
       border: 1px solid var(--border);
       background: #fff;
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 18px;
       display: grid;
       gap: 12px;
+      transition: 0.18s;
     }
+
+    .post-item:hover { box-shadow: 0 18px 44px rgba(15, 23, 42, 0.10); transform: translateY(-2px); }
 
     .post-head {
       display: flex;
@@ -302,17 +248,8 @@
       align-items: start;
     }
 
-    .post-title {
-      font-size: 20px;
-      font-weight: 900;
-      line-height: 1.45;
-    }
-
-    .post-meta {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-    }
+    .post-title { font-size: 20px; font-weight: 900; line-height: 1.45; color: #0f172a; }
+    .post-meta { color: var(--muted); line-height: 1.7; font-size: 14px; }
 
     .badge {
       display: inline-flex;
@@ -324,56 +261,29 @@
       white-space: nowrap;
     }
 
-    .badge.published {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .badge.draft {
-      background: #fef3c7;
-      color: #92400e;
-    }
+    .badge.published { background: #dcfce7; color: #166534; }
+    .badge.draft { background: #fef3c7; color: #92400e; }
 
     .summary {
       background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
       padding: 12px;
       color: #334155;
       line-height: 1.8;
+      white-space: pre-wrap;
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
-    footer {
-      color: rgba(255,255,255,0.72);
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
+    footer { color: rgba(255,255,255,0.72); text-align: center; padding: 20px; font-size: 14px; }
 
     @media (max-width: 900px) {
-      .grid,
-      .filters,
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .top-links,
-      .actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .card {
-        padding: 20px;
-      }
+      .hero, .grid, .filters, .info-grid { grid-template-columns: 1fr; }
+      .top-links, .actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .card { padding: 20px; }
+      header { position: static; }
     }
   </style>
 </head>
@@ -381,55 +291,55 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">
+      <a class="brand" href="hk-writers-access.html">
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">منصة الكتّاب</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">إدارة المقالات</small>
         </div>
-      </div>
+      </a>
 
-      <div class="top-links">
-        <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+      <nav class="top-links" aria-label="روابط خاصة">
+        <a class="btn btn-light" href="hk-writers-access.html">بوابة الكتّاب</a>
         <a class="btn btn-light" href="create-post.html">نشر مقال</a>
-        <a class="btn btn-light" href="admin.html">لوحة المدير</a>
+        <a class="btn btn-light" href="admin.html" id="adminTopLink">لوحة المدير</a>
         <button class="btn btn-light hidden" id="logoutBtn" type="button">تسجيل الخروج</button>
-      </div>
+      </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <h1>إدارة المقالات</h1>
-      <p class="muted">
-        من هنا يمكنك عرض المقالات، تعديلها أو حذفها. المدير يرى كل المقالات، والكاتب يرى مقالاته فقط.
-      </p>
+    <section class="hero">
+      <div class="card">
+        <h1>إدارة المقالات</h1>
+        <p class="muted">
+          من هنا يمكن تعديل المقالات أو حذفها. المدير يرى كل المقالات، والكاتب يرى مقالاته فقط.
+        </p>
+        <div id="mainStatus" class="status warning">جاري التحقق من تسجيل الدخول...</div>
+      </div>
 
-      <div id="mainStatus" class="status">يرجى تسجيل الدخول.</div>
-
-      <div class="info-grid">
-        <div class="info-item">
-          <strong>البريد:</strong>
-          <div id="currentEmail" class="muted">غير مسجل</div>
-        </div>
-
-        <div class="info-item">
-          <strong>الصلاحية:</strong>
-          <div id="currentRole" class="muted">غير معروف</div>
-        </div>
-
-        <div class="info-item">
-          <strong>عدد المقالات المعروضة:</strong>
-          <div id="postCount" class="muted">0</div>
+      <div class="card">
+        <h2>معلومات الحساب</h2>
+        <div class="info-grid" style="grid-template-columns:1fr;">
+          <div class="info-item">
+            <strong>البريد:</strong>
+            <div id="currentEmail" class="muted">غير مسجل</div>
+          </div>
+          <div class="info-item">
+            <strong>الصلاحية:</strong>
+            <div id="currentRole" class="muted">غير معروف</div>
+          </div>
+          <div class="info-item">
+            <strong>عدد المقالات:</strong>
+            <div id="postCount" class="muted">0</div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="card" id="loginCard">
-      <h2>دخول الكتّاب</h2>
-      <p class="muted">
-        أدخل بريد وكلمة مرور حساب المدير أو الكاتب.
-      </p>
+      <h2>تسجيل الدخول</h2>
+      <p class="muted">هذه الصفحة خاصة بالمدير والكتّاب المفعّلين.</p>
 
       <form id="loginForm">
         <div class="grid">
@@ -437,20 +347,17 @@
             <label for="loginEmail">البريد الإلكتروني</label>
             <input id="loginEmail" type="email" placeholder="name@example.com" autocomplete="email" required />
           </div>
-
           <div>
             <label for="loginPassword">كلمة المرور</label>
             <input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password" required />
           </div>
         </div>
-
         <button class="btn btn-primary" id="loginBtn" type="submit">تسجيل الدخول</button>
       </form>
     </section>
 
     <section class="card hidden" id="manageCard">
       <h2>فلترة المقالات</h2>
-
       <div class="filters">
         <input id="searchInput" type="search" placeholder="بحث في العنوان أو الكاتب أو المحتوى..." />
 
@@ -537,7 +444,7 @@
 
         <div>
           <label for="editContent">محتوى المقال</label>
-          <textarea id="editContent" required></textarea>
+          <textarea id="editContent" maxlength="20000" required></textarea>
         </div>
 
         <div class="grid">
@@ -548,7 +455,6 @@
               <option value="draft">مسودة</option>
             </select>
           </div>
-
           <div>
             <label for="editSource">المصدر اختياري</label>
             <input id="editSource" type="text" maxlength="300" />
@@ -563,9 +469,7 @@
     </section>
   </main>
 
-  <footer>
-    HK Global Blog © Writers Area
-  </footer>
+  <footer>HK Global Blog © Manage Posts</footer>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
@@ -616,6 +520,7 @@
     const loginPassword = document.getElementById("loginPassword");
     const loginBtn = document.getElementById("loginBtn");
     const logoutBtn = document.getElementById("logoutBtn");
+    const adminTopLink = document.getElementById("adminTopLink");
 
     const searchInput = document.getElementById("searchInput");
     const categoryFilter = document.getElementById("categoryFilter");
@@ -638,7 +543,6 @@
 
     let currentUser = null;
     let currentUserRole = null;
-    let currentProfile = null;
     let allPosts = [];
     let postsListenerStarted = false;
 
@@ -646,7 +550,6 @@
       if (!user) {
         currentUser = null;
         currentUserRole = null;
-        currentProfile = null;
         showLoggedOut();
         setStatus("warning", "يرجى تسجيل الدخول.");
         return;
@@ -659,15 +562,15 @@
         const access = await loadAccess(user);
 
         if (!access.allowed) {
+          await signOut(auth);
           showLoggedOut();
-          currentRole.textContent = "غير مصرح";
           setStatus("error", "هذا الحساب لا يملك صلاحية إدارة المقالات.");
           return;
         }
 
         currentUserRole = access.role;
-        currentProfile = access.profile;
         currentRole.textContent = access.role === "admin" ? "مدير" : "كاتب";
+        adminTopLink.classList.toggle("hidden", access.role !== "admin");
 
         showManagePanel();
         setStatus("success", "تم تسجيل الدخول. يمكنك إدارة المقالات.");
@@ -725,15 +628,9 @@
       event.preventDefault();
 
       const postId = editPostId.value;
-
-      if (!postId) {
-        setStatus("error", "لا يوجد مقال محدد للتعديل.");
-        return;
-      }
-
       const post = allPosts.find((item) => item.id === postId);
 
-      if (!post) {
+      if (!postId || !post) {
         setStatus("error", "المقال غير موجود.");
         return;
       }
@@ -767,15 +664,21 @@
 
       try {
         await update(ref(db, "posts/" + postId), {
-          title: title,
-          category: category,
-          lang: lang,
-          summary: summary,
-          imageUrl: imageUrl,
-          content: content,
-          status: status,
-          source: source,
+          title,
+          category,
+          lang,
+          summary,
+          imageUrl,
+          content,
+          status,
+          source,
+          id: postId,
           date: post.date || new Date().toISOString().slice(0, 10),
+          authorUid: post.authorUid || currentUser.uid,
+          authorName: post.authorName || "",
+          authorEmail: post.authorEmail || "",
+          authorRole: post.authorRole || currentUserRole,
+          createdAt: post.createdAt || serverTimestamp(),
           updatedAt: serverTimestamp(),
           updatedByUid: currentUser.uid,
           updatedByEmail: currentUser.email || ""
@@ -783,7 +686,6 @@
 
         setStatus("success", "تم تعديل المقال بنجاح.");
         closeEditForm();
-
       } catch (error) {
         console.error(error);
         setStatus("error", "فشل تعديل المقال: " + getFriendlyError(error));
@@ -793,60 +695,32 @@
       }
     });
 
-    cancelEditBtn.addEventListener("click", () => {
-      closeEditForm();
-    });
+    cancelEditBtn.addEventListener("click", closeEditForm);
 
     async function loadAccess(user) {
       const adminSnap = await get(ref(db, "admins/" + user.uid));
       const adminValue = adminSnap.val();
 
       if (adminValue === true || (adminValue && adminValue.active === true)) {
-        return {
-          allowed: true,
-          role: "admin",
-          profile: {
-            uid: user.uid,
-            name: user.displayName || "Admin",
-            email: user.email || "",
-            role: "admin",
-            active: true
-          }
-        };
+        return { allowed: true, role: "admin" };
       }
 
       const writerSnap = await get(ref(db, "employees/" + user.uid));
       const writerValue = writerSnap.val();
 
       if (writerValue && writerValue.active === true) {
-        return {
-          allowed: true,
-          role: "employee",
-          profile: writerValue
-        };
+        return { allowed: true, role: "employee" };
       }
 
-      return {
-        allowed: false,
-        role: null,
-        profile: null
-      };
+      return { allowed: false, role: null };
     }
 
     function listenToPosts() {
       onValue(ref(db, "posts"), (snapshot) => {
         const data = snapshot.val() || {};
 
-        allPosts = Object.entries(data).map(([id, value]) => {
-          return {
-            id: value.id || id,
-            ...value
-          };
-        }).sort((a, b) => {
-          const av = Number(a.updatedAt || a.createdAt || 0);
-          const bv = Number(b.updatedAt || b.createdAt || 0);
-          return bv - av;
-        });
+        allPosts = Object.entries(data).map(([id, value]) => ({ id: value.id || id, ...value }))
+          .sort((a, b) => Number(b.updatedAt || b.createdAt || 0) - Number(a.updatedAt || a.createdAt || 0));
 
         renderPosts();
       }, (error) => {
@@ -863,11 +737,8 @@
       const status = statusFilter.value;
       const lang = langFilter.value;
 
-      let visiblePosts = allPosts.filter((post) => {
-        if (currentUserRole === "employee" && post.authorUid !== currentUser.uid) {
-          return false;
-        }
-
+      const visiblePosts = allPosts.filter((post) => {
+        if (currentUserRole === "employee" && post.authorUid !== currentUser.uid) return false;
         if (category && post.category !== category) return false;
         if (status && post.status !== status) return false;
         if (lang && post.lang !== lang) return false;
@@ -880,7 +751,8 @@
             post.authorName,
             post.authorEmail,
             post.category,
-            post.lang
+            post.lang,
+            post.source
           ].join(" "));
 
           if (!haystack.includes(search)) return false;
@@ -903,7 +775,6 @@
         const statusValue = post.status || "published";
         const badgeClass = statusValue === "draft" ? "draft" : "published";
         const badgeText = statusValue === "draft" ? "مسودة" : "منشور";
-
         const authorName = post.authorName || "غير محدد";
         const authorEmail = post.authorEmail || "غير محدد";
         const date = post.date || "بدون تاريخ";
@@ -927,7 +798,6 @@
                 ID: ${escapeHtml(post.id)}
               </div>
             </div>
-
             <span class="badge ${badgeClass}">${badgeText}</span>
           </div>
 
@@ -939,14 +809,8 @@
           </div>
         `;
 
-        item.querySelector('[data-action="edit"]').addEventListener("click", () => {
-          openEditForm(post);
-        });
-
-        item.querySelector('[data-action="delete"]').addEventListener("click", () => {
-          deletePost(post);
-        });
-
+        item.querySelector('[data-action="edit"]').addEventListener("click", () => openEditForm(post));
+        item.querySelector('[data-action="delete"]').addEventListener("click", () => deletePost(post));
         postsList.appendChild(item);
       });
     }
@@ -985,7 +849,6 @@
       }
 
       const ok = confirm("هل أنت متأكد من حذف هذا المقال؟\n" + (post.title || post.id));
-
       if (!ok) return;
 
       try {
@@ -1009,7 +872,7 @@
       manageCard.classList.add("hidden");
       editCard.classList.add("hidden");
       logoutBtn.classList.add("hidden");
-
+      adminTopLink.classList.add("hidden");
       currentEmail.textContent = "غير مسجل";
       currentRole.textContent = "غير معروف";
       postCount.textContent = "0";
@@ -1027,13 +890,8 @@
       mainStatus.textContent = message;
     }
 
-    function normalizeEmail(value) {
-      return String(value || "").trim().toLowerCase();
-    }
-
-    function normalizeText(value) {
-      return String(value || "").trim().toLowerCase();
-    }
+    function normalizeEmail(value) { return String(value || "").trim().toLowerCase(); }
+    function normalizeText(value) { return String(value || "").trim().toLowerCase(); }
 
     function cleanText(value, maxLength) {
       return String(value || "")
@@ -1051,22 +909,17 @@
     }
 
     function shortText(value, maxLength) {
-      const text = cleanLongText(value, maxLength + 20);
-      if (text.length <= maxLength) return text;
-      return text.slice(0, maxLength) + "...";
+      const text = String(value || "").replace(/\s+/g, " ").trim();
+      return text.length <= maxLength ? text : text.slice(0, maxLength) + "...";
     }
 
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-    }
+    function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email); }
 
     function isValidUrl(value) {
       try {
         const url = new URL(value);
         return url.protocol === "http:" || url.protocol === "https:";
-      } catch {
-        return false;
-      }
+      } catch { return false; }
     }
 
     function escapeHtml(value) {
@@ -1090,7 +943,6 @@
         opinion: "رأي وتحليل",
         other: "أخرى"
       };
-
       return map[value] || value || "غير محدد";
     }
 
@@ -1102,15 +954,12 @@
         tr: "Türkçe",
         de: "Deutsch"
       };
-
       return map[value] || value || "غير محدد";
     }
 
     function getFriendlyError(error) {
       if (!error) return "حدث خطأ غير معروف.";
-
       const code = error.code || "";
-
       const messages = {
         "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
         "auth/user-not-found": "لا يوجد حساب بهذا البريد.",
@@ -1121,7 +970,6 @@
         "PERMISSION_DENIED": "لا توجد صلاحية في Realtime Database Rules.",
         "permission-denied": "لا توجد صلاحية في Realtime Database Rules."
       };
-
       return messages[code] || error.message || String(error);
     }
   </script>
