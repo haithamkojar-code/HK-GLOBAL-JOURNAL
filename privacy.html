@@ -1,69 +1,593 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - HK LENS</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; line-height: 1.6; padding: 40px; max-width: 900px; margin: auto; color: #333; background-color: #fcfcfc; }
-        h1 { color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; font-size: 2em; }
-        h2 { color: #444; margin-top: 30px; font-size: 1.4em; border-left: 4px solid #1a73e8; padding-left: 15px; background: #f4f7f6; padding: 5px 15px; border-radius: 0 5px 5px 0; }
-        h3 { color: #1a73e8; margin-top: 20px; font-size: 1.1em; }
-        p, li { font-size: 0.95em; color: #444; }
-        ul { padding-left: 20px; }
-        a { color: #1a73e8; text-decoration: none; }
-        .footer { margin-top: 50px; font-size: 0.85em; color: #888; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
-        .back-link { display: block; margin-bottom: 20px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>سياسة الخصوصية | HK Global Blog</title>
+  <meta name="description" content="سياسة الخصوصية لمنصة HK Global Blog وشرح البيانات التي يتم جمعها واستخدامها عند استخدام الموقع أو إنشاء حساب موظف." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      color: #fff;
+      padding: 18px;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h2 {
+      font-size: 23px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    p, li {
+      line-height: 1.9;
+      color: #334155;
+      font-size: 16px;
+    }
+
+    ul {
+      padding-right: 22px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .notice {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      line-height: 1.8;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .danger {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    .success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .meta div {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-top: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      min-width: 720px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 13px;
+      text-align: right;
+      vertical-align: top;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 900;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 10px 13px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header,
+      .btn-row,
+      footer {
+        display: none;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links a,
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Privacy Policy</small>
+        </div>
+      </div>
 
-    <a href="index.html" class="back-link">← Zurück zur Startseite</a>
-
-    <h1>Datenschutzerklärung (Privacy Policy)</h1>
-    
-    <h2>1. Datenschutz auf einen Blick</h2>
-    <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
-
-    <h2>2. Verantwortlicher</h2>
-    <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-    <p style="background: #eee; padding: 15px; border-radius: 5px; line-height: 1.8;">
-        <strong>Haitham Kojar</strong><br>
-        Ziegelstr 26, 42289 Wuppertal, Deutschland<br>
-        E-Mail: <a href="mailto:hk.global.blog@gmail.com">hk.global.blog@gmail.com</a>
-    </p>
-
-    <h2>3. Datenerfassung auf unserer Website</h2>
-    
-    <h3>SSL- bzw. TLS-Verschlüsselung</h3>
-    <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p>
-
-    <h3>Server-Log-Dateien</h3>
-    <p>Der Anbieter dieser Webseite (GitHub Pages) erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
-    <ul>
-        <li>Browsertyp und Browserversion</li>
-        <li>Verwendetes Betriebssystem</li>
-        <li>Referrer URL</li>
-        <li>Hostname des zugreifenden Rechners (IP-Adresse)</li>
-        <li>Uhrzeit der Serveranfrage</li>
-    </ul>
-
-    <h3>Google Firebase</h3>
-    <p>Wir nutzen Google Firebase (Realtime Database), um unsere Blog-Inhalte effizient zu verwalten und anzuzeigen. Hierbei werden Daten verarbeitet, um die technische Darstellung und Stabilität unserer Website zu gewährleisten. Dies erfolgt auf Grundlage unseres berechtigten Interesses gemäß Art. 6 Abs. 1 lit. f DSGVO.</p>
-
-    <h2>4. Ihre Rechte كـ Betroffener</h2>
-    <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
-    <ul>
-        <li><strong>Auskunft:</strong> Sie haben das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten.</li>
-        <li><strong>Berichtigung oder Löschung:</strong> Sie haben ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.</li>
-        <li><strong>Einschränkung der Verarbeitung:</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-        <li><strong>Beschwerderecht:</strong> Ihnen steht ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. In unserem Fall ist dies die <em>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen</em>.</li>
-    </ul>
-
-    <div class="footer">
-        Stand: Mai 2026<br>
-        <strong>HK LENS - Deep Analysis on Politics, Economy, and Marketing</strong>
+      <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
     </div>
+  </header>
 
+  <main class="container">
+    <section class="card">
+      <h1>سياسة الخصوصية</h1>
+
+      <p class="muted">
+        توضح هذه السياسة كيف تجمع منصة HK Global Blog البيانات الشخصية وتستخدمها وتحفظها عند استخدام الموقع أو إنشاء حساب موظف أو نشر محتوى داخل المنصة.
+      </p>
+
+      <div class="meta">
+        <div>
+          <strong>اسم المنصة:</strong>
+          <br />
+          HK Global Blog
+        </div>
+
+        <div>
+          <strong>نسخة السياسة:</strong>
+          <br />
+          2026-05-23
+        </div>
+
+        <div>
+          <strong>مسؤول المعالجة:</strong>
+          <br />
+          إدارة HK Global Blog
+        </div>
+
+        <div>
+          <strong>بريد التواصل:</strong>
+          <br />
+          ضع البريد الرسمي هنا: contact@example.com
+        </div>
+      </div>
+
+      <div class="notice danger" style="margin-top:18px;">
+        ملاحظة مهمة: هذه السياسة قالب تنظيمي عام وليست استشارة قانونية نهائية. إذا كان الموقع سيعمل رسميًا أو تجاريًا داخل الاتحاد الأوروبي أو ألمانيا، يجب مراجعة محامٍ أو مستشار حماية بيانات.
+      </div>
+
+      <div class="notice warning" style="margin-top:14px;">
+        مهم قبل النشر: غيّر البريد contact@example.com إلى بريد الإدارة الحقيقي داخل الكود.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1. من نحن</h2>
+      <p>
+        HK Global Blog هي منصة إلكترونية لنشر المقالات والمحتوى العام. يمكن للمستخدمين قراءة المحتوى، ويمكن للموظفين أو الكتّاب المصرح لهم نشر أو تعديل المقالات من خلال حسابات خاصة.
+      </p>
+
+      <h2>2. نطاق هذه السياسة</h2>
+      <p>
+        تنطبق هذه السياسة على زوار الموقع، والموظفين أو الكتّاب الذين ينشئون حسابات، وأي شخص يتواصل مع إدارة الموقع بشأن المحتوى أو الحقوق أو الخصوصية.
+      </p>
+
+      <h2>3. البيانات التي قد نجمعها</h2>
+      <p>
+        تختلف البيانات حسب طريقة استخدامك للموقع. قد نجمع أو نخزن الأنواع التالية من البيانات:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>نوع البيانات</th>
+              <th>أمثلة</th>
+              <th>سبب الاستخدام</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>بيانات حساب الموظف</td>
+              <td>الاسم، البريد الإلكتروني، UID، حالة الحساب، الدور، تاريخ إنشاء الحساب</td>
+              <td>إنشاء الحساب، إدارة الصلاحيات، وربط المقالات باسم الكاتب</td>
+            </tr>
+            <tr>
+              <td>بيانات الموافقة القانونية</td>
+              <td>قبول شروط الاستخدام، عقد المسؤولية، سياسة الخصوصية، إخلاء المسؤولية، تاريخ القبول، نسخة الشروط</td>
+              <td>إثبات الموافقة وتنظيم مسؤولية النشر</td>
+            </tr>
+            <tr>
+              <td>بيانات المحتوى</td>
+              <td>عنوان المقال، النص، اللغة، التصنيف، الصورة، اسم الكاتب، بريد الكاتب، تاريخ النشر أو التعديل</td>
+              <td>عرض المقالات وإدارة المحتوى وتوضيح المسؤولية التحريرية</td>
+            </tr>
+            <tr>
+              <td>بيانات تقنية أساسية</td>
+              <td>بيانات تسجيل الدخول، رموز المصادقة، معلومات الأمان التي توفرها Firebase</td>
+              <td>تأمين الدخول ومنع الاستخدام غير المصرح به</td>
+            </tr>
+            <tr>
+              <td>بيانات التواصل</td>
+              <td>الاسم والبريد والرسائل التي يرسلها المستخدم للإدارة</td>
+              <td>الرد على الاستفسارات والبلاغات وطلبات الحقوق</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>4. لماذا نستخدم البيانات؟</h2>
+      <p>نستخدم البيانات للأغراض التالية:</p>
+      <ul>
+        <li>إنشاء حسابات الموظفين والكتّاب وإدارة صلاحياتهم.</li>
+        <li>منع الوصول غير المصرح به إلى لوحة الإدارة أو أدوات النشر.</li>
+        <li>ربط المقالات باسم الكاتب أو الموظف المسؤول عن النشر.</li>
+        <li>حفظ قبول الموظف للشروط والعقد وسياسة الخصوصية وإخلاء المسؤولية.</li>
+        <li>مراجعة المحتوى المخالف أو المحذوف أو المعدل عند الحاجة.</li>
+        <li>تحسين أمان الموقع وحماية المستخدمين والمنصة.</li>
+        <li>الرد على طلبات التواصل أو البلاغات أو الاعتراضات.</li>
+      </ul>
+
+      <h2>5. الأساس القانوني للمعالجة</h2>
+      <p>
+        إذا كان الموقع يخدم مستخدمين داخل الاتحاد الأوروبي، فقد تعتمد معالجة البيانات على واحد أو أكثر من الأسس القانونية التالية:
+      </p>
+      <ul>
+        <li><strong>تنفيذ علاقة أو اتفاق:</strong> عند إنشاء حساب موظف وقبول عقد مسؤولية الموظف.</li>
+        <li><strong>المصلحة المشروعة:</strong> حماية الموقع، إدارة الصلاحيات، منع إساءة الاستخدام، وتحديد المسؤولية التحريرية.</li>
+        <li><strong>الموافقة:</strong> عند قبول الموظف لسياسة الخصوصية والشروط والعقد أثناء التسجيل.</li>
+        <li><strong>الالتزام القانوني:</strong> عند الحاجة للاحتفاظ ببيانات معينة للامتثال القانوني أو الرد على طلبات رسمية.</li>
+      </ul>
+
+      <h2>6. خدمات Firebase و Google</h2>
+      <p>
+        يستخدم الموقع خدمات Firebase من Google لتسجيل الدخول، تخزين البيانات، واستضافة الموقع. قد تعالج هذه الخدمات بيانات تقنية ضرورية لتشغيل المصادقة وقاعدة البيانات والاستضافة.
+      </p>
+
+      <p>
+        تشمل الخدمات المستخدمة أو المحتملة:
+      </p>
+      <ul>
+        <li>Firebase Authentication لإدارة تسجيل الدخول وإنشاء الحسابات.</li>
+        <li>Firebase Realtime Database لتخزين بيانات المقالات، الموظفين، الدعوات، والصلاحيات.</li>
+        <li>Firebase Hosting لاستضافة صفحات الموقع.</li>
+        <li>Google Analytics فقط إذا تم تفعيله فعليًا في الموقع.</li>
+      </ul>
+
+      <h2>7. ملفات تعريف الارتباط والتخزين المحلي</h2>
+      <p>
+        قد تستخدم خدمات تسجيل الدخول أو أدوات الموقع تخزينًا محليًا أو ملفات تعريف ارتباط تقنية للحفاظ على جلسة تسجيل الدخول وتشغيل الموقع بشكل آمن.
+      </p>
+
+      <p>
+        إذا تمت إضافة أدوات تحليل أو إعلانات أو تتبع لاحقًا، يجب تحديث هذه السياسة وإضافة إشعار موافقة مناسب عند الحاجة.
+      </p>
+
+      <h2>8. من يمكنه الوصول إلى البيانات؟</h2>
+      <p>
+        الوصول إلى بيانات الموظفين والمحتوى الإداري يقتصر على المدير أو الأشخاص المصرح لهم حسب قواعد الصلاحيات داخل Firebase.
+      </p>
+
+      <p>
+        قد تصل Google/Firebase إلى بعض البيانات بوصفها مزود خدمة تقني وفق شروطها وسياساتها، وذلك لتشغيل المصادقة وقاعدة البيانات والاستضافة.
+      </p>
+
+      <h2>9. مشاركة البيانات مع أطراف ثالثة</h2>
+      <p>
+        لا نبيع بيانات المستخدمين أو الموظفين. قد تتم مشاركة البيانات فقط في الحالات التالية:
+      </p>
+      <ul>
+        <li>مع مزودي الخدمات التقنية الضروريين لتشغيل الموقع، مثل Firebase.</li>
+        <li>عند وجود التزام قانوني أو طلب رسمي صالح من جهة مختصة.</li>
+        <li>عند الحاجة لحماية حقوق الموقع أو المستخدمين أو التحقيق في إساءة استخدام خطيرة.</li>
+      </ul>
+
+      <h2>10. مدة الاحتفاظ بالبيانات</h2>
+      <p>
+        نحتفظ بالبيانات فقط لمدة ضرورية للأغراض التي جُمعت من أجلها.
+      </p>
+
+      <ul>
+        <li>بيانات حساب الموظف تبقى ما دام الحساب فعالًا أو طالما توجد حاجة لإثبات المسؤولية عن المحتوى المنشور.</li>
+        <li>بيانات قبول الشروط قد تُحفظ لإثبات الموافقة وتنظيم المسؤولية القانونية.</li>
+        <li>بيانات المقالات تبقى طالما بقي المحتوى منشورًا أو مطلوبًا للأرشفة أو المراجعة.</li>
+        <li>قد تُحذف أو تُخفى البيانات عندما لا تعود ضرورية، ما لم يوجد سبب قانوني للاحتفاظ بها.</li>
+      </ul>
+
+      <h2>11. حماية البيانات</h2>
+      <p>
+        نستخدم قواعد Firebase Security Rules ونظام تسجيل الدخول لتقييد الوصول إلى البيانات الإدارية. ورغم ذلك، لا يمكن لأي خدمة إلكترونية أن تضمن الأمان الكامل بنسبة 100%.
+      </p>
+
+      <p>
+        يجب على الموظفين استخدام كلمات مرور قوية، وعدم مشاركة حساباتهم، وإبلاغ الإدارة فورًا عند الاشتباه في أي دخول غير مصرح به.
+      </p>
+
+      <h2>12. حقوق المستخدمين والموظفين</h2>
+      <p>
+        حسب القوانين المطبقة، قد يكون لك الحق في:
+      </p>
+      <ul>
+        <li>طلب معرفة البيانات التي نحتفظ بها عنك.</li>
+        <li>طلب تصحيح البيانات غير الدقيقة.</li>
+        <li>طلب حذف بياناتك عندما لا يوجد سبب قانوني للاحتفاظ بها.</li>
+        <li>طلب تقييد المعالجة في بعض الحالات.</li>
+        <li>الاعتراض على بعض أنواع المعالجة.</li>
+        <li>سحب الموافقة عندما تكون المعالجة مبنية على الموافقة.</li>
+        <li>تقديم شكوى إلى سلطة حماية البيانات المختصة إذا كنت تعتقد أن بياناتك عولجت بطريقة مخالفة.</li>
+      </ul>
+
+      <h2>13. حذف حساب الموظف</h2>
+      <p>
+        يمكن تعطيل أو حذف حساب الموظف عند انتهاء الصلاحية أو بناءً على طلب مناسب أو عند وجود مخالفة. قد لا يؤدي حذف الحساب دائمًا إلى حذف كل المقالات السابقة، لأن بعض المحتوى قد يحتاج إلى حفظ لأغراض الأرشفة أو إثبات المسؤولية أو حماية الحقوق.
+      </p>
+
+      <h2>14. بيانات الأطفال</h2>
+      <p>
+        لا تستهدف HK Global Blog الأطفال ولا تسمح بإنشاء حسابات موظفين للأطفال. إذا تبيّن أن بيانات طفل جُمعت دون أساس قانوني، يمكن التواصل مع الإدارة لطلب حذفها.
+      </p>
+
+      <h2>15. النقل الدولي للبيانات</h2>
+      <p>
+        لأن الموقع يستخدم خدمات Firebase/Google، قد تتم معالجة بعض البيانات على خوادم أو أنظمة تقع خارج بلد المستخدم. عند تطبيق GDPR، يجب أن تكون عمليات النقل الدولي مستندة إلى آليات حماية مناسبة حسب القوانين المعمول بها.
+      </p>
+
+      <h2>16. الصور والروابط الخارجية</h2>
+      <p>
+        قد تحتوي المقالات على صور أو روابط من خدمات خارجية. عند فتح هذه الصور أو الروابط، قد تتعامل المواقع الخارجية مع بياناتك وفق سياساتها الخاصة. لا تتحكم HK Global Blog في سياسات الخصوصية الخاصة بالمواقع الخارجية.
+      </p>
+
+      <h2>17. تحديث سياسة الخصوصية</h2>
+      <p>
+        قد يتم تحديث هذه السياسة عند تغيير طريقة عمل الموقع أو إضافة خدمات جديدة أو تعديل القوانين أو تحسين إجراءات الخصوصية.
+      </p>
+
+      <p>
+        عند تحديث السياسة، يمكن تغيير تاريخ النسخة أعلى الصفحة. استمرار استخدام الموقع بعد التحديث يعني أنك اطلعت على النسخة الجديدة.
+      </p>
+
+      <h2>18. التواصل بشأن الخصوصية</h2>
+      <p>
+        لأي طلب يتعلق بالخصوصية أو البيانات الشخصية، يمكن التواصل مع إدارة HK Global Blog عبر البريد الرسمي:
+      </p>
+
+      <div class="notice">
+        contact@example.com
+        <br />
+        يجب استبدال هذا البريد بالبريد الحقيقي قبل نشر الموقع رسميًا.
+      </div>
+
+      <h2>19. الإقرار النهائي</h2>
+      <div class="notice success">
+        باستخدام الموقع أو إنشاء حساب موظف، يقر المستخدم أو الموظف بأنه قرأ سياسة الخصوصية وفهم طريقة معالجة البيانات داخل HK Global Blog.
+      </div>
+
+      <div class="footer-links">
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="employee-contract.html">عقد مسؤولية الموظف</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+        <a href="employee-register.html">تسجيل الموظف</a>
+        <a href="admin.html">لوحة المدير</a>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="window.print()">طباعة / حفظ PDF</button>
+        <a class="btn btn-soft" href="index.html">العودة للرئيسية</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    HK Global Blog © Privacy Policy
+  </footer>
 </body>
 </html>
