@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>عقد مسؤولية الموظف | HK Global Blog</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      color: #fff;
+      padding: 18px;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h2 {
+      font-size: 23px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    p, li {
+      line-height: 1.9;
+      color: #334155;
+      font-size: 16px;
+    }
+
+    ul {
+      padding-right: 22px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .notice {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      line-height: 1.8;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .danger {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .meta div {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 10px 13px;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header,
+      .btn-row,
+      footer {
+        display: none;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .btn,
+      .footer-links a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Employee Responsibility Contract</small>
+        </div>
+      </div>
+
+      <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>عقد مسؤولية الموظف عن المحتوى المنشور</h1>
+
+      <p class="muted">
+        هذا العقد يوضح مسؤولية الموظف أو الكاتب عند استخدام حسابه لنشر أو تعديل محتوى داخل منصة HK Global Blog.
+      </p>
+
+      <div class="meta">
+        <div>
+          <strong>اسم المنصة:</strong>
+          <br />
+          HK Global Blog
+        </div>
+
+        <div>
+          <strong>نسخة العقد:</strong>
+          <br />
+          2026-05-23
+        </div>
+
+        <div>
+          <strong>طريقة القبول:</strong>
+          <br />
+          قبول إلكتروني عند تسجيل حساب الموظف
+        </div>
+
+        <div>
+          <strong>نوع الحساب:</strong>
+          <br />
+          موظف / كاتب محتوى
+        </div>
+      </div>
+
+      <div class="notice danger" style="margin-top:18px;">
+        ملاحظة مهمة: هذا النص قالب تنظيمي للموقع وليس استشارة قانونية نهائية. إذا كان الموقع سيُستخدم تجاريًا داخل الاتحاد الأوروبي أو ألمانيا، يجب مراجعة محامٍ أو مستشار قانوني.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1. أطراف العقد</h2>
+      <p>
+        الطرف الأول: إدارة منصة HK Global Blog، ويشار إليها لاحقًا باسم "إدارة الموقع".
+      </p>
+      <p>
+        الطرف الثاني: الموظف أو الكاتب الذي ينشئ حسابًا من خلال رابط دعوة رسمي، ويشار إليه لاحقًا باسم "الموظف".
+      </p>
+
+      <h2>2. موضوع العقد</h2>
+      <p>
+        يهدف هذا العقد إلى تنظيم مسؤولية الموظف عند استخدام حسابه داخل منصة HK Global Blog، وخاصة عند كتابة أو نشر أو تعديل أو حذف أو إدارة المحتوى المنشور باسمه أو من خلال حسابه.
+      </p>
+
+      <h2>3. قبول العقد إلكترونيًا</h2>
+      <p>
+        يعتبر الموظف موافقًا على هذا العقد عند قيامه بتفعيل مربع الموافقة أثناء إنشاء حساب الموظف. ويتم حفظ تاريخ ووقت القبول واسم الموظف وبريده الإلكتروني ومعرّف المستخدم UID داخل قاعدة البيانات لأغراض إثبات القبول وإدارة الصلاحيات.
+      </p>
+
+      <h2>4. مسؤولية الموظف عن المحتوى</h2>
+      <p>
+        يقرّ الموظف بأنه يتحمل المسؤولية عن كل محتوى ينشره أو يعدله أو يرسله من خلال حسابه، ويشمل ذلك النصوص والصور والعناوين والروابط والتصنيفات وأي معلومات أخرى يضيفها إلى المنصة.
+      </p>
+
+      <p>يلتزم الموظف بعدم نشر أي محتوى يتضمن:</p>
+      <ul>
+        <li>محتوى غير قانوني أو مخالف للقوانين المعمول بها.</li>
+        <li>تحريضًا على العنف أو الكراهية أو التمييز.</li>
+        <li>معلومات كاذبة أو مضللة أو منسوبة زورًا إلى أشخاص أو جهات.</li>
+        <li>انتهاكًا لحقوق الملكية الفكرية أو حقوق النشر أو العلامات التجارية.</li>
+        <li>بيانات شخصية لأشخاص آخرين دون سبب قانوني أو إذن واضح.</li>
+        <li>صورًا أو مواد لا يملك الموظف حق استخدامها أو نشرها.</li>
+        <li>روابط ضارة أو احتيالية أو مواد برمجية مؤذية.</li>
+      </ul>
+
+      <h2>5. دقة المعلومات والمصادر</h2>
+      <p>
+        يلتزم الموظف بالتحقق من دقة المعلومات قبل نشرها، وباستخدام مصادر موثوقة عند كتابة محتوى خبري أو سياسي أو اقتصادي أو اجتماعي. وعند وجود رأي شخصي أو تحليل، يجب تمييزه بوضوح عن الخبر أو المعلومة المؤكدة.
+      </p>
+
+      <h2>6. حقوق النشر والملكية الفكرية</h2>
+      <p>
+        يقرّ الموظف بأنه لن ينشر أي نص أو صورة أو مادة محمية بحقوق النشر إلا إذا كان يملك الحق في استخدامها أو لديه إذن واضح أو كانت المادة مرخصة بطريقة تسمح بالنشر.
+      </p>
+
+      <p>
+        إذا استخدم الموظف صورًا أو مصادر خارجية، يجب عليه احترام شروط الترخيص وذكر المصدر عند الحاجة.
+      </p>
+
+      <h2>7. الخصوصية والبيانات الشخصية</h2>
+      <p>
+        يلتزم الموظف بعدم نشر بيانات شخصية تخص أي شخص آخر، مثل الاسم الكامل أو العنوان أو رقم الهاتف أو البريد الإلكتروني أو الصور الخاصة أو المعلومات الصحية أو المالية، إلا إذا كان هناك أساس قانوني واضح أو موافقة مناسبة.
+      </p>
+
+      <p>
+        يفهم الموظف أن المنصة قد تحفظ بيانات مرتبطة بحسابه مثل الاسم والبريد الإلكتروني ومعرّف المستخدم UID وتاريخ إنشاء الحساب وتاريخ قبول الشروط، وذلك لأغراض إدارة الحسابات، حماية المنصة، وتحديد المسؤولية التحريرية.
+      </p>
+
+      <h2>8. أمان الحساب</h2>
+      <p>
+        يلتزم الموظف بالحفاظ على سرية كلمة المرور وعدم مشاركة حسابه مع أي شخص آخر. أي نشاط يتم من حساب الموظف قد يُنسب إليه ما لم يثبت وجود اختراق أو استخدام غير مصرح به.
+      </p>
+
+      <p>
+        يجب على الموظف إبلاغ إدارة الموقع فورًا إذا اشتبه في فقدان كلمة المرور أو وجود دخول غير مصرح به إلى حسابه.
+      </p>
+
+      <h2>9. حق الإدارة في المراجعة والحذف</h2>
+      <p>
+        تحتفظ إدارة الموقع بحق مراجعة المحتوى المنشور أو تعديله أو إخفائه أو حذفه إذا كان مخالفًا لهذا العقد أو لشروط الاستخدام أو للقانون أو لسياسة النشر الخاصة بالمنصة.
+      </p>
+
+      <p>
+        كما يحق للإدارة تعطيل حساب الموظف مؤقتًا أو دائمًا عند وجود مخالفة خطيرة أو متكررة.
+      </p>
+
+      <h2>10. السجلات الداخلية</h2>
+      <p>
+        يوافق الموظف على أن المنصة قد تحفظ سجلات داخلية مرتبطة بعمليات النشر أو التعديل أو الحذف، مثل وقت العملية ومعرّف المستخدم والبريد الإلكتروني، وذلك لأغراض الأمان والمراجعة وتحديد المسؤولية.
+      </p>
+
+      <h2>11. عدم تمثيل المنصة دون إذن</h2>
+      <p>
+        لا يحق للموظف الادعاء بأنه يمثل إدارة HK Global Blog رسميًا أو يتحدث باسمها خارج نطاق الصلاحيات الممنوحة له، إلا إذا حصل على إذن واضح من الإدارة.
+      </p>
+
+      <h2>12. إنهاء أو تعطيل الصلاحية</h2>
+      <p>
+        يحق لإدارة الموقع إنهاء صلاحية الموظف أو تعطيل حسابه عند انتهاء العلاقة العملية أو عند مخالفة هذا العقد أو عند الحاجة لحماية المنصة أو المستخدمين.
+      </p>
+
+      <h2>13. القوانين والامتثال</h2>
+      <p>
+        يلتزم الموظف باحترام القوانين المعمول بها، وخاصة القواعد المتعلقة بحماية البيانات، حقوق النشر، المحتوى غير القانوني، والخصوصية.
+      </p>
+
+      <h2>14. الإقرار النهائي</h2>
+      <div class="notice success">
+        أقرّ بأنني قرأت عقد مسؤولية الموظف وفهمت محتواه، وأوافق على تحمل المسؤولية عن كل محتوى أنشره أو أعدله من حسابي داخل HK Global Blog.
+      </div>
+
+      <div class="footer-links">
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+        <a href="employee-register.html">تسجيل الموظف</a>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="window.print()">طباعة / حفظ PDF</button>
+        <a class="btn btn-soft" href="index.html">العودة للرئيسية</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    HK Global Blog © Employee Responsibility Contract
+  </footer>
+</body>
+</html>
