@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>نشر مقال | HK Global Blog</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.38), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      color: #fff;
+      padding: 18px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .top-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h2 {
+      font-size: 23px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .status.success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .status.warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 7px;
+      color: #111827;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 15px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 230px;
+      resize: vertical;
+      line-height: 1.8;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
+
+    .btn-dark {
+      background: #020617;
+      color: #fff;
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    .btn-success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .info-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .preview {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .preview-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .preview-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    .preview-content {
+      color: #334155;
+      line-height: 1.9;
+      white-space: pre-wrap;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 880px) {
+      .grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-links,
+      .actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Create Post</small>
+        </div>
+      </div>
+
+      <div class="top-links">
+        <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+        <a class="btn btn-light" href="admin.html">لوحة المدير</a>
+        <button class="btn btn-light hidden" id="logoutBtn" type="button">تسجيل الخروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <div class="card">
+        <h1>نشر مقال جديد</h1>
+        <p class="muted">
+          هذه الصفحة مخصصة للمدير والموظفين المفعّلين فقط. كل مقال سيتم حفظه مع بيانات الكاتب تلقائيًا.
+        </p>
+
+        <div id="mainStatus" class="status">يرجى تسجيل الدخول.</div>
+
+        <div class="info-list">
+          <div class="info-item">
+            <strong>الحساب:</strong>
+            <div id="currentEmail" class="muted">غير مسجل</div>
+          </div>
+
+          <div class="info-item">
+            <strong>الصلاحية:</strong>
+            <div id="currentRole" class="muted">غير معروف</div>
+          </div>
+
+          <div class="info-item">
+            <strong>اسم الكاتب:</strong>
+            <div id="currentName" class="muted">غير معروف</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="loginCard">
+        <h2>تسجيل الدخول</h2>
+        <p class="muted">
+          أدخل بريد وكلمة مرور حساب المدير أو الموظف.
+        </p>
+
+        <form id="loginForm">
+          <div>
+            <label for="loginEmail">البريد الإلكتروني</label>
+            <input id="loginEmail" type="email" placeholder="name@example.com" autocomplete="email" required />
+          </div>
+
+          <div>
+            <label for="loginPassword">كلمة المرور</label>
+            <input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password" required />
+          </div>
+
+          <button class="btn btn-primary" id="loginBtn" type="submit">تسجيل الدخول</button>
+        </form>
+      </div>
+
+      <div class="card wide hidden" id="editorCard">
+        <h2>بيانات المقال</h2>
+
+        <form id="postForm">
+          <div>
+            <label for="titleInput">عنوان المقال</label>
+            <input id="titleInput" type="text" placeholder="اكتب عنوان المقال" maxlength="160" required />
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label for="categoryInput">التصنيف</label>
+              <select id="categoryInput" required>
+                <option value="">اختر التصنيف</option>
+                <option value="politics">سياسة</option>
+                <option value="economy">اقتصاد</option>
+                <option value="society">مجتمع</option>
+                <option value="family">أسرة</option>
+                <option value="culture">ثقافة</option>
+                <option value="technology">تكنولوجيا</option>
+                <option value="news">أخبار</option>
+                <option value="opinion">رأي وتحليل</option>
+                <option value="other">أخرى</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="langInput">لغة المقال</label>
+              <select id="langInput" required>
+                <option value="ar">العربية</option>
+                <option value="sv">Svenska</option>
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+                <option value="de">Deutsch</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="summaryInput">ملخص قصير</label>
+            <input id="summaryInput" type="text" placeholder="ملخص مختصر يظهر قبل المقال" maxlength="260" />
+          </div>
+
+          <div>
+            <label for="imageInput">رابط صورة المقال اختياري</label>
+            <input id="imageInput" type="url" placeholder="https://example.com/image.jpg" maxlength="500" />
+          </div>
+
+          <div>
+            <label for="contentInput">محتوى المقال</label>
+            <textarea id="contentInput" placeholder="اكتب المقال هنا..." required></textarea>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label for="statusInput">حالة المقال</label>
+              <select id="statusInput" required>
+                <option value="published">نشر مباشر</option>
+                <option value="draft">مسودة</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="sourceInput">المصدر اختياري</label>
+              <input id="sourceInput" type="text" placeholder="اسم المصدر أو رابط المصدر" maxlength="300" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="publishBtn" type="submit">حفظ المقال</button>
+            <button class="btn btn-soft" id="previewBtn" type="button">معاينة</button>
+            <button class="btn btn-danger" id="clearBtn" type="button">مسح الحقول</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card wide hidden" id="previewCard">
+        <h2>معاينة المقال</h2>
+        <div class="preview">
+          <div class="preview-title" id="previewTitle">عنوان المقال</div>
+          <div class="preview-meta" id="previewMeta">التصنيف والكاتب والتاريخ</div>
+          <div class="preview-content" id="previewContent">محتوى المقال</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    HK Global Blog © Create Post
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+    import {
+      getDatabase,
+      ref,
+      get,
+      push,
+      set,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
+      authDomain: "hk-blog-3ed96.firebaseapp.com",
+      databaseURL: "https://hk-blog-3ed96-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "hk-blog-3ed96",
+      storageBucket: "hk-blog-3ed96.firebasestorage.app",
+      messagingSenderId: "339658398793",
+      appId: "1:339658398793:web:e38a09f83fd01c2e773398",
+      measurementId: "G-FSB1QBLZM7"
+    };
+
+    const TERMS_VERSION = "2026-05-23";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const mainStatus = document.getElementById("mainStatus");
+    const currentEmail = document.getElementById("currentEmail");
+    const currentRole = document.getElementById("currentRole");
+    const currentName = document.getElementById("currentName");
+
+    const loginCard = document.getElementById("loginCard");
+    const editorCard = document.getElementById("editorCard");
+    const previewCard = document.getElementById("previewCard");
+
+    const loginForm = document.getElementById("loginForm");
+    const loginEmail = document.getElementById("loginEmail");
+    const loginPassword = document.getElementById("loginPassword");
+    const loginBtn = document.getElementById("loginBtn");
+
+    const postForm = document.getElementById("postForm");
+    const titleInput = document.getElementById("titleInput");
+    const categoryInput = document.getElementById("categoryInput");
+    const langInput = document.getElementById("langInput");
+    const summaryInput = document.getElementById("summaryInput");
+    const imageInput = document.getElementById("imageInput");
+    const contentInput = document.getElementById("contentInput");
+    const statusInput = document.getElementById("statusInput");
+    const sourceInput = document.getElementById("sourceInput");
+    const publishBtn = document.getElementById("publishBtn");
+    const previewBtn = document.getElementById("previewBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    const previewTitle = document.getElementById("previewTitle");
+    const previewMeta = document.getElementById("previewMeta");
+    const previewContent = document.getElementById("previewContent");
+
+    let currentUser = null;
+    let currentProfile = null;
+    let currentUserRole = null;
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        currentUser = null;
+        currentProfile = null;
+        currentUserRole = null;
+        showLoggedOut();
+        setStatus("warning", "يرجى تسجيل الدخول بحساب مدير أو موظف.");
+        return;
+      }
+
+      currentUser = user;
+      currentEmail.textContent = user.email || user.uid;
+
+      try {
+        const access = await loadAccess(user);
+
+        if (!access.allowed) {
+          showLoggedOut();
+          currentRole.textContent = "غير مصرح";
+          currentName.textContent = user.displayName || user.email || user.uid;
+          setStatus("error", "هذا الحساب لا يملك صلاحية النشر. يجب أن يكون مديرًا أو موظفًا مفعّلًا.");
+          return;
+        }
+
+        currentProfile = access.profile;
+        currentUserRole = access.role;
+
+        currentRole.textContent = access.role === "admin" ? "مدير" : "موظف";
+        currentName.textContent = access.profile.name || user.displayName || user.email || user.uid;
+
+        showEditor();
+        setStatus("success", "تم تسجيل الدخول. يمكنك الآن نشر المقال.");
+      } catch (error) {
+        console.error(error);
+        showLoggedOut();
+        setStatus("error", "فشل التحقق من الصلاحية: " + getFriendlyError(error));
+      }
+    });
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const email = normalizeEmail(loginEmail.value);
+      const password = String(loginPassword.value || "");
+
+      if (!isValidEmail(email) || !password) {
+        setStatus("error", "اكتب البريد وكلمة المرور بشكل صحيح.");
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = "جاري تسجيل الدخول...";
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        loginPassword.value = "";
+      } catch (error) {
+        console.error(error);
+        setStatus("error", getFriendlyError(error));
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = "تسجيل الدخول";
+      }
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      setStatus("warning", "تم تسجيل الخروج.");
+    });
+
+    postForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!currentUser || !currentProfile || !currentUserRole) {
+        setStatus("error", "يجب تسجيل الدخول قبل النشر.");
+        return;
+      }
+
+      const title = cleanText(titleInput.value, 160);
+      const category = cleanText(categoryInput.value, 60);
+      const lang = cleanText(langInput.value, 10);
+      const summary = cleanText(summaryInput.value, 260);
+      const imageUrl = cleanText(imageInput.value, 500);
+      const content = cleanLongText(contentInput.value, 20000);
+      const status = cleanText(statusInput.value, 30);
+      const source = cleanText(sourceInput.value, 300);
+
+      if (!title || !category || !lang || !content) {
+        setStatus("error", "العنوان والتصنيف واللغة والمحتوى حقول إجبارية.");
+        return;
+      }
+
+      if (imageUrl && !isValidUrl(imageUrl)) {
+        setStatus("error", "رابط الصورة غير صحيح.");
+        return;
+      }
+
+      publishBtn.disabled = true;
+      publishBtn.textContent = "جاري حفظ المقال...";
+
+      try {
+        const postsRef = ref(db, "posts");
+        const newPostRef = push(postsRef);
+        const postId = newPostRef.key;
+        const nowDate = new Date().toISOString().slice(0, 10);
+
+        const authorName =
+          currentProfile.name ||
+          currentUser.displayName ||
+          currentUser.email ||
+          currentUser.uid;
+
+        const authorEmail =
+          currentProfile.email ||
+          currentUser.email ||
+          "";
+
+        const postData = {
+          id: postId,
+          title: title,
+          lang: lang,
+          category: category,
+          content: content,
+          date: nowDate,
+
+          summary: summary,
+          imageUrl: imageUrl,
+          source: source,
+          status: status,
+
+          authorUid: currentUser.uid,
+          authorName: authorName,
+          authorEmail: authorEmail,
+          authorRole: currentUserRole,
+
+          termsVersion: currentProfile.termsVersion || TERMS_VERSION,
+          acceptedTerms: currentProfile.acceptedTerms === true || currentUserRole === "admin",
+
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        };
+
+        await set(newPostRef, postData);
+
+        setStatus("success", "تم حفظ المقال بنجاح. رقم المقال: " + postId);
+        clearForm();
+
+      } catch (error) {
+        console.error(error);
+        setStatus("error", "فشل حفظ المقال: " + getFriendlyError(error));
+      } finally {
+        publishBtn.disabled = false;
+        publishBtn.textContent = "حفظ المقال";
+      }
+    });
+
+    previewBtn.addEventListener("click", () => {
+      const title = cleanText(titleInput.value, 160) || "عنوان المقال";
+      const category = cleanText(categoryInput.value, 60) || "تصنيف";
+      const lang = cleanText(langInput.value, 10) || "لغة";
+      const content = cleanLongText(contentInput.value, 20000) || "محتوى المقال";
+      const author = currentProfile?.name || currentUser?.displayName || currentUser?.email || "الكاتب";
+
+      previewTitle.textContent = title;
+      previewMeta.textContent = "التصنيف: " + category + " | اللغة: " + lang + " | الكاتب: " + author;
+      previewContent.textContent = content;
+
+      previewCard.classList.remove("hidden");
+      previewCard.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    clearBtn.addEventListener("click", () => {
+      const ok = confirm("هل تريد مسح جميع الحقول؟");
+      if (!ok) return;
+      clearForm();
+      setStatus("warning", "تم مسح الحقول.");
+    });
+
+    async function loadAccess(user) {
+      const adminSnap = await get(ref(db, "admins/" + user.uid));
+      const adminValue = adminSnap.val();
+
+      if (adminValue === true || (adminValue && adminValue.active === true)) {
+        return {
+          allowed: true,
+          role: "admin",
+          profile: {
+            uid: user.uid,
+            name: user.displayName || "Admin",
+            email: user.email || "",
+            role: "admin",
+            active: true,
+            acceptedTerms: true,
+            termsVersion: TERMS_VERSION
+          }
+        };
+      }
+
+      const employeeSnap = await get(ref(db, "employees/" + user.uid));
+      const employeeValue = employeeSnap.val();
+
+      if (employeeValue && employeeValue.active === true) {
+        return {
+          allowed: true,
+          role: "employee",
+          profile: employeeValue
+        };
+      }
+
+      return {
+        allowed: false,
+        role: null,
+        profile: null
+      };
+    }
+
+    function showLoggedOut() {
+      loginCard.classList.remove("hidden");
+      editorCard.classList.add("hidden");
+      previewCard.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+
+      currentEmail.textContent = "غير مسجل";
+      currentRole.textContent = "غير معروف";
+      currentName.textContent = "غير معروف";
+    }
+
+    function showEditor() {
+      loginCard.classList.add("hidden");
+      editorCard.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+    }
+
+    function clearForm() {
+      titleInput.value = "";
+      categoryInput.value = "";
+      langInput.value = "ar";
+      summaryInput.value = "";
+      imageInput.value = "";
+      contentInput.value = "";
+      statusInput.value = "published";
+      sourceInput.value = "";
+      previewCard.classList.add("hidden");
+    }
+
+    function setStatus(type, message) {
+      mainStatus.className = "status " + type;
+      mainStatus.textContent = message;
+    }
+
+    function normalizeEmail(value) {
+      return String(value || "").trim().toLowerCase();
+    }
+
+    function cleanText(value, maxLength) {
+      return String(value || "")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, maxLength);
+    }
+
+    function cleanLongText(value, maxLength) {
+      return String(value || "")
+        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+        .trim()
+        .slice(0, maxLength);
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    }
+
+    function isValidUrl(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    }
+
+    function getFriendlyError(error) {
+      if (!error) return "حدث خطأ غير معروف.";
+
+      const code = error.code || "";
+
+      const messages = {
+        "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
+        "auth/user-not-found": "لا يوجد حساب بهذا البريد.",
+        "auth/wrong-password": "كلمة المرور غير صحيحة.",
+        "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
+        "auth/too-many-requests": "تمت محاولات كثيرة. انتظر قليلًا ثم جرب مرة أخرى.",
+        "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
+        "PERMISSION_DENIED": "لا توجد صلاحية في Realtime Database Rules.",
+        "permission-denied": "لا توجد صلاحية في Realtime Database Rules."
+      };
+
+      return messages[code] || error.message || String(error);
+    }
+  </script>
+</body>
+</html>
