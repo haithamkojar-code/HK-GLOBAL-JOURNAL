@@ -71,7 +71,6 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     unlockPage();
-
   } catch (error) {
     console.error("Private guard error:", error);
     redirectOut();
@@ -113,7 +112,7 @@ function getCurrentPageName() {
   const last = parts[parts.length - 1] || "index.html";
 
   if (!last.includes(".")) {
-    return last + ".html";
+    return (last + ".html").toLowerCase();
   }
 
   return last.toLowerCase();

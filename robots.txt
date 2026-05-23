@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hk-blog-3ed96.web.app/sitemap.xml
+Sitemap: https://hk-lens.github.io/HK-GLOBAL-BLOG/sitemap.xml

@@ -7,6 +7,7 @@
   <title>سياسة الخصوصية | HK Global Blog</title>
   <meta name="description" content="سياسة الخصوصية في HK Global Blog توضح البيانات التي يتم جمعها من الزوار والكتّاب، أسباب استخدامها، مدة حفظها، وحقوق المستخدمين." />
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
 
   <style>
@@ -27,13 +28,8 @@
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -46,10 +42,7 @@
       color: var(--text);
     }
 
-    header {
-      color: #fff;
-      padding: 18px;
-    }
+    header { color: #fff; padding: 18px; }
 
     .header-inner {
       max-width: 1000px;
@@ -83,17 +76,8 @@
       box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
     }
 
-    .top-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px 18px 70px;
-    }
+    .top-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .container { max-width: 1000px; margin: auto; padding: 20px 18px 70px; }
 
     .card {
       background: rgba(255, 255, 255, 0.97);
@@ -104,43 +88,15 @@
       margin-bottom: 20px;
     }
 
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      line-height: 1.35;
-    }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.35; }
+    h1 { font-size: clamp(28px, 4vw, 44px); }
+    h2 { font-size: 23px; padding-top: 12px; border-top: 1px solid var(--border); }
+    h2:first-child { border-top: 0; padding-top: 0; }
+    h3 { font-size: 19px; }
 
-    h1 {
-      font-size: clamp(28px, 4vw, 44px);
-    }
-
-    h2 {
-      font-size: 23px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    h2:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    h3 {
-      font-size: 19px;
-    }
-
-    p, li {
-      line-height: 1.9;
-      color: #334155;
-      font-size: 16px;
-    }
-
-    ul {
-      padding-right: 22px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
+    p, li { line-height: 1.9; color: #334155; font-size: 16px; }
+    ul { padding-right: 22px; }
+    .muted { color: var(--muted); }
 
     .notice {
       background: #f8fafc;
@@ -153,23 +109,9 @@
       margin-top: 14px;
     }
 
-    .danger {
-      background: #fee2e2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    .warning {
-      background: #fef3c7;
-      border-color: #fde68a;
-      color: #92400e;
-    }
-
-    .success {
-      background: #dcfce7;
-      border-color: #bbf7d0;
-      color: #166534;
-    }
+    .danger { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
+    .warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
+    .success { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
 
     .meta {
       display: grid;
@@ -228,17 +170,10 @@
       color: #334155;
     }
 
-    th {
-      background: #f8fafc;
-      color: #0f172a;
-      font-weight: 900;
-    }
+    th { background: #f8fafc; color: #0f172a; font-weight: 900; }
+    tr:last-child td { border-bottom: 0; }
 
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .footer-links {
+    .footer-links, .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -252,13 +187,6 @@
       background: #eef2ff;
       border-radius: 999px;
       padding: 10px 13px;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
     }
 
     .btn {
@@ -277,29 +205,11 @@
       font-family: inherit;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .btn-soft {
-      background: #eef2ff;
-      color: #1e40af;
-    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary2); }
+    .btn-light { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.24); }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
 
     code {
       background: #f1f5f9;
@@ -310,59 +220,21 @@
       display: inline-block;
     }
 
-    footer {
-      color: rgba(255,255,255,0.72);
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
+    footer { color: rgba(255,255,255,0.72); text-align: center; padding: 20px; font-size: 14px; }
 
     @media print {
-      body {
-        background: #fff;
-      }
-
-      header,
-      .btn-row,
-      footer {
-        display: none;
-      }
-
-      .container {
-        padding: 0;
-      }
-
-      .card {
-        box-shadow: none;
-        border: 0;
-      }
-
-      .footer-links {
-        display: none;
-      }
+      body { background: #fff; }
+      header, .btn-row, footer { display: none; }
+      .container { padding: 0; }
+      .card { box-shadow: none; border: 0; }
+      .footer-links { display: none; }
     }
 
     @media (max-width: 760px) {
-      .meta,
-      .toc {
-        grid-template-columns: 1fr;
-      }
-
-      .top-links,
-      .footer-links,
-      .btn-row {
-        flex-direction: column;
-      }
-
-      .footer-links a,
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .card {
-        padding: 20px;
-      }
+      .meta, .toc { grid-template-columns: 1fr; }
+      .top-links, .footer-links, .btn-row { flex-direction: column; }
+      .footer-links a, .btn { width: 100%; text-align: center; }
+      .card { padding: 20px; }
     }
   </style>
 </head>
@@ -380,7 +252,6 @@
 
       <div class="top-links">
         <a class="btn btn-light" href="index.html">الرئيسية</a>
-        <a class="btn btn-light" href="create-post.html">دخول الكتّاب</a>
       </div>
     </div>
   </header>
@@ -388,35 +259,15 @@
   <main class="container">
     <section class="card">
       <h1>سياسة الخصوصية</h1>
-
       <p class="muted">
         توضح هذه السياسة كيف يتعامل HK Global Blog مع بيانات الزوار والكتّاب، وما هي البيانات التي قد يتم حفظها، ولماذا يتم استخدامها، وما هي حقوق المستخدمين.
       </p>
 
       <div class="meta">
-        <div>
-          <strong>اسم الموقع:</strong>
-          <br />
-          HK Global Blog
-        </div>
-
-        <div>
-          <strong>نسخة السياسة:</strong>
-          <br />
-          2026-05-23
-        </div>
-
-        <div>
-          <strong>النطاق:</strong>
-          <br />
-          الزوار، الكتّاب، المدير، المقالات، وحسابات النشر
-        </div>
-
-        <div>
-          <strong>جهة التواصل:</strong>
-          <br />
-          ضع هنا بريد التواصل الرسمي
-        </div>
+        <div><strong>اسم الموقع:</strong><br />HK Global Blog</div>
+        <div><strong>نسخة السياسة:</strong><br />2026-05-23</div>
+        <div><strong>النطاق:</strong><br />الزوار، الكتّاب، المدير، المقالات، وحسابات النشر</div>
+        <div><strong>جهة التواصل:</strong><br />ضع هنا بريد التواصل الرسمي</div>
       </div>
 
       <div class="notice danger">
@@ -439,21 +290,17 @@
 
     <section class="card">
       <h2 id="who">1. من نحن</h2>
-
       <p>
         HK Global Blog هو موقع مدونة إلكترونية يعرض مقالات ومحتوى فكري أو اجتماعي أو اقتصادي أو سياسي أو ثقافي أو تقني بلغات متعددة.
       </p>
-
       <p>
         يمكن للزوار قراءة المقالات المنشورة، ويمكن للكتّاب المفعّلين نشر مقالات من خلال حسابات خاصة يتم إنشاؤها بدعوة من المدير.
       </p>
-
       <p>
         لأغراض هذه السياسة، يقصد بـ <strong>الموقع</strong> منصة HK Global Blog، ويقصد بـ <strong>الكاتب</strong> الشخص الذي يملك حسابًا لنشر المقالات، ويقصد بـ <strong>المستخدم</strong> الزائر أو الكاتب أو المدير.
       </p>
 
       <h2 id="data">2. البيانات التي قد نجمعها</h2>
-
       <p>
         تختلف البيانات حسب طريقة استخدام الموقع. الزائر العادي لا يحتاج إلى إنشاء حساب لقراءة المقالات، أما الكاتب فيحتاج إلى حساب مخصص للنشر.
       </p>
@@ -467,57 +314,32 @@
               <th>سبب الاستخدام</th>
             </tr>
           </thead>
-
           <tbody>
             <tr>
               <td>الزائر</td>
-              <td>
-                قد تتم معالجة بيانات تقنية أساسية مثل معلومات المتصفح أو الجهاز أو سجلات تقنية عند الاستضافة.
-              </td>
-              <td>
-                عرض الموقع، تحسين الأمان، اكتشاف الأخطاء، ومنع إساءة الاستخدام.
-              </td>
+              <td>قد تتم معالجة بيانات تقنية أساسية مثل معلومات المتصفح أو الجهاز أو سجلات تقنية عند الاستضافة.</td>
+              <td>عرض الموقع، تحسين الأمان، اكتشاف الأخطاء، ومنع إساءة الاستخدام.</td>
             </tr>
-
             <tr>
               <td>الكاتب</td>
-              <td>
-                الاسم، البريد الإلكتروني، UID، حالة الحساب، تاريخ قبول الشروط، نسخة الشروط المقبولة، والمقالات المنشورة.
-              </td>
-              <td>
-                إنشاء حساب الكاتب، تحديد مسؤولية المقالات، إدارة المحتوى، وحماية المنصة.
-              </td>
+              <td>الاسم، البريد الإلكتروني، UID، حالة الحساب، تاريخ قبول الشروط، نسخة الشروط المقبولة، والمقالات المنشورة.</td>
+              <td>إنشاء حساب الكاتب، تحديد مسؤولية المقالات، إدارة المحتوى، وحماية المنصة.</td>
             </tr>
-
             <tr>
               <td>المدير</td>
-              <td>
-                البريد الإلكتروني، UID، صلاحية المدير، وسجلات إنشاء دعوات الكتّاب.
-              </td>
-              <td>
-                إدارة المنصة، إنشاء الدعوات، ومراقبة الصلاحيات.
-              </td>
+              <td>البريد الإلكتروني، UID، صلاحية المدير، وسجلات إنشاء دعوات الكتّاب.</td>
+              <td>إدارة المنصة، إنشاء الدعوات، ومراقبة الصلاحيات.</td>
             </tr>
-
             <tr>
               <td>المقالات</td>
-              <td>
-                عنوان المقال، المحتوى، التصنيف، اللغة، اسم الكاتب، بريد الكاتب، UID الكاتب، تاريخ النشر والتحديث.
-              </td>
-              <td>
-                عرض المقالات للزوار، حفظ نسب المقال للكاتب، وإدارة المحتوى.
-              </td>
+              <td>عنوان المقال، المحتوى، التصنيف، اللغة، اسم الكاتب، بريد الكاتب، UID الكاتب، تاريخ النشر والتحديث.</td>
+              <td>عرض المقالات للزوار، حفظ نسب المقال للكاتب، وإدارة المحتوى.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h2 id="why">3. لماذا نستخدم البيانات؟</h2>
-
-      <p>
-        نستخدم البيانات للأغراض التالية:
-      </p>
-
       <ul>
         <li>تشغيل الموقع وعرض المقالات للزوار.</li>
         <li>إنشاء وتفعيل حسابات الكتّاب.</li>
@@ -530,25 +352,15 @@
       </ul>
 
       <h2 id="firebase">4. Firebase والخدمات التقنية</h2>
-
       <p>
         يستخدم الموقع Firebase لتشغيل بعض وظائفه، مثل تسجيل الدخول، إنشاء حسابات الكتّاب، حفظ بيانات الدعوات، وحفظ المقالات.
       </p>
-
-      <p>
-        قد تشمل الخدمات التقنية المستخدمة:
-      </p>
-
       <ul>
         <li><strong>Firebase Authentication:</strong> لتسجيل الدخول وإنشاء حسابات البريد وكلمة المرور.</li>
         <li><strong>Firebase Realtime Database:</strong> لحفظ بيانات المقالات، الكتّاب، المدير، والدعوات.</li>
-        <li><strong>Firebase Hosting:</strong> لاستضافة صفحات الموقع.</li>
+        <li><strong>Firebase Hosting:</strong> لاستضافة صفحات الموقع عند النشر النهائي على Firebase.</li>
       </ul>
-
-      <p>
-        داخل قاعدة البيانات قد تظهر مسارات تقنية مثل:
-      </p>
-
+      <p>داخل قاعدة البيانات قد تظهر مسارات تقنية مثل:</p>
       <ul>
         <li><code>admins</code> لحسابات المدير.</li>
         <li><code>employees</code> لحسابات الكتّاب تقنيًا.</li>
@@ -556,49 +368,23 @@
         <li><code>posts</code> للمقالات.</li>
         <li><code>users</code> لبيانات الحسابات.</li>
       </ul>
-
       <div class="notice warning">
         كلمة <strong>employees</strong> داخل قاعدة البيانات هي اسم تقني فقط، أما الاسم الظاهر للمستخدمين في الموقع فهو <strong>الكتّاب</strong>.
       </div>
 
       <h2 id="legal">5. الأساس القانوني لاستخدام البيانات</h2>
-
-      <p>
-        بحسب طبيعة الاستخدام، قد تعتمد معالجة البيانات على واحد أو أكثر من الأسس التالية:
-      </p>
-
+      <p>بحسب طبيعة الاستخدام، قد تعتمد معالجة البيانات على واحد أو أكثر من الأسس التالية:</p>
       <ul>
-        <li>
-          <strong>تنفيذ العلاقة مع الكاتب:</strong>
-          عندما ينشئ الكاتب حسابًا ويستخدم المنصة لنشر المقالات.
-        </li>
-
-        <li>
-          <strong>الموافقة:</strong>
-          عندما يوافق الكاتب صراحة على عقد مسؤولية الكاتب وشروط الاستخدام وسياسة الخصوصية وإخلاء المسؤولية.
-        </li>
-
-        <li>
-          <strong>المصلحة المشروعة:</strong>
-          لحماية الموقع، منع إساءة الاستخدام، إدارة المحتوى، وتوثيق مسؤولية المقالات.
-        </li>
-
-        <li>
-          <strong>الالتزام القانوني:</strong>
-          إذا أصبح من الضروري حفظ أو تقديم بعض البيانات استجابة لالتزام قانوني أو بلاغ رسمي.
-        </li>
+        <li><strong>تنفيذ العلاقة مع الكاتب:</strong> عندما ينشئ الكاتب حسابًا ويستخدم المنصة لنشر المقالات.</li>
+        <li><strong>الموافقة:</strong> عندما يوافق الكاتب صراحة على عقد مسؤولية الكاتب وشروط الاستخدام وسياسة الخصوصية وإخلاء المسؤولية.</li>
+        <li><strong>المصلحة المشروعة:</strong> لحماية الموقع، منع إساءة الاستخدام، إدارة المحتوى، وتوثيق مسؤولية المقالات.</li>
+        <li><strong>الالتزام القانوني:</strong> إذا أصبح من الضروري حفظ أو تقديم بعض البيانات استجابة لالتزام قانوني أو بلاغ رسمي.</li>
       </ul>
 
       <h2 id="retention">6. مدة حفظ البيانات</h2>
-
       <p>
         يتم حفظ البيانات فقط للمدة اللازمة لتحقيق الأغراض الموضحة في هذه السياسة، أو للمدة التي تتطلبها القوانين المعمول بها.
       </p>
-
-      <p>
-        أمثلة على مدة الحفظ:
-      </p>
-
       <ul>
         <li>بيانات حساب الكاتب تبقى محفوظة طالما أن الحساب فعال أو طالما توجد حاجة لإثبات مسؤولية المحتوى المنشور.</li>
         <li>بيانات المقالات تبقى محفوظة طالما أن المقال موجود على الموقع أو مطلوب لأغراض الأرشفة أو النزاعات.</li>
@@ -607,11 +393,7 @@
       </ul>
 
       <h2 id="rights">7. حقوق المستخدمين والكتّاب</h2>
-
-      <p>
-        وفقًا للقوانين المعمول بها، قد يكون للمستخدم أو الكاتب حقوق تتعلق ببياناته الشخصية، مثل:
-      </p>
-
+      <p>وفقًا للقوانين المعمول بها، قد يكون للمستخدم أو الكاتب حقوق تتعلق ببياناته الشخصية، مثل:</p>
       <ul>
         <li>طلب معرفة البيانات المحفوظة عنه.</li>
         <li>طلب تصحيح بيانات غير صحيحة.</li>
@@ -621,17 +403,12 @@
         <li>طلب نسخة من بياناته بصيغة مناسبة عندما يكون ذلك قابلًا للتطبيق.</li>
         <li>تقديم شكوى إلى جهة حماية البيانات المختصة إذا كان يعتقد أن بياناته عولجت بطريقة غير قانونية.</li>
       </ul>
-
       <div class="notice">
         بعض الطلبات قد لا تؤدي إلى حذف كل البيانات فورًا إذا كانت هناك حاجة قانونية أو أمنية أو تحريرية للاحتفاظ بجزء منها، مثل إثبات مسؤولية مقال منشور سابقًا.
       </div>
 
       <h2 id="security">8. حماية البيانات</h2>
-
-      <p>
-        نستخدم وسائل تقنية وتنظيمية معقولة لحماية البيانات، مثل:
-      </p>
-
+      <p>نستخدم وسائل تقنية وتنظيمية معقولة لحماية البيانات، مثل:</p>
       <ul>
         <li>استخدام Firebase Authentication لتسجيل الدخول.</li>
         <li>استخدام قواعد صلاحيات داخل Firebase Realtime Database.</li>
@@ -639,21 +416,14 @@
         <li>إخفاء صفحات الإدارة عن الفهرسة باستخدام <code>noindex</code>.</li>
         <li>تقليل البيانات المحفوظة إلى ما هو ضروري لتشغيل المنصة.</li>
       </ul>
-
       <p>
         رغم ذلك، لا توجد وسيلة إلكترونية آمنة بنسبة 100%. لذلك يجب على الكاتب اختيار كلمة مرور قوية وعدم مشاركتها مع أي شخص.
       </p>
 
       <h2>9. مشاركة البيانات مع أطراف أخرى</h2>
-
       <p>
         لا نبيع بيانات المستخدمين أو الكتّاب. قد تتم معالجة بعض البيانات من خلال خدمات تقنية ضرورية لتشغيل الموقع، مثل خدمات الاستضافة وقاعدة البيانات وتسجيل الدخول.
       </p>
-
-      <p>
-        قد نشارك أو نكشف بعض البيانات فقط في الحالات التالية:
-      </p>
-
       <ul>
         <li>عند وجود طلب قانوني صحيح.</li>
         <li>لحماية حقوق الموقع أو سلامة المستخدمين.</li>
@@ -662,45 +432,27 @@
       </ul>
 
       <h2>10. الروابط الخارجية</h2>
-
       <p>
         قد تحتوي المقالات أو صفحات الموقع على روابط خارجية. لا تتحمل HK Global Blog مسؤولية سياسات الخصوصية أو محتوى المواقع الخارجية.
       </p>
-
-      <p>
-        عند فتح رابط خارجي، يجب على المستخدم قراءة سياسة الخصوصية الخاصة بذلك الموقع.
-      </p>
+      <p>عند فتح رابط خارجي، يجب على المستخدم قراءة سياسة الخصوصية الخاصة بذلك الموقع.</p>
 
       <h2>11. ملفات تعريف الارتباط والتخزين المحلي</h2>
-
       <p>
         قد تستخدم بعض الخدمات التقنية ملفات تعريف ارتباط أو تخزينًا محليًا أو وسائل مشابهة لتسجيل الدخول أو حفظ الجلسة أو تحسين الأمان.
       </p>
-
       <p>
         إذا تمت إضافة أدوات تحليل أو إعلانات أو تتبع مستقبلًا، يجب تحديث هذه السياسة وذكر نوع الأداة والغرض منها وطريقة التحكم بها.
       </p>
 
       <h2 id="children">12. خصوصية الأطفال</h2>
-
       <p>
         الموقع مخصص للمقالات العامة وليس مخصصًا للأطفال كمنصة تسجيل أو نشر. لا يجب إنشاء حساب كاتب للأطفال أو جمع بياناتهم دون أساس قانوني واضح وموافقة مناسبة من ولي الأمر عند الحاجة.
       </p>
-
-      <p>
-        يمنع نشر بيانات أو صور أطفال أو معلومات قد تعرضهم للخطر دون موافقة وأساس قانوني مناسب.
-      </p>
+      <p>يمنع نشر بيانات أو صور أطفال أو معلومات قد تعرضهم للخطر دون موافقة وأساس قانوني مناسب.</p>
 
       <h2>13. مسؤولية الكاتب تجاه بيانات الآخرين</h2>
-
-      <p>
-        يلتزم الكاتب بعدم نشر بيانات شخصية عن أشخاص آخرين دون إذن أو أساس قانوني واضح.
-      </p>
-
-      <p>
-        تشمل البيانات الشخصية التي يجب الحذر منها:
-      </p>
-
+      <p>يلتزم الكاتب بعدم نشر بيانات شخصية عن أشخاص آخرين دون إذن أو أساس قانوني واضح.</p>
       <ul>
         <li>الأسماء الكاملة إذا كانت مرتبطة باتهامات أو معلومات حساسة.</li>
         <li>العناوين وأرقام الهواتف والبريد الإلكتروني.</li>
@@ -710,29 +462,23 @@
       </ul>
 
       <h2>14. تحديث سياسة الخصوصية</h2>
-
       <p>
         قد يتم تحديث هذه السياسة عند تغيير طريقة عمل الموقع أو إضافة خدمات جديدة أو تعديل القوانين أو السياسات الداخلية.
       </p>
-
       <p>
         عند وجود تغيير مهم، قد يتم إشعار الكتّاب أو طلب الموافقة على النسخة الجديدة قبل الاستمرار في استخدام حساب الكاتب.
       </p>
 
       <h2 id="contact">15. التواصل بخصوص الخصوصية</h2>
-
       <p>
         لطلبات الخصوصية أو الاستفسارات المتعلقة بالبيانات، يجب التواصل مع إدارة HK Global Blog عبر البريد الرسمي للموقع.
       </p>
-
       <div class="notice warning">
-        ضعي هنا بريد التواصل الرسمي قبل نشر السياسة بشكل نهائي، مثل:
-        <br />
+        ضعي هنا بريد التواصل الرسمي قبل نشر السياسة بشكل نهائي، مثل:<br />
         <code>privacy@your-domain.com</code>
       </div>
 
       <h2>16. الإقرار النهائي</h2>
-
       <div class="notice success">
         باستخدام الموقع أو إنشاء حساب كاتب أو نشر مقال، يقر المستخدم أو الكاتب بأنه قرأ سياسة الخصوصية وفهم كيفية استخدام البيانات داخل HK Global Blog.
       </div>
@@ -742,7 +488,7 @@
         <a href="terms.html">شروط الاستخدام</a>
         <a href="disclaimer.html">إخلاء المسؤولية</a>
         <a href="employee-register.html">تسجيل كاتب</a>
-        <a href="create-post.html">دخول الكتّاب</a>
+        <a href="hk-writers-access.html">بوابة الكتّاب</a>
         <a href="admin.html">لوحة المدير</a>
       </div>
 

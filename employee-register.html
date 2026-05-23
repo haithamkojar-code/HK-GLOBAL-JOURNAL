@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>تسجيل كاتب | HK Global Blog</title>
+  <meta name="description" content="صفحة خاصة لتسجيل حساب كاتب في HK Global Blog عبر رابط دعوة من المدير." />
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
 
   <style>
@@ -18,40 +20,46 @@
       --border: #e5e7eb;
       --primary: #2563eb;
       --primary2: #1d4ed8;
-      --success: #16a34a;
       --danger: #dc2626;
+      --success: #16a34a;
       --warning: #f59e0b;
       --soft: #f8fafc;
-      --radius: 20px;
-      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+      --radius: 22px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.24);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Tahoma, sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.42), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.36), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.16), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
     }
 
     header {
-      padding: 18px;
       color: #fff;
+      padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .header-inner {
       max-width: 980px;
       margin: auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 14px;
       flex-wrap: wrap;
     }
@@ -60,8 +68,10 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 900;
       font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      text-decoration: none;
     }
 
     .logo {
@@ -76,41 +86,207 @@
       box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
     }
 
+    .top-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
     .container {
       max-width: 980px;
       margin: auto;
-      padding: 20px 18px 70px;
+      padding: 28px 18px 70px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 24px;
-      backdrop-filter: blur(12px);
+      padding: 26px;
       margin-bottom: 20px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 38px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      left: -70px;
+      bottom: -70px;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: inline-flex;
+      background: #eef2ff;
+      color: #1e40af;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 16px;
     }
 
     h1, h2, h3 {
       margin: 0 0 12px;
-      line-height: 1.25;
+      line-height: 1.35;
     }
 
-    h1 {
-      font-size: clamp(28px, 4vw, 44px);
+    h1 { font-size: clamp(30px, 5vw, 48px); }
+    h2 { font-size: 25px; }
+    h3 { font-size: 20px; }
+
+    p, li {
+      color: #334155;
+      line-height: 1.85;
+      font-size: 16px;
     }
 
-    h2 {
-      font-size: 23px;
+    ul { padding-right: 22px; }
+
+    .muted { color: var(--muted); }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
     }
 
-    p {
-      line-height: 1.8;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
-    .muted {
-      color: var(--muted);
+    label {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 7px;
+      color: #111827;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 14px 15px;
+      font-size: 16px;
+      outline: none;
+      font-family: inherit;
+      background: #fff;
+    }
+
+    input:read-only {
+      background: #f8fafc;
+      color: #64748b;
+      cursor: not-allowed;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.7;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .check-row input {
+      width: auto;
+      margin-top: 4px;
+      transform: scale(1.15);
+    }
+
+    .check-row a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--primary2); }
+
+    .btn-dark {
+      background: #020617;
+      color: #fff;
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
     }
 
     .status {
@@ -143,132 +319,38 @@
       color: #92400e;
     }
 
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    label {
-      display: block;
-      font-weight: 800;
-      margin-bottom: 7px;
-      color: #111827;
-    }
-
-    input {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 15px;
-      font-size: 16px;
-      outline: none;
-      background: #fff;
-    }
-
-    input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
-    }
-
-    input[readonly] {
-      background: #f8fafc;
-      color: #475569;
-    }
-
-    .legal-box {
+    .info-box {
       background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .check-row {
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: 10px;
-      align-items: start;
-      line-height: 1.75;
-      font-weight: 700;
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.8;
       color: #334155;
+      margin-top: 14px;
     }
 
-    .check-row input {
-      width: 18px;
-      height: 18px;
-      margin-top: 5px;
-      box-shadow: none;
-    }
-
-    .legal-links {
-      display: flex;
-      flex-wrap: wrap;
+    .steps {
+      display: grid;
       gap: 10px;
-      margin-top: 8px;
+      margin-top: 14px;
     }
 
-    .legal-links a {
-      text-decoration: none;
-      color: #1d4ed8;
-      background: #eef2ff;
-      border-radius: 999px;
-      padding: 9px 12px;
-      font-weight: 900;
-      font-size: 14px;
+    .step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      color: #334155;
+      line-height: 1.7;
     }
 
-    .btn {
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-weight: 900;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: 0.18s;
-      font-family: inherit;
+    .step strong {
+      color: #0f172a;
+      display: block;
+      margin-bottom: 4px;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     footer {
       color: rgba(255,255,255,0.72);
@@ -277,26 +359,12 @@
       font-size: 14px;
     }
 
-    @media (max-width: 760px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .legal-links {
-        flex-direction: column;
-      }
-
-      .legal-links a {
-        text-align: center;
-      }
-
-      .card {
-        padding: 20px;
-      }
+    @media (max-width: 860px) {
+      header { position: static; }
+      .hero, .grid { grid-template-columns: 1fr; }
+      .top-links, .actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .card, .hero-panel { padding: 20px; }
     }
   </style>
 </head>
@@ -304,103 +372,109 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">
+      <a class="brand" href="index.html" aria-label="HK Global Blog">
         <div class="logo">HK</div>
         <div>
           <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل الكتّاب</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل كاتب</small>
         </div>
-      </div>
+      </a>
 
-      <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+      <nav class="top-links" aria-label="روابط خاصة">
+        <a class="btn btn-light" href="hk-writers-access.html">بوابة الكتّاب</a>
+        <a class="btn btn-light" href="index.html">صفحة الزوار</a>
+      </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <h1>تسجيل حساب كاتب</h1>
-      <p class="muted">
-        هذه الصفحة تعمل فقط من رابط دعوة أرسله المدير. يجب استخدام نفس البريد الموجود في الدعوة.
-      </p>
-      <div id="pageStatus" class="status">جاري قراءة رابط الدعوة...</div>
+    <section class="hero">
+      <div class="hero-panel">
+        <div class="hero-content">
+          <div class="eyebrow">دعوة خاصة</div>
+          <h1>تسجيل حساب كاتب</h1>
+          <p>
+            هذه الصفحة مخصصة للكاتب الذي استلم رابط دعوة من إدارة HK Global Blog. لا يمكن إنشاء حساب كاتب بدون دعوة صالحة.
+          </p>
+          <div id="pageStatus" class="status warning">جاري قراءة الدعوة...</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:0;">
+        <h2>خطوات التفعيل</h2>
+        <div class="steps">
+          <div class="step">
+            <strong>1. افتح رابط الدعوة</strong>
+            يجب أن يكون الرابط مرسلًا من المدير فقط.
+          </div>
+          <div class="step">
+            <strong>2. أنشئ كلمة مرور</strong>
+            استخدم كلمة مرور قوية لا تقل عن 8 أحرف.
+          </div>
+          <div class="step">
+            <strong>3. أكّد البريد الإلكتروني</strong>
+            بعد التأكيد، ارجع إلى نفس الرابط لتفعيل صلاحية الكاتب.
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="card" id="registerCard">
       <h2>بيانات الكاتب</h2>
+      <p class="muted">
+        سيتم حفظ اسم الكاتب وبريده ومعرّف الحساب مع المقالات التي ينشرها، لتوضيح المسؤولية عن المحتوى.
+      </p>
 
       <form id="registerForm">
         <div class="grid">
           <div>
-            <label for="nameInput">اسم الكاتب الكامل</label>
-            <input id="nameInput" type="text" placeholder="اكتب الاسم الكامل" maxlength="80" required />
+            <label for="nameInput">اسم الكاتب</label>
+            <input id="nameInput" type="text" placeholder="اكتب اسم الكاتب" minlength="2" maxlength="80" required />
           </div>
 
           <div>
             <label for="emailInput">البريد الإلكتروني</label>
-            <input id="emailInput" type="email" placeholder="writer@example.com" maxlength="120" required />
+            <input id="emailInput" type="email" placeholder="name@example.com" autocomplete="email" readonly required />
           </div>
         </div>
 
         <div class="grid">
           <div>
             <label for="passwordInput">كلمة المرور</label>
-            <input id="passwordInput" type="password" placeholder="8 أحرف على الأقل" minlength="8" maxlength="80" required />
+            <input id="passwordInput" type="password" placeholder="كلمة مرور قوية" minlength="8" autocomplete="new-password" required />
           </div>
 
           <div>
             <label for="passwordConfirmInput">تأكيد كلمة المرور</label>
-            <input id="passwordConfirmInput" type="password" placeholder="أعد كتابة كلمة المرور" minlength="8" maxlength="80" required />
+            <input id="passwordConfirmInput" type="password" placeholder="أعد كتابة كلمة المرور" minlength="8" autocomplete="new-password" required />
           </div>
         </div>
 
-        <div class="legal-box">
-          <h2>الموافقة القانونية</h2>
+        <label class="check-row" for="agreeInput">
+          <input id="agreeInput" type="checkbox" required />
+          <span>
+            أوافق على
+            <a href="employee-contract.html" target="_blank" rel="noopener">عقد مسؤولية الكاتب</a>
+            و
+            <a href="terms.html" target="_blank" rel="noopener">شروط الاستخدام</a>
+            و
+            <a href="privacy.html" target="_blank" rel="noopener">سياسة الخصوصية</a>
+            و
+            <a href="disclaimer.html" target="_blank" rel="noopener">إخلاء المسؤولية</a>.
+          </span>
+        </label>
 
-          <label class="check-row">
-            <input id="contractCheck" type="checkbox" required />
-            <span>
-              أوافق على عقد مسؤولية الكاتب، وأقرّ أن كل محتوى أنشره من حسابي يكون تحت مسؤوليتي.
-            </span>
-          </label>
-
-          <label class="check-row">
-            <input id="termsCheck" type="checkbox" required />
-            <span>
-              أوافق على شروط الاستخدام، وأتعهد بعدم نشر محتوى غير قانوني أو مضلل أو مخالف لحقوق الآخرين.
-            </span>
-          </label>
-
-          <label class="check-row">
-            <input id="privacyCheck" type="checkbox" required />
-            <span>
-              أوافق على سياسة الخصوصية، وأفهم أنه سيتم حفظ اسمي وبريدي وUID وتاريخ الموافقة لأغراض إدارة الحساب والمسؤولية التحريرية.
-            </span>
-          </label>
-
-          <label class="check-row">
-            <input id="disclaimerCheck" type="checkbox" required />
-            <span>
-              أوافق على إخلاء المسؤولية، وأفهم أن إدارة الموقع تستطيع مراجعة أو تعديل أو حذف المحتوى المخالف.
-            </span>
-          </label>
-
-          <div class="legal-links">
-            <a href="employee-contract.html" target="_blank">عقد مسؤولية الكاتب</a>
-            <a href="terms.html" target="_blank">شروط الاستخدام</a>
-            <a href="privacy.html" target="_blank">سياسة الخصوصية</a>
-            <a href="disclaimer.html" target="_blank">إخلاء المسؤولية</a>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" id="submitBtn" type="submit">
-          إنشاء الحساب وتفعيل الكاتب
-        </button>
+        <button class="btn btn-primary" id="submitBtn" type="submit">تفعيل حساب الكاتب</button>
       </form>
+
+      <div class="info-box">
+        إذا أنشأت الحساب لأول مرة، ستصلك رسالة تأكيد إلى بريدك. بعد الضغط على رابط التأكيد، افتح نفس رابط الدعوة مرة ثانية واكتب كلمة المرور نفسها لإكمال التفعيل.
+      </div>
     </section>
   </main>
 
   <footer>
-    HK Global Blog © Writer Area
+    HK Global Blog © Writer Registration
   </footer>
 
   <script type="module">
@@ -413,8 +487,7 @@
       sendEmailVerification,
       updateProfile,
       signOut,
-      reload,
-      getIdToken
+      reload
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
     import {
@@ -422,6 +495,7 @@
       ref,
       get,
       set,
+      update,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
@@ -445,56 +519,45 @@
     const pageStatus = document.getElementById("pageStatus");
     const registerCard = document.getElementById("registerCard");
     const registerForm = document.getElementById("registerForm");
-
     const nameInput = document.getElementById("nameInput");
     const emailInput = document.getElementById("emailInput");
     const passwordInput = document.getElementById("passwordInput");
     const passwordConfirmInput = document.getElementById("passwordConfirmInput");
-
-    const contractCheck = document.getElementById("contractCheck");
-    const termsCheck = document.getElementById("termsCheck");
-    const privacyCheck = document.getElementById("privacyCheck");
-    const disclaimerCheck = document.getElementById("disclaimerCheck");
-
+    const agreeInput = document.getElementById("agreeInput");
     const submitBtn = document.getElementById("submitBtn");
 
-    const params = new URLSearchParams(window.location.search);
-    const inviteKeyFromUrl = cleanText(params.get("invite") || "", 180);
-    const emailFromUrl = normalizeEmail(params.get("email") || "");
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteKey = cleanText(urlParams.get("invite") || "", 180);
 
-    if (emailFromUrl) {
-      emailInput.value = emailFromUrl;
-      emailInput.readOnly = true;
-    }
+    let currentInvite = null;
 
-    if (!inviteKeyFromUrl || !emailFromUrl) {
-      setStatus("error", "رابط الدعوة غير صحيح أو ناقص. اطلب من المدير إنشاء رابط جديد.");
-      registerCard.classList.add("hidden");
-    } else {
-      loadInviteInfo(inviteKeyFromUrl, emailFromUrl);
-    }
+    loadInvite();
 
     registerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      if (!currentInvite) {
+        setStatus("error", "لا توجد دعوة صالحة للتسجيل.");
+        return;
+      }
 
       const name = cleanText(nameInput.value, 80);
       const email = normalizeEmail(emailInput.value);
       const password = String(passwordInput.value || "");
       const passwordConfirm = String(passwordConfirmInput.value || "");
-      const inviteKey = inviteKeyFromUrl;
 
-      if (!inviteKey) {
-        setStatus("error", "رابط الدعوة غير صحيح.");
+      if (!name || name.length < 2) {
+        setStatus("error", "اسم الكاتب قصير جدًا.");
         return;
       }
 
-      if (!name || !isValidEmail(email)) {
-        setStatus("error", "اكتب اسم الكاتب والبريد الإلكتروني بشكل صحيح.");
+      if (!isValidEmail(email)) {
+        setStatus("error", "البريد الإلكتروني غير صحيح.");
         return;
       }
 
-      if (email !== emailFromUrl) {
-        setStatus("error", "يجب استخدام نفس البريد الموجود في رابط الدعوة.");
+      if (normalizeEmail(currentInvite.email) !== email) {
+        setStatus("error", "هذا البريد لا يطابق بريد الدعوة.");
         return;
       }
 
@@ -504,171 +567,138 @@
       }
 
       if (password !== passwordConfirm) {
-        setStatus("error", "كلمة المرور وتأكيد كلمة المرور غير متطابقين.");
+        setStatus("error", "كلمتا المرور غير متطابقتين.");
         return;
       }
 
-      if (!contractCheck.checked || !termsCheck.checked || !privacyCheck.checked || !disclaimerCheck.checked) {
-        setStatus("error", "يجب الموافقة على العقد والشروط وسياسة الخصوصية وإخلاء المسؤولية.");
+      if (!agreeInput.checked) {
+        setStatus("error", "يجب الموافقة على العقد والشروط والسياسات.");
         return;
       }
 
       submitBtn.disabled = true;
-      submitBtn.textContent = "جاري المعالجة...";
+      submitBtn.textContent = "جاري التفعيل...";
 
       try {
         let user = auth.currentUser;
 
-        if (!user) {
-          try {
-            const cred = await createUserWithEmailAndPassword(auth, email, password);
-            user = cred.user;
-
-            await updateProfile(user, {
-              displayName: name
-            });
-
-            await sendEmailVerification(user, {
-              url: window.location.href
-            });
-
-            await signOut(auth);
-
-            setStatus(
-              "warning",
-              "تم إنشاء الحساب. أرسلنا رابط تحقق إلى بريدك. افتح البريد واضغط رابط التحقق، ثم ارجع إلى نفس رابط الدعوة واكتب نفس كلمة المرور لتفعيل حساب الكاتب."
-            );
-
-            submitBtn.disabled = false;
-            submitBtn.textContent = "إنشاء الحساب وتفعيل الكاتب";
-            return;
-          } catch (error) {
-            if (error.code === "auth/email-already-in-use") {
-              const cred = await signInWithEmailAndPassword(auth, email, password);
-              user = cred.user;
-            } else {
-              throw error;
-            }
-          }
+        if (!user || normalizeEmail(user.email) !== email) {
+          user = await createOrLoginWriter(email, password, name);
         }
 
-        await finalizeWriterAccount(user, name, email, inviteKey);
+        await reload(user);
+
+        if (!user.emailVerified) {
+          await sendEmailVerification(user, {
+            url: window.location.href
+          });
+
+          await signOut(auth);
+
+          setStatus(
+            "warning",
+            "تم إنشاء الحساب أو تسجيل الدخول، لكن يجب تأكيد البريد أولًا. أرسلنا رسالة تأكيد إلى بريدك. بعد التأكيد افتح نفس رابط الدعوة مرة ثانية لإكمال التفعيل."
+          );
+
+          submitBtn.disabled = false;
+          submitBtn.textContent = "تفعيل حساب الكاتب";
+          return;
+        }
+
+        const writerData = {
+          uid: user.uid,
+          name: name,
+          email: email,
+          role: "employee",
+          displayRole: "writer",
+          active: true,
+          inviteKey: inviteKey,
+          acceptedTerms: true,
+          termsVersion: currentInvite.termsVersion || TERMS_VERSION,
+          acceptedAt: serverTimestamp()
+        };
+
+        await set(ref(db, "employees/" + user.uid), writerData);
+        await set(ref(db, "users/" + user.uid), writerData);
+
+        await update(ref(db, "employeeInvites/" + inviteKey), {
+          accepted: true,
+          acceptedAt: Date.now(),
+          acceptedByUid: user.uid,
+          acceptedByEmail: email
+        });
+
+        setStatus("success", "تم تفعيل حساب الكاتب بنجاح. سيتم تحويلك إلى بوابة الكتّاب.");
+
+        setTimeout(() => {
+          window.location.href = "hk-writers-access.html";
+        }, 1400);
 
       } catch (error) {
         console.error(error);
         setStatus("error", getFriendlyError(error));
         submitBtn.disabled = false;
-        submitBtn.textContent = "إنشاء الحساب وتفعيل الكاتب";
+        submitBtn.textContent = "تفعيل حساب الكاتب";
       }
     });
 
-    async function loadInviteInfo(inviteKey, email) {
-      try {
-        const inviteSnap = await get(ref(db, "employeeInvites/" + inviteKey));
+    async function loadInvite() {
+      registerCard.classList.add("hidden");
 
-        if (!inviteSnap.exists()) {
-          setStatus("error", "هذه الدعوة غير موجودة أو تم حذفها. اطلب من المدير إنشاء دعوة جديدة.");
-          registerCard.classList.add("hidden");
-          return;
-        }
-
-        const invite = inviteSnap.val();
-
-        if (!invite.active) {
-          setStatus("error", "هذه الدعوة معطلة. تواصل مع المدير.");
-          registerCard.classList.add("hidden");
-          return;
-        }
-
-        if (normalizeEmail(invite.email) !== email) {
-          setStatus("error", "بريد الدعوة لا يطابق البريد الموجود في الرابط.");
-          registerCard.classList.add("hidden");
-          return;
-        }
-
-        if (invite.name) {
-          nameInput.value = invite.name;
-        }
-
-        setStatus("success", "تم التحقق من رابط الدعوة. أكمل البيانات ثم وافق على الشروط.");
-        nameInput.focus();
-      } catch (error) {
-        console.error(error);
-        setStatus("error", "فشل قراءة الدعوة: " + getFriendlyError(error));
-        registerCard.classList.add("hidden");
-      }
-    }
-
-    async function finalizeWriterAccount(user, name, email, inviteKey) {
-      await reload(user);
-      await getIdToken(user, true);
-
-      if (!user.emailVerified) {
-        await sendEmailVerification(user, {
-          url: window.location.href
-        });
-
-        await signOut(auth);
-
-        setStatus(
-          "warning",
-          "يجب تأكيد البريد أولًا. أرسلنا رابط تحقق جديد إلى بريدك. بعد الضغط على رابط التحقق، ارجع إلى نفس رابط الدعوة واكتب نفس كلمة المرور."
-        );
-
-        submitBtn.disabled = false;
-        submitBtn.textContent = "إنشاء الحساب وتفعيل الكاتب";
+      if (!inviteKey) {
+        setStatus("error", "رابط الدعوة ناقص. يجب فتح الرابط الذي أرسله المدير.");
         return;
       }
 
-      const inviteSnap = await get(ref(db, "employeeInvites/" + inviteKey));
+      try {
+        const inviteSnap = await get(ref(db, "employeeInvites/" + inviteKey));
+        const invite = inviteSnap.val();
 
-      if (!inviteSnap.exists()) {
-        throw new Error("الدعوة غير موجودة أو تم حذفها.");
+        if (!invite) {
+          setStatus("error", "هذه الدعوة غير موجودة.");
+          return;
+        }
+
+        if (invite.active !== true) {
+          setStatus("error", "هذه الدعوة غير مفعّلة أو تم تعطيلها من المدير.");
+          return;
+        }
+
+        if (!isValidEmail(invite.email)) {
+          setStatus("error", "الدعوة لا تحتوي على بريد صحيح.");
+          return;
+        }
+
+        currentInvite = invite;
+        nameInput.value = invite.name || "";
+        emailInput.value = normalizeEmail(invite.email);
+        registerCard.classList.remove("hidden");
+
+        setStatus("success", "الدعوة صحيحة. يمكنك إنشاء حساب الكاتب أو إكمال التفعيل بعد تأكيد البريد.");
+      } catch (error) {
+        console.error(error);
+        setStatus("error", "فشل قراءة الدعوة: " + getFriendlyError(error));
       }
+    }
 
-      const invite = inviteSnap.val();
+    async function createOrLoginWriter(email, password, name) {
+      try {
+        const credential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = credential.user;
 
-      if (!invite.active) {
-        throw new Error("هذه الدعوة معطلة. تواصل مع المدير.");
+        await updateProfile(user, {
+          displayName: name
+        });
+
+        return user;
+      } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          const credential = await signInWithEmailAndPassword(auth, email, password);
+          return credential.user;
+        }
+
+        throw error;
       }
-
-      if (normalizeEmail(invite.email) !== email) {
-        throw new Error("البريد الإلكتروني لا يطابق بريد الدعوة.");
-      }
-
-      if (normalizeEmail(user.email) !== email) {
-        throw new Error("حساب Firebase لا يطابق بريد الدعوة.");
-      }
-
-      const writerData = {
-        uid: user.uid,
-        name: name,
-        email: email,
-        role: "employee",
-        displayRole: "writer",
-        active: true,
-        inviteKey: inviteKey,
-        invitedBy: invite.createdBy || "",
-        invitedByEmail: invite.createdByEmail || "",
-        acceptedTerms: true,
-        termsVersion: TERMS_VERSION,
-        acceptedAt: serverTimestamp()
-      };
-
-      await set(ref(db, "users/" + user.uid), writerData);
-      await set(ref(db, "employees/" + user.uid), writerData);
-
-      setStatus(
-        "success",
-        "تم تفعيل حساب الكاتب بنجاح. يمكنه الآن الدخول إلى صفحة نشر المقالات."
-      );
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "تم تفعيل الكاتب";
-
-      setTimeout(() => {
-        window.location.href = "create-post.html";
-      }, 2500);
     }
 
     function setStatus(type, message) {
@@ -681,31 +711,28 @@
     }
 
     function cleanText(value, maxLength) {
-      return String(value || "")
-        .replace(/[\u0000-\u001F\u007F]/g, "")
-        .replace(/\s+/g, " ")
-        .trim()
-        .slice(0, maxLength);
+      return String(value || "").trim().replace(/\s+/g, " ").slice(0, maxLength);
     }
 
     function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email || ""));
     }
 
     function getFriendlyError(error) {
       if (!error) return "حدث خطأ غير معروف.";
 
-      const code = error.code || "";
+      const code = error.code || error.message || "";
 
       const messages = {
         "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
-        "auth/weak-password": "كلمة المرور ضعيفة. استخدم 8 أحرف على الأقل.",
-        "auth/email-already-in-use": "هذا البريد لديه حساب سابق. اكتب نفس كلمة المرور التي أنشأت بها الحساب لتفعيل الكاتب.",
-        "auth/wrong-password": "كلمة المرور غير صحيحة.",
+        "auth/email-already-in-use": "يوجد حساب بهذا البريد. اكتبي كلمة المرور نفسها لإكمال التفعيل.",
+        "auth/weak-password": "كلمة المرور ضعيفة. استخدمي 8 أحرف على الأقل.",
+        "auth/wrong-password": "كلمة المرور غير صحيحة لهذا البريد.",
         "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
+        "auth/too-many-requests": "تمت محاولات كثيرة. انتظري قليلًا ثم جربي مرة أخرى.",
         "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
-        "PERMISSION_DENIED": "لا توجد صلاحية. تأكد من Realtime Database Rules وأن البريد تم تأكيده.",
-        "permission-denied": "لا توجد صلاحية. تأكد من Realtime Database Rules وأن البريد تم تأكيده."
+        "PERMISSION_DENIED": "لا توجد صلاحية في قاعدة البيانات. تأكدي من قواعد Realtime Database.",
+        "permission-denied": "لا توجد صلاحية في قاعدة البيانات. تأكدي من قواعد Realtime Database."
       };
 
       return messages[code] || error.message || String(error);
