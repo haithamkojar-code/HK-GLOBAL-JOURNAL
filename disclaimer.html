@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>إخلاء المسؤولية | HK Global Blog</title>
+  <meta name="description" content="إخلاء المسؤولية لمنصة HK Global Blog بخصوص المحتوى المنشور والروابط الخارجية ومسؤولية الكتّاب والموظفين." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --soft: #f8fafc;
+      --radius: 20px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(220, 38, 38, 0.16), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      color: #fff;
+      padding: 18px;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px 18px 70px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h2 {
+      font-size: 23px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    p, li {
+      line-height: 1.9;
+      color: #334155;
+      font-size: 16px;
+    }
+
+    ul {
+      padding-right: 22px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .notice {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      line-height: 1.8;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .danger {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .warning {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    .success {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .meta div {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 10px 13px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary2);
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header,
+      .btn-row,
+      footer {
+        display: none;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links a,
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div>HK Global Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Disclaimer</small>
+        </div>
+      </div>
+
+      <a class="btn btn-light" href="index.html">الصفحة الرئيسية</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>إخلاء المسؤولية</h1>
+
+      <p class="muted">
+        توضح هذه الصفحة حدود مسؤولية HK Global Blog بخصوص المحتوى المنشور، آراء الكتّاب، الروابط الخارجية، ودقة المعلومات.
+      </p>
+
+      <div class="meta">
+        <div>
+          <strong>اسم المنصة:</strong>
+          <br />
+          HK Global Blog
+        </div>
+
+        <div>
+          <strong>نسخة الصفحة:</strong>
+          <br />
+          2026-05-23
+        </div>
+
+        <div>
+          <strong>نطاق التطبيق:</strong>
+          <br />
+          الزوار، المستخدمون، الموظفون، الكتّاب، والمدير
+        </div>
+
+        <div>
+          <strong>الغرض:</strong>
+          <br />
+          توضيح حدود المسؤولية وعدم اعتبار المحتوى نصيحة متخصصة
+        </div>
+      </div>
+
+      <div class="notice danger" style="margin-top:18px;">
+        ملاحظة مهمة: هذه الصفحة قالب تنظيمي عام وليست استشارة قانونية نهائية. إذا كان الموقع سيعمل رسميًا أو تجاريًا داخل الاتحاد الأوروبي أو ألمانيا، يجب مراجعة محامٍ أو مستشار قانوني.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1. معلومات عامة فقط</h2>
+      <p>
+        المحتوى المنشور في HK Global Blog مخصص لأغراض إعلامية وتعليمية وثقافية عامة فقط. لا يجب اعتبار أي محتوى منشور داخل الموقع نصيحة قانونية أو مالية أو طبية أو استثمارية أو مهنية متخصصة.
+      </p>
+
+      <p>
+        يجب على المستخدمين الرجوع إلى مختصين أو مصادر رسمية قبل اتخاذ أي قرار مهم بناءً على المعلومات المنشورة في الموقع.
+      </p>
+
+      <h2>2. عدم ضمان اكتمال أو دقة المعلومات</h2>
+      <p>
+        تسعى إدارة HK Global Blog إلى تقديم محتوى واضح ومفيد، لكن لا تضمن أن جميع المعلومات المنشورة دقيقة أو كاملة أو محدثة دائمًا.
+      </p>
+
+      <p>
+        قد تحتوي المقالات على أخطاء أو معلومات قديمة أو آراء شخصية أو تحليلات قابلة للنقاش. لذلك يجب على القارئ التحقق من المعلومات المهمة من مصادر رسمية وموثوقة.
+      </p>
+
+      <h2>3. آراء الكتّاب والموظفين</h2>
+      <p>
+        المقالات أو الآراء أو التحليلات المنشورة باسم كاتب أو موظف تعبّر عن صاحبها، ولا تعبّر بالضرورة عن الرأي الرسمي لإدارة HK Global Blog.
+      </p>
+
+      <p>
+        يتحمل الكاتب أو الموظف المسؤولية عن المحتوى الذي ينشره من حسابه، وخاصة إذا كان المحتوى يتضمن رأيًا شخصيًا أو تحليلًا أو ادعاءً يحتاج إلى مصدر.
+      </p>
+
+      <h2>4. مسؤولية الموظفين عن المنشورات</h2>
+      <p>
+        كل موظف أو كاتب يحصل على حساب نشر داخل المنصة يوافق على عقد مسؤولية الموظف وشروط الاستخدام وسياسة الخصوصية قبل تفعيل حسابه.
+      </p>
+
+      <p>
+        يتم حفظ اسم الموظف وبريده ومعرّف المستخدم UID وتاريخ قبول الشروط لأغراض إدارة الصلاحيات وتحديد المسؤولية التحريرية.
+      </p>
+
+      <p>
+        يلتزم الموظف بعدم نشر أي محتوى غير قانوني أو مضلل أو مخالف لحقوق الآخرين أو لحقوق النشر أو الخصوصية.
+      </p>
+
+      <h2>5. المحتوى السياسي والاقتصادي والاجتماعي</h2>
+      <p>
+        قد تنشر المنصة مقالات تتعلق بموضوعات سياسية أو اقتصادية أو اجتماعية. هذا المحتوى قد يحتوي على تحليل أو رأي أو تفسير للأحداث، ولا يجب اعتباره حقيقة مطلقة أو توجيهًا رسميًا.
+      </p>
+
+      <p>
+        عند التعامل مع موضوعات حساسة، يجب على القارئ مقارنة المعلومات مع مصادر متعددة ورسمية قبل تكوين رأي أو اتخاذ قرار.
+      </p>
+
+      <h2>6. المحتوى المالي أو الاقتصادي</h2>
+      <p>
+        أي معلومات اقتصادية أو مالية منشورة في الموقع تكون لأغراض عامة فقط، ولا تمثل نصيحة استثمارية أو توصية بشراء أو بيع أو اتخاذ قرار مالي.
+      </p>
+
+      <p>
+        يتحمل المستخدم وحده مسؤولية قراراته المالية، ويجب عليه استشارة مختص مالي مؤهل عند الحاجة.
+      </p>
+
+      <h2>7. المحتوى القانوني</h2>
+      <p>
+        أي معلومات قانونية منشورة داخل الموقع تكون معلومات عامة فقط، ولا تشكل استشارة قانونية ولا تنشئ علاقة محامٍ وعميل.
+      </p>
+
+      <p>
+        يجب الرجوع إلى محامٍ أو مستشار قانوني مختص للحصول على نصيحة قانونية مناسبة للحالة الفردية.
+      </p>
+
+      <h2>8. المحتوى الطبي أو الصحي</h2>
+      <p>
+        إذا احتوى الموقع على معلومات طبية أو صحية، فهي معلومات عامة فقط ولا تغني عن استشارة الطبيب أو المختص الصحي.
+      </p>
+
+      <p>
+        لا يجب استخدام أي محتوى صحي منشور في الموقع لتشخيص حالة أو علاج مرض أو إيقاف علاج دون استشارة مختص.
+      </p>
+
+      <h2>9. الروابط الخارجية</h2>
+      <p>
+        قد تحتوي المقالات أو صفحات الموقع على روابط إلى مواقع أو مصادر خارجية. هذه الروابط توفر للمستخدمين معلومات إضافية، لكن HK Global Blog لا تتحكم في محتوى تلك المواقع أو سياساتها أو دقتها أو أمانها.
+      </p>
+
+      <p>
+        فتح الروابط الخارجية يكون على مسؤولية المستخدم، ويجب عليه مراجعة شروط وسياسات الخصوصية الخاصة بالمواقع الخارجية.
+      </p>
+
+      <h2>10. الصور والمواد الخارجية</h2>
+      <p>
+        قد تستخدم بعض المقالات صورًا أو موادًا من مصادر خارجية أو مرخصة أو مقدمة من الكتّاب. يتحمل الكاتب أو الموظف مسؤولية التأكد من حق استخدام هذه المواد قبل نشرها.
+      </p>
+
+      <p>
+        إذا اعتقد أي شخص أن صورة أو مادة منشورة تنتهك حقوقه، يمكنه التواصل مع الإدارة لطلب المراجعة أو الحذف.
+      </p>
+
+      <h2>11. التوفر التقني للموقع</h2>
+      <p>
+        تسعى الإدارة إلى إبقاء الموقع متاحًا قدر الإمكان، لكنها لا تضمن أن الموقع سيعمل دون انقطاع أو أخطاء أو مشاكل تقنية.
+      </p>
+
+      <p>
+        قد يتوقف الموقع مؤقتًا بسبب تحديثات أو مشاكل في الاستضافة أو خدمات خارجية مثل Firebase أو الإنترنت أو إعدادات المتصفح.
+      </p>
+
+      <h2>12. الأمان الرقمي</h2>
+      <p>
+        تستخدم المنصة أنظمة تسجيل دخول وقواعد صلاحيات لتقليل الوصول غير المصرح به، لكن لا يمكن ضمان الحماية المطلقة لأي نظام إلكتروني.
+      </p>
+
+      <p>
+        يجب على الموظفين استخدام كلمات مرور قوية، وعدم مشاركة بيانات الدخول، وإبلاغ الإدارة فورًا عند الاشتباه في استخدام غير مصرح به للحساب.
+      </p>
+
+      <h2>13. البلاغات عن المحتوى المخالف</h2>
+      <p>
+        إذا رأى المستخدم محتوى يعتقد أنه غير قانوني أو مضلل أو ينتهك حقوقه أو خصوصيته، يمكنه التواصل مع إدارة HK Global Blog وطلب مراجعة المحتوى.
+      </p>
+
+      <p>
+        قد تقوم الإدارة بمراجعة البلاغ واتخاذ الإجراء المناسب، مثل التصحيح أو الإخفاء أو الحذف أو التواصل مع الكاتب المسؤول.
+      </p>
+
+      <h2>14. حدود المسؤولية</h2>
+      <p>
+        إلى الحد الذي يسمح به القانون، لا تتحمل HK Global Blog أو إدارتها مسؤولية أي خسارة أو ضرر مباشر أو غير مباشر ينتج عن استخدام الموقع أو الاعتماد على المحتوى المنشور فيه.
+      </p>
+
+      <p>
+        يشمل ذلك، دون حصر، أي خسارة مالية أو ضرر معنوي أو قرارات شخصية أو مهنية أو قانونية أو طبية اتخذها المستخدم بناءً على محتوى الموقع.
+      </p>
+
+      <h2>15. حق الإدارة في التعديل والحذف</h2>
+      <p>
+        تحتفظ إدارة HK Global Blog بحق تعديل أو إخفاء أو حذف أي محتوى إذا كان مخالفًا للقانون أو الشروط أو الخصوصية أو حقوق النشر أو سياسة المنصة.
+      </p>
+
+      <p>
+        كما يحق للإدارة تعطيل حسابات الموظفين أو الكتّاب عند وجود مخالفة أو إساءة استخدام أو خطر على الموقع أو المستخدمين.
+      </p>
+
+      <h2>16. تحديث إخلاء المسؤولية</h2>
+      <p>
+        قد يتم تحديث هذه الصفحة من وقت لآخر لتوضيح المسؤوليات أو إضافة بنود جديدة أو التوافق مع تغييرات طريقة عمل الموقع أو القوانين.
+      </p>
+
+      <p>
+        عند تحديث الصفحة، يمكن تغيير تاريخ النسخة في الأعلى. استمرار استخدام الموقع بعد التحديث يعني الاطلاع على النسخة الجديدة.
+      </p>
+
+      <h2>17. التواصل</h2>
+      <p>
+        لأي طلب يتعلق بالمحتوى أو الحقوق أو الخصوصية أو البلاغات، يمكن التواصل مع إدارة HK Global Blog عبر البريد الرسمي:
+      </p>
+
+      <div class="notice warning">
+        contact@example.com
+        <br />
+        يجب استبدال هذا البريد بالبريد الحقيقي قبل نشر الموقع رسميًا.
+      </div>
+
+      <h2>18. الإقرار النهائي</h2>
+      <div class="notice success">
+        باستخدام HK Global Blog أو قراءة المحتوى أو إنشاء حساب موظف أو نشر مقالات، يقر المستخدم أو الموظف بأنه فهم حدود المسؤولية الموضحة في هذه الصفحة.
+      </div>
+
+      <div class="footer-links">
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="employee-contract.html">عقد مسؤولية الموظف</a>
+        <a href="employee-register.html">تسجيل الموظف</a>
+        <a href="admin.html">لوحة المدير</a>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="window.print()">طباعة / حفظ PDF</button>
+        <a class="btn btn-soft" href="index.html">العودة للرئيسية</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    HK Global Blog © Disclaimer
+  </footer>
+</body>
+</html>
