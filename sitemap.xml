@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hk-lens.github.io/HK-GLOBAL-BLOG/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://blog.vorq.group/</loc>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hk-lens.github.io/HK-GLOBAL-BLOG/terms.html</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://blog.vorq.group/legal.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.vorq.group/terms.html</loc>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hk-lens.github.io/HK-GLOBAL-BLOG/privacy.html</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://blog.vorq.group/privacy.html</loc>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hk-lens.github.io/HK-GLOBAL-BLOG/disclaimer.html</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://blog.vorq.group/disclaimer.html</loc>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

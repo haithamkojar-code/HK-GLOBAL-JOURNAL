@@ -1,72 +1,379 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Notice - HK LENS</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; line-height: 1.6; padding: 40px; max-width: 900px; margin: auto; color: #333; background-color: #fcfcfc; }
-        h1 { color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; font-size: 2em; }
-        h2 { color: #444; margin-top: 30px; font-size: 1.4em; border-left: 4px solid #1a73e8; padding-left: 15px; }
-        h3 { font-size: 1.1em; color: #555; }
-        .section { margin-bottom: 25px; padding: 20px; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        p { margin: 10px 0; }
-        strong { color: #000; }
-        a { color: #1a73e8; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .disclaimer-box { font-size: 0.9em; color: #666; font-style: italic; border-top: 1px solid #eee; padding-top: 20px; margin-top: 40px; text-align: center; }
-        .back-link { display: block; margin-bottom: 20px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>المعلومات القانونية | VORQ Blog</title>
+  <meta name="description" content="المعلومات القانونية الخاصة بـ VORQ Blog، المالك، بيانات التواصل، حدود المسؤولية، حقوق الملكية، والقوانين المعمول بها." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --soft: #f8fafc;
+      --warning: #fef3c7;
+      --warning-text: #92400e;
+      --success: #dcfce7;
+      --success-text: #166534;
+      --radius: 22px;
+      --shadow: 0 25px 70px rgba(2, 6, 23, 0.20);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.34), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    header {
+      color: #fff;
+      padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .logo-img {
+      height: 52px;
+      width: auto;
+      max-width: 190px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 7px 10px;
+      box-shadow: 0 14px 35px rgba(2, 6, 23, 0.25);
+    }
+
+    .top-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 28px 18px 70px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.35; }
+    h1 { font-size: clamp(30px, 4vw, 46px); }
+    h2 { font-size: 24px; padding-top: 10px; border-top: 1px solid var(--border); }
+    h2:first-child { border-top: 0; padding-top: 0; }
+    h3 { font-size: 19px; }
+    p, li { color: #334155; line-height: 1.9; font-size: 16px; }
+    ul { padding-right: 22px; }
+    a { color: #1d4ed8; font-weight: 900; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .muted { color: var(--muted); }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary2); }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .meta div, .notice {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      color: #334155;
+      line-height: 1.8;
+    }
+
+    .meta strong { display: block; color: #0f172a; margin-bottom: 4px; }
+    .notice { margin-top: 14px; font-weight: 700; }
+    .notice.warning { background: var(--warning); color: var(--warning-text); border-color: #fde68a; }
+    .notice.success { background: var(--success); color: var(--success-text); border-color: #bbf7d0; }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .toc a {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      display: block;
+      color: #1e40af;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      background: #eef2ff;
+      color: #1e40af;
+      border-radius: 999px;
+      padding: 10px 13px;
+    }
+
+    footer {
+      color: rgba(255,255,255,0.76);
+      text-align: center;
+      padding: 24px 18px 36px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @media print {
+      body { background: #fff; }
+      header, footer, .top-links, .footer-links { display: none; }
+      .container { padding: 0; }
+      .card { box-shadow: none; border: 0; }
+    }
+
+    @media (max-width: 760px) {
+      header { position: static; }
+      .meta, .toc { grid-template-columns: 1fr; }
+      .top-links { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .card { padding: 20px; }
+      .logo-img { max-width: 160px; }
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="VORQ Blog">
+        <img class="logo-img" src="vorq-group-logo.svg" alt="VORQ Group" />
+        <div>
+          <div>VORQ Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">Juridisk information</small>
+        </div>
+      </a>
 
-    <a href="index.html" class="back-link">← Zurück zur Startseite</a>
-    
-    <h1>Legal Notice (Impressum)</h1>
-
-    <div class="section">
-        <h2>Angaben gemäß § 5 DDG</h2>
-        <p>
-            <strong>Betreiber:</strong> Haitham Kojar<br>
-            <strong>Name des Blogs:</strong> HK LENS<br>
-            <strong>Anschrift:</strong> Ziegelstr 26, 42289 Wuppertal, Deutschland
-        </p>
-
-        <h2>Kontakt</h2>
-        <p>
-            <strong>Telefon:</strong> +46 700 672 809<br>
-            <strong>E-Mail:</strong> hk.global.blog@gmail.com<br>
-            <strong>Webseite:</strong> <a href="https://hk-lens.github.io/HK-GLOBAL-BLOG/">https://hk-lens.github.io/HK-GLOBAL-BLOG/</a>
-        </p>
-
-        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-        <p>
-            Haitham Kojar<br>
-            Ziegelstr 26, 42289 Wuppertal, Deutschland
-        </p>
+      <nav class="top-links" aria-label="روابط الموقع">
+        <a class="btn btn-light" href="index.html">الرئيسية</a>
+        <a class="btn btn-light" href="terms.html">الشروط</a>
+        <a class="btn btn-light" href="privacy.html">الخصوصية</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="section">
-        <h2>Haftungsausschluss (Disclaimer)</h2>
-        
-        <h3>Haftung für Inhalte</h3>
-        <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+  <main class="container">
+    <section class="card">
+      <h1>المعلومات القانونية</h1>
+      <p class="muted">
+        هذه الصفحة تعرض بيانات المالك والمشغّل، معلومات التواصل، حدود المسؤولية، حقوق الملكية، والقوانين العامة المرتبطة باستخدام VORQ Blog.
+      </p>
 
-        <h3>Haftung für Links</h3>
-        <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      <div class="meta">
+        <div>
+          <strong>اسم الموقع</strong>
+          VORQ Blog
+        </div>
+        <div>
+          <strong>الشركة / الجهة المالكة</strong>
+          VORQ Group
+        </div>
+        <div>
+          <strong>العنوان</strong>
+          Konserthusgatan 18D<br />578 31 Aneby<br />Sverige
+        </div>
+        <div>
+          <strong>البريد الإلكتروني</strong>
+          <a href="mailto:info@vorq.group">info@vorq.group</a>
+        </div>
+        <div>
+          <strong>الشعار</strong>
+          Vision • Operations • Reach • Quality
+        </div>
+        <div>
+          <strong>نسخة الصفحة</strong>
+          2026-05-24
+        </div>
+      </div>
 
-        <h3>Urheberrecht</h3>
-        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
-    </div>
+      <div class="notice warning">
+        تنبيه: VORQ Group / VORQ Blog في مرحلة تثبيت الاسم والبيانات القانونية. سيتم إضافة رقم التسجيل، رقم ضريبة القيمة المضافة، أو أي ترخيص مطلوب عند توفره أو عند بدء نشاط يحتاج ذلك قانونياً.
+      </div>
 
-    <div class="section">
-        <h2>Streitbeilegung</h2>
-        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>. <br>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-    </div>
+      <div class="toc">
+        <a href="#operator">1. بيانات المالك والمشغّل</a>
+        <a href="#nature">2. طبيعة الموقع</a>
+        <a href="#content">3. مسؤولية المحتوى</a>
+        <a href="#links">4. الروابط الخارجية</a>
+        <a href="#copyright">5. حقوق الملكية</a>
+        <a href="#privacy">6. الخصوصية والبيانات</a>
+        <a href="#law">7. القانون المعمول به</a>
+        <a href="#contact">8. التواصل والبلاغات</a>
+      </div>
+    </section>
 
-    <div class="disclaimer-box">
-        <strong>Hinweis:</strong> HK LENS ist ein persönlicher Blog von Haitham Kojar zu Analyse- und Bildungszwecken in den Bereichen Politik, Wirtschaft und Marketing. Alle Analysen werden mit Unterstützung von KI-Technologien verfeinert.
-    </div>
+    <section class="card">
+      <h2 id="operator">1. بيانات المالك والمشغّل</h2>
+      <p>
+        يتم تشغيل VORQ Blog من قبل VORQ Group. تستخدم هذه الصفحة البريد الإلكتروني والعنوان المذكورين أعلاه للتواصل القانوني والإداري المتعلق بالموقع.
+      </p>
+      <p>
+        إذا تم تسجيل كيان قانوني رسمي أو إضافة رقم منظمة / رقم ضريبي / ترخيص مستقبلاً، سيتم تحديث هذه الصفحة والصفحات القانونية المرتبطة بها.
+      </p>
 
+      <h2 id="nature">2. طبيعة الموقع</h2>
+      <p>
+        VORQ Blog منصة تدوين ونشر أفكار وتحليلات ومقالات شخصية أو تحريرية حول المجتمع، الاقتصاد، السياسة، الأسرة، الثقافة، الحياة، والتكنولوجيا.
+      </p>
+      <p>
+        المدونة ليست وكالة أنباء، وليست منصة إخبارية رسمية، وليست جهة حكومية أو قانونية أو مالية أو طبية. المحتوى المنشور مخصص للقراءة العامة والمناقشة والتفكير ولا يعتبر نصيحة مهنية.
+      </p>
+
+      <h2 id="content">3. مسؤولية المحتوى</h2>
+      <p>
+        المقالات المنشورة باسم كاتب معين تعبر عن رأي الكاتب ومسؤوليته، ولا تعبر بالضرورة عن رأي VORQ Group أو إدارة VORQ Blog.
+      </p>
+      <p>
+        يلتزم الكاتب بعدم نشر محتوى غير قانوني أو مضلل أو منتهك للحقوق أو الخصوصية. تحتفظ الإدارة بحق مراجعة أو إخفاء أو حذف المحتوى المخالف أو الذي يشكل خطراً قانونياً أو أمنياً أو أخلاقياً على المنصة.
+      </p>
+
+      <h2 id="links">4. الروابط الخارجية</h2>
+      <p>
+        قد تحتوي المقالات على روابط خارجية لمواقع أو مصادر لا تملكها VORQ Group. وجود رابط خارجي لا يعني ضمان محتوى ذلك الموقع أو الموافقة عليه.
+      </p>
+      <p>
+        عند فتح رابط خارجي، يخضع المستخدم لشروط وسياسة الخصوصية الخاصة بالموقع الخارجي.
+      </p>
+
+      <h2 id="copyright">5. حقوق النشر والملكية الفكرية</h2>
+      <p>
+        جميع النصوص والتصاميم والعناصر التي تنشئها VORQ Blog أو VORQ Group محمية بحقوق الملكية الفكرية ما لم يذكر خلاف ذلك.
+      </p>
+      <p>
+        يجب على الكتّاب عدم نشر صور أو نصوص أو شعارات أو ملفات مملوكة للغير دون حق قانوني أو ترخيص أو إذن مناسب. يمكن لأصحاب الحقوق التواصل معنا لطلب مراجعة أي محتوى يعتقدون أنه ينتهك حقوقهم.
+      </p>
+
+      <h2 id="privacy">6. الخصوصية والبيانات الشخصية</h2>
+      <p>
+        عند استخدام الموقع أو إنشاء حساب كاتب، قد تتم معالجة بيانات مثل الاسم، البريد الإلكتروني، معرّف الحساب، بيانات المقالات، وسجلات تقنية ضرورية للتشغيل والأمان.
+      </p>
+      <p>
+        لمزيد من التفاصيل حول البيانات، مدة الحفظ، وحقوق المستخدمين، يرجى قراءة <a href="privacy.html">سياسة الخصوصية</a>.
+      </p>
+
+      <h2 id="law">7. القانون المعمول به وحل النزاعات</h2>
+      <p>
+        يخضع استخدام الموقع للقوانين المعمول بها في السويد والاتحاد الأوروبي حسب طبيعة الاستخدام ومكان المستخدم والالتزامات القانونية ذات الصلة.
+      </p>
+      <p>
+        قبل أي إجراء رسمي، يُفضّل التواصل معنا عبر البريد الإلكتروني لمحاولة حل المشكلة بشكل مباشر وهادئ.
+      </p>
+
+      <h2 id="contact">8. التواصل والبلاغات</h2>
+      <p>
+        يمكن إرسال البلاغات القانونية أو طلبات مراجعة المحتوى أو طلبات الخصوصية إلى:
+        <br />
+        <a href="mailto:info@vorq.group">info@vorq.group</a>
+      </p>
+      <p>
+        عند إرسال بلاغ، يُفضّل ذكر رابط الصفحة أو المقال، وصف المشكلة، وسبب طلب المراجعة.
+      </p>
+
+      <div class="notice success">
+        باستخدام VORQ Blog، يقر المستخدم بأنه فهم أن الموقع منصة تدوين وتحليل وأفكار، وأن المحتوى لا يغني عن المصادر الرسمية أو الاستشارة المهنية المتخصصة.
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+        <a href="employee-contract.html">عقد مسؤولية الكاتب</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>VORQ Blog © VORQ Group</div>
+    <div>Konserthusgatan 18D, 578 31 Aneby, Sverige · info@vorq.group</div>
+    <div>Vision • Operations • Reach • Quality</div>
+  </footer>
 </body>
 </html>

@@ -1,4 +1,26 @@
+# robots.txt for VORQ Blog
+# Owned and operated by VORQ Group
+# Contact: info@vorq.group
+# Slogan: Vision • Operations • Reach • Quality
+
 User-agent: *
 Allow: /
 
-Sitemap: https://hk-lens.github.io/HK-GLOBAL-BLOG/sitemap.xml
+# Private writer/admin pages
+Disallow: /admin.html
+Disallow: /create-post.html
+Disallow: /manage-posts.html
+Disallow: /employee-register.html
+Disallow: /hk-writers-access.html
+
+# Legal/contract pages that should stay accessible by direct link,
+# while individual HTML pages may still use meta noindex when needed.
+Allow: /legal.html
+Allow: /terms.html
+Allow: /privacy.html
+Allow: /disclaimer.html
+Allow: /employee-contract.html
+
+# Add the final sitemap URL after the domain is confirmed.
+# Example:
+# Sitemap: https://blog.vorq.group/sitemap.xml

@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>HK Global Blog | مدونة عالمية للفكر والمجتمع والاقتصاد</title>
-  <meta name="description" content="HK Global Blog مدونة عالمية للمقالات السياسية والاقتصادية والاجتماعية والأسرية والثقافية بلغات متعددة." />
-  <meta name="keywords" content="HK Global Blog, مدونة, مقالات, سياسة, اقتصاد, مجتمع, أسرة, ثقافة, آراء, تحليل" />
+  <title>VORQ Blog | مدونة للأفكار والتحليل والمجتمع</title>
+  <meta name="description" content="VORQ Blog مدونة رقمية تابعة لـ VORQ Group للمقالات الشخصية والتحليلية حول المجتمع والاقتصاد والسياسة والأسرة والحياة والثقافة بلغات متعددة." />
+  <meta name="keywords" content="VORQ Blog, VORQ Group, مدونة, مقالات, سياسة, اقتصاد, مجتمع, أسرة, ثقافة, آراء, تحليل" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="HK Global Blog | مدونة عالمية" />
-  <meta property="og:description" content="منصة مقالات عالمية للفكر والمجتمع والاقتصاد والثقافة." />
-  <meta property="og:site_name" content="HK Global Blog" />
+  <meta property="og:title" content="VORQ Blog | مدونة أفكار وتحليل" />
+  <meta property="og:description" content="منصة مقالات شخصية وتحليلية تابعة لـ VORQ Group للفكر والمجتمع والاقتصاد والثقافة." />
+  <meta property="og:site_name" content="VORQ Blog" />
 
   <style>
     :root {
@@ -80,16 +80,23 @@
       color: #fff;
     }
 
-    .logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 190px;
+      display: block;
+      filter: drop-shadow(0 14px 26px rgba(2, 6, 23, 0.24));
+    }
+
+    .brand-text {
       display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 900;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+      gap: 2px;
+    }
+
+    .owner-line {
+      color: rgba(255,255,255,0.72);
+      font-weight: 700;
+      font-size: 13px;
     }
 
     .top-links {
@@ -448,6 +455,28 @@
       font-size: 14px;
     }
 
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .about-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .about-box strong {
+      display: block;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
     dialog {
       width: min(900px, calc(100% - 26px));
       border: 0;
@@ -557,7 +586,8 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .legal-grid {
+      .legal-grid,
+      .about-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -598,15 +628,16 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="HK Global Blog">
-        <div class="logo">HK</div>
-        <div>
-          <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">مدونة عالمية</small>
+      <a class="brand" href="index.html" aria-label="VORQ Blog">
+        <img class="logo-img" src="vorq-group-logo.svg" alt="VORQ Group" />
+        <div class="brand-text">
+          <div>VORQ Blog</div>
+          <small class="owner-line">Ägs av VORQ Group</small>
         </div>
       </a>
 
       <nav class="top-links" aria-label="روابط الموقع">
+        <a class="btn btn-light" href="#about">عن المدونة</a>
         <a class="btn btn-light" href="#posts">المقالات</a>
         <a class="btn btn-light" href="#legal">الشروط والسياسات</a>
       </nav>
@@ -616,14 +647,15 @@
   <main class="container">
     <section class="hero">
       <div class="hero-content">
-        <div class="eyebrow">HK Global Blog</div>
-        <h1>مدونة عالمية للفكر والمجتمع والاقتصاد</h1>
+        <div class="eyebrow">VORQ Blog • VORQ Group</div>
+        <h1>مدونة للأفكار والتحليل والمجتمع</h1>
         <p>
-          منصة لقراءة المقالات والتحليلات والآراء في السياسة والاقتصاد والمجتمع والأسرة والثقافة والتكنولوجيا بلغات متعددة.
+          VORQ Blog هي منصة رقمية تابعة لـ VORQ Group تنشر مقالات شخصية وتحليلية حول المجتمع والاقتصاد والسياسة والأسرة والحياة والثقافة والتكنولوجيا بلغات متعددة.
         </p>
 
         <div class="actions">
           <a class="btn btn-primary" href="#posts">قراءة المقالات</a>
+          <a class="btn btn-soft" href="#about">عن المدونة</a>
           <a class="btn btn-soft" href="#legal">الشروط والسياسات</a>
         </div>
 
@@ -642,6 +674,37 @@
             <strong id="totalLangsStat">0</strong>
             <span>لغة مستخدمة</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="card" id="about">
+      <div class="section-head">
+        <div>
+          <h2>عن VORQ Blog</h2>
+          <p class="muted">
+            VORQ Blog هي مدونة أفكار وتحليل مملوكة ومدارة من VORQ Group، وليست منصة أخبار رسمية أو جهة حكومية أو خدمة استشارة قانونية أو مالية.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        تنشر المدونة نصوصاً شخصية وتحليلية للنقاش والتفكير وتبادل المعرفة. الآراء المنشورة تعبّر عن كتّابها، ويجب على القارئ الرجوع إلى المصادر الرسمية أو المختصين عند اتخاذ قرارات مهمة.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-box">
+          <strong>الشركة المالكة</strong>
+          VORQ Group
+        </div>
+        <div class="about-box">
+          <strong>البريد</strong>
+          info@vorq.group
+        </div>
+        <div class="about-box">
+          <strong>الشعار</strong>
+          Vision • Operations • Reach • Quality
         </div>
       </div>
     </section>
@@ -717,7 +780,7 @@
 
   <dialog id="postDialog">
     <div class="modal-head">
-      <strong>HK Global Blog</strong>
+      <strong>VORQ Blog</strong>
       <button class="close-btn" id="closeDialogBtn" type="button">إغلاق</button>
     </div>
 
@@ -740,7 +803,9 @@
       </div>
 
       <div>
-        HK Global Blog © منصة مقالات عالمية
+        VORQ Blog © منصة مقالات وأفكار تابعة لـ VORQ Group
+        <br />
+        info@vorq.group — Vision • Operations • Reach • Quality
       </div>
     </div>
   </footer>
@@ -886,7 +951,7 @@
 
         const imageHtml = post.imageUrl && isValidUrl(post.imageUrl)
           ? `<img src="${escapeHtml(post.imageUrl)}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.remove();" />`
-          : `<span>HK</span>`;
+          : `<span>VORQ</span>`;
 
         card.innerHTML = `
           <div class="post-image">${imageHtml}</div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>إدارة المقالات | HK Global Blog</title>
+  <title>إدارة المقالات | VORQ Blog</title>
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -73,15 +73,24 @@
     }
 
     .logo {
-      width: 46px;
-      height: 46px;
+      width: 54px;
+      height: 54px;
       border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      background: rgba(255, 255, 255, 0.96);
       display: grid;
       place-items: center;
-      color: #fff;
-      font-weight: 900;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      flex: 0 0 auto;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 5px;
     }
 
     .top-links {
@@ -292,10 +301,10 @@
   <header>
     <div class="header-inner">
       <a class="brand" href="hk-writers-access.html">
-        <div class="logo">HK</div>
+        <div class="logo"><img src="vorq-group-logo.svg" alt="VORQ Group" /></div>
         <div>
-          <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">إدارة المقالات</small>
+          <div>VORQ Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">إدارة المقالات • VORQ Group</small>
         </div>
       </a>
 
@@ -469,7 +478,7 @@
     </section>
   </main>
 
-  <footer>HK Global Blog © Manage Posts</footer>
+  <footer>VORQ Blog © Manage Posts • VORQ Group • info@vorq.group • Vision • Operations • Reach • Quality</footer>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";

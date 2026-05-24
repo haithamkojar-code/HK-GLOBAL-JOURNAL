@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>تسجيل كاتب | HK Global Blog</title>
-  <meta name="description" content="صفحة خاصة لتسجيل حساب كاتب في HK Global Blog عبر رابط دعوة من المدير." />
+  <title>تسجيل كاتب | VORQ Blog</title>
+  <meta name="description" content="صفحة خاصة لتسجيل حساب كاتب في VORQ Blog عبر رابط دعوة من المدير. VORQ Blog تابعة لـ VORQ Group." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -75,15 +75,20 @@
     }
 
     .logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 900;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+      width: 190px;
+      max-width: 54vw;
+      height: auto;
+      border-radius: 14px;
+      display: block;
+      background: #fff;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.24);
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
     }
 
     .top-links {
@@ -372,11 +377,13 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="HK Global Blog">
-        <div class="logo">HK</div>
+      <a class="brand" href="index.html" aria-label="VORQ Blog - VORQ Group">
+        <span class="logo" aria-hidden="true">
+          <img src="./vorq-group-logo.svg" alt="VORQ Group" />
+        </span>
         <div>
-          <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل كاتب</small>
+          <div>VORQ Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل كاتب · VORQ Group</small>
         </div>
       </a>
 
@@ -394,7 +401,7 @@
           <div class="eyebrow">دعوة خاصة</div>
           <h1>تسجيل حساب كاتب</h1>
           <p>
-            هذه الصفحة مخصصة للكاتب الذي استلم رابط دعوة من إدارة HK Global Blog. لا يمكن إنشاء حساب كاتب بدون دعوة صالحة.
+            هذه الصفحة مخصصة للكاتب الذي استلم رابط دعوة من إدارة VORQ Blog التابعة لـ VORQ Group. لا يمكن إنشاء حساب كاتب بدون دعوة صالحة.
           </p>
           <div id="pageStatus" class="status warning">جاري قراءة الدعوة...</div>
         </div>
@@ -422,7 +429,7 @@
     <section class="card" id="registerCard">
       <h2>بيانات الكاتب</h2>
       <p class="muted">
-        سيتم حفظ اسم الكاتب وبريده ومعرّف الحساب مع المقالات التي ينشرها، لتوضيح المسؤولية عن المحتوى.
+        سيتم حفظ اسم الكاتب وبريده ومعرّف الحساب مع المقالات التي ينشرها، لتوضيح المسؤولية عن المحتوى. VORQ Blog تابعة لـ VORQ Group، البريد: info@vorq.group.
       </p>
 
       <form id="registerForm">
@@ -474,7 +481,7 @@
   </main>
 
   <footer>
-    HK Global Blog © Writer Registration
+    VORQ Blog © Writer Registration · VORQ Group · info@vorq.group · Vision • Operations • Reach • Quality
   </footer>
 
   <script type="module">

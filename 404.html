@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>الصفحة غير موجودة | HK Global Blog</title>
+  <title>الصفحة غير موجودة | VORQ Blog</title>
+  <meta name="description" content="صفحة خطأ 404 في VORQ Blog، مدونة رقمية تابعة لـ VORQ Group." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -17,6 +18,9 @@
       --muted: #64748b;
       --primary: #2563eb;
       --primary2: #1d4ed8;
+      --accent: #f59e0b;
+      --surface: rgba(255, 255, 255, 0.97);
+      --border: rgba(255, 255, 255, 0.42);
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
 
@@ -30,7 +34,7 @@
       font-family: Arial, Tahoma, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.16), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
       display: grid;
@@ -39,27 +43,53 @@
     }
 
     .card {
-      width: min(760px, 100%);
-      background: rgba(255, 255, 255, 0.97);
-      border: 1px solid rgba(255, 255, 255, 0.42);
-      border-radius: 24px;
+      width: min(780px, 100%);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
       box-shadow: var(--shadow);
-      padding: clamp(24px, 5vw, 44px);
+      padding: clamp(24px, 5vw, 46px);
       text-align: center;
     }
 
     .logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      width: 96px;
+      height: 96px;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent),
+        linear-gradient(135deg, #0f172a, #2563eb 65%, #f59e0b);
       display: grid;
       place-items: center;
       color: #fff;
       font-weight: 900;
-      font-size: 24px;
-      margin: 0 auto 18px;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+      font-size: 20px;
+      letter-spacing: -0.06em;
+      margin: 0 auto 16px;
+      box-shadow: 0 16px 38px rgba(37, 99, 235, 0.35);
+    }
+
+    .brand-name {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+
+    .owner-line {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 16px;
     }
 
     .code {
@@ -79,6 +109,7 @@
       font-size: clamp(30px, 5vw, 52px);
       line-height: 1.25;
       color: #0f172a;
+      letter-spacing: -0.04em;
     }
 
     p {
@@ -86,7 +117,7 @@
       line-height: 1.9;
       font-size: 17px;
       margin: 0 auto 22px;
-      max-width: 560px;
+      max-width: 590px;
     }
 
     .actions {
@@ -133,7 +164,20 @@
       color: var(--muted);
       font-size: 14px;
       margin-top: 22px;
-      line-height: 1.7;
+      line-height: 1.8;
+    }
+
+    .muted strong {
+      color: #334155;
+    }
+
+    .slogan {
+      display: block;
+      margin-top: 6px;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
     }
 
     @media (max-width: 640px) {
@@ -145,18 +189,42 @@
         width: 100%;
       }
     }
+  
+
+    .brand-logo-img {
+      height: 54px;
+      max-width: 230px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
+    }
+
+    .card-logo-img {
+      height: 92px;
+      max-width: 260px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 14px 30px rgba(2, 6, 23, 0.20));
+    }
+
   </style>
 </head>
 
 <body>
   <main class="card">
-    <div class="logo">HK</div>
+    <img src="./vorq-group-logo.svg" alt="VORQ Group" class="card-logo-img" aria-hidden="true">
+    <div class="brand-name">VORQ Blog</div>
+    <div class="owner-line">تابعة لـ VORQ Group</div>
+
     <div class="code">404</div>
 
     <h1>الصفحة غير موجودة</h1>
 
     <p>
-      الرابط الذي فتحته غير صحيح أو تم نقل الصفحة. يمكنك العودة إلى الصفحة الرئيسية وقراءة المقالات المنشورة.
+      الرابط الذي فتحته غير صحيح أو تم نقل الصفحة. يمكنك العودة إلى الصفحة الرئيسية وقراءة المقالات والأفكار المنشورة في VORQ Blog.
     </p>
 
     <div class="actions">
@@ -165,7 +233,8 @@
     </div>
 
     <div class="muted">
-      HK Global Blog © صفحة خطأ مخصصة
+      <strong>VORQ Blog</strong> © صفحة خطأ مخصصة · مملوكة ومدارة من VORQ Group · info@vorq.group
+      <span class="slogan">Vision • Operations • Reach • Quality</span>
     </div>
   </main>
 </body>

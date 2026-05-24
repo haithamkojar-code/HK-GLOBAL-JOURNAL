@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>نشر مقال | HK Global Blog</title>
+  <title>نشر مقال | VORQ Blog</title>
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="صفحة نشر المقالات في VORQ Blog، منصة تدوين تابعة لـ VORQ Group." />
 
   <style>
     :root {
@@ -276,6 +277,27 @@
       .card { padding: 20px; }
       header { position: static; }
     }
+  
+
+    .brand-logo-img {
+      height: 54px;
+      max-width: 230px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
+    }
+
+    .card-logo-img {
+      height: 92px;
+      max-width: 260px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 14px 30px rgba(2, 6, 23, 0.20));
+    }
+
   </style>
 </head>
 
@@ -283,10 +305,10 @@
   <header>
     <div class="header-inner">
       <a class="brand" href="hk-writers-access.html">
-        <div class="logo">HK</div>
+        <img src="./vorq-group-logo.svg" alt="VORQ Group" class="brand-logo-img">
         <div>
-          <div>HK Global Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">نشر مقال</small>
+          <div>VORQ Blog</div>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">نشر مقال · VORQ Group</small>
         </div>
       </a>
 
@@ -306,6 +328,13 @@
         <p class="muted">
           اكتبي المقال هنا، ثم اختاري نشر مباشر أو حفظ كمسودة. يظهر المقال للزوار فقط عندما تكون حالته منشور.
         </p>
+        <div class="info-box">
+          <strong>VORQ Blog</strong> منصة تدوين تابعة لـ <strong>VORQ Group</strong>.
+          <br />
+          البريد: info@vorq.group
+          <br />
+          Vision • Operations • Reach • Quality
+        </div>
         <div id="mainStatus" class="status warning">جاري التحقق من صلاحية الحساب...</div>
       </div>
 
@@ -406,7 +435,7 @@
     <section class="card hidden" id="previewCard">
       <h2>معاينة بطاقة المقال</h2>
       <div class="preview">
-        <div class="preview-image" id="previewImage">HK</div>
+        <div class="preview-image" id="previewImage">VB</div>
         <div class="preview-body">
           <div class="preview-title" id="previewTitle">عنوان المقال</div>
           <div class="preview-meta" id="previewMeta">الكاتب والتاريخ والتصنيف</div>
@@ -417,7 +446,7 @@
   </main>
 
   <footer>
-    HK Global Blog © Create Post
+    VORQ Blog © Create Post · VORQ Group · info@vorq.group · Vision • Operations • Reach • Quality
   </footer>
 
   <script type="module">
@@ -644,9 +673,9 @@
       previewSummary.textContent = summary;
 
       if (imageUrl && isValidHttpUrl(imageUrl)) {
-        previewImage.innerHTML = `<img src="${escapeHtml(imageUrl)}" alt="صورة المقال" onerror="this.parentElement.textContent='HK';" />`;
+        previewImage.innerHTML = `<img src="${escapeHtml(imageUrl)}" alt="صورة المقال" onerror="this.parentElement.textContent='VORQ';" />`;
       } else {
-        previewImage.textContent = "HK";
+        previewImage.textContent = "VORQ";
       }
 
       previewCard.classList.remove("hidden");
@@ -686,9 +715,9 @@
     function getAuthorName() {
       if (currentProfile && currentProfile.name) return cleanText(currentProfile.name, 100);
       if (currentUser && currentUser.displayName) return cleanText(currentUser.displayName, 100);
-      if (currentRoleValue === "admin") return "إدارة HK Global Blog";
+      if (currentRoleValue === "admin") return "إدارة VORQ Blog";
       if (currentUser && currentUser.email) return currentUser.email;
-      return "كاتب HK Global Blog";
+      return "كاتب VORQ Blog";
     }
 
     function getTermsVersion() {
