@@ -1,0 +1,43 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "admins": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && root.child('admins').child(auth.uid).child('active').val() === true"
+      }
+    },
+    "employees": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('admins').child(auth.uid).child('active').val() === true)",
+        ".write": "auth != null && (auth.uid === $uid || root.child('admins').child(auth.uid).child('active').val() === true)"
+      }
+    },
+    "employeeInvites": {
+      "$inviteId": {
+        ".read": true,
+        ".write": "auth != null && root.child('admins').child(auth.uid).child('active').val() === true"
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('admins').child(auth.uid).child('active').val() === true)",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "posts": {
+      "$postId": {
+        ".read": "data.child('status').val() === 'published' || (auth != null && (root.child('admins').child(auth.uid).child('active').val() === true || data.child('authorUid').val() === auth.uid))",
+        ".write": "auth != null && (root.child('admins').child(auth.uid).child('active').val() === true || (!data.exists() && newData.child('authorUid').val() === auth.uid && root.child('employees').child(auth.uid).child('active').val() === true) || (data.exists() && data.child('authorUid').val() === auth.uid && root.child('employees').child(auth.uid).child('active').val() === true))",
+        ".validate": "newData.hasChildren(['title','content','category','status','authorUid','updatedAt'])"
+      }
+    },
+    "reports": {
+      "$reportId": {
+        ".read": "auth != null && root.child('admins').child(auth.uid).child('active').val() === true",
+        ".write": "newData.exists() && !data.exists()"
+      }
+    }
+  }
+}

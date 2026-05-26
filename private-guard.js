@@ -1,13 +1,4 @@
-/*
-  FILE: private-guard.js
-  PROJECT: VORQ Blog / VORQ Digital
-  VERSION: VD-BLOG-PRIVATE-GUARD-2026-05-26-20-13-Europe-Berlin
-  LAST-UPDATED: 2026-05-26
-  LAST-UPDATED-TIME: 20:13 Europe/Berlin
-  STATUS: current-reviewed
-  CHANGE-NOTE: Added version header, Firebase app reuse protection, VORQ Digital context, role-based page protection, safer redirects, and broader writer acceptance checks.
-*/
-
+/* VORQ-FILE: private-guard.js | PROJECT: VORQ Blog / VORQ Digital | VERSION: VD-BLOG-2026-05-26-21-35-Europe-Berlin | LAST-REVIEWED: 2026-05-26 21:35 Europe/Berlin | STATUS: current-reviewed | CHANGE-NOTE: Clean source comments and keep guarded private-page access. */
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
 import {
@@ -32,11 +23,12 @@ const firebaseConfig = {
   measurementId: "G-FSB1QBLZM7"
 };
 
-const VORQ_PROJECT = "VORQ Blog";
-const VORQ_OPERATOR = "VORQ Digital, Inhaber: Haitham Kojar";
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
 
-const LOGIN_REDIRECT = "hk-writers-access.html";
-const PUBLIC_REDIRECT = "index.html";
+const pageName = getCurrentPageName();
+const PUBLIC_REDIRECT = "hk-writers-access.html";
 
 const ADMIN_ONLY_PAGES = new Set([
   "admin.html"
@@ -47,56 +39,41 @@ const WRITER_AND_ADMIN_PAGES = new Set([
   "manage-posts.html"
 ]);
 
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
+lockPage();
 
-const pageName = getCurrentPageName();
-const requiredAccess = getRequiredAccess(pageName);
-
-if (!requiredAccess) {
-  unlockPage();
-} else {
-  lockPage();
-
-  onAuthStateChanged(auth, async (user) => {
-    try {
-      if (!user) {
-        redirectToLogin();
-        return;
-      }
-
-      const access = await getUserAccess(user.uid);
-
-      if (requiredAccess === "admin" && access.isAdmin) {
-        unlockPage();
-        return;
-      }
-
-      if (requiredAccess === "writerOrAdmin" && (access.isAdmin || access.isWriter)) {
-        unlockPage();
-        return;
-      }
-
-      redirectToPublic();
-    } catch (error) {
-      console.error(`${VORQ_PROJECT} private guard error:`, error);
-      redirectToLogin();
+onAuthStateChanged(auth, async (user) => {
+  try {
+    if (!user) {
+      redirectOut();
+      return;
     }
-  });
-}
 
-function getRequiredAccess(name) {
-  if (ADMIN_ONLY_PAGES.has(name)) {
-    return "admin";
+    const access = await getUserAccess(user.uid);
+
+    if (ADMIN_ONLY_PAGES.has(pageName)) {
+      if (access.isAdmin) {
+        unlockPage();
+        return;
+      }
+      redirectOut();
+      return;
+    }
+
+    if (WRITER_AND_ADMIN_PAGES.has(pageName)) {
+      if (access.isAdmin || access.isWriter) {
+        unlockPage();
+        return;
+      }
+      redirectOut();
+      return;
+    }
+
+    unlockPage();
+  } catch (error) {
+    console.error("VORQ Blog private guard error:", error);
+    redirectOut();
   }
-
-  if (WRITER_AND_ADMIN_PAGES.has(name)) {
-    return "writerOrAdmin";
-  }
-
-  return null;
-}
+});
 
 async function getUserAccess(uid) {
   const adminSnap = await get(ref(db, "admins/" + uid));
@@ -105,79 +82,47 @@ async function getUserAccess(uid) {
   const isAdmin = adminValue === true || (adminValue && adminValue.active === true);
 
   if (isAdmin) {
-    return {
-      isAdmin: true,
-      isWriter: false
-    };
+    return { isAdmin: true, isWriter: false };
   }
 
   const writerSnap = await get(ref(db, "employees/" + uid));
   const writerValue = writerSnap.val();
 
-  const writerIsActive = Boolean(writerValue && writerValue.active === true);
-
-  const writerAcceptedRequiredDocuments = Boolean(
-    writerValue && (
-      writerValue.acceptedTerms === true ||
-      writerValue.termsAccepted === true ||
-      writerValue.accountTermsAccepted === true ||
-      writerValue.contractAccepted === true ||
-      writerValue.writerContractAccepted === true
-    )
+  const isWriter = Boolean(
+    writerValue &&
+    writerValue.active === true &&
+    writerValue.acceptedTerms === true
   );
 
-  return {
-    isAdmin: false,
-    isWriter: writerIsActive && writerAcceptedRequiredDocuments
-  };
+  return { isAdmin: false, isWriter };
 }
 
 function getCurrentPageName() {
   const path = window.location.pathname || "";
-  const parts = path.split("/").filter(Boolean);
-  const lastPart = parts.length ? parts[parts.length - 1] : "index.html";
+  const last = path.split("/").filter(Boolean).pop() || "index.html";
 
-  if (!lastPart.includes(".")) {
-    return (lastPart + ".html").toLowerCase();
+  if (!last.includes(".")) {
+    return (last + ".html").toLowerCase();
   }
 
-  return lastPart.toLowerCase();
+  return last.toLowerCase();
 }
 
 function lockPage() {
   document.documentElement.style.visibility = "hidden";
-  document.documentElement.setAttribute("data-vorq-private-guard", "locked");
 }
 
 function unlockPage() {
   document.documentElement.style.visibility = "visible";
-  document.documentElement.setAttribute("data-vorq-private-guard", "unlocked");
 }
 
-function redirectToLogin() {
-  safeRedirect(LOGIN_REDIRECT);
-}
-
-function redirectToPublic() {
-  safeRedirect(PUBLIC_REDIRECT);
-}
-
-function safeRedirect(target) {
+function redirectOut() {
   const current = getCurrentPageName();
-  const targetName = String(target || PUBLIC_REDIRECT).toLowerCase();
 
-  if (current === targetName) {
+  if (current === PUBLIC_REDIRECT) {
     unlockPage();
     return;
   }
 
-  window.location.replace(target);
+  window.location.replace(PUBLIC_REDIRECT);
 }
-
-window.VORQ_PRIVATE_GUARD_INFO = Object.freeze({
-  project: VORQ_PROJECT,
-  operator: VORQ_OPERATOR,
-  page: pageName,
-  requiredAccess,
-  version: "VD-BLOG-PRIVATE-GUARD-2026-05-26-20-13-Europe-Berlin"
-});

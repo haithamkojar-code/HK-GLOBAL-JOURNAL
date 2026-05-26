@@ -1,0 +1,32 @@
+/* VORQ-FILE: firebase-storage.rules | PROJECT: VORQ Blog / VORQ Digital | VERSION: VD-BLOG-2026-05-26-21-35-Europe-Berlin | LAST-REVIEWED: 2026-05-26 21:35 Europe/Berlin | STATUS: current-reviewed */
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isImage() {
+      return request.resource != null
+        && request.resource.contentType.matches('image/(jpeg|jpg|png|webp|gif)');
+    }
+
+    function isSmallImage() {
+      return request.resource != null
+        && request.resource.size < 5 * 1024 * 1024;
+    }
+
+    match /post-images/{uid}/{fileName} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn()
+        && request.auth.uid == uid
+        && isImage()
+        && isSmallImage();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
