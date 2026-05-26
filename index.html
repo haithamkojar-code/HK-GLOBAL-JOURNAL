@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- VORQ-FILE: index.html | PROJECT: VORQ Blog / VORQ Digital | VERSION: VD-BLOG-2026-05-26-22-58-Europe-Berlin| LAST-REVIEWED: 2026-05-26 22:58 Europe/Berlin| STATUS: current-reviewed | CHANGE-NOTE: Added centralized homepage-only dynamic red trial notice through vorq-header-notice.js. -->
+<!-- VORQ-FILE: index.html | PROJECT: VORQ Blog / VORQ Digital | VERSION: VD-BLOG-2026-05-26-23-20-Europe-Berlin | LAST-REVIEWED: 2026-05-26 23:20 Europe/Berlin | STATUS: current-reviewed | CHANGE-NOTE: Added inline homepage-only red dynamic trial notice inside header; no external notice file required. -->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -92,6 +92,57 @@
     .owner-line { color: rgba(255,255,255,0.72); font-weight: 700; font-size: 13px; }
 
     .top-links { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+    .homepage-trial-notice {
+      max-width: 1200px;
+      margin: 14px auto 0;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: linear-gradient(120deg, #7f1d1d, #dc2626, #991b1b, #ef4444);
+      background-size: 300% 300%;
+      animation: trialNoticeBg 6s ease-in-out infinite;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow: 0 14px 34px rgba(127, 29, 29, 0.34);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-weight: 900;
+      line-height: 1.8;
+    }
+
+    .homepage-trial-notice strong {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+
+    .homepage-trial-notice span {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .homepage-trial-notice a {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    @keyframes trialNoticeBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .container { max-width: 1200px; margin: auto; padding: 28px 18px 70px; }
 
     .hero {
@@ -285,6 +336,9 @@
       .top-links, .actions { flex-direction: column; width: 100%; }
       .btn { width: 100%; }
       .filters, .posts-grid, .stat-grid { grid-template-columns: 1fr; }
+
+      .homepage-trial-notice { align-items: stretch; }
+      .homepage-trial-notice a { width: 100%; text-align: center; }
       .hero, .card { padding: 20px; }
       .post-image { height: 150px; }
     }
@@ -308,6 +362,14 @@
         <a class="btn btn-light" href="#legal">الشروط والسياسات</a>
       </nav>
     </div>
+
+    <div class="homepage-trial-notice" role="status" aria-live="polite">
+      <strong>تنبيه</strong>
+      <span id="homepageTrialNoticeText">الموقع في مرحلة التشغيل التجريبي. قد يتم تعديل المحتوى والصفحات قبل الإطلاق النهائي.</span>
+      <a href="notice-action.html">صفحة البلاغات</a>
+      <a href="mailto:info@vorq.group">البريد الرسمي</a>
+    </div>
+
   </header>
 
   <main class="container">
@@ -674,5 +736,25 @@
       return map[value] || value || "غير محدد";
     }
   </script>
+
+  <script>
+    (() => {
+      const noticeText = document.getElementById("homepageTrialNoticeText");
+      if (!noticeText) return;
+
+      const messages = [
+        "الموقع في مرحلة التشغيل التجريبي. قد يتم تعديل المحتوى والصفحات قبل الإطلاق النهائي.",
+        "للإبلاغ عن خطأ تقني أو محتوى يحتاج مراجعة، يرجى استخدام صفحة البلاغات أو البريد الرسمي.",
+        "نعمل حاليًا على مراجعة الروابط والمحتوى والصفحات القانونية قبل الإطلاق النهائي."
+      ];
+
+      let index = 0;
+      window.setInterval(() => {
+        index = (index + 1) % messages.length;
+        noticeText.textContent = messages[index];
+      }, 4200);
+    })();
+  </script>
+
 </body>
 </html>
