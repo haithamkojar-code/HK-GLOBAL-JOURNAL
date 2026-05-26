@@ -1,121 +1,106 @@
 VORQ Blog - قائمة الرفع والاختبار
-تابع لـ VORQ Group
-البريد الرسمي: info@vorq.group
-الشعار النصي: Vision • Operations • Reach • Quality
-العنوان: Konserthusgatan 18D, 578 31 Aneby, Sverige
+FILE: upload-checklist.txt
+PROJECT: VORQ Blog / VORQ Digital
+VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
+LAST-UPDATED: 2026-05-26
+LAST-UPDATED-TIME: 20:03 Europe/Berlin
+STATUS: current-reviewed
+CHANGE-NOTE: Updated deployment checklist to VORQ Digital legal operator, German address, Arabic-only Blog scope, and current reviewed file set.
+
+الهوية الحالية:
+- اسم المشروع الظاهر: VORQ Blog
+- المظلة/العلامة التجارية: VORQ Digital
+- المشغّل القانوني: VORQ Digital, Inhaber: Haitham Kojar
+- العنوان القانوني: Ziegelstraße 26, 42289 Wuppertal, Deutschland
+- البريد الرسمي: info@vorq.group
+- الشعار النصي: Vision • Operations • Reach • Quality
+- لغة المرحلة الحالية: العربية فقط
 
 مهم:
-هذه القائمة خاصة بتجربة موقع المدونة على GitHub Pages.
-اسم الموقع داخل الصفحات أصبح VORQ Blog، لكن روابط GitHub Pages قد تبقى باسم المستودع القديم إلى أن يتم تغيير اسم المستودع أو ربط نطاق جديد.
+هذه القائمة خاصة برفع واختبار موقع VORQ Blog. إذا بقي رابط GitHub Pages باسم مستودع قديم فهذا اسم تقني للرابط فقط، وليس هوية الموقع الظاهرة.
 
-ارفعي هذه الملفات فقط إلى GitHub Pages، في نفس مكان index.html:
+ارفَع الملفات العامة واللازمة فقط في نفس مكان index.html:
 
 1. index.html
-2. hk-writers-access.html
-3. admin.html
-4. create-post.html
-5. manage-posts.html
-6. employee-register.html
-7. employee-contract.html
-8. terms.html
-9. privacy.html
-10. disclaimer.html
-11. legal.html
-12. private-guard.js
-13. robots.txt
-14. sitemap.xml
-15. 404.html
-16. vorq-group-logo.svg
-17. README.md
+2. 404.html
+3. legal.html
+4. terms.html
+5. privacy.html
+6. disclaimer.html
+7. hk-writers-access.html
+8. admin.html
+9. create-post.html
+10. manage-posts.html
+11. employee-register.html
+12. employee-contract.html
+13. private-guard.js
+14. robots.txt
+15. sitemap.xml
+16. firebase.json - فقط عند النشر على Firebase Hosting
+17. vorq-digital-logo.svg - شعار احتياطي/مظلة إذا لم يتم رفع شعار المدونة
+18. vorq-blog-logo.png - عند توفر الشعار النهائي المعتمد للمدونة
 
-مهم جداً بخصوص الشعار:
-- يجب رفع vorq-group-logo.svg بجانب ملفات HTML مباشرة.
-- لا تضعيه داخل مجلد مختلف إلا إذا تم تعديل مساره داخل الصفحات.
-- إذا لم يظهر الشعار بعد الرفع، امسحي كاش المتصفح أو افتحي الصفحة في وضع خفي.
+لا ترفع الملفات الداخلية التالية إلى الموقع العام:
+- VORQ-DIGITAL-INFO.md
+- VORQ-FORDON-INFO.md
+- VORQ-FORDON-INFO_FINAL.md
+- realtime-database-rules.json إذا كان يحتوي قواعد قاعدة البيانات
+- أي ملف .env أو service account أو private key أو credentials
 
-لا ترفعي هذا الملف إلى GitHub إذا كان يحتوي قواعد قاعدة البيانات:
-- realtime-database-rules.json
-
-مكان وضع realtime-database-rules.json:
+مكان وضع realtime-database-rules.json عند استخدامه:
 Firebase Console
 → Realtime Database
 → Rules
-→ انسخي محتوى الملف
+→ انسخ محتوى الملف
 → Publish
 
-روابط الاختبار الحالية على GitHub Pages:
+روابط الاختبار الحالية إذا بقي GitHub Pages مستخدمًا:
+- الصفحة الرئيسية: https://hk-lens.github.io/HK-GLOBAL-BLOG/index.html
+- بوابة الكتّاب: https://hk-lens.github.io/HK-GLOBAL-BLOG/hk-writers-access.html
+- لوحة المدير: https://hk-lens.github.io/HK-GLOBAL-BLOG/admin.html
+- نشر مقال: https://hk-lens.github.io/HK-GLOBAL-BLOG/create-post.html
+- إدارة المقالات: https://hk-lens.github.io/HK-GLOBAL-BLOG/manage-posts.html
+- تسجيل كاتب عبر دعوة: https://hk-lens.github.io/HK-GLOBAL-BLOG/employee-register.html?invite=PUT_INVITE_KEY_HERE
 
-صفحة الزوار:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/index.html
-
-بوابة الكتّاب والمدير:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/hk-writers-access.html
-
-لوحة المدير:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/admin.html
-
-نشر مقال:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/create-post.html
-
-إدارة المقالات:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/manage-posts.html
-
-تسجيل كاتب عبر دعوة:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/employee-register.html?invite=PUT_INVITE_KEY_HERE
-
-الصفحات القانونية:
-https://hk-lens.github.io/HK-GLOBAL-BLOG/legal.html
-https://hk-lens.github.io/HK-GLOBAL-BLOG/terms.html
-https://hk-lens.github.io/HK-GLOBAL-BLOG/privacy.html
-https://hk-lens.github.io/HK-GLOBAL-BLOG/disclaimer.html
-
-روابط مستقبلية عند ربط النطاق الرسمي:
-
-صفحة الزوار:
-https://blog.vorq.group/
-
-بوابة الكتّاب والمدير:
-https://blog.vorq.group/hk-writers-access.html
-
-لوحة المدير:
-https://blog.vorq.group/admin.html
-
-نشر مقال:
-https://blog.vorq.group/create-post.html
-
-إدارة المقالات:
-https://blog.vorq.group/manage-posts.html
-
-تسجيل كاتب عبر دعوة:
-https://blog.vorq.group/employee-register.html?invite=PUT_INVITE_KEY_HERE
-
-الصفحات القانونية:
-https://blog.vorq.group/legal.html
-https://blog.vorq.group/terms.html
-https://blog.vorq.group/privacy.html
-https://blog.vorq.group/disclaimer.html
+روابط النطاق الرسمي عند الربط النهائي:
+- الصفحة الرئيسية: https://blog.vorq.group/
+- بوابة الكتّاب: https://blog.vorq.group/hk-writers-access.html
+- لوحة المدير: https://blog.vorq.group/admin.html
+- نشر مقال: https://blog.vorq.group/create-post.html
+- إدارة المقالات: https://blog.vorq.group/manage-posts.html
+- تسجيل كاتب عبر دعوة: https://blog.vorq.group/employee-register.html?invite=PUT_INVITE_KEY_HERE
+- الشروط: https://blog.vorq.group/terms.html
+- الخصوصية: https://blog.vorq.group/privacy.html
+- إخلاء المسؤولية: https://blog.vorq.group/disclaimer.html
+- المعلومات القانونية: https://blog.vorq.group/legal.html
 
 اختبار مهم بعد الرفع:
 
-1. افتحي صفحة الزوار وتأكدي أن الاسم يظهر VORQ Blog وليس HK Global Blog.
-2. تأكدي أن الشعار الظاهر هو vorq-group-logo.svg وليس شعار HK أو VB.
-3. تأكدي أنه لا يوجد زر مباشر للمدير أو الكتّاب في الصفحة الرئيسية العامة.
-4. افتحي hk-writers-access.html وسجلي دخول المدير.
-5. من لوحة المدير أنشئي دعوة كاتب.
-6. افتحي رابط الدعوة في متصفح آخر أو وضع خفي.
-7. سجلي حساب كاتب جديد.
-8. ادخلي بحساب الكاتب من بوابة الكتّاب.
-9. جربي نشر مقال.
-10. تأكدي أن المقال يظهر في index.html فقط إذا كان status = published.
-11. افتحي legal.html و terms.html و privacy.html و disclaimer.html وتأكدي أن البيانات القانونية هي:
-   - VORQ Blog
-   - VORQ Group
+1. افتح index.html وتأكد أن الاسم الظاهر VORQ Blog.
+2. تأكد أن الصفحة عربية فقط ولا تظهر فلاتر لغات أجنبية.
+3. تأكد أن البيانات القانونية في الصفحات القانونية هي:
+   - VORQ Digital, Inhaber: Haitham Kojar
+   - Ziegelstraße 26, 42289 Wuppertal, Deutschland
    - info@vorq.group
-   - Konserthusgatan 18D, 578 31 Aneby, Sverige
-   - Vision • Operations • Reach • Quality
+4. تأكد من عدم ظهور VORQ Group كمالك قانوني داخل الصفحات المحدثة.
+5. تأكد من عدم ظهور العنوان السويدي القديم.
+6. تأكد من عدم ظهور HK Global أو أسماء قديمة في الواجهة.
+7. افتح hk-writers-access.html وسجل دخول المدير.
+8. من admin.html أنشئ دعوة كاتب.
+9. افتح رابط الدعوة في وضع خفي.
+10. سجل حساب كاتب جديد ووافق على الشروط والخصوصية والعقد وإخلاء المسؤولية.
+11. ادخل بحساب الكاتب من بوابة الكتّاب.
+12. جرب نشر مقال عربي.
+13. تأكد أن المقال يظهر في index.html فقط إذا كان status = published.
+14. افتح manage-posts.html وتأكد أن الكاتب يرى مقالاته فقط، والمدير يرى كل المقالات.
+15. افتح terms.html و privacy.html و disclaimer.html و legal.html وتأكد أن الروابط تعمل.
+16. افتح robots.txt وتأكد أن صفحات الإدارة والكتّاب محظورة عن الفهرسة.
+17. افتح sitemap.xml وتأكد أنه يحتوي الصفحات العامة فقط.
+18. إذا لم يظهر الشعار، امسح كاش المتصفح أو افتح الصفحة في وضع خفي.
 
-ملاحظات:
-- صفحات المدير والكتّاب مخفية عن الصفحة الرئيسية، لكن الحماية الحقيقية من Firebase Authentication وRealtime Database Rules.
-- لا تستخدمي firebase.json الآن إذا كان العمل الحالي على GitHub Pages للتجريب.
-- لاحقًا عند الانتقال إلى Firebase Hosting يمكن إضافة firebase.json.
-- عند شراء أو ربط نطاق blog.vorq.group يجب تحديث sitemap.xml و robots.txt بروابط النطاق النهائي.
+ملاحظات حماية:
+- صفحات المدير والكتّاب يجب أن تبقى noindex/nofollow.
+- الحماية الحقيقية ليست بإخفاء الروابط فقط، بل عبر Firebase Authentication وRealtime Database Rules.
+- كود HTML/JS الأمامي لا يمكن تشفيره تشفيرًا حقيقيًا لأنه يعمل داخل متصفح الزائر.
+- لا تنشر أي أسرار أو مفاتيح Admin SDK أو ملفات credentials في GitHub أو Firebase Hosting.
+- لا تنشر VORQ-DIGITAL-INFO.md لأنه مرجع داخلي للمشروع.

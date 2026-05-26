@@ -1,26 +1,39 @@
-# robots.txt for VORQ Blog
-# Owned and operated by VORQ Group
-# Contact: info@vorq.group
-# Slogan: Vision • Operations • Reach • Quality
+# FILE: robots.txt
+# PROJECT: VORQ Blog / VORQ Digital
+# VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
+# LAST-UPDATED: 2026-05-26
+# LAST-UPDATED-TIME: 20:03 Europe/Berlin
+# STATUS: current-reviewed
+# CHANGE-NOTE: Updated branding to VORQ Digital, blocked private writer/admin pages, and added final sitemap URL.
 
 User-agent: *
 Allow: /
 
-# Private writer/admin pages
+# Private writer/admin pages - not for public indexing
 Disallow: /admin.html
+Disallow: /admin
 Disallow: /create-post.html
+Disallow: /create-post
 Disallow: /manage-posts.html
+Disallow: /manage-posts
 Disallow: /employee-register.html
+Disallow: /employee-register
 Disallow: /hk-writers-access.html
+Disallow: /hk-writers-access
 
-# Legal/contract pages that should stay accessible by direct link,
-# while individual HTML pages may still use meta noindex when needed.
+# Internal reference files must not be indexed or deployed publicly
+Disallow: /VORQ-DIGITAL-INFO.md
+Disallow: /VORQ-FORDON-INFO.md
+Disallow: /VORQ-FORDON-INFO_FINAL.md
+Disallow: /realtime-database-rules.json
+Disallow: /firebase-debug.log
+
+# Public pages
+Allow: /index.html
 Allow: /legal.html
 Allow: /terms.html
 Allow: /privacy.html
 Allow: /disclaimer.html
-Allow: /employee-contract.html
+Allow: /404.html
 
-# Add the final sitemap URL after the domain is confirmed.
-# Example:
-# Sitemap: https://blog.vorq.group/sitemap.xml
+Sitemap: https://blog.vorq.group/sitemap.xml

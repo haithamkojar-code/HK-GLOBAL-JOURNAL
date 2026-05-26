@@ -3,7 +3,6 @@
     "public": ".",
     "cleanUrls": true,
     "trailingSlash": false,
-
     "ignore": [
       "firebase.json",
       ".firebaserc",
@@ -30,115 +29,56 @@
       "**/*.pfx",
       "**/firebase-debug.log",
       "**/firebase-debug.*.log",
-      "**/ui-debug.log"
+      "**/ui-debug.log",
+      "**/VORQ-DIGITAL-INFO.md",
+      "**/VORQ-FORDON-INFO*.md"
     ],
-
     "headers": [
       {
-        "source": "/hk-writers-access.html",
+        "source": "**",
         "headers": [
           {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "Permissions-Policy",
+            "value": "camera=(), microphone=(), geolocation=(), payment=()"
           }
         ]
       },
       {
-        "source": "/hk-writers-access",
+        "source": "**/*.html",
         "headers": [
           {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
           }
         ]
       },
       {
-        "source": "/admin.html",
+        "source": "/@(hk-writers-access|admin|create-post|manage-posts|employee-register|employee-contract){,/**}",
         "headers": [
           {
             "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
+            "value": "noindex, nofollow, noarchive"
           }
         ]
       },
       {
-        "source": "/admin",
+        "source": "/@(hk-writers-access|admin|create-post|manage-posts|employee-register|employee-contract).html",
         "headers": [
           {
             "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/create-post.html",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/create-post",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/manage-posts.html",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/manage-posts",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/employee-register.html",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/employee-register",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/employee-contract.html",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/employee-contract",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
+            "value": "noindex, nofollow, noarchive"
           }
         ]
       }

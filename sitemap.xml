@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FILE: sitemap.xml
+  PROJECT: VORQ Blog / VORQ Digital
+  VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 20:03 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Updated public sitemap dates and kept only public-facing pages for the Arabic VORQ Blog.
+-->
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog.vorq.group/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://blog.vorq.group/legal.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://blog.vorq.group/terms.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://blog.vorq.group/privacy.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://blog.vorq.group/disclaimer.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

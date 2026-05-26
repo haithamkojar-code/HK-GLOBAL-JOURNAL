@@ -1,3 +1,12 @@
+<!--
+  FILE: employee-register.html
+  PROJECT: VORQ Blog / VORQ Digital
+  VERSION: VB-2026-05-26-15-20-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 15:20 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Writer registration updated for Arabic-only VORQ Blog, VORQ Digital operator identity, German legal address, consent proof fields, safer DOM handling, and current legal links.
+-->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>تسجيل كاتب | VORQ Blog</title>
-  <meta name="description" content="صفحة خاصة لتسجيل حساب كاتب في VORQ Blog عبر رابط دعوة من المدير. VORQ Blog تابعة لـ VORQ Group." />
+  <meta name="description" content="صفحة خاصة لتسجيل حساب كاتب في VORQ Blog عبر رابط دعوة من المدير. VORQ Blog مدونة عربية تابعة لـ VORQ Digital." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -29,7 +38,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -38,7 +46,7 @@
       font-family: Arial, Tahoma, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(37, 99, 235, 0.36), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.16), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.16), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
     }
@@ -49,7 +57,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(15, 23, 42, 0.86);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -74,21 +82,16 @@
       text-decoration: none;
     }
 
-    .logo {
-      width: 190px;
-      max-width: 54vw;
-      height: auto;
-      border-radius: 14px;
+    .logo-img {
+      height: 54px;
+      max-width: 220px;
+      width: auto;
       display: block;
-      background: #fff;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.24);
-    }
-
-    .logo img {
-      width: 100%;
-      height: auto;
-      display: block;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.96);
       border-radius: 14px;
+      padding: 6px 10px;
+      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
     }
 
     .top-links {
@@ -104,7 +107,8 @@
       padding: 28px 18px 70px;
     }
 
-    .card {
+    .card,
+    .hero-panel {
       background: rgba(255, 255, 255, 0.97);
       border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: var(--radius);
@@ -121,11 +125,7 @@
     }
 
     .hero-panel {
-      background: rgba(255, 255, 255, 0.97);
-      border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: clamp(24px, 4vw, 38px);
       position: relative;
       overflow: hidden;
     }
@@ -154,30 +154,16 @@
       margin-bottom: 16px;
     }
 
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      line-height: 1.35;
-    }
-
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.35; }
     h1 { font-size: clamp(30px, 5vw, 48px); }
     h2 { font-size: 25px; }
     h3 { font-size: 20px; }
 
-    p, li {
-      color: #334155;
-      line-height: 1.85;
-      font-size: 16px;
-    }
-
+    p, li { color: #334155; line-height: 1.85; font-size: 16px; }
     ul { padding-right: 22px; }
-
     .muted { color: var(--muted); }
 
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
+    form { display: grid; gap: 14px; margin-top: 18px; }
 
     .grid {
       display: grid;
@@ -257,42 +243,11 @@
     }
 
     .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
+    .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary2); }
-
-    .btn-dark {
-      background: #020617;
-      color: #fff;
-    }
-
-    .btn-soft {
-      background: #eef2ff;
-      color: #1e40af;
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
+    .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
+    .btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
     .status {
       margin-top: 14px;
@@ -306,23 +261,9 @@
       word-break: break-word;
     }
 
-    .status.success {
-      background: #dcfce7;
-      border-color: #bbf7d0;
-      color: #166534;
-    }
-
-    .status.error {
-      background: #fee2e2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    .status.warning {
-      background: #fef3c7;
-      border-color: #fde68a;
-      color: #92400e;
-    }
+    .status.success { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+    .status.error { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
+    .status.warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
 
     .info-box {
       background: #f8fafc;
@@ -349,12 +290,7 @@
       line-height: 1.7;
     }
 
-    .step strong {
-      color: #0f172a;
-      display: block;
-      margin-bottom: 4px;
-    }
-
+    .step strong { color: #0f172a; display: block; margin-bottom: 4px; }
     .hidden { display: none !important; }
 
     footer {
@@ -362,12 +298,13 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
+      line-height: 1.8;
     }
 
     @media (max-width: 860px) {
       header { position: static; }
       .hero, .grid { grid-template-columns: 1fr; }
-      .top-links, .actions { flex-direction: column; width: 100%; }
+      .top-links { flex-direction: column; width: 100%; }
       .btn { width: 100%; }
       .card, .hero-panel { padding: 20px; }
     }
@@ -377,13 +314,11 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="VORQ Blog - VORQ Group">
-        <span class="logo" aria-hidden="true">
-          <img src="./vorq-group-logo.svg" alt="VORQ Group" />
-        </span>
+      <a class="brand" href="index.html" aria-label="VORQ Blog - VORQ Digital">
+        <img class="logo-img" src="./vorq-digital-logo.svg" alt="VORQ Digital" />
         <div>
           <div>VORQ Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل كاتب · VORQ Group</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تسجيل كاتب · VORQ Digital</small>
         </div>
       </a>
 
@@ -401,7 +336,7 @@
           <div class="eyebrow">دعوة خاصة</div>
           <h1>تسجيل حساب كاتب</h1>
           <p>
-            هذه الصفحة مخصصة للكاتب الذي استلم رابط دعوة من إدارة VORQ Blog التابعة لـ VORQ Group. لا يمكن إنشاء حساب كاتب بدون دعوة صالحة.
+            هذه الصفحة مخصصة للكاتب الذي استلم رابط دعوة من إدارة VORQ Blog التابعة لـ VORQ Digital. لا يمكن إنشاء حساب كاتب بدون دعوة صالحة.
           </p>
           <div id="pageStatus" class="status warning">جاري قراءة الدعوة...</div>
         </div>
@@ -415,12 +350,12 @@
             يجب أن يكون الرابط مرسلًا من المدير فقط.
           </div>
           <div class="step">
-            <strong>2. أنشئ كلمة مرور</strong>
-            استخدم كلمة مرور قوية لا تقل عن 8 أحرف.
+            <strong>2. أنشئ كلمة مرور قوية</strong>
+            استخدم كلمة مرور لا تقل عن 8 أحرف ولا تشاركها مع أي شخص.
           </div>
           <div class="step">
             <strong>3. أكّد البريد الإلكتروني</strong>
-            بعد التأكيد، ارجع إلى نفس الرابط لتفعيل صلاحية الكاتب.
+            بعد التأكيد، ارجع إلى نفس رابط الدعوة لإكمال تفعيل صلاحية الكاتب.
           </div>
         </div>
       </div>
@@ -429,7 +364,7 @@
     <section class="card" id="registerCard">
       <h2>بيانات الكاتب</h2>
       <p class="muted">
-        سيتم حفظ اسم الكاتب وبريده ومعرّف الحساب مع المقالات التي ينشرها، لتوضيح المسؤولية عن المحتوى. VORQ Blog تابعة لـ VORQ Group، البريد: info@vorq.group.
+        سيتم حفظ اسم الكاتب وبريده ومعرّف الحساب مع المقالات التي ينشرها، لتوضيح المسؤولية التحريرية عن المحتوى.
       </p>
 
       <form id="registerForm">
@@ -458,7 +393,7 @@
         </div>
 
         <label class="check-row" for="agreeInput">
-          <input id="agreeInput" type="checkbox" required />
+          <input id="agreeInput" type="checkbox" data-terms-version="vorq-blog-terms-2026-05" data-privacy-version="vorq-blog-privacy-2026-05" required />
           <span>
             أوافق على
             <a href="employee-contract.html" target="_blank" rel="noopener">عقد مسؤولية الكاتب</a>
@@ -477,11 +412,17 @@
       <div class="info-box">
         إذا أنشأت الحساب لأول مرة، ستصلك رسالة تأكيد إلى بريدك. بعد الضغط على رابط التأكيد، افتح نفس رابط الدعوة مرة ثانية واكتب كلمة المرور نفسها لإكمال التفعيل.
       </div>
+
+      <div class="info-box">
+        المشغّل القانوني: VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
+      </div>
     </section>
   </main>
 
   <footer>
-    VORQ Blog © Writer Registration · VORQ Group · info@vorq.group · Vision • Operations • Reach • Quality
+    VORQ Blog © Writer Registration · VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
+    <br />
+    Vision • Operations • Reach • Quality
   </footer>
 
   <script type="module">
@@ -517,7 +458,14 @@
       measurementId: "G-FSB1QBLZM7"
     };
 
-    const TERMS_VERSION = "2026-05-23";
+    const TERMS_VERSION = "vorq-blog-terms-2026-05";
+    const PRIVACY_VERSION = "vorq-blog-privacy-2026-05";
+    const OPERATOR_LEGAL_NAME = "VORQ Digital, Inhaber: Haitham Kojar";
+    const OPERATOR_ADDRESS = "Ziegelstraße 26, 42289 Wuppertal, Deutschland";
+    const LEGAL_FORM = "nicht eingetragenes gewerbliches Einzelunternehmen";
+    const REGISTERED_ACTIVITY = "IT-Dienstleistungen, Webdesign, Webentwicklung und Betrieb von Internetportalen";
+    const PLATFORM_NAME = "VORQ Blog";
+    const PLATFORM_LANGUAGE = "ar";
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -612,6 +560,7 @@
           return;
         }
 
+        const now = Date.now();
         const writerData = {
           uid: user.uid,
           name: name,
@@ -621,8 +570,23 @@
           active: true,
           inviteKey: inviteKey,
           acceptedTerms: true,
+          termsAccepted: true,
           termsVersion: currentInvite.termsVersion || TERMS_VERSION,
-          acceptedAt: serverTimestamp()
+          termsUrl: "terms.html",
+          privacyAccepted: true,
+          privacyVersion: PRIVACY_VERSION,
+          employeeContractAccepted: true,
+          employeeContractVersion: "vorq-blog-employee-contract-2026-05",
+          disclaimerAccepted: true,
+          disclaimerVersion: "vorq-blog-disclaimer-2026-05",
+          acceptedAt: serverTimestamp(),
+          acceptedAtClientMs: now,
+          operatorLegalName: OPERATOR_LEGAL_NAME,
+          operatorAddress: OPERATOR_ADDRESS,
+          legalForm: LEGAL_FORM,
+          registeredActivity: REGISTERED_ACTIVITY,
+          platformName: PLATFORM_NAME,
+          platformLanguage: PLATFORM_LANGUAGE
         };
 
         await set(ref(db, "employees/" + user.uid), writerData);
@@ -630,14 +594,18 @@
 
         await update(ref(db, "employeeInvites/" + inviteKey), {
           accepted: true,
-          acceptedAt: Date.now(),
+          acceptedAt: now,
           acceptedByUid: user.uid,
-          acceptedByEmail: email
+          acceptedByEmail: email,
+          termsVersion: currentInvite.termsVersion || TERMS_VERSION,
+          privacyVersion: PRIVACY_VERSION,
+          operatorLegalName: OPERATOR_LEGAL_NAME,
+          operatorAddress: OPERATOR_ADDRESS
         });
 
         setStatus("success", "تم تفعيل حساب الكاتب بنجاح. سيتم تحويلك إلى بوابة الكتّاب.");
 
-        setTimeout(() => {
+        window.setTimeout(() => {
           window.location.href = "hk-writers-access.html";
         }, 1400);
 
@@ -677,7 +645,7 @@
         }
 
         currentInvite = invite;
-        nameInput.value = invite.name || "";
+        nameInput.value = cleanText(invite.name || "", 80);
         emailInput.value = normalizeEmail(invite.email);
         registerCard.classList.remove("hidden");
 
@@ -718,7 +686,11 @@
     }
 
     function cleanText(value, maxLength) {
-      return String(value || "").trim().replace(/\s+/g, " ").slice(0, maxLength);
+      return String(value || "")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
+        .trim()
+        .replace(/\s+/g, " ")
+        .slice(0, maxLength);
     }
 
     function isValidEmail(email) {
@@ -738,8 +710,8 @@
         "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
         "auth/too-many-requests": "تمت محاولات كثيرة. انتظري قليلًا ثم جربي مرة أخرى.",
         "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
-        "PERMISSION_DENIED": "لا توجد صلاحية في قاعدة البيانات. تأكدي من قواعد Realtime Database.",
-        "permission-denied": "لا توجد صلاحية في قاعدة البيانات. تأكدي من قواعد Realtime Database."
+        "PERMISSION_DENIED": "لا توجد صلاحية في قاعدة البيانات. تأكد من قواعد Realtime Database.",
+        "permission-denied": "لا توجد صلاحية في قاعدة البيانات. تأكد من قواعد Realtime Database."
       };
 
       return messages[code] || error.message || String(error);

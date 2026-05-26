@@ -1,11 +1,20 @@
 <!DOCTYPE html>
+<!--
+  FILE: admin.html
+  PROJECT: VORQ Digital / VORQ Blog
+  VERSION: VD-BLOG-ADMIN-2026-05-26-15-03-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 15:03 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Updated branding to VORQ Digital, Arabic-only blog administration, legal operator data, version marker, safer DOM rendering with createElement and textContent, and reviewed admin access flow.
+-->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>لوحة المدير | VORQ Blog</title>
-  <meta name="description" content="لوحة إدارة VORQ Blog الخاصة بمدير المدونة والكتّاب. VORQ Blog تابعة لـ VORQ Group." />
+  <meta name="description" content="لوحة إدارة VORQ Blog الخاصة بالمدير والكتّاب. VORQ Blog مشروع تابع لهوية VORQ Digital." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -22,14 +31,13 @@
       --primary2: #1d4ed8;
       --danger: #dc2626;
       --success: #16a34a;
-      --warning: #f59e0b;
+      --warning: #f97316;
       --soft: #f8fafc;
       --radius: 22px;
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.24);
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -38,7 +46,7 @@
       font-family: Arial, Tahoma, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(37, 99, 235, 0.36), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(249, 115, 22, 0.14), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
     }
@@ -49,7 +57,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(15, 23, 42, 0.86);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -74,16 +82,13 @@
       text-decoration: none;
     }
 
-    .logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 900;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    .brand-logo-img {
+      height: 54px;
+      max-width: 230px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
     }
 
     .top-links,
@@ -118,7 +123,6 @@
     .muted { color: var(--muted); }
 
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 
     label {
       display: block;
@@ -128,8 +132,7 @@
     }
 
     input,
-    select,
-    textarea {
+    select {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 15px;
@@ -140,11 +143,8 @@
       background: #fff;
     }
 
-    textarea { min-height: 120px; resize: vertical; line-height: 1.7; }
-
     input:focus,
-    select:focus,
-    textarea:focus {
+    select:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
     }
@@ -169,11 +169,10 @@
     .btn:hover { transform: translateY(-1px); }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary2); }
-    .btn-dark { background: #020617; color: #fff; }
     .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
     .btn-soft { background: #eef2ff; color: #1e40af; }
     .btn-success { background: #dcfce7; color: #166534; }
-    .btn-warning { background: #fef3c7; color: #92400e; }
+    .btn-warning { background: #ffedd5; color: #9a3412; }
     .btn-danger { background: #fee2e2; color: #991b1b; }
     .btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
@@ -191,7 +190,7 @@
 
     .status.success { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
     .status.error { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
-    .status.warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
+    .status.warning { background: #ffedd5; border-color: #fed7aa; color: #9a3412; }
 
     .info-grid {
       display: grid;
@@ -200,20 +199,19 @@
       margin-top: 16px;
     }
 
-    .info-item {
+    .info-item,
+    .legal-note {
       background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 14px;
       line-height: 1.7;
       word-break: break-word;
+      color: #334155;
     }
 
-    .info-item strong {
-      display: block;
-      color: #0f172a;
-      margin-bottom: 5px;
-    }
+    .info-item strong,
+    .legal-note strong { display: block; color: #0f172a; margin-bottom: 5px; }
 
     .tabs {
       display: flex;
@@ -222,21 +220,10 @@
       margin-top: 16px;
     }
 
-    .tab-btn {
-      background: #eef2ff;
-      color: #1e40af;
-    }
+    .tab-btn { background: #eef2ff; color: #1e40af; }
+    .tab-btn.active { background: #2563eb; color: #fff; }
 
-    .tab-btn.active {
-      background: #2563eb;
-      color: #fff;
-    }
-
-    .list {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
+    .list { display: grid; gap: 14px; margin-top: 18px; }
 
     .item {
       border: 1px solid var(--border);
@@ -270,7 +257,6 @@
 
     .badge.active { background: #dcfce7; color: #166534; }
     .badge.inactive { background: #fee2e2; color: #991b1b; }
-    .badge.admin { background: #e0e7ff; color: #3730a3; }
 
     .copy-box {
       background: #f8fafc;
@@ -291,49 +277,29 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
+      line-height: 1.8;
     }
 
     @media (max-width: 900px) {
       .grid,
-      .grid-3,
       .info-grid { grid-template-columns: 1fr; }
       .top-links,
       .actions { flex-direction: column; width: 100%; }
       .btn { width: 100%; }
       .card { padding: 20px; }
+      header { position: static; }
     }
-  
-
-    .brand-logo-img {
-      height: 54px;
-      max-width: 230px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
-    }
-
-    .card-logo-img {
-      height: 92px;
-      max-width: 260px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      margin: 0 auto 16px;
-      filter: drop-shadow(0 14px 30px rgba(2, 6, 23, 0.20));
-    }
-
   </style>
 </head>
 
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="hk-writers-access.html">
-        <img src="./vorq-group-logo.svg" alt="VORQ Group" class="brand-logo-img">
+      <a class="brand" href="hk-writers-access.html" aria-label="VORQ Blog - VORQ Digital">
+        <img src="./vorq-blog-logo.png" alt="VORQ Blog" class="brand-logo-img" />
         <div>
           <div>VORQ Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">لوحة المدير · VORQ Group</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">لوحة المدير · VORQ Digital</small>
         </div>
       </a>
 
@@ -350,28 +316,21 @@
     <section class="card">
       <h1>لوحة المدير</h1>
       <p class="muted">
-        هذه الصفحة خاصة بمدير VORQ Blog فقط. من هنا يمكنك إنشاء روابط دعوة للكتّاب، متابعة الدعوات، ومراجعة حسابات الكتّاب. VORQ Blog تابعة لـ VORQ Group.
+        هذه الصفحة خاصة بمدير VORQ Blog فقط. من هنا يمكن إنشاء روابط دعوة للكتّاب، متابعة الدعوات، ومراجعة حسابات الكتّاب.
       </p>
+
+      <div class="legal-note">
+        <strong>المشغّل القانوني</strong>
+        VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
+      </div>
 
       <div id="mainStatus" class="status warning">جاري التحقق من الصلاحية...</div>
 
       <div class="info-grid">
-        <div class="info-item">
-          <strong>الحساب الحالي</strong>
-          <span id="currentEmail">غير مسجل</span>
-        </div>
-        <div class="info-item">
-          <strong>الصلاحية</strong>
-          <span id="currentRole">غير معروف</span>
-        </div>
-        <div class="info-item">
-          <strong>عدد الدعوات</strong>
-          <span id="inviteCount">0</span>
-        </div>
-        <div class="info-item">
-          <strong>عدد الكتّاب</strong>
-          <span id="writerCount">0</span>
-        </div>
+        <div class="info-item"><strong>الحساب الحالي</strong><span id="currentEmail">غير مسجل</span></div>
+        <div class="info-item"><strong>الصلاحية</strong><span id="currentRole">غير معروف</span></div>
+        <div class="info-item"><strong>عدد الدعوات</strong><span id="inviteCount">0</span></div>
+        <div class="info-item"><strong>عدد الكتّاب</strong><span id="writerCount">0</span></div>
       </div>
     </section>
 
@@ -396,15 +355,13 @@
 
     <section class="card hidden" id="adminPanel">
       <h2>إنشاء دعوة كاتب</h2>
-      <p class="muted">
-        أنشئي دعوة باسم الكاتب وبريده. بعد إنشاء الدعوة انسخي الرابط وأرسليه للكاتب فقط.
-      </p>
+      <p class="muted">أنشئ دعوة باسم الكاتب وبريده. بعد إنشاء الدعوة انسخ الرابط وأرسله للكاتب فقط.</p>
 
       <form id="inviteForm">
         <div class="grid">
           <div>
             <label for="writerName">اسم الكاتب</label>
-            <input id="writerName" type="text" maxlength="80" placeholder="مثال: Ahmad Writer" required />
+            <input id="writerName" type="text" maxlength="80" placeholder="مثال: أحمد الكاتب" required />
           </div>
           <div>
             <label for="writerEmail">بريد الكاتب</label>
@@ -415,7 +372,7 @@
         <div class="grid">
           <div>
             <label for="termsVersion">نسخة الشروط</label>
-            <input id="termsVersion" type="text" maxlength="30" value="2026-05-23" required />
+            <input id="termsVersion" type="text" maxlength="40" value="vorq-blog-terms-2026-05" required />
           </div>
           <div>
             <label for="inviteStatus">حالة الدعوة</label>
@@ -446,7 +403,7 @@
   </main>
 
   <footer>
-    VORQ Blog © Admin Panel · VORQ Group · info@vorq.group · Vision • Operations • Reach • Quality
+    VORQ Blog © Admin Panel · VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
   </footer>
 
   <script type="module">
@@ -478,6 +435,8 @@
       appId: "1:339658398793:web:e38a09f83fd01c2e773398",
       measurementId: "G-FSB1QBLZM7"
     };
+
+    const TERMS_VERSION = "vorq-blog-terms-2026-05";
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -560,7 +519,7 @@
       const password = String(loginPassword.value || "");
 
       if (!isValidEmail(email) || !password) {
-        setStatus("error", "اكتبي البريد وكلمة المرور بشكل صحيح.");
+        setStatus("error", "اكتب البريد وكلمة المرور بشكل صحيح.");
         return;
       }
 
@@ -594,7 +553,7 @@
 
       const name = cleanText(writerName.value, 80);
       const email = normalizeEmail(writerEmail.value);
-      const version = cleanText(termsVersion.value, 30) || "2026-05-23";
+      const version = cleanText(termsVersion.value, 40) || TERMS_VERSION;
       const active = inviteStatus.value === "true";
 
       if (!name || name.length < 2) {
@@ -611,14 +570,17 @@
       const inviteLink = createInviteLink(inviteKey);
 
       const inviteData = {
-        inviteKey: inviteKey,
-        name: name,
-        email: email,
-        active: active,
+        inviteKey,
+        name,
+        email,
+        active,
         createdAt: Date.now(),
         createdBy: currentUser.uid,
         createdByEmail: currentUser.email || "",
-        termsVersion: version
+        termsVersion: version,
+        platformName: "VORQ Blog",
+        operatorLegalName: "VORQ Digital, Inhaber: Haitham Kojar",
+        operatorAddress: "Ziegelstraße 26, 42289 Wuppertal, Deutschland"
       };
 
       createInviteBtn.disabled = true;
@@ -631,20 +593,8 @@
         writerEmail.value = "";
         inviteStatus.value = "true";
 
-        newInviteBox.classList.remove("hidden");
-        newInviteBox.innerHTML = `
-          <strong>تم إنشاء رابط الدعوة بنجاح.</strong>
-          <div class="copy-box" id="createdInviteLink">${escapeHtml(inviteLink)}</div>
-          <div class="actions">
-            <button class="btn btn-success" type="button" id="copyNewInviteBtn">نسخ الرابط</button>
-          </div>
-        `;
-
-        document.getElementById("copyNewInviteBtn").addEventListener("click", () => {
-          copyText(inviteLink);
-        });
-
-        setStatus("success", "تم إنشاء دعوة الكاتب. انسخي الرابط وأرسليه له فقط.");
+        renderNewInvite(inviteLink);
+        setStatus("success", "تم إنشاء دعوة الكاتب. انسخ الرابط وأرسله له فقط.");
       } catch (error) {
         console.error(error);
         setStatus("error", "فشل إنشاء الدعوة: " + getFriendlyError(error));
@@ -686,7 +636,7 @@
         renderInvites(invites);
       }, (error) => {
         console.error(error);
-        invitesTab.innerHTML = `<div class="status error">فشل تحميل الدعوات: ${escapeHtml(getFriendlyError(error))}</div>`;
+        renderStatusOnly(invitesTab, "error", "فشل تحميل الدعوات: " + getFriendlyError(error));
       });
     }
 
@@ -699,98 +649,157 @@
         renderWriters(writers);
       }, (error) => {
         console.error(error);
-        writersTab.innerHTML = `<div class="status error">فشل تحميل الكتّاب: ${escapeHtml(getFriendlyError(error))}</div>`;
+        renderStatusOnly(writersTab, "error", "فشل تحميل الكتّاب: " + getFriendlyError(error));
       });
     }
 
+    function renderNewInvite(inviteLink) {
+      newInviteBox.classList.remove("hidden");
+      newInviteBox.replaceChildren();
+
+      const strong = document.createElement("strong");
+      strong.textContent = "تم إنشاء رابط الدعوة بنجاح.";
+
+      const copyBox = document.createElement("div");
+      copyBox.className = "copy-box";
+      copyBox.textContent = inviteLink;
+
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "btn btn-success";
+      copyBtn.type = "button";
+      copyBtn.textContent = "نسخ الرابط";
+      copyBtn.addEventListener("click", () => copyText(inviteLink));
+
+      actions.appendChild(copyBtn);
+      newInviteBox.append(strong, copyBox, actions);
+    }
+
     function renderInvites(invites) {
-      invitesTab.innerHTML = "";
+      invitesTab.replaceChildren();
 
       if (!invites.length) {
-        invitesTab.innerHTML = `<div class="status warning">لا توجد دعوات بعد.</div>`;
+        renderStatusOnly(invitesTab, "warning", "لا توجد دعوات بعد.");
         return;
       }
 
       invites.forEach((invite) => {
-        const item = document.createElement("div");
-        item.className = "item";
-
         const inviteLink = createInviteLink(invite.inviteKey || "");
         const active = invite.active === true;
         const date = formatDate(invite.createdAt);
 
-        item.innerHTML = `
-          <div class="item-head">
-            <div>
-              <div class="item-title">${escapeHtml(invite.name || "كاتب بدون اسم")}</div>
-              <div class="item-meta">
-                البريد: ${escapeHtml(invite.email || "")}
-                <br />
-                التاريخ: ${escapeHtml(date)} | نسخة الشروط: ${escapeHtml(invite.termsVersion || "")}
-                <br />
-                المفتاح: ${escapeHtml(invite.inviteKey || "")}
-              </div>
-            </div>
-            <span class="badge ${active ? "active" : "inactive"}">${active ? "فعالة" : "غير فعالة"}</span>
-          </div>
+        const item = createItemCard({
+          title: invite.name || "كاتب بدون اسم",
+          metaLines: [
+            "البريد: " + (invite.email || ""),
+            "التاريخ: " + date + " | نسخة الشروط: " + (invite.termsVersion || ""),
+            "المفتاح: " + (invite.inviteKey || "")
+          ],
+          badgeText: active ? "فعالة" : "غير فعالة",
+          badgeClass: active ? "active" : "inactive"
+        });
 
-          <div class="copy-box">${escapeHtml(inviteLink)}</div>
+        const copyBox = document.createElement("div");
+        copyBox.className = "copy-box";
+        copyBox.textContent = inviteLink;
 
-          <div class="actions">
-            <button class="btn btn-success" type="button" data-action="copy">نسخ الرابط</button>
-            <button class="btn ${active ? "btn-warning" : "btn-success"}" type="button" data-action="toggle">
-              ${active ? "تعطيل الدعوة" : "تفعيل الدعوة"}
-            </button>
-          </div>
-        `;
+        const actions = document.createElement("div");
+        actions.className = "actions";
 
-        item.querySelector('[data-action="copy"]').addEventListener("click", () => copyText(inviteLink));
-        item.querySelector('[data-action="toggle"]').addEventListener("click", () => toggleInvite(invite));
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "btn btn-success";
+        copyBtn.type = "button";
+        copyBtn.textContent = "نسخ الرابط";
+        copyBtn.addEventListener("click", () => copyText(inviteLink));
 
+        const toggleBtn = document.createElement("button");
+        toggleBtn.className = "btn " + (active ? "btn-warning" : "btn-success");
+        toggleBtn.type = "button";
+        toggleBtn.textContent = active ? "تعطيل الدعوة" : "تفعيل الدعوة";
+        toggleBtn.addEventListener("click", () => toggleInvite(invite));
+
+        actions.append(copyBtn, toggleBtn);
+        item.append(copyBox, actions);
         invitesTab.appendChild(item);
       });
     }
 
     function renderWriters(writers) {
-      writersTab.innerHTML = "";
+      writersTab.replaceChildren();
 
       if (!writers.length) {
-        writersTab.innerHTML = `<div class="status warning">لا يوجد كتّاب مسجلون بعد.</div>`;
+        renderStatusOnly(writersTab, "warning", "لا يوجد كتّاب مسجلون بعد.");
         return;
       }
 
       writers.forEach((writer) => {
-        const item = document.createElement("div");
-        item.className = "item";
-
         const active = writer.active === true;
         const date = formatDate(writer.acceptedAt);
 
-        item.innerHTML = `
-          <div class="item-head">
-            <div>
-              <div class="item-title">${escapeHtml(writer.name || "كاتب بدون اسم")}</div>
-              <div class="item-meta">
-                البريد: ${escapeHtml(writer.email || "")}
-                <br />
-                UID: ${escapeHtml(writer.uid || "")}
-                <br />
-                تاريخ قبول الشروط: ${escapeHtml(date)} | نسخة الشروط: ${escapeHtml(writer.termsVersion || "")}
-              </div>
-            </div>
-            <span class="badge ${active ? "active" : "inactive"}">${active ? "فعال" : "معطل"}</span>
-          </div>
+        const item = createItemCard({
+          title: writer.name || "كاتب بدون اسم",
+          metaLines: [
+            "البريد: " + (writer.email || ""),
+            "UID: " + (writer.uid || ""),
+            "تاريخ قبول الشروط: " + date + " | نسخة الشروط: " + (writer.termsVersion || "")
+          ],
+          badgeText: active ? "فعال" : "معطل",
+          badgeClass: active ? "active" : "inactive"
+        });
 
-          <div class="actions">
-            <button class="btn ${active ? "btn-warning" : "btn-success"}" type="button" data-action="toggle">
-              ${active ? "تعطيل الكاتب" : "تفعيل الكاتب"}
-            </button>
-          </div>
-        `;
+        const actions = document.createElement("div");
+        actions.className = "actions";
 
-        item.querySelector('[data-action="toggle"]').addEventListener("click", () => toggleWriter(writer));
+        const toggleBtn = document.createElement("button");
+        toggleBtn.className = "btn " + (active ? "btn-warning" : "btn-success");
+        toggleBtn.type = "button";
+        toggleBtn.textContent = active ? "تعطيل الكاتب" : "تفعيل الكاتب";
+        toggleBtn.addEventListener("click", () => toggleWriter(writer));
+
+        actions.appendChild(toggleBtn);
+        item.appendChild(actions);
         writersTab.appendChild(item);
       });
+    }
+
+    function createItemCard({ title, metaLines, badgeText, badgeClass }) {
+      const item = document.createElement("div");
+      item.className = "item";
+
+      const head = document.createElement("div");
+      head.className = "item-head";
+
+      const content = document.createElement("div");
+
+      const titleEl = document.createElement("div");
+      titleEl.className = "item-title";
+      titleEl.textContent = title;
+
+      const metaEl = document.createElement("div");
+      metaEl.className = "item-meta";
+      metaLines.forEach((line, index) => {
+        if (index > 0) metaEl.appendChild(document.createElement("br"));
+        metaEl.appendChild(document.createTextNode(line));
+      });
+
+      const badge = document.createElement("span");
+      badge.className = "badge " + badgeClass;
+      badge.textContent = badgeText;
+
+      content.append(titleEl, metaEl);
+      head.append(content, badge);
+      item.appendChild(head);
+      return item;
+    }
+
+    function renderStatusOnly(container, type, message) {
+      container.replaceChildren();
+      const box = document.createElement("div");
+      box.className = "status " + type;
+      box.textContent = message;
+      container.appendChild(box);
     }
 
     async function toggleInvite(invite) {
@@ -798,7 +807,9 @@
 
       try {
         await update(ref(db, "employeeInvites/" + invite.inviteKey), {
-          active: invite.active !== true
+          active: invite.active !== true,
+          updatedAt: Date.now(),
+          updatedBy: currentUser ? currentUser.uid : ""
         });
 
         setStatus("success", "تم تحديث حالة الدعوة.");
@@ -812,12 +823,17 @@
       if (!writer.uid) return;
 
       try {
+        const nextActive = writer.active !== true;
         await update(ref(db, "employees/" + writer.uid), {
-          active: writer.active !== true
+          active: nextActive,
+          updatedAt: Date.now(),
+          updatedBy: currentUser ? currentUser.uid : ""
         });
 
         await update(ref(db, "users/" + writer.uid), {
-          active: writer.active !== true
+          active: nextActive,
+          updatedAt: Date.now(),
+          updatedBy: currentUser ? currentUser.uid : ""
         });
 
         setStatus("success", "تم تحديث حالة الكاتب.");
@@ -861,7 +877,7 @@
         await navigator.clipboard.writeText(text);
         setStatus("success", "تم نسخ الرابط.");
       } catch {
-        setStatus("warning", "لم يتم النسخ تلقائيًا. انسخي الرابط يدويًا من الصندوق.");
+        setStatus("warning", "لم يتم النسخ تلقائيًا. انسخ الرابط يدويًا من الصندوق.");
       }
     }
 
@@ -889,29 +905,20 @@
     function formatDate(value) {
       if (!value) return "غير محدد";
       const date = new Date(Number(value));
-      if (isNaN(date.getTime())) return "غير محدد";
+      if (Number.isNaN(date.getTime())) return "غير محدد";
       return date.toLocaleString("ar", { dateStyle: "medium", timeStyle: "short" });
-    }
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
     }
 
     function getFriendlyError(error) {
       if (!error) return "حدث خطأ غير معروف.";
 
-      const code = error.code || "";
+      const code = error.code || error.message || "";
       const messages = {
         "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
         "auth/user-not-found": "لا يوجد حساب بهذا البريد.",
         "auth/wrong-password": "كلمة المرور غير صحيحة.",
         "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
-        "auth/too-many-requests": "تمت محاولات كثيرة. انتظري قليلًا ثم جربي مرة أخرى.",
+        "auth/too-many-requests": "تمت محاولات كثيرة. انتظر قليلًا ثم جرّب مرة أخرى.",
         "auth/network-request-failed": "مشكلة في الاتصال بالإنترنت.",
         "PERMISSION_DENIED": "لا توجد صلاحية في Realtime Database Rules.",
         "permission-denied": "لا توجد صلاحية في Realtime Database Rules."

@@ -1,11 +1,20 @@
 <!DOCTYPE html>
+<!--
+  FILE: 404.html
+  PROJECT: VORQ Digital / VORQ Blog
+  VERSION: VD-BLOG-404-2026-05-26-14-53-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 14:53 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Updated branding from VORQ Group to VORQ Digital, added legal operator data, Arabic-only interface wording, version marker, safer button handling, and reviewed 404/legal links.
+-->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>الصفحة غير موجودة | VORQ Blog</title>
-  <meta name="description" content="صفحة خطأ 404 في VORQ Blog، مدونة رقمية تابعة لـ VORQ Group." />
+  <meta name="description" content="صفحة خطأ 404 في VORQ Blog، مدونة عربية تابعة لهوية VORQ Digital." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -18,15 +27,14 @@
       --muted: #64748b;
       --primary: #2563eb;
       --primary2: #1d4ed8;
-      --accent: #f59e0b;
+      --accent: #f97316;
       --surface: rgba(255, 255, 255, 0.97);
       --border: rgba(255, 255, 255, 0.42);
+      --soft-border: #e2e8f0;
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -34,7 +42,7 @@
       font-family: Arial, Tahoma, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.16), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(249, 115, 22, 0.16), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
       display: grid;
@@ -43,7 +51,7 @@
     }
 
     .card {
-      width: min(780px, 100%);
+      width: min(820px, 100%);
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 28px;
@@ -52,26 +60,19 @@
       text-align: center;
     }
 
-    .logo {
-      width: 96px;
-      height: 96px;
-      border-radius: 30px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent),
-        linear-gradient(135deg, #0f172a, #2563eb 65%, #f59e0b);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: -0.06em;
+    .card-logo-img {
+      height: 92px;
+      max-width: 280px;
+      width: auto;
+      display: block;
+      object-fit: contain;
       margin: 0 auto 16px;
-      box-shadow: 0 16px 38px rgba(37, 99, 235, 0.35);
+      filter: drop-shadow(0 14px 30px rgba(2, 6, 23, 0.20));
     }
 
     .brand-name {
       margin: 0 0 8px;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 900;
       color: #0f172a;
       letter-spacing: -0.02em;
@@ -84,7 +85,7 @@
       gap: 7px;
       background: #f8fafc;
       color: #475569;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--soft-border);
       padding: 8px 13px;
       border-radius: 999px;
       font-weight: 800;
@@ -117,7 +118,7 @@
       line-height: 1.9;
       font-size: 17px;
       margin: 0 auto 22px;
-      max-width: 590px;
+      max-width: 610px;
     }
 
     .actions {
@@ -125,6 +126,7 @@
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
+      margin-top: 14px;
     }
 
     .btn {
@@ -142,34 +144,28 @@
       font-family: inherit;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
       background: var(--primary);
       color: #fff;
     }
 
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
+    .btn-primary:hover { background: var(--primary2); }
 
     .btn-soft {
       background: #eef2ff;
       color: #1e40af;
     }
 
-    .muted {
+    .legal-note {
       color: var(--muted);
       font-size: 14px;
       margin-top: 22px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
-    .muted strong {
-      color: #334155;
-    }
+    .legal-note strong { color: #334155; }
 
     .slogan {
       display: block;
@@ -180,62 +176,89 @@
       letter-spacing: 0.01em;
     }
 
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      color: #1d4ed8;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
     @media (max-width: 640px) {
-      .actions {
+      .actions,
+      .footer-links {
         flex-direction: column;
       }
 
-      .btn {
+      .btn,
+      .footer-links a {
         width: 100%;
       }
-    }
-  
 
-    .brand-logo-img {
-      height: 54px;
-      max-width: 230px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
+      .card-logo-img {
+        height: 78px;
+        max-width: 230px;
+      }
     }
-
-    .card-logo-img {
-      height: 92px;
-      max-width: 260px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      margin: 0 auto 16px;
-      filter: drop-shadow(0 14px 30px rgba(2, 6, 23, 0.20));
-    }
-
   </style>
 </head>
 
 <body>
   <main class="card">
-    <img src="./vorq-group-logo.svg" alt="VORQ Group" class="card-logo-img" aria-hidden="true">
+    <img src="./vorq-blog-logo.png" alt="VORQ Blog" class="card-logo-img" />
     <div class="brand-name">VORQ Blog</div>
-    <div class="owner-line">تابعة لـ VORQ Group</div>
+    <div class="owner-line">تابعة لـ VORQ Digital</div>
 
     <div class="code">404</div>
 
     <h1>الصفحة غير موجودة</h1>
 
     <p>
-      الرابط الذي فتحته غير صحيح أو تم نقل الصفحة. يمكنك العودة إلى الصفحة الرئيسية وقراءة المقالات والأفكار المنشورة في VORQ Blog.
+      الرابط الذي فتحته غير صحيح أو تم نقل الصفحة. يمكنك العودة إلى الصفحة الرئيسية وقراءة المقالات المنشورة في VORQ Blog.
     </p>
 
     <div class="actions">
       <a class="btn btn-primary" href="./index.html">العودة للرئيسية</a>
-      <button class="btn btn-soft" type="button" onclick="history.back()">رجوع للخلف</button>
+      <button class="btn btn-soft" id="backBtn" type="button">رجوع للخلف</button>
     </div>
 
-    <div class="muted">
-      <strong>VORQ Blog</strong> © صفحة خطأ مخصصة · مملوكة ومدارة من VORQ Group · info@vorq.group
+    <div class="footer-links" aria-label="روابط قانونية">
+      <a href="./legal.html">المعلومات القانونية</a>
+      <a href="./terms.html">شروط الاستخدام</a>
+      <a href="./privacy.html">سياسة الخصوصية</a>
+      <a href="./disclaimer.html">إخلاء المسؤولية</a>
+    </div>
+
+    <div class="legal-note">
+      <strong>VORQ Blog</strong> © صفحة خطأ مخصصة · تابعة لـ
+      <strong>VORQ Digital, Inhaber: Haitham Kojar</strong>
+      <br />
+      Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
       <span class="slogan">Vision • Operations • Reach • Quality</span>
     </div>
   </main>
+
+  <script>
+    const backBtn = document.getElementById("backBtn");
+
+    backBtn.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+        return;
+      }
+
+      window.location.href = "./index.html";
+    });
+  </script>
 </body>
 </html>

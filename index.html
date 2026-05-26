@@ -1,18 +1,27 @@
 <!DOCTYPE html>
+<!--
+  FILE: index.html
+  PROJECT: VORQ Blog / VORQ Digital
+  VERSION: VD-BLOG-2026-05-26-18-45-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 18:45 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Public Arabic-only blog homepage updated for VORQ Digital identity, legal operator wording, safer DOM rendering, and current logo path.
+-->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>VORQ Blog | مدونة للأفكار والتحليل والمجتمع</title>
-  <meta name="description" content="VORQ Blog مدونة رقمية تابعة لـ VORQ Group للمقالات الشخصية والتحليلية حول المجتمع والاقتصاد والسياسة والأسرة والحياة والثقافة بلغات متعددة." />
-  <meta name="keywords" content="VORQ Blog, VORQ Group, مدونة, مقالات, سياسة, اقتصاد, مجتمع, أسرة, ثقافة, آراء, تحليل" />
+  <title>VORQ Blog | مدونة عربية للأفكار والتحليل والمجتمع</title>
+  <meta name="description" content="VORQ Blog مدونة عربية تابعة لـ VORQ Digital تنشر مقالات وأفكاراً وتحليلات حول المجتمع والاقتصاد والسياسة والأسرة والحياة والثقافة." />
+  <meta name="keywords" content="VORQ Blog, VORQ Digital, مدونة عربية, مقالات, سياسة, اقتصاد, مجتمع, أسرة, ثقافة, آراء, تحليل" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="VORQ Blog | مدونة أفكار وتحليل" />
-  <meta property="og:description" content="منصة مقالات شخصية وتحليلية تابعة لـ VORQ Group للفكر والمجتمع والاقتصاد والثقافة." />
+  <meta property="og:title" content="VORQ Blog | مدونة عربية للأفكار والتحليل" />
+  <meta property="og:description" content="منصة مقالات عربية تابعة لـ VORQ Digital للفكر والمجتمع والاقتصاد والثقافة." />
   <meta property="og:site_name" content="VORQ Blog" />
 
   <style>
@@ -30,13 +39,8 @@
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -55,7 +59,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(15, 23, 42, 0.86);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -81,36 +85,23 @@
     }
 
     .logo-img {
-      height: 48px;
+      height: 54px;
       width: auto;
-      max-width: 190px;
+      max-width: 210px;
       display: block;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.96);
+      padding: 6px 9px;
       filter: drop-shadow(0 14px 26px rgba(2, 6, 23, 0.24));
     }
 
-    .brand-text {
-      display: grid;
-      gap: 2px;
-    }
+    .brand-text { display: grid; gap: 2px; }
+    .owner-line { color: rgba(255,255,255,0.72); font-weight: 700; font-size: 13px; }
 
-    .owner-line {
-      color: rgba(255,255,255,0.72);
-      font-weight: 700;
-      font-size: 13px;
-    }
+    .top-links { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
-    .top-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 28px 18px 70px;
-    }
+    .container { max-width: 1200px; margin: auto; padding: 28px 18px 70px; }
 
     .hero {
       background: rgba(255, 255, 255, 0.96);
@@ -135,11 +126,7 @@
       bottom: -80px;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 850px;
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 850px; }
 
     .eyebrow {
       display: inline-flex;
@@ -152,32 +139,12 @@
       margin-bottom: 16px;
     }
 
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      line-height: 1.3;
-    }
-
-    h1 {
-      font-size: clamp(34px, 5vw, 58px);
-      letter-spacing: -0.8px;
-    }
-
-    h2 {
-      font-size: clamp(24px, 3vw, 34px);
-    }
-
-    h3 {
-      font-size: 21px;
-    }
-
-    p {
-      line-height: 1.85;
-      color: #334155;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.3; }
+    h1 { font-size: clamp(34px, 5vw, 58px); letter-spacing: -0.8px; }
+    h2 { font-size: clamp(24px, 3vw, 34px); }
+    h3 { font-size: 21px; }
+    p { line-height: 1.85; color: #334155; }
+    .muted { color: var(--muted); }
 
     .btn {
       border: 0;
@@ -196,64 +163,18 @@
       white-space: nowrap;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary2); }
+    .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.22); }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
 
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-    }
-
-    .btn-soft {
-      background: #eef2ff;
-      color: #1e40af;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 22px;
-      max-width: 680px;
-    }
-
-    .stat {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 26px;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-    }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; max-width: 720px; }
+    .stat { background: #f8fafc; border: 1px solid var(--border); border-radius: 18px; padding: 14px; }
+    .stat strong { display: block; font-size: 26px; color: #0f172a; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 13px; font-weight: 800; }
 
     .card {
       background: rgba(255, 255, 255, 0.97);
@@ -264,24 +185,11 @@
       margin-bottom: 20px;
     }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: end;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
+    .section-head { display: flex; justify-content: space-between; gap: 14px; align-items: end; flex-wrap: wrap; margin-bottom: 16px; }
 
-    .filters {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 12px;
-      margin-top: 16px;
-    }
+    .filters { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; margin-top: 16px; }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -292,11 +200,7 @@
       font-family: inherit;
     }
 
-    input:focus,
-    select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
-    }
+    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13); }
 
     .status {
       margin-top: 14px;
@@ -309,25 +213,10 @@
       line-height: 1.7;
       word-break: break-word;
     }
+    .status.warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
+    .status.error { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
 
-    .status.warning {
-      background: #fef3c7;
-      border-color: #fde68a;
-      color: #92400e;
-    }
-
-    .status.error {
-      background: #fee2e2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 20px;
-    }
+    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
 
     .post-card {
       background: #fff;
@@ -339,11 +228,7 @@
       min-height: 100%;
       transition: 0.2s;
     }
-
-    .post-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
-    }
+    .post-card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12); }
 
     .post-image {
       height: 170px;
@@ -358,124 +243,23 @@
       overflow: hidden;
     }
 
-    .post-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .post-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .post-title { font-size: 20px; font-weight: 900; line-height: 1.45; color: #0f172a; }
+    .post-summary { color: #475569; line-height: 1.8; font-size: 15px; flex: 1; }
+    .post-meta { color: var(--muted); line-height: 1.7; font-size: 13px; font-weight: 700; }
 
-    .post-body {
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge { display: inline-flex; align-items: center; padding: 7px 10px; border-radius: 999px; font-size: 12px; font-weight: 900; background: #eef2ff; color: #1e40af; }
+    .badge.green { background: #dcfce7; color: #166534; }
+    .read-btn { margin-top: 10px; width: 100%; }
 
-    .post-title {
-      font-size: 20px;
-      font-weight: 900;
-      line-height: 1.45;
-      color: #0f172a;
-    }
-
-    .post-summary {
-      color: #475569;
-      line-height: 1.8;
-      font-size: 15px;
-      flex: 1;
-    }
-
-    .post-meta {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      background: #eef2ff;
-      color: #1e40af;
-    }
-
-    .badge.green {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .read-btn {
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .legal-link {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      text-decoration: none;
-      display: block;
-      transition: 0.18s;
-    }
-
-    .legal-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.10);
-    }
-
-    .legal-link strong {
-      display: block;
-      margin-bottom: 6px;
-      color: #0f172a;
-    }
-
-    .legal-link span {
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .about-box {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      line-height: 1.7;
-      color: #334155;
-    }
-
-    .about-box strong {
-      display: block;
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
+    .legal-grid, .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .legal-link, .about-box { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; }
+    .legal-link { text-decoration: none; display: block; transition: 0.18s; }
+    .legal-link:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(15, 23, 42, 0.10); }
+    .legal-link strong, .about-box strong { display: block; margin-bottom: 6px; color: #0f172a; }
+    .legal-link span, .about-box { color: var(--muted); line-height: 1.6; font-size: 14px; }
 
     dialog {
       width: min(900px, calc(100% - 26px));
@@ -485,142 +269,33 @@
       box-shadow: 0 30px 90px rgba(2, 6, 23, 0.45);
       overflow: hidden;
     }
+    dialog::backdrop { background: rgba(2, 6, 23, 0.68); backdrop-filter: blur(4px); }
+    .modal-head { padding: 20px; background: #0f172a; color: #fff; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
+    .modal-body { padding: 24px; max-height: 75vh; overflow: auto; background: #fff; }
+    .modal-title { font-size: clamp(25px, 4vw, 40px); font-weight: 900; line-height: 1.35; margin-bottom: 12px; }
+    .modal-meta { color: var(--muted); font-weight: 700; line-height: 1.8; margin-bottom: 18px; }
+    .modal-content { color: #334155; line-height: 2; font-size: 17px; white-space: pre-wrap; }
+    .modal-image { width: 100%; max-height: 360px; object-fit: cover; border-radius: 20px; margin: 0 0 18px; border: 1px solid var(--border); display: none; }
+    .close-btn { border: 0; background: rgba(255,255,255,0.12); color: #fff; border-radius: 999px; padding: 10px 14px; cursor: pointer; font-weight: 900; font-family: inherit; }
 
-    dialog::backdrop {
-      background: rgba(2, 6, 23, 0.68);
-      backdrop-filter: blur(4px);
-    }
-
-    .modal-head {
-      padding: 20px;
-      background: #0f172a;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .modal-body {
-      padding: 24px;
-      max-height: 75vh;
-      overflow: auto;
-      background: #fff;
-    }
-
-    .modal-title {
-      font-size: clamp(25px, 4vw, 40px);
-      font-weight: 900;
-      line-height: 1.35;
-      margin-bottom: 12px;
-    }
-
-    .modal-meta {
-      color: var(--muted);
-      font-weight: 700;
-      line-height: 1.8;
-      margin-bottom: 18px;
-    }
-
-    .modal-content {
-      color: #334155;
-      line-height: 2;
-      font-size: 17px;
-      white-space: pre-wrap;
-    }
-
-    .modal-image {
-      width: 100%;
-      max-height: 360px;
-      object-fit: cover;
-      border-radius: 20px;
-      margin: 0 0 18px;
-      border: 1px solid var(--border);
-      display: none;
-    }
-
-    .close-btn {
-      border: 0;
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border-radius: 999px;
-      padding: 10px 14px;
-      cursor: pointer;
-      font-weight: 900;
-      font-family: inherit;
-    }
-
-    footer {
-      color: rgba(255,255,255,0.76);
-      text-align: center;
-      padding: 26px 18px 36px;
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      gap: 12px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.88);
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .hidden {
-      display: none !important;
-    }
+    footer { color: rgba(255,255,255,0.76); text-align: center; padding: 26px 18px 36px; font-size: 14px; }
+    .footer-inner { max-width: 1200px; margin: auto; display: grid; gap: 12px; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.88); text-decoration: none; font-weight: 800; }
+    .hidden { display: none !important; }
 
     @media (max-width: 980px) {
-      .posts-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .legal-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
+      .posts-grid { grid-template-columns: repeat(2, 1fr); }
+      .legal-grid, .about-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
-      header {
-        position: static;
-      }
-
-      .top-links,
-      .actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .filters,
-      .posts-grid,
-      .stat-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero,
-      .card {
-        padding: 20px;
-      }
-
-      .post-image {
-        height: 150px;
-      }
+      header { position: static; }
+      .top-links, .actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .filters, .posts-grid, .stat-grid { grid-template-columns: 1fr; }
+      .hero, .card { padding: 20px; }
+      .post-image { height: 150px; }
     }
   </style>
 </head>
@@ -629,10 +304,10 @@
   <header>
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="VORQ Blog">
-        <img class="logo-img" src="vorq-group-logo.svg" alt="VORQ Group" />
+        <img class="logo-img" src="vorq-blog-logo.png" alt="VORQ Blog" onerror="this.src='vorq-digital-logo.svg'; this.alt='VORQ Digital';" />
         <div class="brand-text">
           <div>VORQ Blog</div>
-          <small class="owner-line">Ägs av VORQ Group</small>
+          <small class="owner-line">تابعة لـ VORQ Digital</small>
         </div>
       </a>
 
@@ -647,10 +322,10 @@
   <main class="container">
     <section class="hero">
       <div class="hero-content">
-        <div class="eyebrow">VORQ Blog • VORQ Group</div>
-        <h1>مدونة للأفكار والتحليل والمجتمع</h1>
+        <div class="eyebrow">VORQ Blog • VORQ Digital</div>
+        <h1>مدونة عربية للأفكار والتحليل والمجتمع</h1>
         <p>
-          VORQ Blog هي منصة رقمية تابعة لـ VORQ Group تنشر مقالات شخصية وتحليلية حول المجتمع والاقتصاد والسياسة والأسرة والحياة والثقافة والتكنولوجيا بلغات متعددة.
+          VORQ Blog هي منصة تدوين عربية تابعة لـ VORQ Digital، تنشر مقالات شخصية وتحليلية حول المجتمع والاقتصاد والسياسة والأسرة والحياة والثقافة والتكنولوجيا.
         </p>
 
         <div class="actions">
@@ -660,52 +335,29 @@
         </div>
 
         <div class="stat-grid">
-          <div class="stat">
-            <strong id="totalPostsStat">0</strong>
-            <span>مقال منشور</span>
-          </div>
-
-          <div class="stat">
-            <strong id="totalWritersStat">0</strong>
-            <span>كاتب ظاهر</span>
-          </div>
-
-          <div class="stat">
-            <strong id="totalLangsStat">0</strong>
-            <span>لغة مستخدمة</span>
-          </div>
+          <div class="stat"><strong id="totalPostsStat">0</strong><span>مقال منشور</span></div>
+          <div class="stat"><strong id="totalWritersStat">0</strong><span>كاتب ظاهر</span></div>
+          <div class="stat"><strong id="totalCategoriesStat">0</strong><span>تصنيف مستخدم</span></div>
         </div>
       </div>
     </section>
-
 
     <section class="card" id="about">
       <div class="section-head">
         <div>
           <h2>عن VORQ Blog</h2>
-          <p class="muted">
-            VORQ Blog هي مدونة أفكار وتحليل مملوكة ومدارة من VORQ Group، وليست منصة أخبار رسمية أو جهة حكومية أو خدمة استشارة قانونية أو مالية.
-          </p>
+          <p class="muted">VORQ Blog مدونة عربية للأفكار والتحليل، تابعة لـ VORQ Digital وليست منصة أخبار رسمية أو جهة حكومية أو خدمة استشارة قانونية أو مالية أو طبية.</p>
         </div>
       </div>
 
       <p>
-        تنشر المدونة نصوصاً شخصية وتحليلية للنقاش والتفكير وتبادل المعرفة. الآراء المنشورة تعبّر عن كتّابها، ويجب على القارئ الرجوع إلى المصادر الرسمية أو المختصين عند اتخاذ قرارات مهمة.
+        تنشر المدونة نصوصاً عربية شخصية وتحليلية للنقاش والتفكير وتبادل المعرفة. الآراء المنشورة تعبّر عن كتّابها، ويجب على القارئ الرجوع إلى المصادر الرسمية أو المختصين عند اتخاذ قرارات مهمة.
       </p>
 
       <div class="about-grid">
-        <div class="about-box">
-          <strong>الشركة المالكة</strong>
-          VORQ Group
-        </div>
-        <div class="about-box">
-          <strong>البريد</strong>
-          info@vorq.group
-        </div>
-        <div class="about-box">
-          <strong>الشعار</strong>
-          Vision • Operations • Reach • Quality
-        </div>
+        <div class="about-box"><strong>المشغّل القانوني</strong>Haitham Kojar – VORQ Digital</div>
+        <div class="about-box"><strong>العنوان</strong>Ziegelstraße 26, 42289 Wuppertal, Deutschland</div>
+        <div class="about-box"><strong>البريد</strong>info@vorq.group</div>
       </div>
     </section>
 
@@ -713,15 +365,12 @@
       <div class="section-head">
         <div>
           <h2>أحدث المقالات</h2>
-          <p class="muted">
-            هنا تظهر المقالات المنشورة فقط للزوار.
-          </p>
+          <p class="muted">هنا تظهر المقالات العربية المنشورة فقط للزوار.</p>
         </div>
       </div>
 
       <div class="filters">
         <input id="searchInput" type="search" placeholder="ابحث في العنوان أو الكاتب أو المحتوى..." />
-
         <select id="categoryFilter" aria-label="فلتر التصنيف">
           <option value="">كل التصنيفات</option>
           <option value="politics">سياسة</option>
@@ -734,15 +383,6 @@
           <option value="opinion">رأي وتحليل</option>
           <option value="other">أخرى</option>
         </select>
-
-        <select id="langFilter" aria-label="فلتر اللغة">
-          <option value="">كل اللغات</option>
-          <option value="ar">العربية</option>
-          <option value="sv">Svenska</option>
-          <option value="en">English</option>
-          <option value="tr">Türkçe</option>
-          <option value="de">Deutsch</option>
-        </select>
       </div>
 
       <div id="postsStatus" class="status">جاري تحميل المقالات...</div>
@@ -753,27 +393,14 @@
       <div class="section-head">
         <div>
           <h2>الشروط والسياسات</h2>
-          <p class="muted">
-            صفحات توضح شروط الاستخدام، الخصوصية، وحدود المسؤولية.
-          </p>
+          <p class="muted">صفحات توضح شروط الاستخدام، الخصوصية، وحدود المسؤولية.</p>
         </div>
       </div>
 
       <div class="legal-grid">
-        <a class="legal-link" href="terms.html">
-          <strong>شروط الاستخدام</strong>
-          <span>قواعد استخدام الموقع وقراءة المحتوى.</span>
-        </a>
-
-        <a class="legal-link" href="privacy.html">
-          <strong>سياسة الخصوصية</strong>
-          <span>شرح البيانات وطريقة استخدامها وحفظها.</span>
-        </a>
-
-        <a class="legal-link" href="disclaimer.html">
-          <strong>إخلاء المسؤولية</strong>
-          <span>حدود مسؤولية الموقع والمحتوى والروابط الخارجية.</span>
-        </a>
+        <a class="legal-link" href="terms.html"><strong>شروط الاستخدام</strong><span>قواعد استخدام الموقع وقراءة المحتوى.</span></a>
+        <a class="legal-link" href="privacy.html"><strong>سياسة الخصوصية</strong><span>شرح البيانات وطريقة استخدامها وحفظها.</span></a>
+        <a class="legal-link" href="disclaimer.html"><strong>إخلاء المسؤولية</strong><span>حدود مسؤولية الموقع والمحتوى والروابط الخارجية.</span></a>
       </div>
     </section>
   </main>
@@ -800,10 +427,13 @@
         <a href="terms.html">الشروط</a>
         <a href="privacy.html">الخصوصية</a>
         <a href="disclaimer.html">إخلاء المسؤولية</a>
+        <a href="legal.html">المعلومات القانونية</a>
       </div>
 
       <div>
-        VORQ Blog © منصة مقالات وأفكار تابعة لـ VORQ Group
+        VORQ Blog © مدونة عربية تابعة لـ VORQ Digital
+        <br />
+        VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland
         <br />
         info@vorq.group — Vision • Operations • Reach • Quality
       </div>
@@ -812,12 +442,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-
-    import {
-      getDatabase,
-      ref,
-      onValue
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
@@ -835,15 +460,11 @@
 
     const postsGrid = document.getElementById("postsGrid");
     const postsStatus = document.getElementById("postsStatus");
-
     const searchInput = document.getElementById("searchInput");
     const categoryFilter = document.getElementById("categoryFilter");
-    const langFilter = document.getElementById("langFilter");
-
     const totalPostsStat = document.getElementById("totalPostsStat");
     const totalWritersStat = document.getElementById("totalWritersStat");
-    const totalLangsStat = document.getElementById("totalLangsStat");
-
+    const totalCategoriesStat = document.getElementById("totalCategoriesStat");
     const postDialog = document.getElementById("postDialog");
     const closeDialogBtn = document.getElementById("closeDialogBtn");
     const modalImage = document.getElementById("modalImage");
@@ -854,39 +475,27 @@
     let allPosts = [];
 
     listenToPosts();
-
     searchInput.addEventListener("input", renderPosts);
     categoryFilter.addEventListener("change", renderPosts);
-    langFilter.addEventListener("change", renderPosts);
-
-    closeDialogBtn.addEventListener("click", () => {
-      postDialog.close();
-    });
+    closeDialogBtn.addEventListener("click", () => postDialog.close());
 
     postDialog.addEventListener("click", (event) => {
       const rect = postDialog.getBoundingClientRect();
-      const clickedOutside =
-        event.clientX < rect.left ||
-        event.clientX > rect.right ||
-        event.clientY < rect.top ||
-        event.clientY > rect.bottom;
-
-      if (clickedOutside) {
-        postDialog.close();
-      }
+      const clickedOutside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+      if (clickedOutside) postDialog.close();
     });
 
     function listenToPosts() {
       onValue(ref(db, "posts"), (snapshot) => {
         const data = snapshot.val() || {};
 
-        allPosts = Object.entries(data).map(([id, value]) => {
-          return {
-            id: value.id || id,
-            ...value
-          };
-        }).filter((post) => {
-          return !post.status || post.status === "published";
+        allPosts = Object.entries(data).map(([id, value]) => ({
+          id: value.id || id,
+          ...value
+        })).filter((post) => {
+          const isPublished = !post.status || post.status === "published";
+          const isArabic = !post.lang || post.lang === "ar";
+          return isPublished && isArabic;
         }).sort((a, b) => {
           const av = Number(a.updatedAt || a.createdAt || 0);
           const bv = Number(b.updatedAt || b.createdAt || 0);
@@ -895,36 +504,24 @@
 
         updateStats(allPosts);
         renderPosts();
-
       }, (error) => {
         console.error(error);
-        postsGrid.innerHTML = "";
-        setPostsStatus("error", "فشل تحميل المقالات. تأكدي من قواعد القراءة في Firebase Realtime Database.");
+        postsGrid.replaceChildren();
+        setPostsStatus("error", "فشل تحميل المقالات. تأكد من قواعد القراءة في Firebase Realtime Database.");
       });
     }
 
     function renderPosts() {
-      postsGrid.innerHTML = "";
+      postsGrid.replaceChildren();
 
       const search = normalizeText(searchInput.value);
       const category = categoryFilter.value;
-      const lang = langFilter.value;
 
       const visiblePosts = allPosts.filter((post) => {
         if (category && post.category !== category) return false;
-        if (lang && post.lang !== lang) return false;
 
         if (search) {
-          const haystack = normalizeText([
-            post.title,
-            post.summary,
-            post.content,
-            post.authorName,
-            post.category,
-            post.lang,
-            post.source
-          ].join(" "));
-
+          const haystack = normalizeText([post.title, post.summary, post.content, post.authorName, post.category, post.source].join(" "));
           if (!haystack.includes(search)) return false;
         }
 
@@ -937,51 +534,74 @@
       }
 
       postsStatus.classList.add("hidden");
+      visiblePosts.forEach((post) => postsGrid.appendChild(createPostCard(post)));
+    }
 
-      visiblePosts.forEach((post) => {
-        const card = document.createElement("article");
-        card.className = "post-card";
+    function createPostCard(post) {
+      const card = document.createElement("article");
+      card.className = "post-card";
 
-        const title = post.title || "بدون عنوان";
-        const summary = post.summary || shortText(post.content || "", 170);
-        const authorName = post.authorName || "كاتب غير محدد";
-        const date = post.date || formatDateFromTimestamp(post.createdAt) || "بدون تاريخ";
-        const categoryLabel = getCategoryLabel(post.category);
-        const langLabel = getLangLabel(post.lang);
+      const title = post.title || "بدون عنوان";
+      const summary = post.summary || shortText(post.content || "", 170);
+      const authorName = post.authorName || "كاتب غير محدد";
+      const date = post.date || formatDateFromTimestamp(post.createdAt) || "بدون تاريخ";
+      const categoryLabel = getCategoryLabel(post.category);
 
-        const imageHtml = post.imageUrl && isValidUrl(post.imageUrl)
-          ? `<img src="${escapeHtml(post.imageUrl)}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.remove();" />`
-          : `<span>VORQ</span>`;
+      const imageBox = document.createElement("div");
+      imageBox.className = "post-image";
 
-        card.innerHTML = `
-          <div class="post-image">${imageHtml}</div>
-
-          <div class="post-body">
-            <div class="badge-row">
-              <span class="badge">${escapeHtml(categoryLabel)}</span>
-              <span class="badge green">${escapeHtml(langLabel)}</span>
-            </div>
-
-            <div class="post-title">${escapeHtml(title)}</div>
-
-            <div class="post-meta">
-              الكاتب: ${escapeHtml(authorName)}
-              <br />
-              التاريخ: ${escapeHtml(date)}
-            </div>
-
-            <div class="post-summary">${escapeHtml(summary)}</div>
-
-            <button class="btn btn-primary read-btn" type="button">قراءة المقال</button>
-          </div>
-        `;
-
-        card.querySelector(".read-btn").addEventListener("click", () => {
-          openPost(post);
+      if (post.imageUrl && isValidUrl(post.imageUrl)) {
+        const image = document.createElement("img");
+        image.src = post.imageUrl;
+        image.alt = title;
+        image.loading = "lazy";
+        image.addEventListener("error", () => {
+          imageBox.replaceChildren();
+          const fallback = document.createElement("span");
+          fallback.textContent = "VORQ";
+          imageBox.appendChild(fallback);
         });
+        imageBox.appendChild(image);
+      } else {
+        const fallback = document.createElement("span");
+        fallback.textContent = "VORQ";
+        imageBox.appendChild(fallback);
+      }
 
-        postsGrid.appendChild(card);
-      });
+      const body = document.createElement("div");
+      body.className = "post-body";
+
+      const badgeRow = document.createElement("div");
+      badgeRow.className = "badge-row";
+      const categoryBadge = document.createElement("span");
+      categoryBadge.className = "badge";
+      categoryBadge.textContent = categoryLabel;
+      const langBadge = document.createElement("span");
+      langBadge.className = "badge green";
+      langBadge.textContent = "العربية";
+      badgeRow.append(categoryBadge, langBadge);
+
+      const titleEl = document.createElement("div");
+      titleEl.className = "post-title";
+      titleEl.textContent = title;
+
+      const metaEl = document.createElement("div");
+      metaEl.className = "post-meta";
+      metaEl.textContent = "الكاتب: " + authorName + " | التاريخ: " + date;
+
+      const summaryEl = document.createElement("div");
+      summaryEl.className = "post-summary";
+      summaryEl.textContent = summary;
+
+      const readButton = document.createElement("button");
+      readButton.className = "btn btn-primary read-btn";
+      readButton.type = "button";
+      readButton.textContent = "قراءة المقال";
+      readButton.addEventListener("click", () => openPost(post));
+
+      body.append(badgeRow, titleEl, metaEl, summaryEl, readButton);
+      card.append(imageBox, body);
+      return card;
     }
 
     function openPost(post) {
@@ -989,18 +609,10 @@
       const authorName = post.authorName || "كاتب غير محدد";
       const date = post.date || formatDateFromTimestamp(post.createdAt) || "بدون تاريخ";
       const categoryLabel = getCategoryLabel(post.category);
-      const langLabel = getLangLabel(post.lang);
       const source = post.source ? " | المصدر: " + post.source : "";
 
       modalTitle.textContent = title;
-
-      modalMeta.textContent =
-        "الكاتب: " + authorName +
-        " | التاريخ: " + date +
-        " | التصنيف: " + categoryLabel +
-        " | اللغة: " + langLabel +
-        source;
-
+      modalMeta.textContent = "الكاتب: " + authorName + " | التاريخ: " + date + " | التصنيف: " + categoryLabel + " | اللغة: العربية" + source;
       modalContent.textContent = post.content || "لا يوجد محتوى.";
 
       if (post.imageUrl && isValidUrl(post.imageUrl)) {
@@ -1016,16 +628,14 @@
 
     function updateStats(posts) {
       const writers = new Set();
-      const langs = new Set();
-
+      const categories = new Set();
       posts.forEach((post) => {
         if (post.authorName) writers.add(post.authorName);
-        if (post.lang) langs.add(post.lang);
+        if (post.category) categories.add(post.category);
       });
-
       totalPostsStat.textContent = String(posts.length);
       totalWritersStat.textContent = String(writers.size);
-      totalLangsStat.textContent = String(langs.size);
+      totalCategoriesStat.textContent = String(categories.size);
     }
 
     function setPostsStatus(type, message) {
@@ -1033,27 +643,11 @@
       postsStatus.textContent = message;
     }
 
-    function normalizeText(value) {
-      return String(value || "").trim().toLowerCase();
-    }
+    function normalizeText(value) { return String(value || "").trim().toLowerCase(); }
 
     function shortText(value, maxLength) {
       const text = String(value || "").replace(/\s+/g, " ").trim();
-
-      if (text.length <= maxLength) {
-        return text;
-      }
-
-      return text.slice(0, maxLength) + "...";
-    }
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+      return text.length <= maxLength ? text : text.slice(0, maxLength) + "...";
     }
 
     function isValidUrl(value) {
@@ -1067,13 +661,7 @@
 
     function formatDateFromTimestamp(value) {
       if (!value || isNaN(Number(value))) return "";
-
-      try {
-        const date = new Date(Number(value));
-        return date.toISOString().slice(0, 10);
-      } catch {
-        return "";
-      }
+      try { return new Date(Number(value)).toISOString().slice(0, 10); } catch { return ""; }
     }
 
     function getCategoryLabel(value) {
@@ -1088,19 +676,6 @@
         opinion: "رأي وتحليل",
         other: "أخرى"
       };
-
-      return map[value] || value || "غير محدد";
-    }
-
-    function getLangLabel(value) {
-      const map = {
-        ar: "العربية",
-        sv: "Svenska",
-        en: "English",
-        tr: "Türkçe",
-        de: "Deutsch"
-      };
-
       return map[value] || value || "غير محدد";
     }
   </script>

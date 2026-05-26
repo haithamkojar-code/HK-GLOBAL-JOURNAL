@@ -1,3 +1,12 @@
+<!--
+  FILE: disclaimer.html
+  PROJECT: VORQ Digital / VORQ Blog
+  VERSION: VD-BLOG-2026-05-26-15-10-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 15:10 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Updated disclaimer for Arabic-only VORQ Blog, VORQ Digital operator identity, German legal address, content liability, writer responsibility, external links, and safer legal wording.
+-->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>إخلاء المسؤولية | VORQ Blog</title>
-  <meta name="description" content="إخلاء المسؤولية في VORQ Blog يوضح حدود مسؤولية الموقع عن المقالات والآراء والمصادر والروابط الخارجية والمحتوى المنشور من الكتّاب." />
+  <meta name="description" content="إخلاء المسؤولية في VORQ Blog، مدونة عربية تابعة لـ VORQ Digital، يوضح حدود مسؤولية الموقع عن المقالات والآراء والمصادر والروابط الخارجية ومحتوى الكتّاب." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -24,17 +33,12 @@
       --success: #16a34a;
       --warning: #f59e0b;
       --soft: #f8fafc;
-      --radius: 20px;
+      --radius: 22px;
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -42,7 +46,7 @@
       font-family: Arial, Tahoma, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 34%),
-        radial-gradient(circle at bottom left, rgba(220, 38, 38, 0.14), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.14), transparent 30%),
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
     }
@@ -50,10 +54,16 @@
     header {
       color: #fff;
       padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .header-inner {
-      max-width: 1000px;
+      max-width: 1050px;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -72,28 +82,26 @@
       color: #fff;
     }
 
-    .logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 900;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    .brand-logo-img {
+      height: 54px;
+      max-width: 230px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
     }
 
     .top-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1050px;
       margin: auto;
-      padding: 20px 18px 70px;
+      padding: 28px 18px 70px;
     }
 
     .card {
@@ -105,29 +113,11 @@
       margin-bottom: 20px;
     }
 
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      line-height: 1.35;
-    }
-
-    h1 {
-      font-size: clamp(28px, 4vw, 44px);
-    }
-
-    h2 {
-      font-size: 23px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    h2:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    h3 {
-      font-size: 19px;
-    }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.35; }
+    h1 { font-size: clamp(30px, 4vw, 46px); }
+    h2 { font-size: 24px; padding-top: 12px; border-top: 1px solid var(--border); }
+    h2:first-child { border-top: 0; padding-top: 0; }
+    h3 { font-size: 19px; }
 
     p, li {
       line-height: 1.9;
@@ -135,58 +125,55 @@
       font-size: 16px;
     }
 
-    ul {
-      padding-right: 22px;
+    ul { padding-right: 22px; }
+    a { color: #1d4ed8; font-weight: 900; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .muted { color: var(--muted); }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      font-family: inherit;
+      white-space: nowrap;
     }
 
-    .muted {
-      color: var(--muted);
-    }
-
-    .notice {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      line-height: 1.8;
-      color: #334155;
-      font-weight: 700;
-      margin-top: 14px;
-    }
-
-    .danger {
-      background: #fee2e2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    .warning {
-      background: #fef3c7;
-      border-color: #fde68a;
-      color: #92400e;
-    }
-
-    .success {
-      background: #dcfce7;
-      border-color: #bbf7d0;
-      color: #166534;
-    }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
+    .btn-soft { background: #eef2ff; color: #1e40af; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary2); }
 
     .meta {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 16px;
     }
 
-    .meta div {
-      background: #f8fafc;
+    .meta div, .notice {
+      background: var(--soft);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
+      border-radius: 16px;
+      padding: 14px;
       color: #334155;
-      line-height: 1.7;
+      line-height: 1.8;
     }
+
+    .meta strong { display: block; color: #0f172a; margin-bottom: 4px; }
+    .notice { margin-top: 14px; font-weight: 700; }
+    .notice.danger { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+    .notice.warning { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+    .notice.success { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
 
     .toc {
       display: grid;
@@ -196,32 +183,16 @@
     }
 
     .toc a {
-      text-decoration: none;
-      background: #f8fafc;
+      background: #fff;
       border: 1px solid var(--border);
-      color: #1e40af;
-      font-weight: 900;
       border-radius: 14px;
       padding: 12px;
+      display: block;
+      color: #1e40af;
       line-height: 1.6;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .footer-links a {
-      color: #1d4ed8;
-      font-weight: 900;
-      text-decoration: none;
-      background: #eef2ff;
-      border-radius: 999px;
-      padding: 10px 13px;
-    }
-
+    .footer-links,
     .btn-row {
       display: flex;
       flex-wrap: wrap;
@@ -229,189 +200,77 @@
       margin-top: 18px;
     }
 
-    .btn {
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-weight: 900;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: 0.18s;
-      font-family: inherit;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary2);
-    }
-
-    .btn-light {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .btn-soft {
+    .footer-links a {
       background: #eef2ff;
       color: #1e40af;
+      border-radius: 999px;
+      padding: 10px 13px;
     }
 
     footer {
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.76);
       text-align: center;
-      padding: 20px;
+      padding: 24px 18px 36px;
       font-size: 14px;
+      line-height: 1.8;
     }
 
     @media print {
-      body {
-        background: #fff;
-      }
-
-      header,
-      .btn-row,
-      footer {
-        display: none;
-      }
-
-      .container {
-        padding: 0;
-      }
-
-      .card {
-        box-shadow: none;
-        border: 0;
-      }
-
-      .footer-links {
-        display: none;
-      }
+      body { background: #fff; }
+      header, footer, .top-links, .btn-row, .footer-links { display: none; }
+      .container { padding: 0; }
+      .card { box-shadow: none; border: 0; }
     }
 
     @media (max-width: 760px) {
-      .meta,
-      .toc {
-        grid-template-columns: 1fr;
-      }
-
-      .top-links,
-      .footer-links,
-      .btn-row {
-        flex-direction: column;
-      }
-
-      .footer-links a,
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .card {
-        padding: 20px;
-      }
+      header { position: static; }
+      .meta, .toc { grid-template-columns: 1fr; }
+      .top-links, .footer-links, .btn-row { flex-direction: column; width: 100%; }
+      .btn, .footer-links a { width: 100%; text-align: center; }
+      .card { padding: 20px; }
     }
-  
-
-    .brand-logo-img {
-      height: 54px;
-      max-width: 230px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.22));
-    }
-
-    .card-logo-img {
-      height: 92px;
-      max-width: 260px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      margin: 0 auto 16px;
-      filter: drop-shadow(0 14px 30px rgba(2, 6, 23, 0.20));
-    }
-
   </style>
 </head>
 
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="index.html">
-        <img src="./vorq-group-logo.svg" alt="VORQ Group" class="brand-logo-img">
+      <a class="brand" href="index.html" aria-label="VORQ Blog">
+        <img src="./vorq-digital-logo.svg" alt="VORQ Digital" class="brand-logo-img" />
         <div>
           <div>VORQ Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">تابعة لـ VORQ Group</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">مدونة عربية تابعة لـ VORQ Digital</small>
         </div>
       </a>
 
-      <div class="top-links">
+      <nav class="top-links" aria-label="روابط الموقع">
         <a class="btn btn-light" href="index.html">الرئيسية</a>
-      </div>
+        <a class="btn btn-light" href="terms.html">الشروط</a>
+        <a class="btn btn-light" href="privacy.html">الخصوصية</a>
+      </nav>
     </div>
   </header>
 
   <main class="container">
     <section class="card">
       <h1>إخلاء المسؤولية</h1>
-
       <p class="muted">
         يوضح هذا الإخلاء حدود مسؤولية VORQ Blog عن المقالات والآراء والتحليلات والمصادر والروابط الخارجية والمحتوى المنشور من الكتّاب.
       </p>
 
       <div class="meta">
-        <div>
-          <strong>اسم الموقع:</strong>
-          <br />
-          VORQ Blog
-        </div>
-
-        <div>
-          <strong>المالك / المشغّل:</strong>
-          <br />
-          VORQ Group
-        </div>
-
-        <div>
-          <strong>نسخة الإخلاء:</strong>
-          <br />
-          2026-05-23
-        </div>
-
-        <div>
-          <strong>البريد الرسمي:</strong>
-          <br />
-          info@vorq.group
-        </div>
-
-        <div>
-          <strong>النطاق:</strong>
-          <br />
-          الزوار، الكتّاب، المقالات، الروابط، والمصادر
-        </div>
-
-        <div>
-          <strong>طبيعة المحتوى:</strong>
-          <br />
-          مقالات وآراء ومعلومات عامة
-        </div>
+        <div><strong>اسم الموقع</strong>VORQ Blog</div>
+        <div><strong>الهوية التشغيلية</strong>VORQ Digital</div>
+        <div><strong>المشغّل القانوني</strong>VORQ Digital, Inhaber: Haitham Kojar</div>
+        <div><strong>العنوان القانوني</strong>Ziegelstraße 26<br />42289 Wuppertal<br />Deutschland</div>
+        <div><strong>البريد الرسمي</strong><a href="mailto:info@vorq.group">info@vorq.group</a></div>
+        <div><strong>نسخة الإخلاء</strong>vorq-blog-disclaimer-2026-05</div>
+        <div><strong>طبيعة الموقع</strong>مدونة عربية للمقالات والآراء والمعلومات العامة</div>
+        <div><strong>النطاق</strong>الزوار، الكتّاب، المقالات، المصادر، الروابط والبلاغات</div>
       </div>
 
       <div class="notice danger">
-        ملاحظة مهمة: هذا الإخلاء قالب عام وليس استشارة قانونية نهائية. قبل استخدام الموقع رسميًا أو تجاريًا داخل السويد أو الاتحاد الأوروبي، يجب مراجعة محامٍ أو مستشار قانوني وإضافة أي بيانات تسجيل أو تراخيص لازمة.
+        ملاحظة مهمة: هذه الصفحة صياغة تنظيمية عامة وليست استشارة قانونية نهائية. قبل التشغيل التجاري الواسع أو إضافة إعلانات أو خدمات مدفوعة، يُنصح بمراجعة محامٍ أو مستشار قانوني مختص في ألمانيا والاتحاد الأوروبي.
       </div>
 
       <div class="toc">
@@ -422,273 +281,142 @@
         <a href="#professional">5. عدم تقديم نصيحة مهنية</a>
         <a href="#external">6. الروابط الخارجية</a>
         <a href="#copyright">7. حقوق النشر</a>
-        <a href="#moderation">8. مراجعة المحتوى</a>
+        <a href="#moderation">8. المراجعة والحذف</a>
         <a href="#damages">9. حدود المسؤولية</a>
-        <a href="#contact">10. البلاغات</a>
+        <a href="#contact">10. البلاغات والتواصل</a>
       </div>
     </section>
 
     <section class="card">
       <h2 id="general">1. معلومات عامة</h2>
-
       <p>
-        يقدم VORQ Blog محتوى عامًا على شكل مقالات وآراء وتحليلات ومعلومات في مجالات متعددة مثل المجتمع والاقتصاد والسياسة والثقافة والأسرة والتكنولوجيا.
+        VORQ Blog مدونة عربية تابعة لـ VORQ Digital، تنشر مقالات وآراء وتحليلات ومحتوى معلوماتي عام في موضوعات مثل المجتمع، الاقتصاد، السياسة، الثقافة، الأسرة، الحياة، والتكنولوجيا.
       </p>
-
       <p>
-        VORQ Blog مملوكة ومُدارة من قبل VORQ Group، وتعمل كمنصة تدوين وأفكار ومقالات عامة، وليست منصة أخبار رسمية أو جهة حكومية أو خدمة استشارة مهنية.
-      </p>
-
-      <p>
-        المحتوى الموجود على الموقع مخصص للقراءة العامة والتثقيف والمشاركة الفكرية، ولا يجب اعتباره بديلًا عن الاستشارة المتخصصة أو المصدر الرسمي.
-      </p>
-
-      <p>
-        تستخدم المنصة نظام حسابات للكتّاب، حيث يمكن للكاتب المفعّل نشر مقالات باسمه بعد قبول عقد مسؤولية الكاتب وشروط الاستخدام وسياسة الخصوصية.
+        الموقع ليس وكالة أنباء رسمية، وليس جهة حكومية، وليس خدمة استشارة قانونية أو طبية أو مالية أو مهنية. المحتوى المنشور مخصص للقراءة العامة والمناقشة والتثقيف فقط.
       </p>
 
       <h2 id="writers">2. مسؤولية الكتّاب</h2>
-
       <p>
-        كل مقال أو نص أو عنوان أو صورة أو رابط أو مصدر ينشره الكاتب من حسابه داخل VORQ Blog يعتبر محتوى مرتبطًا بذلك الكاتب.
+        كل مقال أو عنوان أو صورة أو رابط أو مصدر ينشره الكاتب من حسابه داخل VORQ Blog يُعد محتوى مرتبطًا بذلك الكاتب، ويتحمل الكاتب المسؤولية عن صحته ومشروعيته وعدم انتهاكه حقوق الغير.
       </p>
-
-      <p>
-        يتحمل الكاتب المسؤولية عن:
-      </p>
-
       <ul>
-        <li>دقة المعلومات التي يكتبها أو ينقلها.</li>
-        <li>سلامة المصادر التي يستند إليها.</li>
-        <li>عدم انتهاك حقوق الآخرين أو خصوصيتهم.</li>
-        <li>عدم نشر محتوى غير قانوني أو مضلل أو مسيء.</li>
-        <li>عدم استخدام صور أو نصوص أو مواد محمية بحقوق نشر دون حق أو إذن.</li>
+        <li>يجب ألا ينشر الكاتب محتوى غير قانوني أو مضللًا أو مسيئًا أو تشهيريًا.</li>
+        <li>يجب احترام الخصوصية وعدم نشر بيانات شخصية عن الآخرين دون أساس قانوني واضح.</li>
+        <li>يجب عدم استخدام صور أو نصوص أو شعارات أو مواد محمية بحقوق نشر دون إذن أو ترخيص مناسب.</li>
+        <li>يجب توضيح المصادر عند عرض معلومات حساسة أو ادعاءات مهمة.</li>
       </ul>
 
-      <p>
-        لا تتحمل VORQ Blog المسؤولية عن أي مخالفة يرتكبها الكاتب عند نشر محتوى من حسابه، مع احتفاظ الإدارة بحق مراجعة أو تعديل أو حذف المحتوى المخالف.
-      </p>
-
       <h2 id="opinions">3. الآراء والتحليلات</h2>
-
       <p>
-        الآراء والتحليلات المنشورة باسم الكاتب تعبر عن رأي الكاتب نفسه، ولا تعبر بالضرورة عن رأي إدارة VORQ Blog أو مالكي الموقع أو فريقه.
+        الآراء والتحليلات المنشورة باسم الكاتب تعبر عن رأي الكاتب نفسه، ولا تعبر بالضرورة عن رأي VORQ Digital أو إدارة VORQ Blog أو المشغّل القانوني.
       </p>
-
       <p>
-        قد تحتوي المقالات على وجهات نظر شخصية أو تحليلات أو تفسيرات للأحداث. يجب على القارئ التعامل معها كمحتوى رأي أو تحليل، وليس كحقيقة رسمية إلا إذا تم دعمها بمصادر واضحة وموثوقة.
-      </p>
-
-      <p>
-        لا تضمن إدارة الموقع صحة كل رأي أو استنتاج أو تحليل منشور من قبل الكتّاب.
+        قد تحتوي المقالات على وجهات نظر شخصية أو تحليلات قابلة للنقاش، لذلك يجب على القارئ التعامل معها كمحتوى رأي وتحليل لا كبيان رسمي.
       </p>
 
       <h2 id="accuracy">4. دقة المعلومات وتحديثها</h2>
-
       <p>
-        تبذل إدارة الموقع جهدًا معقولًا للحفاظ على جودة المحتوى، لكن لا تضمن أن جميع المعلومات المنشورة دقيقة أو كاملة أو محدثة دائمًا.
+        تبذل الإدارة جهدًا معقولًا لتحسين جودة المحتوى، لكنها لا تضمن أن جميع المعلومات المنشورة دقيقة أو كاملة أو محدثة دائمًا، خصوصًا في الموضوعات التي تتغير بسرعة مثل القانون، السياسة، الاقتصاد، الصحة، أو التقنية.
       </p>
-
-      <p>
-        قد تتغير المعلومات مع الوقت، خاصة في الموضوعات السياسية أو الاقتصادية أو القانونية أو الصحية أو التقنية.
-      </p>
-
-      <p>
-        يجب على القارئ التحقق من المصادر الرسمية أو المتخصصة قبل الاعتماد على أي معلومة مهمة أو اتخاذ قرار بناءً عليها.
-      </p>
-
       <div class="notice warning">
-        إذا وجدت معلومة غير دقيقة أو قديمة أو مضللة، يمكن إبلاغ إدارة الموقع لمراجعتها.
+        قبل الاعتماد على أي معلومة مهمة أو اتخاذ قرار بناءً عليها، يجب الرجوع إلى المصادر الرسمية أو المختصين المناسبين.
       </div>
 
       <h2 id="professional">5. عدم تقديم نصيحة مهنية</h2>
-
       <p>
-        المحتوى المنشور في VORQ Blog لا يعتبر نصيحة قانونية أو طبية أو مالية أو استثمارية أو نفسية أو مهنية.
+        أي محتوى منشور في VORQ Blog لا يُعد نصيحة قانونية أو طبية أو مالية أو استثمارية أو نفسية أو مهنية. إذا تناول المقال موضوعًا متخصصًا، فهو يقدم معلومات عامة فقط.
       </p>
-
       <p>
-        إذا كان المقال يتحدث عن موضوع طبي أو قانوني أو مالي أو مهني، فهو يقدم معلومات عامة فقط، ويجب الرجوع إلى طبيب أو محامٍ أو مستشار مالي أو متخصص مؤهل قبل اتخاذ أي قرار.
-      </p>
-
-      <p>
-        لا تتحمل VORQ Blog أو الكاتب مسؤولية أي قرار يتخذه القارئ بناءً على محتوى عام منشور في الموقع دون استشارة متخصص مناسب.
+        لا تتحمل VORQ Blog أو VORQ Digital أو الكاتب مسؤولية قرارات يتخذها القارئ بناءً على محتوى عام دون استشارة مختص مؤهل.
       </p>
 
       <h2 id="external">6. الروابط الخارجية والمصادر</h2>
-
       <p>
-        قد تحتوي المقالات على روابط لمواقع خارجية أو مصادر أو صفحات تابعة لأطراف أخرى.
+        قد تحتوي المقالات على روابط خارجية لمواقع أو مصادر تابعة لأطراف أخرى. وجود رابط خارجي داخل الموقع لا يعني أن VORQ Blog أو VORQ Digital تؤيد أو تضمن أو تتحمل مسؤولية محتوى ذلك الموقع.
       </p>
-
       <p>
-        وجود رابط خارجي داخل الموقع لا يعني أن VORQ Blog تؤيد أو تضمن أو تتحمل مسؤولية محتوى ذلك الموقع الخارجي.
-      </p>
-
-      <p>
-        عند فتح رابط خارجي، يصبح المستخدم خاضعًا لشروط وسياسة الخصوصية الخاصة بالموقع الخارجي، وليس لسياسات VORQ Blog.
-      </p>
-
-      <p>
-        لا تتحمل VORQ Blog مسؤولية أي ضرر أو خسارة أو مشكلة ناتجة عن استخدام مواقع خارجية أو تحميل ملفات أو التعامل مع روابط يضيفها الكاتب داخل مقاله.
+        عند فتح رابط خارجي، يخضع المستخدم لشروط وسياسة الخصوصية الخاصة بالموقع الخارجي، وليس لسياسات VORQ Blog.
       </p>
 
       <h2 id="copyright">7. حقوق النشر والملكية الفكرية</h2>
-
       <p>
-        يحاول VORQ Blog احترام حقوق النشر والملكية الفكرية، ويلتزم الكتّاب بعدم نشر مواد مملوكة للغير دون إذن أو ترخيص أو أساس قانوني مناسب.
+        تحترم VORQ Blog حقوق النشر والملكية الفكرية. يلتزم الكتّاب بعدم نشر مواد مملوكة للغير دون إذن أو ترخيص أو أساس قانوني مناسب.
       </p>
-
       <p>
-        إذا كنت صاحب حق وتعتقد أن مقالًا أو صورة أو محتوى داخل الموقع ينتهك حقوقك، يمكنك التواصل مع إدارة الموقع وطلب مراجعة المحتوى.
-      </p>
-
-      <p>
-        عند ثبوت وجود انتهاك واضح أو بلاغ معتبر، يحق للإدارة حذف المحتوى أو إخفاؤه أو تعديله أو طلب توضيح من الكاتب.
+        إذا كنت صاحب حق وتعتقد أن مقالًا أو صورة أو محتوى داخل الموقع ينتهك حقوقك، يمكنك التواصل مع الإدارة وطلب مراجعة المحتوى.
       </p>
 
       <h2 id="moderation">8. مراجعة وتعديل وحذف المحتوى</h2>
-
       <p>
-        يحق لإدارة VORQ Blog مراجعة أو تعديل أو إخفاء أو حذف أي محتوى في الحالات التالية:
+        تحتفظ إدارة VORQ Blog بحق مراجعة أو تعديل أو إخفاء أو حذف أي محتوى إذا كان مخالفًا للقانون أو الشروط، أو وصل بشأنه بلاغ معتبر، أو كان مضللًا، أو يحتوي على روابط ضارة، أو يسبب خطرًا قانونيًا أو أمنيًا أو أخلاقيًا على المنصة أو المستخدمين.
       </p>
-
-      <ul>
-        <li>إذا كان المحتوى مخالفًا للقانون أو شروط الاستخدام.</li>
-        <li>إذا كان المحتوى ينتهك خصوصية شخص أو حقوقه.</li>
-        <li>إذا كان المحتوى يتضمن معلومات مضللة أو خطرة.</li>
-        <li>إذا وصل بلاغ موثوق بخصوص المحتوى.</li>
-        <li>إذا كان المحتوى يحتوي على روابط خبيثة أو غير آمنة.</li>
-        <li>إذا كان المحتوى يسبب خطرًا قانونيًا أو أمنيًا أو أخلاقيًا على المنصة أو المستخدمين.</li>
-      </ul>
-
       <p>
         لا يعني وجود حق المراجعة أن الإدارة تراجع كل مقال قبل نشره، ولا يعني ذلك ضمان خلو الموقع من الأخطاء أو المخالفات.
       </p>
 
       <h2 id="damages">9. حدود المسؤولية عن الأضرار</h2>
-
       <p>
-        يستخدم الزائر أو الكاتب الموقع على مسؤوليته الخاصة. لا تتحمل VORQ Blog مسؤولية أي خسارة مباشرة أو غير مباشرة قد تنتج عن:
+        يستخدم الزائر أو الكاتب الموقع على مسؤوليته الخاصة. لا تتحمل VORQ Blog أو VORQ Digital مسؤولية أي خسارة مباشرة أو غير مباشرة قد تنتج عن الاعتماد على مقال، أو فتح رابط خارجي، أو خطأ في المعلومات، أو توقف مؤقت للموقع، أو سوء استخدام حساب الكاتب.
       </p>
-
       <ul>
-        <li>الاعتماد على مقال أو رأي أو تحليل منشور في الموقع.</li>
+        <li>الاعتماد على رأي أو تحليل منشور في الموقع.</li>
         <li>وجود خطأ أو نقص أو تأخير في المعلومات.</li>
         <li>فتح روابط خارجية أو استخدام مواقع أطراف ثالثة.</li>
-        <li>توقف الموقع مؤقتًا أو حدوث خلل تقني.</li>
-        <li>سوء استخدام حساب الكاتب أو مشاركة كلمة المرور مع الغير.</li>
         <li>نشر كاتب لمحتوى مخالف للقانون أو حقوق الآخرين.</li>
+        <li>تعطل مؤقت أو خلل تقني أو مشكلة اتصال.</li>
       </ul>
 
+      <h2>10. الإعلانات أو الترويج</h2>
       <p>
-        تسعى الإدارة إلى تحسين الموقع وحمايته، لكنها لا تضمن أن الخدمة ستكون متاحة دائمًا دون انقطاع أو خالية من الأخطاء التقنية.
+        لا يجوز نشر إعلان مخفي أو ترويج تجاري داخل مقال دون موافقة الإدارة وتوضيح مناسب للقارئ. إذا أضيفت إعلانات أو روابط تسويقية مستقبلًا، يجب تحديث الشروط والسياسات حسب الحاجة.
       </p>
 
-      <h2>10. المحتوى السياسي والاقتصادي والاجتماعي</h2>
-
+      <h2 id="contact">11. البلاغات وطلبات المراجعة</h2>
       <p>
-        قد يتناول الموقع موضوعات سياسية أو اقتصادية أو اجتماعية حساسة. هذه الموضوعات قد تتضمن آراء مختلفة أو تحليلات قابلة للنقاش.
+        يمكن لأي شخص التواصل مع الإدارة إذا رأى أن محتوى معينًا غير دقيق، مضلل، منتهك لحقوق النشر، منتهك للخصوصية، غير قانوني، مسيء، أو يحتوي على رابط ضار.
       </p>
-
       <p>
-        يجب على القارئ عدم اعتبار أي مقال سياسي أو اقتصادي أو اجتماعي قرارًا رسميًا أو توجيهًا ملزمًا، ويجب التحقق من المصادر الرسمية عند الحاجة.
+        عند إرسال البلاغ، يُفضّل ذكر رابط المقال، وصف المشكلة، وسبب طلب المراجعة.
       </p>
-
-      <h2>11. الإعلانات أو الترويج</h2>
-
-      <p>
-        لا يجوز للكاتب نشر إعلان مخفي أو ترويج تجاري داخل مقال دون موافقة الإدارة وتوضيح مناسب للقارئ.
-      </p>
-
-      <p>
-        إذا تمت إضافة إعلانات أو روابط تسويقية مستقبلًا، يجب توضيح ذلك في الموقع وتحديث الشروط والسياسات عند الحاجة.
-      </p>
-
-      <h2>12. المحتوى المرسل من المستخدمين</h2>
-
-      <p>
-        إذا سمح الموقع مستقبلًا بالتعليقات أو الرسائل أو البلاغات من الزوار، فإن المستخدم يتحمل مسؤولية ما يرسله.
-      </p>
-
-      <p>
-        يحق للإدارة حذف أي تعليق أو رسالة أو بلاغ يتضمن إساءة أو تشهيرًا أو محتوى مخالفًا أو بيانات شخصية للآخرين دون إذن.
-      </p>
-
-      <h2 id="contact">13. البلاغات وطلبات المراجعة</h2>
-
-      <p>
-        يمكن لأي شخص التواصل مع إدارة VORQ Blog إذا رأى أن محتوى معينًا:
-      </p>
-
-      <ul>
-        <li>غير دقيق أو مضلل.</li>
-        <li>ينتهك حقوق نشر أو ملكية فكرية.</li>
-        <li>ينتهك الخصوصية أو يحتوي على بيانات شخصية دون إذن.</li>
-        <li>يتضمن محتوى غير قانوني أو مسيء أو خطير.</li>
-        <li>يحتوي على رابط خارجي ضار أو احتيالي.</li>
-      </ul>
-
-      <p>
-        يجب أن يتضمن البلاغ قدر الإمكان رابط المقال، وصف المشكلة، وسبب طلب المراجعة.
-      </p>
-
       <div class="notice warning">
-        للتواصل الرسمي بخصوص البلاغات وطلبات المراجعة وحقوق النشر والخصوصية:
-        <br />
-        VORQ Group · info@vorq.group
-        <br />
-        Konserthusgatan 18D, 578 31 Aneby, Sverige
+        التواصل الرسمي: VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
       </div>
 
-      <h2>14. تحديث إخلاء المسؤولية</h2>
-
+      <h2>12. تحديث إخلاء المسؤولية</h2>
       <p>
-        قد يتم تحديث هذا الإخلاء من وقت لآخر عند تغيير طريقة عمل الموقع أو إضافة ميزات جديدة أو تعديل السياسات أو القوانين المعمول بها.
+        قد يتم تحديث هذا الإخلاء عند تغيير طريقة عمل الموقع، أو إضافة ميزات جديدة، أو تعديل السياسات، أو ظهور متطلبات قانونية جديدة.
       </p>
 
+      <h2>13. العلاقة مع السياسات الأخرى</h2>
       <p>
-        استمرار استخدام الموقع بعد تحديث هذه الصفحة يعني قبول النسخة الجديدة من إخلاء المسؤولية.
+        يجب قراءة هذا الإخلاء مع شروط الاستخدام، سياسة الخصوصية، وعقد مسؤولية الكاتب لفهم مسؤولية الزائر والكاتب والإدارة.
       </p>
 
-      <h2>15. العلاقة مع السياسات الأخرى</h2>
-
-      <p>
-        يرتبط هذا الإخلاء بالوثائق التالية:
-      </p>
-
-      <ul>
-        <li>شروط الاستخدام.</li>
-        <li>سياسة الخصوصية.</li>
-        <li>عقد مسؤولية الكاتب.</li>
-      </ul>
-
-      <p>
-        يجب قراءة هذه الوثائق معًا لفهم قواعد استخدام الموقع ومسؤولية الكاتب والزائر والإدارة.
-      </p>
-
-      <h2>16. الإقرار النهائي</h2>
-
+      <h2>14. الإقرار النهائي</h2>
       <div class="notice success">
-        باستخدام VORQ Blog أو قراءة المقالات أو إنشاء حساب كاتب أو نشر محتوى، يقر المستخدم أو الكاتب بأنه فهم حدود مسؤولية الموقع المملوك من VORQ Group، وأن المحتوى المنشور لا يغني عن المصادر الرسمية أو الاستشارة المتخصصة.
+        باستخدام VORQ Blog أو قراءة المقالات أو إنشاء حساب كاتب أو نشر محتوى، يقر المستخدم أو الكاتب بأنه فهم حدود مسؤولية الموقع، وأن المحتوى المنشور لا يغني عن المصادر الرسمية أو الاستشارة المتخصصة.
       </div>
 
       <div class="footer-links">
-        <a href="employee-contract.html">عقد مسؤولية الكاتب</a>
         <a href="terms.html">شروط الاستخدام</a>
         <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="legal.html">المعلومات القانونية</a>
+        <a href="employee-contract.html">عقد مسؤولية الكاتب</a>
         <a href="index.html">الرئيسية</a>
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-primary" onclick="window.print()">طباعة / حفظ PDF</button>
+        <button class="btn btn-primary" type="button" onclick="window.print()">طباعة / حفظ PDF</button>
         <a class="btn btn-soft" href="index.html">العودة للرئيسية</a>
       </div>
     </section>
   </main>
 
   <footer>
-    VORQ Blog © Disclaimer · VORQ Group · info@vorq.group · Vision • Operations • Reach • Quality
+    <div>VORQ Blog © إخلاء المسؤولية</div>
+    <div>VORQ Digital, Inhaber: Haitham Kojar · Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group</div>
+    <div>Vision • Operations • Reach • Quality</div>
   </footer>
 </body>
 </html>

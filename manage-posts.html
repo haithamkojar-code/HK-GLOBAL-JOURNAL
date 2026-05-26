@@ -1,9 +1,19 @@
 <!DOCTYPE html>
+<!--
+  FILE: manage-posts.html
+  PROJECT: VORQ Blog / VORQ Digital
+  VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 20:03 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Updated identity/legal operator, Arabic-only management flow, safer DOM rendering without dynamic innerHTML, and current writer/admin permission wording.
+-->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>إدارة المقالات | VORQ Blog</title>
+  <meta name="description" content="صفحة خاصة لإدارة مقالات VORQ Blog للمدير والكتّاب المفعّلين فقط." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
@@ -19,17 +29,12 @@
       --primary: #2563eb;
       --primary2: #1d4ed8;
       --danger: #dc2626;
-      --success: #16a34a;
-      --warning: #f59e0b;
       --soft: #f8fafc;
       --radius: 22px;
       --shadow: 0 25px 70px rgba(2, 6, 23, 0.22);
     }
-
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       min-height: 100vh;
@@ -40,259 +45,69 @@
         linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
     }
-
     header {
       color: #fff;
       padding: 18px;
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(15, 23, 42, 0.86);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-
-    .header-inner {
-      max-width: 1180px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 22px;
-      font-weight: 900;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.96);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      flex: 0 0 auto;
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      padding: 5px;
-    }
-
-    .top-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 1180px;
-      margin: auto;
-      padding: 26px 18px 70px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.97);
-      border: 1px solid rgba(255, 255, 255, 0.42);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-
-    h1, h2, h3 {
-      margin: 0 0 12px;
-      line-height: 1.35;
-    }
-
+    .header-inner, .container { max-width: 1180px; margin: auto; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; }
+    .logo-img { height: 52px; width: auto; max-width: 190px; object-fit: contain; border-radius: 14px; background: #fff; padding: 7px 10px; box-shadow: 0 14px 35px rgba(2, 6, 23, 0.25); }
+    .top-links, .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .container { padding: 26px 18px 70px; }
+    .card { background: rgba(255, 255, 255, 0.97); border: 1px solid rgba(255, 255, 255, 0.42); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 20px; }
+    .hero { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 16px; align-items: stretch; }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.35; }
     h1 { font-size: clamp(30px, 4vw, 46px); }
     h2 { font-size: 24px; }
-    h3 { font-size: 20px; }
-
     p { color: #334155; line-height: 1.85; }
     .muted { color: var(--muted); }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .info-item {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 13px 14px;
-      line-height: 1.7;
-      word-break: break-word;
-    }
-
-    .status {
-      margin-top: 14px;
-      padding: 13px 15px;
-      border-radius: 15px;
-      border: 1px solid var(--border);
-      background: var(--soft);
-      color: var(--muted);
-      font-weight: 800;
-      line-height: 1.7;
-      word-break: break-word;
-    }
-
+    .info-grid, .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .info-grid.one { grid-template-columns: 1fr; }
+    .info-item { background: var(--soft); border: 1px solid var(--border); border-radius: 16px; padding: 13px 14px; line-height: 1.7; word-break: break-word; }
+    .status { margin-top: 14px; padding: 13px 15px; border-radius: 15px; border: 1px solid var(--border); background: var(--soft); color: var(--muted); font-weight: 800; line-height: 1.7; word-break: break-word; }
     .status.success { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
     .status.error { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
     .status.warning { background: #fef3c7; border-color: #fde68a; color: #92400e; }
-
     form { display: grid; gap: 14px; margin-top: 16px; }
-
-    label {
-      display: block;
-      font-weight: 900;
-      margin-bottom: 7px;
-      color: #111827;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 14px 15px;
-      font-size: 16px;
-      outline: none;
-      background: #fff;
-      font-family: inherit;
-    }
-
-    textarea {
-      min-height: 230px;
-      resize: vertical;
-      line-height: 1.85;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
-    }
-
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    .filters {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .btn {
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-weight: 900;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: 0.18s;
-      font-family: inherit;
-      white-space: nowrap;
-    }
-
+    label { display: block; font-weight: 900; margin-bottom: 7px; color: #111827; }
+    input, select, textarea { width: 100%; border: 1px solid var(--border); border-radius: 15px; padding: 14px 15px; font-size: 16px; outline: none; background: #fff; font-family: inherit; }
+    textarea { min-height: 230px; resize: vertical; line-height: 1.85; }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13); }
+    .filters { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .btn { border: 0; border-radius: 999px; padding: 13px 18px; font-weight: 900; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 8px; transition: 0.18s; font-family: inherit; white-space: nowrap; }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary2); }
-    .btn-dark { background: #020617; color: #fff; }
     .btn-light { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
     .btn-soft { background: #eef2ff; color: #1e40af; }
     .btn-danger { background: #fee2e2; color: #991b1b; }
-    .btn-warning { background: #fef3c7; color: #92400e; }
     .btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
-
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-
     .posts-list { display: grid; gap: 14px; margin-top: 18px; }
-
-    .post-item {
-      border: 1px solid var(--border);
-      background: #fff;
-      border-radius: 20px;
-      padding: 18px;
-      display: grid;
-      gap: 12px;
-      transition: 0.18s;
-    }
-
+    .post-item { border: 1px solid var(--border); background: #fff; border-radius: 20px; padding: 18px; display: grid; gap: 12px; transition: 0.18s; }
     .post-item:hover { box-shadow: 0 18px 44px rgba(15, 23, 42, 0.10); transform: translateY(-2px); }
-
-    .post-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: start;
-    }
-
+    .post-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: start; }
     .post-title { font-size: 20px; font-weight: 900; line-height: 1.45; color: #0f172a; }
     .post-meta { color: var(--muted); line-height: 1.7; font-size: 14px; }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
+    .badge { display: inline-flex; align-items: center; padding: 7px 11px; border-radius: 999px; font-size: 12px; font-weight: 900; white-space: nowrap; }
     .badge.published { background: #dcfce7; color: #166534; }
     .badge.draft { background: #fef3c7; color: #92400e; }
-
-    .summary {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 12px;
-      color: #334155;
-      line-height: 1.8;
-      white-space: pre-wrap;
-    }
-
+    .summary { background: #f8fafc; border: 1px solid var(--border); border-radius: 15px; padding: 12px; color: #334155; line-height: 1.8; white-space: pre-wrap; }
+    .legal-note { font-size: 13px; color: rgba(255,255,255,0.72); font-weight: 700; }
     .hidden { display: none !important; }
-
-    footer { color: rgba(255,255,255,0.72); text-align: center; padding: 20px; font-size: 14px; }
-
+    footer { color: rgba(255,255,255,0.72); text-align: center; padding: 20px; font-size: 14px; line-height: 1.8; }
     @media (max-width: 900px) {
+      header { position: static; }
       .hero, .grid, .filters, .info-grid { grid-template-columns: 1fr; }
       .top-links, .actions { flex-direction: column; width: 100%; }
       .btn { width: 100%; }
       .card { padding: 20px; }
-      header { position: static; }
     }
   </style>
 </head>
@@ -300,11 +115,11 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="hk-writers-access.html">
-        <div class="logo"><img src="vorq-group-logo.svg" alt="VORQ Group" /></div>
+      <a class="brand" href="hk-writers-access.html" aria-label="VORQ Blog - إدارة المقالات">
+        <img class="logo-img" src="vorq-blog-logo.png" alt="VORQ Blog" onerror="this.src='vorq-digital-logo.svg'; this.alt='VORQ Digital';" />
         <div>
           <div>VORQ Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">إدارة المقالات • VORQ Group</small>
+          <small class="legal-note">إدارة المقالات · VORQ Digital</small>
         </div>
       </a>
 
@@ -321,45 +136,28 @@
     <section class="hero">
       <div class="card">
         <h1>إدارة المقالات</h1>
-        <p class="muted">
-          من هنا يمكن تعديل المقالات أو حذفها. المدير يرى كل المقالات، والكاتب يرى مقالاته فقط.
-        </p>
+        <p class="muted">هذه الصفحة خاصة بالمدير والكتّاب المفعّلين. المدير يرى كل المقالات، والكاتب يرى مقالاته فقط.</p>
+        <p class="muted">VORQ Blog مدونة عربية تابعة لـ VORQ Digital. المقالات الحالية تحفظ تقنياً مع اللغة العربية فقط.</p>
         <div id="mainStatus" class="status warning">جاري التحقق من تسجيل الدخول...</div>
       </div>
 
       <div class="card">
         <h2>معلومات الحساب</h2>
-        <div class="info-grid" style="grid-template-columns:1fr;">
-          <div class="info-item">
-            <strong>البريد:</strong>
-            <div id="currentEmail" class="muted">غير مسجل</div>
-          </div>
-          <div class="info-item">
-            <strong>الصلاحية:</strong>
-            <div id="currentRole" class="muted">غير معروف</div>
-          </div>
-          <div class="info-item">
-            <strong>عدد المقالات:</strong>
-            <div id="postCount" class="muted">0</div>
-          </div>
+        <div class="info-grid one">
+          <div class="info-item"><strong>البريد:</strong><div id="currentEmail" class="muted">غير مسجل</div></div>
+          <div class="info-item"><strong>الصلاحية:</strong><div id="currentRole" class="muted">غير معروف</div></div>
+          <div class="info-item"><strong>عدد المقالات الظاهرة:</strong><div id="postCount" class="muted">0</div></div>
         </div>
       </div>
     </section>
 
     <section class="card" id="loginCard">
       <h2>تسجيل الدخول</h2>
-      <p class="muted">هذه الصفحة خاصة بالمدير والكتّاب المفعّلين.</p>
-
+      <p class="muted">استخدم حساب المدير أو الكاتب المفعّل للوصول إلى إدارة المقالات.</p>
       <form id="loginForm">
         <div class="grid">
-          <div>
-            <label for="loginEmail">البريد الإلكتروني</label>
-            <input id="loginEmail" type="email" placeholder="name@example.com" autocomplete="email" required />
-          </div>
-          <div>
-            <label for="loginPassword">كلمة المرور</label>
-            <input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password" required />
-          </div>
+          <div><label for="loginEmail">البريد الإلكتروني</label><input id="loginEmail" type="email" placeholder="name@example.com" autocomplete="email" required /></div>
+          <div><label for="loginPassword">كلمة المرور</label><input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password" required /></div>
         </div>
         <button class="btn btn-primary" id="loginBtn" type="submit">تسجيل الدخول</button>
       </form>
@@ -369,8 +167,7 @@
       <h2>فلترة المقالات</h2>
       <div class="filters">
         <input id="searchInput" type="search" placeholder="بحث في العنوان أو الكاتب أو المحتوى..." />
-
-        <select id="categoryFilter">
+        <select id="categoryFilter" aria-label="التصنيف">
           <option value="">كل التصنيفات</option>
           <option value="politics">سياسة</option>
           <option value="economy">اقتصاد</option>
@@ -382,37 +179,21 @@
           <option value="opinion">رأي وتحليل</option>
           <option value="other">أخرى</option>
         </select>
-
-        <select id="statusFilter">
+        <select id="statusFilter" aria-label="حالة المقال">
           <option value="">كل الحالات</option>
           <option value="published">منشور</option>
           <option value="draft">مسودة</option>
         </select>
-
-        <select id="langFilter">
-          <option value="">كل اللغات</option>
-          <option value="ar">العربية</option>
-          <option value="sv">Svenska</option>
-          <option value="en">English</option>
-          <option value="tr">Türkçe</option>
-          <option value="de">Deutsch</option>
-        </select>
       </div>
-
       <div id="postsList" class="posts-list"></div>
     </section>
 
     <section class="card hidden" id="editCard">
       <h2>تعديل المقال</h2>
-
       <form id="editForm">
         <input id="editPostId" type="hidden" />
-
-        <div>
-          <label for="editTitle">عنوان المقال</label>
-          <input id="editTitle" type="text" maxlength="160" required />
-        </div>
-
+        <input id="editLang" type="hidden" value="ar" />
+        <div><label for="editTitle">عنوان المقال</label><input id="editTitle" type="text" maxlength="160" required /></div>
         <div class="grid">
           <div>
             <label for="editCategory">التصنيف</label>
@@ -428,35 +209,6 @@
               <option value="other">أخرى</option>
             </select>
           </div>
-
-          <div>
-            <label for="editLang">لغة المقال</label>
-            <select id="editLang" required>
-              <option value="ar">العربية</option>
-              <option value="sv">Svenska</option>
-              <option value="en">English</option>
-              <option value="tr">Türkçe</option>
-              <option value="de">Deutsch</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label for="editSummary">ملخص قصير</label>
-          <input id="editSummary" type="text" maxlength="260" />
-        </div>
-
-        <div>
-          <label for="editImageUrl">رابط الصورة اختياري</label>
-          <input id="editImageUrl" type="url" maxlength="500" />
-        </div>
-
-        <div>
-          <label for="editContent">محتوى المقال</label>
-          <textarea id="editContent" maxlength="20000" required></textarea>
-        </div>
-
-        <div class="grid">
           <div>
             <label for="editStatus">حالة المقال</label>
             <select id="editStatus" required>
@@ -464,41 +216,25 @@
               <option value="draft">مسودة</option>
             </select>
           </div>
-          <div>
-            <label for="editSource">المصدر اختياري</label>
-            <input id="editSource" type="text" maxlength="300" />
-          </div>
         </div>
-
-        <div class="actions">
-          <button class="btn btn-primary" id="saveEditBtn" type="submit">حفظ التعديل</button>
-          <button class="btn btn-soft" id="cancelEditBtn" type="button">إلغاء</button>
-        </div>
+        <div><label for="editSummary">ملخص قصير</label><input id="editSummary" type="text" maxlength="260" /></div>
+        <div><label for="editImageUrl">رابط الصورة اختياري</label><input id="editImageUrl" type="url" maxlength="500" /></div>
+        <div><label for="editContent">محتوى المقال</label><textarea id="editContent" maxlength="20000" required></textarea></div>
+        <div><label for="editSource">المصدر اختياري</label><input id="editSource" type="text" maxlength="300" /></div>
+        <div class="actions"><button class="btn btn-primary" id="saveEditBtn" type="submit">حفظ التعديل</button><button class="btn btn-soft" id="cancelEditBtn" type="button">إلغاء</button></div>
       </form>
     </section>
   </main>
 
-  <footer>VORQ Blog © Manage Posts • VORQ Group • info@vorq.group • Vision • Operations • Reach • Quality</footer>
+  <footer>
+    VORQ Blog © إدارة المقالات · VORQ Digital, Inhaber: Haitham Kojar<br />
+    Ziegelstraße 26, 42289 Wuppertal, Deutschland · info@vorq.group
+  </footer>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-
-    import {
-      getDatabase,
-      ref,
-      get,
-      onValue,
-      update,
-      remove,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getDatabase, ref, get, onValue, update, remove, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAJDyKosoysPzOjl-9DqaZIDEg8GRPfXzQ",
@@ -511,6 +247,7 @@
       measurementId: "G-FSB1QBLZM7"
     };
 
+    const BLOG_LANGUAGE = "ar";
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
@@ -519,24 +256,19 @@
     const currentEmail = document.getElementById("currentEmail");
     const currentRole = document.getElementById("currentRole");
     const postCount = document.getElementById("postCount");
-
     const loginCard = document.getElementById("loginCard");
     const manageCard = document.getElementById("manageCard");
     const editCard = document.getElementById("editCard");
-
     const loginForm = document.getElementById("loginForm");
     const loginEmail = document.getElementById("loginEmail");
     const loginPassword = document.getElementById("loginPassword");
     const loginBtn = document.getElementById("loginBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const adminTopLink = document.getElementById("adminTopLink");
-
     const searchInput = document.getElementById("searchInput");
     const categoryFilter = document.getElementById("categoryFilter");
     const statusFilter = document.getElementById("statusFilter");
-    const langFilter = document.getElementById("langFilter");
     const postsList = document.getElementById("postsList");
-
     const editForm = document.getElementById("editForm");
     const editPostId = document.getElementById("editPostId");
     const editTitle = document.getElementById("editTitle");
@@ -563,33 +295,22 @@
         setStatus("warning", "يرجى تسجيل الدخول.");
         return;
       }
-
       currentUser = user;
       currentEmail.textContent = user.email || user.uid;
-
       try {
         const access = await loadAccess(user);
-
         if (!access.allowed) {
           await signOut(auth);
           showLoggedOut();
           setStatus("error", "هذا الحساب لا يملك صلاحية إدارة المقالات.");
           return;
         }
-
         currentUserRole = access.role;
         currentRole.textContent = access.role === "admin" ? "مدير" : "كاتب";
         adminTopLink.classList.toggle("hidden", access.role !== "admin");
-
         showManagePanel();
         setStatus("success", "تم تسجيل الدخول. يمكنك إدارة المقالات.");
-
-        if (!postsListenerStarted) {
-          listenToPosts();
-          postsListenerStarted = true;
-        } else {
-          renderPosts();
-        }
+        if (!postsListenerStarted) { listenToPosts(); postsListenerStarted = true; } else { renderPosts(); }
       } catch (error) {
         console.error(error);
         showLoggedOut();
@@ -599,88 +320,47 @@
 
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
       const email = normalizeEmail(loginEmail.value);
       const password = String(loginPassword.value || "");
-
-      if (!isValidEmail(email) || !password) {
-        setStatus("error", "اكتب البريد وكلمة المرور بشكل صحيح.");
-        return;
-      }
-
+      if (!isValidEmail(email) || !password) { setStatus("error", "اكتب البريد وكلمة المرور بشكل صحيح."); return; }
       loginBtn.disabled = true;
       loginBtn.textContent = "جاري تسجيل الدخول...";
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        loginPassword.value = "";
-      } catch (error) {
-        console.error(error);
-        setStatus("error", getFriendlyError(error));
-      } finally {
-        loginBtn.disabled = false;
-        loginBtn.textContent = "تسجيل الدخول";
-      }
+      try { await signInWithEmailAndPassword(auth, email, password); loginPassword.value = ""; }
+      catch (error) { console.error(error); setStatus("error", getFriendlyError(error)); }
+      finally { loginBtn.disabled = false; loginBtn.textContent = "تسجيل الدخول"; }
     });
 
-    logoutBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      setStatus("warning", "تم تسجيل الخروج.");
-    });
-
+    logoutBtn.addEventListener("click", async () => { await signOut(auth); setStatus("warning", "تم تسجيل الخروج."); });
     searchInput.addEventListener("input", renderPosts);
     categoryFilter.addEventListener("change", renderPosts);
     statusFilter.addEventListener("change", renderPosts);
-    langFilter.addEventListener("change", renderPosts);
+    cancelEditBtn.addEventListener("click", closeEditForm);
 
     editForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
       const postId = editPostId.value;
       const post = allPosts.find((item) => item.id === postId);
-
-      if (!postId || !post) {
-        setStatus("error", "المقال غير موجود.");
-        return;
-      }
-
-      if (!canManagePost(post)) {
-        setStatus("error", "لا تملك صلاحية تعديل هذا المقال.");
-        return;
-      }
+      if (!postId || !post) { setStatus("error", "المقال غير موجود."); return; }
+      if (!canManagePost(post)) { setStatus("error", "لا تملك صلاحية تعديل هذا المقال."); return; }
 
       const title = cleanText(editTitle.value, 160);
       const category = cleanText(editCategory.value, 60);
-      const lang = cleanText(editLang.value, 10);
+      const lang = BLOG_LANGUAGE;
       const summary = cleanText(editSummary.value, 260);
       const imageUrl = cleanText(editImageUrl.value, 500);
       const content = cleanLongText(editContent.value, 20000);
       const status = cleanText(editStatus.value, 30);
       const source = cleanText(editSource.value, 300);
 
-      if (!title || !category || !lang || !content) {
-        setStatus("error", "العنوان والتصنيف واللغة والمحتوى حقول إجبارية.");
-        return;
-      }
-
-      if (imageUrl && !isValidUrl(imageUrl)) {
-        setStatus("error", "رابط الصورة غير صحيح.");
-        return;
-      }
+      if (!title || !category || !content) { setStatus("error", "العنوان والتصنيف والمحتوى حقول إجبارية."); return; }
+      if (!isAllowedStatus(status)) { setStatus("error", "حالة المقال غير صحيحة."); return; }
+      if (imageUrl && !isValidUrl(imageUrl)) { setStatus("error", "رابط الصورة غير صحيح."); return; }
 
       saveEditBtn.disabled = true;
       saveEditBtn.textContent = "جاري الحفظ...";
-
       try {
         await update(ref(db, "posts/" + postId), {
-          title,
-          category,
-          lang,
-          summary,
-          imageUrl,
-          content,
-          status,
-          source,
+          title, category, lang, summary, imageUrl, content, status, source,
           id: postId,
           date: post.date || new Date().toISOString().slice(0, 10),
           authorUid: post.authorUid || currentUser.uid,
@@ -690,282 +370,143 @@
           createdAt: post.createdAt || serverTimestamp(),
           updatedAt: serverTimestamp(),
           updatedByUid: currentUser.uid,
-          updatedByEmail: currentUser.email || ""
+          updatedByEmail: currentUser.email || "",
+          projectName: "VORQ Blog",
+          operatorLegalName: "VORQ Digital, Inhaber: Haitham Kojar"
         });
-
         setStatus("success", "تم تعديل المقال بنجاح.");
         closeEditForm();
-      } catch (error) {
-        console.error(error);
-        setStatus("error", "فشل تعديل المقال: " + getFriendlyError(error));
-      } finally {
-        saveEditBtn.disabled = false;
-        saveEditBtn.textContent = "حفظ التعديل";
-      }
+      } catch (error) { console.error(error); setStatus("error", "فشل تعديل المقال: " + getFriendlyError(error)); }
+      finally { saveEditBtn.disabled = false; saveEditBtn.textContent = "حفظ التعديل"; }
     });
-
-    cancelEditBtn.addEventListener("click", closeEditForm);
 
     async function loadAccess(user) {
       const adminSnap = await get(ref(db, "admins/" + user.uid));
       const adminValue = adminSnap.val();
-
-      if (adminValue === true || (adminValue && adminValue.active === true)) {
-        return { allowed: true, role: "admin" };
-      }
-
+      if (adminValue === true || (adminValue && adminValue.active === true)) return { allowed: true, role: "admin" };
       const writerSnap = await get(ref(db, "employees/" + user.uid));
       const writerValue = writerSnap.val();
-
-      if (writerValue && writerValue.active === true) {
-        return { allowed: true, role: "employee" };
-      }
-
+      if (writerValue && writerValue.active === true) return { allowed: true, role: "employee" };
       return { allowed: false, role: null };
     }
 
     function listenToPosts() {
       onValue(ref(db, "posts"), (snapshot) => {
         const data = snapshot.val() || {};
-
-        allPosts = Object.entries(data).map(([id, value]) => ({ id: value.id || id, ...value }))
+        allPosts = Object.entries(data)
+          .map(([id, value]) => ({ id: value.id || id, ...value }))
           .sort((a, b) => Number(b.updatedAt || b.createdAt || 0) - Number(a.updatedAt || a.createdAt || 0));
-
         renderPosts();
-      }, (error) => {
-        console.error(error);
-        setStatus("error", "فشل تحميل المقالات: " + getFriendlyError(error));
-      });
+      }, (error) => { console.error(error); setStatus("error", "فشل تحميل المقالات: " + getFriendlyError(error)); });
     }
 
     function renderPosts() {
-      postsList.innerHTML = "";
-
+      postsList.replaceChildren();
       const search = normalizeText(searchInput.value);
       const category = categoryFilter.value;
       const status = statusFilter.value;
-      const lang = langFilter.value;
-
       const visiblePosts = allPosts.filter((post) => {
         if (currentUserRole === "employee" && post.authorUid !== currentUser.uid) return false;
         if (category && post.category !== category) return false;
-        if (status && post.status !== status) return false;
-        if (lang && post.lang !== lang) return false;
-
+        if (status && (post.status || "published") !== status) return false;
         if (search) {
-          const haystack = normalizeText([
-            post.title,
-            post.summary,
-            post.content,
-            post.authorName,
-            post.authorEmail,
-            post.category,
-            post.lang,
-            post.source
-          ].join(" "));
-
+          const haystack = normalizeText([post.title, post.summary, post.content, post.authorName, post.authorEmail, post.category, post.source].join(" "));
           if (!haystack.includes(search)) return false;
         }
-
         return true;
       });
-
       postCount.textContent = String(visiblePosts.length);
+      if (!visiblePosts.length) { postsList.appendChild(makeStatusBox("warning", "لا توجد مقالات مطابقة.")); return; }
+      visiblePosts.forEach((post) => postsList.appendChild(createPostItem(post)));
+    }
 
-      if (!visiblePosts.length) {
-        postsList.innerHTML = `<div class="status warning">لا توجد مقالات مطابقة.</div>`;
-        return;
-      }
+    function createPostItem(post) {
+      const item = document.createElement("article");
+      item.className = "post-item";
+      const head = document.createElement("div");
+      head.className = "post-head";
+      const textWrap = document.createElement("div");
+      const title = document.createElement("div");
+      title.className = "post-title";
+      title.textContent = post.title || "بدون عنوان";
+      const meta = document.createElement("div");
+      meta.className = "post-meta";
+      const statusValue = post.status || "published";
+      const authorName = post.authorName || "غير محدد";
+      const authorEmail = post.authorEmail || "غير محدد";
+      const date = post.date || "بدون تاريخ";
+      const writerType = post.authorRole === "admin" ? "مدير" : "كاتب";
+      meta.textContent = `الكاتب: ${authorName} | النوع: ${writerType} | البريد: ${authorEmail} | التاريخ: ${date} | التصنيف: ${getCategoryLabel(post.category)} | ID: ${post.id || ""}`;
+      textWrap.append(title, meta);
+      const badge = document.createElement("span");
+      badge.className = "badge " + (statusValue === "draft" ? "draft" : "published");
+      badge.textContent = statusValue === "draft" ? "مسودة" : "منشور";
+      head.append(textWrap, badge);
+      const summary = document.createElement("div");
+      summary.className = "summary";
+      summary.textContent = post.summary || shortText(post.content || "", 180);
+      const actions = document.createElement("div");
+      actions.className = "actions";
+      const editButton = document.createElement("button");
+      editButton.className = "btn btn-primary";
+      editButton.type = "button";
+      editButton.textContent = "تعديل";
+      editButton.addEventListener("click", () => openEditForm(post));
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "btn btn-danger";
+      deleteButton.type = "button";
+      deleteButton.textContent = "حذف";
+      deleteButton.addEventListener("click", () => deletePost(post));
+      actions.append(editButton, deleteButton);
+      item.append(head, summary, actions);
+      return item;
+    }
 
-      visiblePosts.forEach((post) => {
-        const item = document.createElement("div");
-        item.className = "post-item";
-
-        const statusValue = post.status || "published";
-        const badgeClass = statusValue === "draft" ? "draft" : "published";
-        const badgeText = statusValue === "draft" ? "مسودة" : "منشور";
-        const authorName = post.authorName || "غير محدد";
-        const authorEmail = post.authorEmail || "غير محدد";
-        const date = post.date || "بدون تاريخ";
-        const categoryLabel = getCategoryLabel(post.category);
-        const langLabel = getLangLabel(post.lang);
-        const summary = post.summary || shortText(post.content || "", 180);
-        const writerType = post.authorRole === "admin" ? "مدير" : "كاتب";
-
-        item.innerHTML = `
-          <div class="post-head">
-            <div>
-              <div class="post-title">${escapeHtml(post.title || "بدون عنوان")}</div>
-              <div class="post-meta">
-                الكاتب: ${escapeHtml(authorName)} |
-                النوع: ${escapeHtml(writerType)} |
-                البريد: ${escapeHtml(authorEmail)} |
-                التاريخ: ${escapeHtml(date)}
-                <br />
-                التصنيف: ${escapeHtml(categoryLabel)} |
-                اللغة: ${escapeHtml(langLabel)} |
-                ID: ${escapeHtml(post.id)}
-              </div>
-            </div>
-            <span class="badge ${badgeClass}">${badgeText}</span>
-          </div>
-
-          <div class="summary">${escapeHtml(summary)}</div>
-
-          <div class="actions">
-            <button class="btn btn-primary" data-action="edit">تعديل</button>
-            <button class="btn btn-danger" data-action="delete">حذف</button>
-          </div>
-        `;
-
-        item.querySelector('[data-action="edit"]').addEventListener("click", () => openEditForm(post));
-        item.querySelector('[data-action="delete"]').addEventListener("click", () => deletePost(post));
-        postsList.appendChild(item);
-      });
+    function makeStatusBox(type, message) {
+      const box = document.createElement("div");
+      box.className = "status " + type;
+      box.textContent = message;
+      return box;
     }
 
     function openEditForm(post) {
-      if (!canManagePost(post)) {
-        setStatus("error", "لا تملك صلاحية تعديل هذا المقال.");
-        return;
-      }
-
+      if (!canManagePost(post)) { setStatus("error", "لا تملك صلاحية تعديل هذا المقال."); return; }
       editPostId.value = post.id || "";
       editTitle.value = post.title || "";
       editCategory.value = post.category || "other";
-      editLang.value = post.lang || "ar";
+      editLang.value = BLOG_LANGUAGE;
       editSummary.value = post.summary || "";
       editImageUrl.value = post.imageUrl || "";
       editContent.value = post.content || "";
       editStatus.value = post.status || "published";
       editSource.value = post.source || "";
-
       editCard.classList.remove("hidden");
       editCard.scrollIntoView({ behavior: "smooth", block: "start" });
       setStatus("warning", "أنت الآن تعدّل مقال: " + (post.title || post.id));
     }
 
-    function closeEditForm() {
-      editForm.reset();
-      editPostId.value = "";
-      editCard.classList.add("hidden");
-    }
+    function closeEditForm() { editForm.reset(); editPostId.value = ""; editLang.value = BLOG_LANGUAGE; editCard.classList.add("hidden"); }
 
     async function deletePost(post) {
-      if (!canManagePost(post)) {
-        setStatus("error", "لا تملك صلاحية حذف هذا المقال.");
-        return;
-      }
-
-      const ok = confirm("هل أنت متأكد من حذف هذا المقال؟\n" + (post.title || post.id));
-      if (!ok) return;
-
-      try {
-        await remove(ref(db, "posts/" + post.id));
-        setStatus("success", "تم حذف المقال بنجاح.");
-        closeEditForm();
-      } catch (error) {
-        console.error(error);
-        setStatus("error", "فشل حذف المقال: " + getFriendlyError(error));
-      }
+      if (!canManagePost(post)) { setStatus("error", "لا تملك صلاحية حذف هذا المقال."); return; }
+      if (!confirm("هل أنت متأكد من حذف هذا المقال؟\n" + (post.title || post.id))) return;
+      try { await remove(ref(db, "posts/" + post.id)); setStatus("success", "تم حذف المقال بنجاح."); closeEditForm(); }
+      catch (error) { console.error(error); setStatus("error", "فشل حذف المقال: " + getFriendlyError(error)); }
     }
 
-    function canManagePost(post) {
-      if (!currentUser || !currentUserRole) return false;
-      if (currentUserRole === "admin") return true;
-      return post.authorUid === currentUser.uid;
-    }
-
-    function showLoggedOut() {
-      loginCard.classList.remove("hidden");
-      manageCard.classList.add("hidden");
-      editCard.classList.add("hidden");
-      logoutBtn.classList.add("hidden");
-      adminTopLink.classList.add("hidden");
-      currentEmail.textContent = "غير مسجل";
-      currentRole.textContent = "غير معروف";
-      postCount.textContent = "0";
-      postsList.innerHTML = "";
-    }
-
-    function showManagePanel() {
-      loginCard.classList.add("hidden");
-      manageCard.classList.remove("hidden");
-      logoutBtn.classList.remove("hidden");
-    }
-
-    function setStatus(type, message) {
-      mainStatus.className = "status " + type;
-      mainStatus.textContent = message;
-    }
-
+    function canManagePost(post) { if (!currentUser || !currentUserRole) return false; if (currentUserRole === "admin") return true; return post.authorUid === currentUser.uid; }
+    function showLoggedOut() { loginCard.classList.remove("hidden"); manageCard.classList.add("hidden"); editCard.classList.add("hidden"); logoutBtn.classList.add("hidden"); adminTopLink.classList.add("hidden"); currentEmail.textContent = "غير مسجل"; currentRole.textContent = "غير معروف"; postCount.textContent = "0"; postsList.replaceChildren(); }
+    function showManagePanel() { loginCard.classList.add("hidden"); manageCard.classList.remove("hidden"); logoutBtn.classList.remove("hidden"); }
+    function setStatus(type, message) { mainStatus.className = "status " + type; mainStatus.textContent = message; }
     function normalizeEmail(value) { return String(value || "").trim().toLowerCase(); }
     function normalizeText(value) { return String(value || "").trim().toLowerCase(); }
-
-    function cleanText(value, maxLength) {
-      return String(value || "")
-        .replace(/[\u0000-\u001F\u007F]/g, "")
-        .replace(/\s+/g, " ")
-        .trim()
-        .slice(0, maxLength);
-    }
-
-    function cleanLongText(value, maxLength) {
-      return String(value || "")
-        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
-        .trim()
-        .slice(0, maxLength);
-    }
-
-    function shortText(value, maxLength) {
-      const text = String(value || "").replace(/\s+/g, " ").trim();
-      return text.length <= maxLength ? text : text.slice(0, maxLength) + "...";
-    }
-
+    function cleanText(value, maxLength) { return String(value || "").replace(/[\u0000-\u001F\u007F]/g, "").replace(/\s+/g, " ").trim().slice(0, maxLength); }
+    function cleanLongText(value, maxLength) { return String(value || "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "").trim().slice(0, maxLength); }
+    function shortText(value, maxLength) { const text = String(value || "").replace(/\s+/g, " ").trim(); return text.length <= maxLength ? text : text.slice(0, maxLength) + "..."; }
     function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email); }
-
-    function isValidUrl(value) {
-      try {
-        const url = new URL(value);
-        return url.protocol === "http:" || url.protocol === "https:";
-      } catch { return false; }
-    }
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function getCategoryLabel(value) {
-      const map = {
-        politics: "سياسة",
-        economy: "اقتصاد",
-        society: "مجتمع",
-        family: "أسرة",
-        culture: "ثقافة",
-        technology: "تكنولوجيا",
-        news: "أخبار",
-        opinion: "رأي وتحليل",
-        other: "أخرى"
-      };
-      return map[value] || value || "غير محدد";
-    }
-
-    function getLangLabel(value) {
-      const map = {
-        ar: "العربية",
-        sv: "Svenska",
-        en: "English",
-        tr: "Türkçe",
-        de: "Deutsch"
-      };
-      return map[value] || value || "غير محدد";
-    }
-
+    function isValidUrl(value) { try { const url = new URL(value); return url.protocol === "http:" || url.protocol === "https:"; } catch { return false; } }
+    function isAllowedStatus(value) { return value === "published" || value === "draft"; }
+    function getCategoryLabel(value) { const map = { politics: "سياسة", economy: "اقتصاد", society: "مجتمع", family: "أسرة", culture: "ثقافة", technology: "تكنولوجيا", news: "أخبار", opinion: "رأي وتحليل", other: "أخرى" }; return map[value] || value || "غير محدد"; }
     function getFriendlyError(error) {
       if (!error) return "حدث خطأ غير معروف.";
       const code = error.code || "";

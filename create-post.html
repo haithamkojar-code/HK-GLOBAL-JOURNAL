@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!--
+  FILE: create-post.html
+  PROJECT: VORQ Digital / VORQ Blog
+  VERSION: VD-BLOG-CREATE-POST-2026-05-26-15-08-Europe-Berlin
+  LAST-UPDATED: 2026-05-26
+  LAST-UPDATED-TIME: 15:08 Europe/Berlin
+  STATUS: current-reviewed
+  CHANGE-NOTE: Updated branding to VORQ Digital, Arabic-only post publishing, legal operator data, version marker, and safer preview image rendering without dynamic innerHTML.
+-->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +17,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
   <meta name="theme-color" content="#0f172a" />
-  <meta name="description" content="صفحة نشر المقالات في VORQ Blog، منصة تدوين تابعة لـ VORQ Group." />
+  <meta name="description" content="صفحة نشر المقالات العربية في VORQ Blog، وهي مشروع تابع لهوية VORQ Digital." />
 
   <style>
     :root {
@@ -305,10 +314,10 @@
   <header>
     <div class="header-inner">
       <a class="brand" href="hk-writers-access.html">
-        <img src="./vorq-group-logo.svg" alt="VORQ Group" class="brand-logo-img">
+        <img src="./vorq-digital-logo.svg" alt="VORQ Digital" class="brand-logo-img">
         <div>
           <div>VORQ Blog</div>
-          <small style="color:rgba(255,255,255,0.72);font-weight:700;">نشر مقال · VORQ Group</small>
+          <small style="color:rgba(255,255,255,0.72);font-weight:700;">نشر مقال · VORQ Digital</small>
         </div>
       </a>
 
@@ -326,14 +335,16 @@
       <div class="card">
         <h1>نشر مقال جديد</h1>
         <p class="muted">
-          اكتبي المقال هنا، ثم اختاري نشر مباشر أو حفظ كمسودة. يظهر المقال للزوار فقط عندما تكون حالته منشور.
+          اكتبي المقال العربي هنا، ثم اختاري نشر مباشر أو حفظ كمسودة. يظهر المقال للزوار فقط عندما تكون حالته منشور.
         </p>
         <div class="info-box">
-          <strong>VORQ Blog</strong> منصة تدوين تابعة لـ <strong>VORQ Group</strong>.
+          <strong>VORQ Blog</strong> منصة تدوين عربية تابعة لهوية <strong>VORQ Digital</strong>.
+          <br />
+          المشغّل القانوني: VORQ Digital, Inhaber: Haitham Kojar
+          <br />
+          العنوان: Ziegelstraße 26, 42289 Wuppertal, Deutschland
           <br />
           البريد: info@vorq.group
-          <br />
-          Vision • Operations • Reach • Quality
         </div>
         <div id="mainStatus" class="status warning">جاري التحقق من صلاحية الحساب...</div>
       </div>
@@ -363,7 +374,7 @@
           <div class="counter" id="titleCounter">0 / 160</div>
         </div>
 
-        <div class="grid-3">
+        <div class="grid-2">
           <div>
             <label for="categoryInput">التصنيف</label>
             <select id="categoryInput" required>
@@ -381,17 +392,6 @@
           </div>
 
           <div>
-            <label for="langInput">لغة المقال</label>
-            <select id="langInput" required>
-              <option value="ar">العربية</option>
-              <option value="sv">Svenska</option>
-              <option value="en">English</option>
-              <option value="tr">Türkçe</option>
-              <option value="de">Deutsch</option>
-            </select>
-          </div>
-
-          <div>
             <label for="statusInput">حالة المقال</label>
             <select id="statusInput" required>
               <option value="published">نشر مباشر</option>
@@ -399,6 +399,8 @@
             </select>
           </div>
         </div>
+
+        <input id="langInput" type="hidden" value="ar" />
 
         <div>
           <label for="summaryInput">ملخص قصير</label>
@@ -446,7 +448,7 @@
   </main>
 
   <footer>
-    VORQ Blog © Create Post · VORQ Group · info@vorq.group · Vision • Operations • Reach • Quality
+    VORQ Blog © Create Post · VORQ Digital, Inhaber: Haitham Kojar · info@vorq.group
   </footer>
 
   <script type="module">
@@ -477,7 +479,10 @@
       measurementId: "G-FSB1QBLZM7"
     };
 
-    const TERMS_VERSION = "2026-05-23";
+    const TERMS_VERSION = "vorq-blog-terms-2026-05";
+    const PLATFORM_NAME = "VORQ Blog";
+    const OPERATOR_LEGAL_NAME = "VORQ Digital, Inhaber: Haitham Kojar";
+    const OPERATOR_ADDRESS = "Ziegelstraße 26, 42289 Wuppertal, Deutschland";
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -624,7 +629,12 @@
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
           updatedByUid: currentUser.uid,
-          updatedByEmail: currentUser.email || ""
+          updatedByEmail: currentUser.email || "",
+          platformName: PLATFORM_NAME,
+          operatorLegalName: OPERATOR_LEGAL_NAME,
+          operatorAddress: OPERATOR_ADDRESS,
+          interfaceLanguage: "ar",
+          contentLanguage: "ar"
         });
 
         setStatus("success", status === "published" ? "تم نشر المقال بنجاح." : "تم حفظ المقال كمسودة.");
@@ -672,8 +682,17 @@
       previewMeta.textContent = "الكاتب: " + authorName + " | التاريخ: " + date + " | التصنيف: " + category + " | اللغة: " + lang;
       previewSummary.textContent = summary;
 
+      previewImage.replaceChildren();
+
       if (imageUrl && isValidHttpUrl(imageUrl)) {
-        previewImage.innerHTML = `<img src="${escapeHtml(imageUrl)}" alt="صورة المقال" onerror="this.parentElement.textContent='VORQ';" />`;
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "صورة المقال";
+        img.onerror = () => {
+          previewImage.replaceChildren();
+          previewImage.textContent = "VORQ";
+        };
+        previewImage.appendChild(img);
       } else {
         previewImage.textContent = "VORQ";
       }
@@ -788,15 +807,7 @@
     }
 
     function getLangLabel(value) {
-      const map = {
-        ar: "العربية",
-        sv: "Svenska",
-        en: "English",
-        tr: "Türkçe",
-        de: "Deutsch"
-      };
-
-      return map[value] || "غير محدد";
+      return value === "ar" ? "العربية" : "العربية";
     }
 
     function friendlyError(error) {
