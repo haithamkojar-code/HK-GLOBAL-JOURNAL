@@ -1,8 +1,8 @@
 /*
 VORQ-FILE: vorq-header-notice.js
 PROJECT: VORQ Blog / VORQ Digital
-VERSION: VD-BLOG-2026-05-26-21-45-Europe-Berlin
-LAST-REVIEWED: 2026-05-26 21:45 Europe/Berlin
+VERSION: VD-BLOG-2026-05-26-22-58-Europe-Berlin
+LAST-REVIEWED: 2026-05-26 22:58 Europe/Berlin
 STATUS: current-reviewed
 CHANGE-NOTE: Centralized homepage-only red trial notice injected into the header with rotating Arabic text.
 */
@@ -31,6 +31,8 @@ CHANGE-NOTE: Centralized homepage-only red trial notice injected into the header
 
   runWhenReady(() => {
     const target = document.querySelector(config.targetSelector);
+
+    document.querySelectorAll(".site-notice").forEach((oldNotice) => oldNotice.remove());
     if (!target || document.getElementById("vorq-site-trial-notice")) return;
 
     injectStyle();
