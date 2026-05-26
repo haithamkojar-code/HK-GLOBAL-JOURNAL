@@ -1,11 +1,11 @@
 VORQ Blog - قائمة الرفع والاختبار
 FILE: upload-checklist.txt
 PROJECT: VORQ Blog / VORQ Digital
-VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
+VERSION: VD-BLOG-2026-05-26-22-00-Europe-Berlin
 LAST-UPDATED: 2026-05-26
-LAST-UPDATED-TIME: 20:03 Europe/Berlin
+LAST-UPDATED-TIME: 22:00 Europe/Berlin
 STATUS: current-reviewed
-CHANGE-NOTE: Updated deployment checklist to VORQ Digital legal operator, German address, Arabic-only Blog scope, and current reviewed file set.
+CHANGE-NOTE: Added official phone contact and Arabic-only phone-call note to legal/contact checklist.
 
 الهوية الحالية:
 - اسم المشروع الظاهر: VORQ Blog
@@ -13,6 +13,7 @@ CHANGE-NOTE: Updated deployment checklist to VORQ Digital legal operator, German
 - المشغّل القانوني: VORQ Digital, Inhaber: Haitham Kojar
 - العنوان القانوني: Ziegelstraße 26, 42289 Wuppertal, Deutschland
 - البريد الرسمي: info@vorq.group
+- الهاتف الرسمي: 0178-3705133 (المكالمات الهاتفية باللغة العربية فقط)
 - الشعار النصي: Vision • Operations • Reach • Quality
 - لغة المرحلة الحالية: العربية فقط
 
@@ -36,9 +37,16 @@ CHANGE-NOTE: Updated deployment checklist to VORQ Digital legal operator, German
 13. private-guard.js
 14. robots.txt
 15. sitemap.xml
-16. firebase.json - فقط عند النشر على Firebase Hosting
-17. vorq-digital-logo.svg - شعار احتياطي/مظلة إذا لم يتم رفع شعار المدونة
-18. vorq-blog-logo.png - عند توفر الشعار النهائي المعتمد للمدونة
+16. impressum.html
+17. notice-action.html
+18. cookies.html
+19. content-policy.html
+20. copyright-policy.html
+21. data-request.html
+22. security.html
+23. firebase.json - فقط عند النشر على Firebase Hosting
+24. vorq-digital-logo.svg - شعار احتياطي/مظلة إذا لم يتم رفع شعار المدونة
+25. vorq-blog-logo.png - عند توفر الشعار النهائي المعتمد للمدونة
 
 لا ترفع الملفات الداخلية التالية إلى الموقع العام:
 - VORQ-DIGITAL-INFO.md
@@ -82,7 +90,8 @@ Firebase Console
    - VORQ Digital, Inhaber: Haitham Kojar
    - Ziegelstraße 26, 42289 Wuppertal, Deutschland
    - info@vorq.group
-4. تأكد من عدم ظهور VORQ Group كمالك قانوني داخل الصفحات المحدثة.
+   - 0178-3705133 (المكالمات الهاتفية باللغة العربية فقط)
+4. تأكد من عدم ظهور VORQ Digital كمالك قانوني داخل الصفحات المحدثة.
 5. تأكد من عدم ظهور العنوان السويدي القديم.
 6. تأكد من عدم ظهور HK Global أو أسماء قديمة في الواجهة.
 7. افتح hk-writers-access.html وسجل دخول المدير.
@@ -104,3 +113,9 @@ Firebase Console
 - كود HTML/JS الأمامي لا يمكن تشفيره تشفيرًا حقيقيًا لأنه يعمل داخل متصفح الزائر.
 - لا تنشر أي أسرار أو مفاتيح Admin SDK أو ملفات credentials في GitHub أو Firebase Hosting.
 - لا تنشر VORQ-DIGITAL-INFO.md لأنه مرجع داخلي للمشروع.
+
+ملاحظة تحديث: يجب أن يظهر في الهيدر تنبيه التشغيل التجريبي القصير مع رابط صفحة البلاغات والبريد الرسمي.
+
+
+ملف تنبيه الهيدر:
+- vorq-header-notice.js يتحكم بتنبيه التشغيل التجريبي في الصفحة الرئيسية فقط. عند تغيير نص التنبيه لاحقًا عدل هذا الملف فقط.
