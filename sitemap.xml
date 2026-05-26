@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  FILE: sitemap.xml
-  PROJECT: VORQ Blog / VORQ Digital
-  VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
-  LAST-UPDATED: 2026-05-26
-  LAST-UPDATED-TIME: 20:03 Europe/Berlin
-  STATUS: current-reviewed
-  CHANGE-NOTE: Updated public sitemap dates and kept only public-facing pages for the Arabic VORQ Blog.
--->
+<!-- VORQ-FILE: sitemap.xml | PROJECT: VORQ Blog / VORQ Digital | VERSION: VD-BLOG-2026-05-26-21-35-Europe-Berlin | LAST-REVIEWED: 2026-05-26 21:35 Europe/Berlin | STATUS: current-reviewed | CHANGE-NOTE: Clean sitemap with public pages only. -->
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog.vorq.group/</loc>
@@ -38,5 +30,17 @@
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://blog.vorq.group/impressum.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://blog.vorq.group/cookies.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>

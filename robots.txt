@@ -1,39 +1,14 @@
-# FILE: robots.txt
-# PROJECT: VORQ Blog / VORQ Digital
-# VERSION: VD-BLOG-2026-05-26-20-03-Europe-Berlin
-# LAST-UPDATED: 2026-05-26
-# LAST-UPDATED-TIME: 20:03 Europe/Berlin
-# STATUS: current-reviewed
-# CHANGE-NOTE: Updated branding to VORQ Digital, blocked private writer/admin pages, and added final sitemap URL.
-
+# VORQ-FILE: robots.txt | PROJECT: VORQ Blog / VORQ Digital | VERSION: VD-BLOG-2026-05-26-21-35-Europe-Berlin | LAST-REVIEWED: 2026-05-26 21:35 Europe/Berlin | STATUS: current-reviewed
 User-agent: *
 Allow: /
-
-# Private writer/admin pages - not for public indexing
 Disallow: /admin.html
-Disallow: /admin
 Disallow: /create-post.html
-Disallow: /create-post
 Disallow: /manage-posts.html
-Disallow: /manage-posts
 Disallow: /employee-register.html
-Disallow: /employee-register
 Disallow: /hk-writers-access.html
-Disallow: /hk-writers-access
-
-# Internal reference files must not be indexed or deployed publicly
+Disallow: /private-guard.js
 Disallow: /VORQ-DIGITAL-INFO.md
-Disallow: /VORQ-FORDON-INFO.md
-Disallow: /VORQ-FORDON-INFO_FINAL.md
+Disallow: /README-LEGAL-FILES.md
 Disallow: /realtime-database-rules.json
-Disallow: /firebase-debug.log
-
-# Public pages
-Allow: /index.html
-Allow: /legal.html
-Allow: /terms.html
-Allow: /privacy.html
-Allow: /disclaimer.html
-Allow: /404.html
-
+Disallow: /firebase-storage.rules
 Sitemap: https://blog.vorq.group/sitemap.xml
